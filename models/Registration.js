@@ -27,6 +27,12 @@ const RegistrationSchema = new mongoose.Schema(
         profession: {
             type: String,
         },
+        category: {
+            type: String,
+        },
+        institution: {
+            type: String,
+        },
         matterOfInterest: {
             type: String,
         },

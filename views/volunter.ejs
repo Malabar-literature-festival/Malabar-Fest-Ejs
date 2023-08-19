@@ -39,6 +39,7 @@
 
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 
@@ -244,7 +245,8 @@
                     </div>
                     <div class="register-form">
                         <div class="container">
-                            <form>
+
+                            <form action="/volunter" method="post" enctype="multipart/form-data" id="volunteerForm">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -254,10 +256,10 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="professions">Gender:</label>
-                                            <select id="professions" name="profession" class="form-control" required>
-                                                <option value="teacher">Male</option>
-                                                <option value="engineer">Female</option>
+                                            <label for="gender">Gender:</label>
+                                            <select id="gender" name="gender" class="form-control" required>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
 
                                             </select>
                                         </div>
@@ -272,6 +274,7 @@
                                         <div class="form-group">
                                             <label for="email">Email ID:</label>
                                             <input type="email" id="email" name="email" class="form-control" required>
+                                            <p id="emailError" class="text-danger"></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -430,12 +433,12 @@
 
                                         </div>
                                         <div class="form-group">
-                                            <label for="name">Name:</label>
-                                            <input type="text" id="name" name="name" class="form-control">
+                                            <label for="reference_name">Name:</label>
+                                            <input type="text" id="reference_name" name="reference_name" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="contactNumber">Contact Number:</label>
-                                            <input type="text" id="contactNumber" name="contactNumber"
+                                            <label for="mobile">Contact Number:</label>
+                                            <input type="text" id="mobile" name="mobile"
                                                 class="form-control">
                                         </div>
                                     </div>
@@ -450,42 +453,42 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="professions">Matter Of Intrest:1</label>
-                                            <select id="professions" name="profession"
+                                            <label for="interest">Matter Of Interest</label>
+                                            <select id="interest" name="interest"
                                                 class="form-control scrollable-dropdown" required>
-                                                <option value="teacher">Mappila Literature</option>
-                                                <option value="teacher">Mappila Literature</option>
-                                                <option value="engineer">Arabi Malayalam</option>
-                                                <option value="doctor">Dalit Literature</option>
-                                                <option value="artist">Folklore Literature</option>
-                                                <option value="writer">Classical Literature</option>
-                                                <option value="engineer">Urdu Literature</option>
-                                                <option value="artist">Indo-Malabar</option>
-                                                <option value="teacher">Arabi Malayalam</option>
-                                                <option value="engineer">Kids Literature</option>
-                                                <option value="doctor">Family Literature</option>
-                                                <option value="artist">Foreign Literature</option>
-                                                <option value="writer">Arab Culture and Literature</option>
-                                                <option value="engineer">Women Literature</option>
-                                                <option value="artist">Gender Literature</option>
-                                                <option value="teacher">Translation</option>
-                                                <option value="doctor">Travel & Outdoor</option>
-                                                <option value="artist">Food Culture</option>
-                                                <option value="writer">Festivals</option>
-                                                <option value="engineer">Art</option>
-                                                <option value="artist">Performance Art</option>
-                                                <option value="teacher">Fine Arts</option>
-                                                <option value="doctor">Architecture</option>
-                                                <option value="writer">Film & Music</option>
-                                                <option value="engineer">Health</option>
-                                                <option value="artist">Spirituality</option>
-                                                <option value="teacher">Sufism</option>
-                                                <option value="doctor">Sports & Fitness</option>
-                                                <option value="artist">Science & Tech</option>
-                                                <option value="writer">Charity & Causes</option>
-                                                <option value="engineer">Family & Education</option>
-                                                <option value="artist">Social Media</option>
-                                                <option value="teacher">Social Activism</option>
+                                                <option value="Mappila Literature">Mappila Literature</option>
+                                                <option value="Mappila Literature">Mappila Literature</option>
+                                                <option value="Arabi Malayalam">Arabi Malayalam</option>
+                                                <option value="Dalit Literature">Dalit Literature</option>
+                                                <option value="Folklore Literature">Folklore Literature</option>
+                                                <option value="Classical Literature">Classical Literature</option>
+                                                <option value="Urdu Literature">Urdu Literature</option>
+                                                <option value="Indo-Malabar">Indo-Malabar</option>
+                                                <option value="Arabi Malayalam">Arabi Malayalam</option>
+                                                <option value="Kids Literature">Kids Literature</option>
+                                                <option value="Family Literature">Family Literature</option>
+                                                <option value="Foreign Literature">Foreign Literature</option>
+                                                <option value="Arab Culture and Literature">Arab Culture and Literature</option>
+                                                <option value="Women Literature">Women Literature</option>
+                                                <option value="Gender Literature">Gender Literature</option>
+                                                <option value="Translation">Translation</option>
+                                                <option value="Travel & Outdoor">Travel & Outdoor</option>
+                                                <option value="Food Culture">Food Culture</option>
+                                                <option value="Festivals">Festivals</option>
+                                                <option value="Art">Art</option>
+                                                <option value="Performance Art">Performance Art</option>
+                                                <option value="Fine Arts">Fine Arts</option>
+                                                <option value="Architecture">Architecture</option>
+                                                <option value="Film & Music">Film & Music</option>
+                                                <option value="Health">Health</option>
+                                                <option value="Spirituality">Spirituality</option>
+                                                <option value="Sufism">Sufism</option>
+                                                <option value="Sports & Fitness">Sports & Fitness</option>
+                                                <option value="Science & Tech">Science & Tech</option>
+                                                <option value="Charity & Causes">Charity & Causes</option>
+                                                <option value="Family & Education">Family & Education</option>
+                                                <option value="Social Media">Social Media</option>
+                                                <option value="Social Activism">Social Activism</option>
                                             </select>
                                         </div>
                                     </div>
@@ -664,6 +667,60 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const form = document.getElementById("volunteerForm");
+        
+          form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+        
+            const formData = new FormData(form);
+        
+            try {
+              const response = await fetch("/volunter", {
+                method: "POST",
+                body: formData,
+              });
+        
+              if (response.ok) {
+                // Refresh the page after successful submission
+                location.reload();
+              } else {
+                console.error("Submission failed");
+              }
+            } catch (error) {
+              console.error("Error:", error);
+            }
+          });
+        });
+        </script>
+
+    <script>
+        $(document).ready(function () {
+            // Add an event listener to the email input field
+            $('#email').on('blur', function () {
+                const email = $(this).val();
+        
+                // Send an AJAX request to check if the email already exists
+                $.ajax({
+                    url: '/volunter/check-email', // Update with the actual route to check email
+                    method: 'POST',
+                    data: { email: email },
+                    success: function (response) {
+                        if (response.error) {
+                            $('#emailError').text(response.error).show();
+                        } else {
+                            $('#emailError').text('').hide();
+                        }
+                    },
+                    error: function () {
+                        console.error('Error checking email');
+                    }
+                });
+            });
+        });
+        </script>
 
 </body>
 
