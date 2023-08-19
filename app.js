@@ -4,7 +4,6 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
-const mongoose = require("mongoose");
 const connectDB = require("./config/db");
 
 // Load env vars
@@ -31,6 +30,7 @@ var Student = require("./routes/student");
 var Speaker = require("./routes/speaker");
 var Volunter = require("./routes/volunter");
 var Programe = require("./routes/programe");
+// var News = require("./routes/news");
 
 var app = express();
 
@@ -68,6 +68,7 @@ app.use("/student", Student);
 app.use("/speaker", Speaker);
 app.use("/volunter", Volunter);
 app.use("/programe", Programe);
+// app.use("/news", News);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

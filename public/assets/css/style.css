@@ -12065,6 +12065,9 @@ img {
   .news-section h1 {
     font-size: 35px !important;
   }
+  .news-details-head-img img {
+    height: auto !important;
+  }
 }
 .speaker-title h1 {
   /* Existing styles */
@@ -12131,7 +12134,7 @@ img {
 .news-details-head-img img {
   border-radius: 15px;
   max-width: 100%;
-  height: auto;
+  height: 330px;
   width: auto\9; /* IE8 */
 }
 
@@ -12687,14 +12690,146 @@ figcaption {
 /* programe page------ */
 .header-programe-title {
   text-align: center;
-  padding: 20px;
+  padding: 40px;
+}
+.header-programe-title h1 {
   font-family: var(--font-Inter);
   font-size: 30px;
+  color: #555555 !important;
+}
+.header-programe-img img {
+  max-width: 100%;
+  height: auto;
+  max-height: 500px;
+}
+.header-programe-para {
+  text-align: center;
+  padding: 20px;
+  color: #000000;
+}
+@media (max-width: 768px) {
+  .header-programe-title {
+    padding: 20px;
+  }
+  .header-programe-title h1 {
+    font-size: 20px;
+  }
+  .speaker-details-title h1 {
+    font-size: 30px !important;
+  }
+  .header-programe-para {
+    padding: 20px;
+    color: #000000;
+    font-size: small;
+  }
+}
+.mobile-register {
+  background-color: #00bef0;
+  padding: 10px 88px;
+  color: #fff;
+  border-radius: 10px;
+  width: 100px;
+  text-align: center;
+  font-family: var(--font-Inter);
 }
 
-#professions {
-  height: 150px;
-  max-height: 150px;
-  overflow-y: scroll;
-  width: 300px;
+.custom-card {
+  width: 16rem !important;
+  height: 18rem !important;
+  border-radius: 50px;
+
+  overflow: hidden;
+}
+
+.card-img {
+  object-fit: initial;
+  width: 100%;
+  height: 100%;
+}
+
+/* speaker inner page */
+.speaker-details-title h1 {
+  padding-bottom: 50px;
+  color: #0077b6;
+  font-family: var(--font-playfair);
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 15px; /* Adjust the value as needed */
+}
+.speakers-details {
+  padding: 40px 0px;
+  margin-top: 130px;
+  /* border: 1px solid black; */
+}
+
+.speaker-cards {
+  position: relative;
+  margin-left: 30px;
+  margin-top: 30px;
+  /* border: 1px solid black; */
+  border-radius: 40px;
+  height: 17rem;
+  width: 15rem;
+  overflow: hidden;
+}
+
+.speaker-imgs {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.speaker-imgs img {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 550px) {
+  .speakers-details {
+    text-align: center;
+  }
+  .speaker-cards {
+    margin: 15px auto; /* Adjust the margin for smaller screens */
+  }
+}
+.speaker-content {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Use rgba with opacity */
+  padding-top: 5px;
+  padding-bottom: 45px;
+}
+
+.speaker-para {
+  color: #ffffff;
+  font-family: var(--font-Inter);
+  width: 100%;
+  color: #fff;
+  font-weight: 400;
+  padding: 0 10px; /* Adjust padding as needed */
+  box-sizing: border-box; /* Include padding in the width calculation */
+  font-size: 16px;
+}
+
+.speakers-name {
+  width: 100%;
+  color: #49bdf2;
+  font-family: var(--font-Inter);
+  font-size: 20px;
 }
