@@ -12467,10 +12467,10 @@ li a {
   transform: translate(-50%, -50%);
   text-align: center;
   /* border: 1px solid gray; */
-  background-color: rgba(0, 0, 0, 0.7); /* Black color with 70% opacity */
-  padding: 3px 50px;
+  /* background-color: rgba(0, 0, 0, 0.7);  */
+  background-image: url("assets/images/blackshade1.svg");
+  padding: 33px 86px;
   color: #fff; /* Set text color to white for better visibility */
-
   border-radius: 30px;
 }
 .speaker-name h1 {
@@ -12811,7 +12811,9 @@ figcaption {
   transform: translate(-50%, -50%);
   text-align: center;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.6); /* Use rgba with opacity */
+  /* background-image: url("assets/images/blackshade.svg") !important; */
+  background-size: cover;
+  background-repeat: no-repeat;
   padding-top: 5px;
   padding-bottom: 45px;
 }

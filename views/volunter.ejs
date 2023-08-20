@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favnew.svg">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -422,12 +422,12 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="reference_name">Name:</label>
-                                            <input type="text" id="reference_name" name="reference_name" class="form-control">
+                                            <input type="text" id="reference_name" name="reference_name"
+                                                class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="mobile">Contact Number:</label>
-                                            <input type="text" id="mobile" name="mobile"
-                                                class="form-control">
+                                            <input type="text" id="mobile" name="mobile" class="form-control">
                                         </div>
                                     </div>
 
@@ -456,7 +456,8 @@
                                                 <option value="Kids Literature">Kids Literature</option>
                                                 <option value="Family Literature">Family Literature</option>
                                                 <option value="Foreign Literature">Foreign Literature</option>
-                                                <option value="Arab Culture and Literature">Arab Culture and Literature</option>
+                                                <option value="Arab Culture and Literature">Arab Culture and Literature
+                                                </option>
                                                 <option value="Women Literature">Women Literature</option>
                                                 <option value="Gender Literature">Gender Literature</option>
                                                 <option value="Translation">Translation</option>
@@ -665,38 +666,38 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-          const form = document.getElementById("volunteerForm");
-        
-          form.addEventListener("submit", async (event) => {
-            event.preventDefault();
-        
-            const formData = new FormData(form);
-        
-            try {
-              const response = await fetch("/volunter", {
-                method: "POST",
-                body: formData,
-              });
-        
-              if (response.ok) {
-                // Refresh the page after successful submission
-                location.reload();
-              } else {
-                console.error("Submission failed");
-              }
-            } catch (error) {
-              console.error("Error:", error);
-            }
-          });
+            const form = document.getElementById("volunteerForm");
+
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+
+                const formData = new FormData(form);
+
+                try {
+                    const response = await fetch("/volunter", {
+                        method: "POST",
+                        body: formData,
+                    });
+
+                    if (response.ok) {
+                        // Refresh the page after successful submission
+                        location.reload();
+                    } else {
+                        console.error("Submission failed");
+                    }
+                } catch (error) {
+                    console.error("Error:", error);
+                }
+            });
         });
-        </script>
+    </script>
 
     <script>
         $(document).ready(function () {
             // Add an event listener to the email input field
             $('#email').on('blur', function () {
                 const email = $(this).val();
-        
+
                 // Send an AJAX request to check if the email already exists
                 $.ajax({
                     url: '/volunter/check-email', // Update with the actual route to check email
@@ -715,7 +716,7 @@
                 });
             });
         });
-        </script>
+    </script>
 
 </body>
 
