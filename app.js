@@ -30,12 +30,12 @@ var Student = require("./routes/student");
 var Speaker = require("./routes/speaker");
 var Volunter = require("./routes/volunter");
 var Programe = require("./routes/programe");
-// var News = require("./routes/news");
+var News = require("./routes/news");
 
 var app = express();
 
 // Connect to MongoDB database
-connectDB()
+connectDB();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -46,7 +46,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-app.use('/uploads', express.static('uploads')); // Serve uploaded images
+app.use("/uploads", express.static("uploads")); // Serve uploaded images
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
@@ -68,7 +68,7 @@ app.use("/student", Student);
 app.use("/speaker", Speaker);
 app.use("/volunter", Volunter);
 app.use("/programe", Programe);
-// app.use("/news", News);
+app.use("/news", News);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
