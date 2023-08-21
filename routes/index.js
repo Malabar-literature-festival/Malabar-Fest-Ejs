@@ -1,19 +1,26 @@
 const express = require("express");
+const AboutUs = require("../models/AboutUs");
+const Speakers = require("../models/Speakers");
+const News = require("../models/News");
+const Testimonial = require("../models/Testimonial");
 const router = express.Router();
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
+router.get("/", async function (req, res, next) {
   try {
-    // You can remove the API request part and the related data manipulation
-
-    // You can set a default title or any other data you want to pass to the template
     const title = "Welcome to My Website";
 
-    // Pass the title to the EJS template and render it
-    res.render("index", { title });
+    const aboutData = await AboutUs.find();
+
+    const speakerData = await Speakers.find();
+
+    const newsData = await News.find()
+
+    const testimonialData = await Testimonial.find()
+    console.log(testimonialData)
+    res.render("index", { title, aboutData, speakerData, newsData, testimonialData });
   } catch (error) {
     console.error("Error:", error);
-    res.render("error"); // Render an error template in case of any issues
   }
 });
 

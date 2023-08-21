@@ -226,129 +226,18 @@
                     <div class="speaker-details-title">
                         <h1>Speakers</h1>
                     </div>
-                    <div class="col-md-3 speaker-cards">
-                        <div class="speaker-imgs">
-                            <img src="https://img.freepik.com/free-photo/cute-cat-laying-grass_23-2150385852.jpg?size=626&ext=jpg&ga=GA1.2.790742631.1691391131"
-                                alt="">
-                            <div class="speaker-content" style="background-image: url('assets/images/blackshade.svg');">
-                                <h3 class="speakers-name">Rana Ayyub</h3>
-                                <p class="speaker-para">Lorem ipsum dolor sit amet , consectetur adipiscing elit.</p>
+                    <% speakerData.forEach(speaker => { %>
+                        <div class="col-md-3 speaker-cards">
+                            <div class="speaker-imgs">
+                                <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speaker.image }` %>"
+                                    alt="">
+                                <div class="speaker-content" style="background-image: url('assets/images/blackshade.svg');">
+                                    <h3 class="speakers-name"><%= speaker.name %></h3>
+                                    <p class="speaker-para"><%= speaker.description %></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 speaker-cards">
-                        <div class="speaker-imgs">
-                            <img src="https://img.freepik.com/free-photo/cute-cat-laying-grass_23-2150385852.jpg?size=626&ext=jpg&ga=GA1.2.790742631.1691391131"
-                                alt="">
-                            <div class="speaker-content" style="background-image: url('assets/images/blackshade.svg');">
-                                <h3 class="speakers-name">Rana Ayyub</h3>
-                                <p class="speaker-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 speaker-cards">
-                        <div class="speaker-imgs">
-                            <img src="https://img.freepik.com/free-photo/cute-cat-laying-grass_23-2150385852.jpg?size=626&ext=jpg&ga=GA1.2.790742631.1691391131"
-                                alt="">
-                            <div class="speaker-content" style="background-image: url('assets/images/blackshade.svg');">
-                                <h3 class="speakers-name">Rana Ayyub</h3>
-                                <p class="speaker-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 speaker-cards">
-                        <div class="speaker-imgs">
-                            <img src="https://img.freepik.com/free-photo/cute-cat-laying-grass_23-2150385852.jpg?size=626&ext=jpg&ga=GA1.2.790742631.1691391131"
-                                alt="">
-                            <div class="speaker-content" style="background-image: url('assets/images/blackshade.svg');">
-                                <h3 class="speakers-name">Rana Ayyub</h3>
-                                <p class="speaker-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 speaker-cards">
-                        <div class="speaker-imgs">
-                            <img src="https://img.freepik.com/free-photo/cute-cat-laying-grass_23-2150385852.jpg?size=626&ext=jpg&ga=GA1.2.790742631.1691391131"
-                                alt="">
-                            <div class="speaker-content" style="background-image: url('assets/images/blackshade.svg');">
-                                <h3 class="speakers-name">Rana Ayyub</h3>
-                                <p class="speaker-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 speaker-cards">
-                        <div class="speaker-imgs">
-                            <img src="https://img.freepik.com/free-photo/cute-cat-laying-grass_23-2150385852.jpg?size=626&ext=jpg&ga=GA1.2.790742631.1691391131"
-                                alt="">
-                            <div class="speaker-content" style="background-image: url('assets/images/blackshade.svg');">
-                                <h3 class="speakers-name">Rana Ayyub</h3>
-                                <p class="speaker-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 speaker-cards">
-                        <div class="speaker-imgs">
-                            <img src="https://img.freepik.com/free-photo/cute-cat-laying-grass_23-2150385852.jpg?size=626&ext=jpg&ga=GA1.2.790742631.1691391131"
-                                alt="">
-                            <div class="speaker-content" style="background-image: url('assets/images/blackshade.svg');">
-                                <h3 class="speakers-name">Rana Ayyub</h3>
-                                <p class="speaker-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 speaker-cards">
-                        <div class="speaker-imgs">
-                            <img src="https://img.freepik.com/free-photo/cute-cat-laying-grass_23-2150385852.jpg?size=626&ext=jpg&ga=GA1.2.790742631.1691391131"
-                                alt="">
-                            <div class="speaker-content" style="background-image: url('assets/images/blackshade.svg');">
-                                <h3 class="speakers-name">Rana Ayyub</h3>
-                                <p class="speaker-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 speaker-cards">
-                        <div class="speaker-imgs">
-                            <img src="https://img.freepik.com/free-photo/cute-cat-laying-grass_23-2150385852.jpg?size=626&ext=jpg&ga=GA1.2.790742631.1691391131"
-                                alt="">
-                            <div class="speaker-content" style="background-image: url('assets/images/blackshade.svg');">
-                                <h3 class="speakers-name">Rana Ayyub</h3>
-                                <p class="speaker-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 speaker-cards">
-                        <div class="speaker-imgs">
-                            <img src="https://img.freepik.com/free-photo/cute-cat-laying-grass_23-2150385852.jpg?size=626&ext=jpg&ga=GA1.2.790742631.1691391131"
-                                alt="">
-                            <div class="speaker-content" style="background-image: url('assets/images/blackshade.svg');">
-                                <h3 class="speakers-name">Rana Ayyub</h3>
-                                <p class="speaker-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 speaker-cards">
-                        <div class="speaker-imgs">
-                            <img src="https://img.freepik.com/free-photo/cute-cat-laying-grass_23-2150385852.jpg?size=626&ext=jpg&ga=GA1.2.790742631.1691391131"
-                                alt="">
-                            <div class="speaker-content" style="background-image: url('assets/images/blackshade.svg');">
-                                <h3 class="speakers-name">Rana Ayyub</h3>
-                                <p class="speaker-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 speaker-cards">
-                        <div class="speaker-imgs">
-                            <img src="https://img.freepik.com/free-photo/cute-cat-laying-grass_23-2150385852.jpg?size=626&ext=jpg&ga=GA1.2.790742631.1691391131"
-                                alt="">
-                            <div class="speaker-content" style="background-image: url('assets/images/blackshade.svg');">
-                                <h3 class="speakers-name">Rana Ayyub</h3>
-                                <p class="speaker-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-
+                      <% }); %>
                 </div>
 
 

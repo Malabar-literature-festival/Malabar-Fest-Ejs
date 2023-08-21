@@ -12400,6 +12400,7 @@ li a {
   width: 100%;
   height: 600px; /* 50% of viewport height */
 }
+
 @media (max-width: 768px) {
   .speaker-name {
     top: 40%;
@@ -12476,7 +12477,10 @@ li a {
 .speaker-name h1 {
   color: #fff;
   font-size: 23px;
+  font-family: var(--font-Inter);
+  line-height: initial;
 }
+
 /* about pages------ */
 .about-malabar {
   margin-top: 100px;

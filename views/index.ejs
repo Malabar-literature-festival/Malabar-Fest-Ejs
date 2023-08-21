@@ -68,7 +68,7 @@
             <!-- Header Logo Start -->
             <div class="header-logo header-logo-3">
               <a class="logo-black" href="index-2.html"><img src="assets/images/favnew.svg" alt="Logo"></a>
-              <a class="logo-white" href="index-2.html"><img src="assets/images/Frame.png" alt="Logo"></a>
+              <a class="logo-white" href="index-2.html"><img src="assets/images/favnew.svg" alt="Logo"></a>
             </div>
             <!-- Header Logo End -->
 
@@ -257,16 +257,7 @@
         <div class="about-title">
           <h1>About us</h1>
         </div>
-        <h2 class="about-para">
-          Lorem ipsum dolor sit amet
-          consectetur,
-          adipisicing elit.
-          Voluptates, placeat sit.
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus expedita, nesciunt id labore saepe mollitia
-          explicabo, eaque magnam maiores a velit deserunt suscipit accusantium sequi sit nostrum ipsum veritatis neque.
-          Sunt dignissimos iure voluptatum, amet, porro nam est numquam tempore dolorem error cum odit aperiam labore
-          molestiae commodi autem ea veritatis deleniti exercitationem itaque culpa perferendis consectetur consequuntur
-          quas! Tempore.</h2>
+        <h2 class="about-para"><%= aboutData[0].shortDescription %></h2>
       </div>
 
     </div>
@@ -283,33 +274,33 @@
           <div class="speaker-carousel" style="display: flex;">
             <div class="speaker-img">
               <div class="img-wrapper">
-                <img src="assets/images/speaker.png" alt="">
+                <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speakerData[0].image }` %>" alt="">
                 <div class="speaker-name" style="background-image: url('assets/images/blackshade1.svg');">
-                  <h1>Rana Ayyub</h1>
+                  <h1><%= speakerData[0].name %></h1>
                 </div>
               </div>
             </div>
             <div class="speaker-img">
               <div class="img-wrapper">
-                <img src="assets/images/speaker.png" alt="">
+                <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speakerData[0].image }` %>" alt="">
                 <div class="speaker-name" style="background-image: url('assets/images/blackshade1.svg');">
-                  <h1>Rana Ayyub</h1>
+                  <h1><%= speakerData[0].name %></h1>
                 </div>
               </div>
             </div>
             <div class="speaker-img">
               <div class="img-wrapper">
-                <img src="assets/images/speaker.png" alt="">
+                <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speakerData[0].image }` %>" alt="">
                 <div class="speaker-name" style="background-image: url('assets/images/blackshade1.svg');">
-                  <h1>Rana Ayyub</h1>
+                  <h1><%= speakerData[0].name %></h1>
                 </div>
               </div>
             </div>
             <div class="speaker-img">
               <div class="img-wrapper">
-                <img src="assets/images/speaker.png" alt="">
+                <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speakerData[0].image }` %>" alt="">
                 <div class="speaker-name" style="background-image: url('assets/images/blackshade1.svg');">
-                  <h1>Rana Ayyub</h1>
+                  <h1><%= speakerData[0].name %></h1>
                 </div>
               </div>
             </div>
@@ -333,98 +324,91 @@
         <div class="col-12 col-xl-6 news-details-head-img">
           <!-- <img src="assets/images/news1.png" alt=""> -->
           <img
-            src="https://img.freepik.com/free-photo/adults-enjoying-mexican-food_23-2149663840.jpg?size=626&ext=jpg&ga=GA1.2.790742631.1691391131"
+            src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[0].image }` %>"
             alt="">
         </div>
         <div class="col-12 col-xl-6 ">
-          <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, maiores?</h1>
+          <h1><%= newsData[0].title %></h1>
           <div class="dates">
             <h6 style="display: inline;">Latest</h6><span class="time" style="display: inline; padding-left: 10px;">32
               MINUTES AGO</span>
           </div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto quo, reprehenderit excepturi
-            temporibus ipsam dolorem? Explicabo rem, accusantium corporis repellat, aspernatur sequi, iusto quia animi
-            aut excepturi illum facilis porro
-            Explicabo rem, accusantium corporis repellat, aspernatur sequi, iusto quia animi
-            aut excepturi illum facilis porro.</p>
+          <p><%= newsData[0].description %></p>
           <div>
-            <a href="/news"> <button class="readmore">Read More</button></a>
+            <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
           </div>
         </div>
       </div>
       <div class="row news-details-carousel" style="display: flex; margin-top: 50px;">
+
         <div class="card" style="width: 18rem; ">
           <img class="card-img-top"
-            src="https://img.freepik.com/free-photo/full-shot-people-taking-care-garden_23-2149722685.jpg?w=1480&t=st=1691692671~exp=1691693271~hmac=5af9d2087b03cd555cd04bb08ba42f5c34f52b85e8c8d6f266b7142b7b427f2e"
+            src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[0].image }` %>"
             alt="Card image cap" style="border-radius: 10px;">
           <div class="card-body">
-            <h5 class="card-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, quasi.</h5>
+            <h5 class="card-title"><%= newsData[0].title %></h5>
             <ul style="list-style: none; padding-left: 0;">
               <li style="display: inline;"> <span style="font-size: 20px; color: #49BDF2;">&bull;</span> 32 MINUTES AGO
               </li>
             </ul>
-            <P class="card-text-para">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium molestias
-              itaque animi repellendus
-              maxime vitae aliquam laudantium maiores quae eaque?</P>
+            <P class="card-text-para"><%= newsData[0].description %></P>
             <div>
-              <a href="/news"> <button class="readmore">Read More</button></a>
+              <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
             </div>
           </div>
         </div>
+
         <div class="card" style="width: 18rem; ">
           <img class="card-img-top"
-            src="https://img.freepik.com/premium-photo/girl-with-curly-hair-vintage-clothes-sits-ground-near-country-house-hugs-dog_245974-10874.jpg?size=626&ext=jpg"
+            src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[0].image }` %>"
             alt="Card image cap" style="border-radius: 10px;">
           <div class="card-body">
-            <h5 class="card-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, quasi.</h5>
+            <h5 class="card-title"><%= newsData[0].title %></h5>
             <ul style="list-style: none; padding-left: 0;">
               <li style="display: inline;"> <span style="font-size: 20px; color: #49BDF2;">&bull;</span> 32 MINUTES AGO
               </li>
             </ul>
-            <P class="card-text-para">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium molestias
-              itaque animi repellendus
-              maxime vitae aliquam laudantium maiores quae eaque?</P>
+            <P class="card-text-para"><%= newsData[0].description %></P>
             <div>
-              <a href="/news"> <button class="readmore">Read More</button></a>
+              <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
             </div>
           </div>
         </div>
-        <div class="card" style="width: 18rem;">
+
+        <div class="card" style="width: 18rem; ">
           <img class="card-img-top"
-            src="https://img.freepik.com/premium-photo/young-woman-with-cigarette-smoking-scrolling-social-media-smartphone-while-sitting-bathtub_165285-5289.jpg?size=626&ext=jpg"
+            src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[0].image }` %>"
             alt="Card image cap" style="border-radius: 10px;">
           <div class="card-body">
-            <h5 class="card-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, quasi.</h5>
+            <h5 class="card-title"><%= newsData[0].title %></h5>
             <ul style="list-style: none; padding-left: 0;">
               <li style="display: inline;"> <span style="font-size: 20px; color: #49BDF2;">&bull;</span> 32 MINUTES AGO
               </li>
             </ul>
-            <P class="card-text-para">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium molestias
-              itaque animi repellendus
-              maxime vitae aliquam laudantium maiores quae eaque?</P>
+            <P class="card-text-para"><%= newsData[0].description %></P>
             <div>
-              <a href="/news"> <button class="readmore">Read More</button></a>
+              <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
             </div>
           </div>
         </div>
-        <div class="card" style="width: 18rem;">
+
+        <div class="card" style="width: 18rem; ">
           <img class="card-img-top"
-            src="https://img.freepik.com/premium-photo/woman-with-bob-hairstyle-isolated-red-background-copy-space_245974-10806.jpg?size=626&ext=jpg"
+            src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[0].image }` %>"
             alt="Card image cap" style="border-radius: 10px;">
           <div class="card-body">
-            <h5 class="card-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, quasi.</h5>
+            <h5 class="card-title"><%= newsData[0].title %></h5>
             <ul style="list-style: none; padding-left: 0;">
               <li style="display: inline;"> <span style="font-size: 20px; color: #49BDF2;">&bull;</span> 32 MINUTES AGO
               </li>
             </ul>
-            <P class="card-text-para">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium molestias
-              itaque animi repellendus
-              maxime vitae aliquam laudantium maiores quae eaque?</P>
-            <div style="display: flex; text-align: center;">
-              <a href="/news"> <button class="readmore">Read More</button></a>
+            <P class="card-text-para"><%= newsData[0].description %></P>
+            <div>
+              <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -453,8 +437,8 @@
         </div>
       </div>
     </div>
-    <img src="assets/images/registration.png" alt=""
-      style="position: absolute; left: 50%; transform: translateX(-50%); bottom: 10%; width:35%;">
+    <a href="/register"> <img src="assets/images/registration-continue.svg" alt="img"
+        style="position: absolute; left: 50%; transform: translateX(-50%); bottom: 10%; width:35%;"></a>
 
   </div>
 
@@ -479,75 +463,71 @@
     <div class="container">
       <div class="row">
         <div class="testimonial-cards justify-content-center">
+          
           <div class="testimonial-card col-md-6 col-xl-6">
             <div class="test-img" style="width: 600px; height: 100%;">
-              <img src="assets/images/speaker.png" alt="" style="height: 100%;">
+              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ testimonialData[0].image }` %>" alt="" style="height: 100%;">
             </div>
             <div>
               <div class="testimonial-text">
-                <p><i class='fa fa-quote-left' style='font-size:15px;color:#49BDF2'></i> Lorem ipsum dolor
-                  sit, amet
-                  consectetur adipisicing elit. Maiores cum dicta, quas perferendis magni
-                  sed! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam, voluptatum possimus. Earum,
-                  consectetur sint ea dolore debitis enim quaerat unde. <i class='fa fa-quote-right'
+                <p><i class='fa fa-quote-left' style='font-size:15px;color:#49BDF2'></i> 
+                  <%= testimonialData[0].content %>
+                  <i class='fa fa-quote-right'
                     style='font-size:15px;color:#49BDF2'></i>
                 </p>
-                <h1>Rana Yakub</h1>
+                <h1><%= testimonialData[0].title %></h1>
               </div>
             </div>
           </div>
 
           <div class="testimonial-card col-md-6 col-xl-6">
             <div class="test-img" style="width: 600px; height: 100%;">
-              <img src="assets/images/speaker.png" alt="" style="height: 100%;">
+              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ testimonialData[0].image }` %>" alt="" style="height: 100%;">
             </div>
             <div>
               <div class="testimonial-text">
-                <p><i class='fa fa-quote-left' style='font-size:15px;color:#49BDF2'></i> Lorem ipsum dolor
-                  sit, amet
-                  consectetur adipisicing elit. Maiores cum dicta, quas perferendis magni
-                  sed! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam, voluptatum possimus. Earum,
-                  consectetur sint ea dolore debitis enim quaerat unde. <i class='fa fa-quote-right'
+                <p><i class='fa fa-quote-left' style='font-size:15px;color:#49BDF2'></i> 
+                  <%= testimonialData[0].content %>
+                  <i class='fa fa-quote-right'
                     style='font-size:15px;color:#49BDF2'></i>
                 </p>
-                <h1>Rana Yakub</h1>
+                <h1><%= testimonialData[0].title %></h1>
               </div>
             </div>
           </div>
+
           <div class="testimonial-card col-md-6 col-xl-6">
             <div class="test-img" style="width: 600px; height: 100%;">
-              <img src="assets/images/speaker.png" alt="" style="height: 100%;">
+              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ testimonialData[0].image }` %>" alt="" style="height: 100%;">
             </div>
             <div>
               <div class="testimonial-text">
-                <p><i class='fa fa-quote-left' style='font-size:15px;color:#49BDF2'></i> Lorem ipsum dolor
-                  sit, amet
-                  consectetur adipisicing elit. Maiores cum dicta, quas perferendis magni
-                  sed! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam, voluptatum possimus. Earum,
-                  consectetur sint ea dolore debitis enim quaerat unde. <i class='fa fa-quote-right'
+                <p><i class='fa fa-quote-left' style='font-size:15px;color:#49BDF2'></i> 
+                  <%= testimonialData[0].content %>
+                  <i class='fa fa-quote-right'
                     style='font-size:15px;color:#49BDF2'></i>
                 </p>
-                <h1>Another Person</h1>
+                <h1><%= testimonialData[0].title %></h1>
               </div>
             </div>
           </div>
+
           <div class="testimonial-card col-md-6 col-xl-6">
             <div class="test-img" style="width: 600px; height: 100%;">
-              <img src="assets/images/speaker.png" alt="" style="height: 100%;">
+              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ testimonialData[0].image }` %>" alt="" style="height: 100%;">
             </div>
             <div>
               <div class="testimonial-text">
-                <p><i class='fa fa-quote-left' style='font-size:15px;color:#49BDF2'></i> Lorem ipsum dolor
-                  sit, amet
-                  consectetur adipisicing elit. Maiores cum dicta, quas perferendis magni
-                  sed! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam, voluptatum possimus. Earum,
-                  consectetur sint ea dolore debitis enim quaerat unde. <i class='fa fa-quote-right'
+                <p><i class='fa fa-quote-left' style='font-size:15px;color:#49BDF2'></i> 
+                  <%= testimonialData[0].content %>
+                  <i class='fa fa-quote-right'
                     style='font-size:15px;color:#49BDF2'></i>
                 </p>
-                <h1>Another Person</h1>
+                <h1><%= testimonialData[0].title %></h1>
               </div>
             </div>
           </div>
+          
         </div>
       </div>
 
