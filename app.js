@@ -32,6 +32,14 @@ var Volunter = require("./routes/volunter");
 var Programe = require("./routes/programe");
 var News = require("./routes/news");
 
+// ADDED NEWS ROUTES-------
+var Privacy = require("./routes/privacy");
+var Refund = require("./routes/refund");
+var Conditions = require("./routes/conditions");
+var AboutMlf = require("./routes/aboutMlf");
+var AboutBookPlus = require("./routes/aboutBookPlus");// ADDED NEWS ROUTES-------
+
+
 var app = express();
 
 // Connect to MongoDB database
@@ -69,6 +77,13 @@ app.use("/speaker", Speaker);
 app.use("/volunter", Volunter);
 app.use("/programe", Programe);
 app.use("/news", News);
+
+// LATESTS-----
+app.use("/privacy", Privacy);
+app.use("/refund", Refund);
+app.use("/terms-conditions", Conditions);
+app.use("/about-Mlf", AboutMlf);
+app.use("/about-book-Plus", AboutBookPlus);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

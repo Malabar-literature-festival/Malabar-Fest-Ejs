@@ -88,10 +88,10 @@
             <!-- Header Navigation Start -->
             <div class="header-navigation d-none d-lg-block">
               <ul class="main-menu">
-                <li><a href="/">Home</a>
+                <li ><a href="/">Home</a>
 
                 </li>
-                <li><a href="">About</a>
+                <li class="active-menu"><a href="">About</a>
                   <ul class="sub-menu">
                     <li><a href="/about">About Malabar</a></li>
                     <li><a href="/about-Mlf">About MLF</a></li>
@@ -103,7 +103,7 @@
                 <li><a href="/speaker">Speakers</a>
                 </li>
                 <li><a href="/gallery">Gallery</a></li>
-                <li class="active-menu"><a href="/contact">Contact</a></li>
+                <li><a href="/contact">Contact</a></li>
               </ul>
             </div>
             <!-- Header Navigation End -->
@@ -154,10 +154,10 @@
       <div class="offcanvas-body">
         <div class="offcanvas-menu offcanvas-menu-2">
           <ul class="main-menu">
-            <li><a href="/">Home</a>
+            <li ><a href="/">Home</a>
 
             </li>
-            <li><a href="#">About</a>
+            <li class="active-menu"><a href="#">About</a>
               <ul class="sub-menu">
                 <li><a href="/about">About Malabar</a></li>
                 <li><a href="/about-Mlf">About MLF</a></li>
@@ -168,7 +168,7 @@
             <li><a href="/speaker">Speaker</a>
             <li><a href="/gallery">Gallery</a>
             </li>
-            <li class="active-menu"><a href="/contact">Contact</a></li>
+            <li><a href="/contact">Contact</a></li>
             <li>
               <a href="/register" class="mobile-register">Register</a>
             </li>
@@ -185,143 +185,31 @@
 
 
     
-
-        <!-- Page Banner Start -->
-        <div class="section page-banner-section">
-            <div class="shape-2"></div>
+        <div style="background-image: url('assets/images/upgrill.png');">
             <div class="container">
-                <div class="page-banner-wrap">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <!-- Page Banner Content Start -->
-                            <div class="page-banner text-center">
-                                <h2 class="title">Contact Us</h2>
-                            </div>
-                            <!-- Page Banner Content End -->
-                        </div>
+                <div class="about-malabar">
+                    <div class="about-mlf-title">
+                        <h1>Malabar Literature Festival</h1>
+                    </div>
+                    <div class="about-mlf-img">
+                        <img src="https://img.freepik.com/free-photo/front-view-smiley-people-badminton-field_23-2149733025.jpg?size=626&ext=jpg&ga=GA1.1.790742631.1691391131"
+                            alt="" style="max-width: 100%; height: auto;">
+                    </div>
+
+                    <div class="about-mlf-para">
+                        <p>
+                            <%= aboutData[0].aboutMlf %>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Page Banner End -->
 
-        <!-- Contact Form Start -->
-        <div class="contact-form-section section-padding">
-            <div class="container">
-                <!-- Contact Wrap Start -->
-                <div class="contact-wrap">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-10">
-                            <div class="form-title text-center">
-                                <h2 class="title">Sent Us A Message</h2>
-                            </div>
-                            <!-- Contact Form Wrap Start -->
-                            <div class="contact-form-wrap">
-                                <form action="#">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <!-- Single Form Start -->
-                                            <div class="single-form">
-                                                <input class="form-control" type="text" placeholder="Your Name">
-                                            </div>
-                                            <!-- Single Form End -->
-                                        </div>
-                                        <div class="col-md-6">
-                                            <!-- Single Form Start -->
-                                            <div class="single-form">
-                                                <input class="form-control" type="email" placeholder="Your Email">
-                                            </div>
-                                            <!-- Single Form End -->
-                                        </div>
-                                        <div class="col-md-6">
-                                            <!-- Single Form Start -->
-                                            <div class="single-form">
-                                                <input class="form-control" type="text" placeholder="Your Number">
-                                            </div>
-                                            <!-- Single Form End -->
-                                        </div>
-                                        <div class="col-md-6">
-                                            <!-- Single Form Start -->
-                                            <div class="single-form">
-                                                <input class="form-control" type="text" placeholder="Subject">
-                                            </div>
-                                            <!-- Single Form End -->
-                                        </div>
-                                        <div class="col-md-12">
-                                            <!-- Single Form Start -->
-                                            <div class="single-form">
-                                                <textarea class="form-control" placeholder="Write A Message"></textarea>
-                                            </div>
-                                            <!-- Single Form End -->
-                                        </div>
-                                        <div class="col-md-12">
-                                            <!--  Single Form Start -->
-                                            <div class="form-btn text-center">
-                                                <button class="btn btn-primary" type="submit">Submit Now</button>
-                                            </div>
-                                            <!--  Single Form End -->
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- Contact Form Wrap End -->
-                        </div>
-                    </div>
-                </div>
-                <!-- Contact Wrap End -->
-            </div>
-        </div>
-        <!-- Contact Form End -->
-
-        <!-- Contact Info Start -->
-        <div class="section contact-info-section">
-            <div class="container">
-                <!-- Contact Info Wrap Start -->
-                <div class="contact-info-wrap">
-                    <div class="row">
-                        <div class="col-lg-6 col-sm-6">
-                            <!--Single Contact Info Start -->
-                            <div class="single-contact-info text-center">
-                                <div class="info-icon color-2">
-                                    <i class="flaticon-phone-call"></i>
-                                </div>
-                                <div class="info-content">
-                                    <h5 class="title">Telephone</h5>
-                                    <p>+91 9562 661 133, 6766 306 049</p>
-                                </div>
-                            </div>
-                            <!--Single Contact Info End -->
-                        </div>
-                     
-                        <div class="col-lg-6 col-sm-6">
-                            <!--Single Contact Info Start -->
-                            <div class="single-contact-info text-center">
-                                <div class="info-icon color-3">
-                                    <i class="flaticon-pin"></i>
-                                </div>
-                                <div class="info-content">
-                                    <h5 class="title">Location</h5>
-                                    <p>Malabar Literature Festival Book Plus Foundation,</p>
-                                </div>
-                            </div>
-                            <!--Single Contact Info End -->
-                        </div>
-                    </div>
-                </div>
-                <!-- Contact Info Wrap End -->
-            </div>
-        </div>
-        <!-- Contact Info End -->
-
-        <!-- Contact Map Start -->
-        <div class="section contact-map-section">
-            <div class="contact-map-wrap">
-              <iframe id="gmap_canvas" src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d250672.2990066982!2d75.85530751201227!3d10.981881070005917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sHidaya%20Nagar%20Chemmad!5e0!3m2!1sen!2sin!4v1692797125558!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
-        <!-- Contact Map End -->
 
     </div>
+
+
+
 
 
 
