@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
-const Registration = require('../models/Registration');
-const bcrypt = require('bcrypt');
+const Registration = require("../models/Registration");
+const bcrypt = require("bcrypt");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -17,7 +17,7 @@ router.post("/", async function (req, res, next) {
     if (existingUser) {
       return res.status(400).json({ error: "Email already exists" });
     }
-    
+
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
     const newRegistration = new Registration({

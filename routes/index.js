@@ -14,11 +14,17 @@ router.get("/", async function (req, res, next) {
 
     const speakerData = await Speakers.find();
 
-    const newsData = await News.find()
+    const newsData = await News.find();
 
-    const testimonialData = await Testimonial.find()
-    console.log(testimonialData)
-    res.render("index", { title, aboutData, speakerData, newsData, testimonialData });
+    const testimonialData = await Testimonial.find();
+    console.log(testimonialData);
+    res.render("index", {
+      title,
+      aboutData,
+      speakerData,
+      newsData,
+      testimonialData,
+    });
   } catch (error) {
     console.error("Error:", error);
   }

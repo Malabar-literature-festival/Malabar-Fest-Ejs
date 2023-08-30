@@ -1,15 +1,15 @@
 var express = require("express");
 var router = express.Router();
-const upload = require('../middleware/upload');
+const upload = require("../middleware/upload");
 const Registration = require("../models/Registration");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
   res.render("student");
 });
 
-router.post("/", upload.single('photo'), async function (req, res, next) {
+router.post("/", upload.single("photo"), async function (req, res, next) {
   try {
     console.log(req.body);
     const imagePath = req.file ? req.file.path : null;
@@ -22,7 +22,7 @@ router.post("/", upload.single('photo'), async function (req, res, next) {
     }
 
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    
+
     const newRegistration = new Registration({
       regType: req.body.type,
       name: req.body.name,
@@ -61,6 +61,5 @@ router.post("/check-email", async function (req, res, next) {
     return res.status(500).json({ error: "Internal server error" });
   }
 });
-
 
 module.exports = router;
