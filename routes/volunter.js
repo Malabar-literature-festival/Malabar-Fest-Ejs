@@ -1,19 +1,19 @@
 var express = require("express");
 var router = express.Router();
-const upload = require("../middleware/upload");
+const upload = require('../middleware/upload');
 const Volunteer = require("../models/Volunteer");
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcrypt');
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
   res.render("volunter");
 });
 
-router.post("/", upload.single("photo"), async function (req, res, next) {
+router.post("/", upload.single('photo'), async function (req, res, next) {
   try {
     const imagePath = req.file ? req.file.path : null;
-    console.log(req.body);
-    console.log(imagePath);
+    console.log(req.body)
+    console.log(imagePath)
 
     // Check if a user with the same email already exists
     const existingUser = await Volunteer.findOne({ email: req.body.email });
@@ -37,7 +37,7 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       timeSlot: req.body.timeSlot,
       reference: {
         name: req.body.reference_name,
-        contact: req.body.mobile,
+        contact: req.body.mobile
       },
       day: req.body.day,
       matterOfInterest: req.body.profession,

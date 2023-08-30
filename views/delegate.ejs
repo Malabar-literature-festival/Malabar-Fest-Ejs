@@ -2,12 +2,11 @@
 <html class="no-js" lang="en">
 
 
-<!-- Mirrored from thepixelcurve.com/html/meeta/meeta/about.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jul 2023 12:40:11 GMT -->
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title> Meeta - Event & Conference HTML5 Template</title>
+    <title>Malabar Literature Festival </title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,6 +21,10 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Archivo:wght@300;400;500;600;700&amp;display=swap"
         rel="stylesheet">
+
+    <link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet" />
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
 
     <!-- CSS
 	============================================ -->
@@ -39,8 +42,20 @@
 
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+
+    <!-- carousel Style CSS -->
+    <link rel="stylesheet" href="assets/css/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/css/style.css">
 </head>
 
 <body>
@@ -83,7 +98,8 @@
                                 <li><a href="/about">About</a>
 
                                 </li>
-                                <li><a href="/programe">Programe</a>
+                                <li> <a href="../assets/pdf/mlf.pdf" target="_blank" attributes-list> Programme </a>
+
                                 </li>
                                 <li><a href="/speaker">Speakers</a>
                                 </li>
@@ -204,7 +220,8 @@
 
                         </li>
                         <li class="active-menu"><a href="/about">About</a></li>
-                        <li><a href="/programe">Programe</a>
+                        <li> <a href="../assets/pdf/mlf.pdf" target="_blank" attributes-list> Programme </a>
+
                         </li>
                         <li><a href="/speaker">Speaker</a>
                         <li><a href="/gallery">Gallery</a>
@@ -323,9 +340,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="interest">Matter Of interest:</label>
-                                            <select id="interest" name="interest"
-                                                class="form-control clearfix scrollable-dropdown" required>
+                                            <label for="interest">Matter Of Interest:</label>
+                                            <select id="interest" name="interest" class="form-control" required>
                                                 <option value="Mappila Literature">Mappila Literature</option>
                                                 <option value="Mappila Literature">Mappila Literature</option>
                                                 <option value="Arabi Malayalam">Arabi Malayalam</option>
@@ -363,6 +379,7 @@
                                             </select>
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="row register-amount-btn">
                                     <div class=" col-12 d-flex justify-content-center">
@@ -379,7 +396,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Footer Start -->
     <div class="footer"
         style="background-image: url('assets/images/newfooter.png'); background-size: cover; background-position: center; overflow: hidden; position: relative;">
@@ -520,12 +537,17 @@
 
 
     <!-- JS
-    ============================================ -->
+  ============================================ -->
+
+    <!-- carousel & jQuery JS -->
+
+    <script src="assets/js/js/jquery.min.js"></script>
+    <script src="assets/js/js/owl.carousel.min.js"></script>
+    <script src="assets/js/js/main.js"></script>
 
     <!-- Modernizer & jQuery JS -->
     <script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
     <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
-
 
     <!-- Bootstrap JS -->
     <script src="assets/js/popper.min.js"></script>
@@ -533,75 +555,17 @@
 
     <!-- Plugins JS -->
     <script src="assets/js/swiper-bundle.min.js"></script>
-    <script src="assets/js/all.js"></script>
     <script src="assets/js/back-to-top.js"></script>
     <script src="assets/js/jquery.magnific-popup.min.js"></script>
     <script src="assets/js/jquery.counterup.min.js"></script>
     <script src="assets/js/waypoints.min.js"></script>
     <script src="assets/js/aos.js"></script>
     <script src="assets/js/jquery.nice-select.min.js"></script>
-
-
     <!-- Main JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
     <script src="assets/js/main.js"></script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const form = document.getElementById("delegateForm");
-
-            form.addEventListener("submit", async (event) => {
-                event.preventDefault();
-
-                const formData = new FormData(form);
-
-                try {
-                    const response = await fetch("/delegate", {
-                        method: "POST",
-                        body: formData,
-                    });
-
-                    if (response.ok) {
-                        // Refresh the page after successful submission
-                        location.reload();
-                    } else {
-                        console.error("Submission failed");
-                    }
-                } catch (error) {
-                    console.error("Error:", error);
-                }
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            // Add an event listener to the email input field
-            $('#email').on('blur', function () {
-                const email = $(this).val();
-
-                // Send an AJAX request to check if the email already exists
-                $.ajax({
-                    url: '/delegate/check-email', // Update with the actual route to check email
-                    method: 'POST',
-                    data: { email: email },
-                    success: function (response) {
-                        if (response.error) {
-                            $('#emailError').text(response.error).show();
-                        } else {
-                            $('#emailError').text('').hide();
-                        }
-                    },
-                    error: function () {
-                        console.error('Error checking email');
-                    }
-                });
-            });
-        });
-    </script>
-
 </body>
-
-
-<!-- Mirrored from thepixelcurve.com/html/meeta/meeta/about.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jul 2023 12:40:12 GMT -->
 
 </html>

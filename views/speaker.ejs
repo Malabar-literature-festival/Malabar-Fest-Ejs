@@ -26,9 +26,64 @@
 
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
 
+
+
+
+  <style>
+    /* The Modal (background) */
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      padding-top: 100px;
+      /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 70%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+
+    /* The Close Button */
+    .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .modal-content {
+      width: 70% !important;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
   <!-- CSS
 	============================================ -->
-  
 
   <!-- Icon Font CSS -->
   <link rel="stylesheet" href="assets/css/all.min.css">
@@ -99,7 +154,8 @@
                     <li><a href="/about-book-Plus">About Book Plus</a></li>
                   </ul>
                 </li>
-                <li><a href="/programe">Programe</a>
+                <li> <a href="../assets/pdf/mlf.pdf" target="_blank" attributes-list> Programme </a>
+
                 </li>
                 <li class="active-menu"><a href="/speaker">Speakers</a>
                 </li>
@@ -165,7 +221,8 @@
                 <li><a href="/about-book-Plus">About Book Plus</a></li>
               </ul>
             </li>
-            <li><a href="/programe">Programe</a>
+            <li> <a href="../assets/pdf/mlf.pdf" target="_blank" attributes-list> Programme </a>
+
             </li>
             <li class="active-menu"><a href="/speaker">Speaker</a>
             <li><a href="/gallery">Gallery</a>
@@ -191,25 +248,56 @@
             <h1>Speakers</h1>
           </div>
 
+
+
+          <!-- Trigger/Open The Modal -->
+
+
+
           <div class="row">
 
-            <% speakerData.forEach(speaker=> { %>
-            <div class="col-xs-12 col-sm-6 col-lg-4">
-                <div class="col-md-3 speaker-cards">
+            <div class="col-xs-12 col-sm-6 col-lg-3">
+              <% speakerData.forEach(speaker=> { %>
+
+                <div class="speaker-cards open-modal-button" data-modal-id="<%= speaker.id %>" id="myBtn">
+
                   <div class="speaker-imgs">
                     <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speaker.image }` %>" alt="">
                     <div class="speaker-content" style="background-image: url('assets/images/blackshade.svg');">
                       <h3 class="speakers-name">
                         <%= speaker.name %>
                       </h3>
-                      <p class="speaker-para">
-                        <%= speaker.description %>
-                      </p>
+
                     </div>
                   </div>
+
+                  <!-- Speaker Card Content -->
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Inside the loop -->
+            <div class="col-xs-12 col-sm-6 col-lg-3">
+              <!-- The Modal -->
+              <div id="<%= speaker.id %>" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                  <span class="close"></span>
+                  <p>
+                    <%= speaker.description %>
+                  </p>
                 </div>
               </div>
               <% }); %>
+            </div>
+            <!-- End of loop -->
+
+
+
 
           </div>
 
@@ -227,14 +315,6 @@
 
 
   </div>
-
-
-
-
-
-
-
-
 
 
   <!-- Footer Start -->
@@ -349,6 +429,65 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
   <script src="assets/js/main.js"></script>
+
+
+
+  <script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function () {
+      modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+
+
+  <script>
+
+    // jQuery ready function
+    $(document).ready(function () {
+      // Get all the open modal buttons
+      $(".open-modal-button").click(function () {
+        // Get the data-modal-id attribute
+        var modalId = $(this).data("modal-id");
+        // Find the corresponding modal and display it
+        $("#" + modalId).css("display", "block");
+      });
+
+      // Get all the close buttons
+      $(".close").click(function () {
+        // Find the parent modal and hide it
+        $(this).closest(".modal").css("display", "none");
+      });
+
+      // Close the modal if clicked outside
+      $(window).click(function (event) {
+        if ($(event.target).hasClass("modal")) {
+          $(event.target).css("display", "none");
+        }
+      });
+    });
+
+  </script>
 
 </body>
 

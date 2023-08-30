@@ -98,7 +98,8 @@
                     <li><a href="/about-book-Plus">About Book Plus</a></li>
                   </ul>
                 </li>
-                <li><a href="/programe">Programe</a>
+                <li> <a href="../assets/pdf/mlf.pdf" target="_blank" attributes-list> Programme </a>
+
                 </li>
                 <li><a href="/speaker">Speakers</a>
                 </li>
@@ -158,7 +159,8 @@
 
             </li>
             <li><a href="/about">About</a></li>
-            <li><a href="/programe">Programe</a>
+            <li> <a href="../assets/pdf/mlf.pdf" target="_blank" attributes-list> Programme </a>
+
             </li>
             <li><a href="/speaker">Speaker</a>
             <li><a href="/gallery">Gallery</a>
@@ -179,408 +181,404 @@
 
 
 
-    
-        <div class="container">
-            <div class="attende-registration" style="margin-top: 100px;">
-                <div class="registration-title">
-                    <h1>Registration</h1>
-                </div>
-            </div>
+
+    <div class="container">
+      <div class="attende-registration" style="margin-top: 100px;">
+        <div class="registration-title">
+          <h1>Registration</h1>
         </div>
-        <div class="register-table"
-            style="background-image: url('assets/images/RegisterUnion.png'); background-size: cover; background-position: center center; margin-top: 60px; width: 100%; min-height: 818px; display: flex; justify-content: center; align-items: center;">
+      </div>
+    </div>
+    <div class="register-table"
+      style="background-image: url('assets/images/RegisterUnion.png'); background-size: cover; background-position: center center; margin-top: 60px; width: 100%; min-height: 818px; display: flex; justify-content: center; align-items: center;">
+      <div class="container">
+        <div class="delegate-table-section">
+          <div class="delegate-title">
+            <h1>Volunteer Registration</h1>
+          </div>
+          <div class="register-form">
             <div class="container">
-                <div class="delegate-table-section">
-                    <div class="delegate-title">
-                        <h1>Volunteer Registration</h1>
+              <form action="/volunter" method="post" enctype="multipart/form-data" id="volunteerForm">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="name">Name:</label>
+                      <input type="text" id="name" name="name" class="form-control" required>
                     </div>
-                    <div class="register-form">
-                        <div class="container">
-                            <form action="/volunter" method="post" enctype="multipart/form-data" id="volunteerForm">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Name:</label>
-                                            <input type="text" id="name" name="name" class="form-control" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="gender">Gender:</label>
-                                            <select id="gender" name="gender" class="form-control" required>
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="gender">Gender:</label>
+                      <select id="gender" name="gender" class="form-control" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
 
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="contact">Contact Number:</label>
-                                            <input type="tel" id="contact" name="contact" class="form-control" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="email">Email ID:</label>
-                                            <input type="email" id="email" name="email" class="form-control" required>
-                                            <p id="emailError" class="text-danger"></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="password">Create Password:</label>
-                                            <input type="password" id="password" name="password" class="form-control"
-                                                required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="confirm_password">Confirm Password:</label>
-                                            <input type="password" id="confirm_password" name="confirm_password"
-                                                class="form-control" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="photo">Add Photo:</label>
-                                            <input type="file" id="photo" name="photo"
-                                                class="form-control-file form-control" style="width: 100%;">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="institute">Name of Company / Institute:</label>
-                                            <input type="text" id="institute" name="institute" class="form-control"
-                                                required>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="category">Category:</label>
-                                            <select id="category" name="category" class="form-control" required>
-                                                <option value="Student">Student</option>
-                                                <option value="Employee">Employee</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="place">Place:</label>
-                                            <input type="text" id="place" name="place" class="form-control" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="age">Age:</label>
-                                            <select id="age" name="age" class="form-control" size="5" required>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                                <option value="11">11</option>
-                                                <option value="12">12</option>
-                                                <option value="13">13</option>
-                                                <option value="14">14</option>
-                                                <option value="15">15</option>
-                                                <option value="16">16</option>
-                                                <option value="17">17</option>
-                                                <option value="18">18</option>
-                                                <option value="19">19</option>
-                                                <option value="20">20</option>
-                                                <option value="21">21</option>
-                                                <option value="22">22</option>
-                                                <option value="23">23</option>
-                                                <option value="24">24</option>
-                                                <option value="25">25</option>
-                                                <option value="26">26</option>
-                                                <option value="27">27</option>
-                                                <option value="28">28</option>
-                                                <option value="29">29</option>
-                                                <option value="30">30</option>
-                                                <option value="31">31</option>
-                                                <option value="32">32</option>
-                                                <option value="33">33</option>
-                                                <option value="34">34</option>
-                                                <option value="35">35</option>
-                                                <option value="36">36</option>
-                                                <option value="37">37</option>
-                                                <option value="38">38</option>
-                                                <option value="39">39</option>
-                                                <option value="40">40</option>
-                                                <option value="41">41</option>
-                                                <option value="42">42</option>
-                                                <option value="43">43</option>
-                                                <option value="44">44</option>
-                                                <option value="45">45</option>
-                                                <option value="46">46</option>
-                                                <option value="47">47</option>
-                                                <option value="48">48</option>
-                                                <option value="49">49</option>
-                                                <option value="50">50</option>
-                                                <option value="51">51</option>
-                                                <option value="52">52</option>
-                                                <option value="53">53</option>
-                                                <option value="54">54</option>
-                                                <option value="55">55</option>
-                                                <option value="56">56</option>
-                                                <option value="57">57</option>
-                                                <option value="58">58</option>
-                                                <option value="59">59</option>
-                                                <option value="60">60</option>
-                                                <option value="61">61</option>
-                                                <option value="62">62</option>
-                                                <option value="63">63</option>
-                                                <option value="64">64</option>
-                                                <option value="65">65</option>
-                                                <option value="66">66</option>
-                                                <option value="67">67</option>
-                                                <option value="68">68</option>
-                                                <option value="69">69</option>
-                                                <option value="70">70</option>
-                                                <option value="71">71</option>
-                                                <option value="72">72</option>
-                                                <option value="73">73</option>
-                                                <option value="74">74</option>
-                                                <option value="75">75</option>
-                                                <option value="76">76</option>
-                                                <option value="77">77</option>
-                                                <option value="78">78</option>
-                                                <option value="79">79</option>
-                                                <option value="80">80</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="workType">Full Time / Part Time:</label>
-                                            <select id="workType" name="workType" class="form-control" required>
-                                                <option value="Full Time">Full Time</option>
-                                                <option value="Part Time">Part Time</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="timeSlot">Time Slot:</label>
-                                            <select id="timeSlot" name="timeSlot" class="form-control" required>
-                                                <option value="09 am - 01 pm">09 am - 01 pm</option>
-                                                <option value="02 pm - 05 pm">02 pm - 05 pm</option>
-                                                <option value="05 pm - 09 pm">05 pm - 09 pm</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="reference">Reference if Any:</label>
-
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="reference_name">Name:</label>
-                                            <input type="text" id="reference_name" name="reference_name"
-                                                class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="mobile">Contact Number:</label>
-                                            <input type="text" id="mobile" name="mobile" class="form-control">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="day">Select Day:</label>
-                                            <input type="date" id="day" name="day" class="form-control" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="interest">Matter Of Interest</label>
-                                            <select id="interest" name="interest"
-                                                class="form-control scrollable-dropdown" required>
-                                                <option value="Mappila Literature">Mappila Literature</option>
-                                                <option value="Mappila Literature">Mappila Literature</option>
-                                                <option value="Arabi Malayalam">Arabi Malayalam</option>
-                                                <option value="Dalit Literature">Dalit Literature</option>
-                                                <option value="Folklore Literature">Folklore Literature</option>
-                                                <option value="Classical Literature">Classical Literature</option>
-                                                <option value="Urdu Literature">Urdu Literature</option>
-                                                <option value="Indo-Malabar">Indo-Malabar</option>
-                                                <option value="Arabi Malayalam">Arabi Malayalam</option>
-                                                <option value="Kids Literature">Kids Literature</option>
-                                                <option value="Family Literature">Family Literature</option>
-                                                <option value="Foreign Literature">Foreign Literature</option>
-                                                <option value="Arab Culture and Literature">Arab Culture and Literature
-                                                </option>
-                                                <option value="Women Literature">Women Literature</option>
-                                                <option value="Gender Literature">Gender Literature</option>
-                                                <option value="Translation">Translation</option>
-                                                <option value="Travel & Outdoor">Travel & Outdoor</option>
-                                                <option value="Food Culture">Food Culture</option>
-                                                <option value="Festivals">Festivals</option>
-                                                <option value="Art">Art</option>
-                                                <option value="Performance Art">Performance Art</option>
-                                                <option value="Fine Arts">Fine Arts</option>
-                                                <option value="Architecture">Architecture</option>
-                                                <option value="Film & Music">Film & Music</option>
-                                                <option value="Health">Health</option>
-                                                <option value="Spirituality">Spirituality</option>
-                                                <option value="Sufism">Sufism</option>
-                                                <option value="Sports & Fitness">Sports & Fitness</option>
-                                                <option value="Science & Tech">Science & Tech</option>
-                                                <option value="Charity & Causes">Charity & Causes</option>
-                                                <option value="Family & Education">Family & Education</option>
-                                                <option value="Social Media">Social Media</option>
-                                                <option value="Social Activism">Social Activism</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row register-amount-btn">
-                                    <div class=" col-12 d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-primary" style="border-radius: 20px;">Pay
-                                            to Register ₹-580.00</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                      </select>
                     </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="contact">Contact Number:</label>
+                      <input type="tel" id="contact" name="contact" class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="email">Email ID:</label>
+                      <input type="email" id="email" name="email" class="form-control" required>
+                      <p id="emailError" class="text-danger"></p>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="password">Create Password:</label>
+                      <input type="password" id="password" name="password" class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="confirm_password">Confirm Password:</label>
+                      <input type="password" id="confirm_password" name="confirm_password" class="form-control"
+                        required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="photo">Add Photo:</label>
+                      <input type="file" id="photo" name="photo" class="form-control-file form-control"
+                        style="width: 100%;">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="institute">Name of Company / Institute:</label>
+                      <input type="text" id="institute" name="institute" class="form-control" required>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="category">Category:</label>
+                      <select id="category" name="category" class="form-control" required>
+                        <option value="Student">Student</option>
+                        <option value="Employee">Employee</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="place">Place:</label>
+                      <input type="text" id="place" name="place" class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="age">Age:</label>
+                      <select id="age" name="age" class="form-control" size="5" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                        <option value="32">32</option>
+                        <option value="33">33</option>
+                        <option value="34">34</option>
+                        <option value="35">35</option>
+                        <option value="36">36</option>
+                        <option value="37">37</option>
+                        <option value="38">38</option>
+                        <option value="39">39</option>
+                        <option value="40">40</option>
+                        <option value="41">41</option>
+                        <option value="42">42</option>
+                        <option value="43">43</option>
+                        <option value="44">44</option>
+                        <option value="45">45</option>
+                        <option value="46">46</option>
+                        <option value="47">47</option>
+                        <option value="48">48</option>
+                        <option value="49">49</option>
+                        <option value="50">50</option>
+                        <option value="51">51</option>
+                        <option value="52">52</option>
+                        <option value="53">53</option>
+                        <option value="54">54</option>
+                        <option value="55">55</option>
+                        <option value="56">56</option>
+                        <option value="57">57</option>
+                        <option value="58">58</option>
+                        <option value="59">59</option>
+                        <option value="60">60</option>
+                        <option value="61">61</option>
+                        <option value="62">62</option>
+                        <option value="63">63</option>
+                        <option value="64">64</option>
+                        <option value="65">65</option>
+                        <option value="66">66</option>
+                        <option value="67">67</option>
+                        <option value="68">68</option>
+                        <option value="69">69</option>
+                        <option value="70">70</option>
+                        <option value="71">71</option>
+                        <option value="72">72</option>
+                        <option value="73">73</option>
+                        <option value="74">74</option>
+                        <option value="75">75</option>
+                        <option value="76">76</option>
+                        <option value="77">77</option>
+                        <option value="78">78</option>
+                        <option value="79">79</option>
+                        <option value="80">80</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="workType">Full Time / Part Time:</label>
+                      <select id="workType" name="workType" class="form-control" required>
+                        <option value="Full Time">Full Time</option>
+                        <option value="Part Time">Part Time</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="timeSlot">Time Slot:</label>
+                      <select id="timeSlot" name="timeSlot" class="form-control" required>
+                        <option value="09 am - 01 pm">09 am - 01 pm</option>
+                        <option value="02 pm - 05 pm">02 pm - 05 pm</option>
+                        <option value="05 pm - 09 pm">05 pm - 09 pm</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="reference">Reference if Any:</label>
+
+                    </div>
+                    <div class="form-group">
+                      <label for="reference_name">Name:</label>
+                      <input type="text" id="reference_name" name="reference_name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label for="mobile">Contact Number:</label>
+                      <input type="text" id="mobile" name="mobile" class="form-control">
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="day">Select Day:</label>
+                      <input type="date" id="day" name="day" class="form-control" required>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="interest">Matter Of Interest</label>
+                      <select id="interest" name="interest" class="form-control scrollable-dropdown" required>
+                        <option value="Mappila Literature">Mappila Literature</option>
+                        <option value="Mappila Literature">Mappila Literature</option>
+                        <option value="Arabi Malayalam">Arabi Malayalam</option>
+                        <option value="Dalit Literature">Dalit Literature</option>
+                        <option value="Folklore Literature">Folklore Literature</option>
+                        <option value="Classical Literature">Classical Literature</option>
+                        <option value="Urdu Literature">Urdu Literature</option>
+                        <option value="Indo-Malabar">Indo-Malabar</option>
+                        <option value="Arabi Malayalam">Arabi Malayalam</option>
+                        <option value="Kids Literature">Kids Literature</option>
+                        <option value="Family Literature">Family Literature</option>
+                        <option value="Foreign Literature">Foreign Literature</option>
+                        <option value="Arab Culture and Literature">Arab Culture and Literature
+                        </option>
+                        <option value="Women Literature">Women Literature</option>
+                        <option value="Gender Literature">Gender Literature</option>
+                        <option value="Translation">Translation</option>
+                        <option value="Travel & Outdoor">Travel & Outdoor</option>
+                        <option value="Food Culture">Food Culture</option>
+                        <option value="Festivals">Festivals</option>
+                        <option value="Art">Art</option>
+                        <option value="Performance Art">Performance Art</option>
+                        <option value="Fine Arts">Fine Arts</option>
+                        <option value="Architecture">Architecture</option>
+                        <option value="Film & Music">Film & Music</option>
+                        <option value="Health">Health</option>
+                        <option value="Spirituality">Spirituality</option>
+                        <option value="Sufism">Sufism</option>
+                        <option value="Sports & Fitness">Sports & Fitness</option>
+                        <option value="Science & Tech">Science & Tech</option>
+                        <option value="Charity & Causes">Charity & Causes</option>
+                        <option value="Family & Education">Family & Education</option>
+                        <option value="Social Media">Social Media</option>
+                        <option value="Social Activism">Social Activism</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
-
-
+                <div class="row register-amount-btn">
+                  <div class=" col-12 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary" style="border-radius: 20px;">Pay
+                      to Register ₹-580.00</button>
+                  </div>
+                </div>
+              </form>
             </div>
+          </div>
         </div>
-    </div>
 
 
-
-
-
-
-
-
-    
-  
-  <!-- Footer Start -->
-  <div class="footer"
-  style="background-image: url('assets/images/newfooter.png'); background-size: cover; background-position: center; overflow: hidden; position: relative;">
-  <div class="container">
-    <div class="footer-sections">
-      <div class="footer-malabar-img">
-        <img src="assets/images/footer-malabar.png" alt="">
-      </div>
-      <div class="links">
-        <div class="main-contact">
-          <ul>
-            <a href="/">
-              <li>Home</li>
-            </a>
-            <div>
-              <a href="/about">
-                <li>About Us</li>
-              </a>
-            </div>
-            <div>
-              <a href="/contact">
-                <li>Contact</li>
-              </a>
-            </div>
-          </ul>
-        </div>
-        <div class="sections">
-          <ul>
-            <div>
-              <a href="/Privacy">
-                <li>Privacy Policy</li>
-              </a>
-            </div>
-            <div>
-              <a href="/Refund">
-                <li>Refund Policy</li>
-              </a>
-            </div>
-            <div>
-              <a href="/Terms-Conditions">
-                <li>Terms & Conditions</li>
-              </a>
-            </div>
-            
-            
-          </ul>
-        </div>
-      </div>
-      <div class="address">
-        <i class="fas fa-map-marker-alt"></i> Malabar Literature Festival Book Plus Foundation,Hidaya Nagar
-        Chemmad,Malappuram,Kerala,India-67663060494-2463681,+91 9562661133
-      </div>
-    </div>
-    <hr class="footer-hr">
-    <div class="last-section-footer">
-      <div class="privacy">
-        <p style="color: #fff;">@ 2023 MLF All Right Reserved |Powered by <span
-            style="font-weight: 700;">DataHex</span></p>
-      </div>
-      <div class="icons">
-        <span><i class="fab fa-facebook-f"></i></span>
-        <span><i class="fab fa-twitter"></i></span>
-        <span><i class="fab fa-linkedin-in"></i></span>
-        <span><i class="fab fa-instagram"></i></span>
       </div>
     </div>
   </div>
-</div>
-
-
-<!-- Footer End -->
-
-<!-- back to top start -->
-<div class="progress-wrap">
-  <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-    <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
-  </svg>
-</div>
-<!-- back to top end -->
 
 
 
 
-<!-- JS
+
+
+
+
+
+
+  <!-- Footer Start -->
+  <div class="footer"
+    style="background-image: url('assets/images/newfooter.png'); background-size: cover; background-position: center; overflow: hidden; position: relative;">
+    <div class="container">
+      <div class="footer-sections">
+        <div class="footer-malabar-img">
+          <img src="assets/images/footer-malabar.png" alt="">
+        </div>
+        <div class="links">
+          <div class="main-contact">
+            <ul>
+              <a href="/">
+                <li>Home</li>
+              </a>
+              <div>
+                <a href="/about">
+                  <li>About Us</li>
+                </a>
+              </div>
+              <div>
+                <a href="/contact">
+                  <li>Contact</li>
+                </a>
+              </div>
+            </ul>
+          </div>
+          <div class="sections">
+            <ul>
+              <div>
+                <a href="/Privacy">
+                  <li>Privacy Policy</li>
+                </a>
+              </div>
+              <div>
+                <a href="/Refund">
+                  <li>Refund Policy</li>
+                </a>
+              </div>
+              <div>
+                <a href="/Terms-Conditions">
+                  <li>Terms & Conditions</li>
+                </a>
+              </div>
+
+
+            </ul>
+          </div>
+        </div>
+        <div class="address">
+          <i class="fas fa-map-marker-alt"></i> Malabar Literature Festival Book Plus Foundation,Hidaya Nagar
+          Chemmad,Malappuram,Kerala,India-67663060494-2463681,+91 9562661133
+        </div>
+      </div>
+      <hr class="footer-hr">
+      <div class="last-section-footer">
+        <div class="privacy">
+          <p style="color: #fff;">@ 2023 MLF All Right Reserved |Powered by <span
+              style="font-weight: 700;">DataHex</span></p>
+        </div>
+        <div class="icons">
+          <span><i class="fab fa-facebook-f"></i></span>
+          <span><i class="fab fa-twitter"></i></span>
+          <span><i class="fab fa-linkedin-in"></i></span>
+          <span><i class="fab fa-instagram"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer End -->
+
+  <!-- back to top start -->
+  <div class="progress-wrap">
+    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+      <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+    </svg>
+  </div>
+  <!-- back to top end -->
+
+
+
+
+  <!-- JS
   ============================================ -->
 
-<!-- carousel & jQuery JS -->
+  <!-- carousel & jQuery JS -->
 
-<script src="assets/js/js/jquery.min.js"></script>
-<script src="assets/js/js/owl.carousel.min.js"></script>
-<script src="assets/js/js/main.js"></script>
+  <script src="assets/js/js/jquery.min.js"></script>
+  <script src="assets/js/js/owl.carousel.min.js"></script>
+  <script src="assets/js/js/main.js"></script>
 
-<!-- Modernizer & jQuery JS -->
-<script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
-<script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
+  <!-- Modernizer & jQuery JS -->
+  <script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
+  <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
 
-<!-- Bootstrap JS -->
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
 
-<!-- Plugins JS -->
-<script src="assets/js/swiper-bundle.min.js"></script>
-<script src="assets/js/back-to-top.js"></script>
-<script src="assets/js/jquery.magnific-popup.min.js"></script>
-<script src="assets/js/jquery.counterup.min.js"></script>
-<script src="assets/js/waypoints.min.js"></script>
-<script src="assets/js/aos.js"></script>
-<script src="assets/js/jquery.nice-select.min.js"></script>
-<!-- Main JS -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
-<script src="assets/js/main.js"></script>
+  <!-- Plugins JS -->
+  <script src="assets/js/swiper-bundle.min.js"></script>
+  <script src="assets/js/back-to-top.js"></script>
+  <script src="assets/js/jquery.magnific-popup.min.js"></script>
+  <script src="assets/js/jquery.counterup.min.js"></script>
+  <script src="assets/js/waypoints.min.js"></script>
+  <script src="assets/js/aos.js"></script>
+  <script src="assets/js/jquery.nice-select.min.js"></script>
+  <!-- Main JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
+  <script src="assets/js/main.js"></script>
 
 </body>
 

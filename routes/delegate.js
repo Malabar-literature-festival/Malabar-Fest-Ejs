@@ -1,19 +1,19 @@
 var express = require("express");
 var router = express.Router();
-const Registration = require("../models/Registration");
-const upload = require("../middleware/upload");
-const bcrypt = require("bcrypt");
+const Registration = require('../models/Registration');
+const upload = require('../middleware/upload');
+const bcrypt = require('bcrypt');
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
   res.render("delegate", { title: "Express" });
 });
 
-router.post("/", upload.single("photo"), async function (req, res, next) {
+router.post("/", upload.single('photo'), async function (req, res, next) {
   try {
     const imagePath = req.file ? req.file.path : null;
-    console.log(req.body);
-    console.log(imagePath);
+    console.log(req.body)
+    console.log(imagePath)
 
     // Check if a user with the same email already exists
     const existingUser = await Registration.findOne({ email: req.body.email });

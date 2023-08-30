@@ -1,5 +1,8 @@
 <!doctype html>
 <html class="no-js" lang="en">
+
+
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -95,7 +98,8 @@
                     <li><a href="/about-book-Plus">About Book Plus</a></li>
                   </ul>
                 </li>
-                <li><a href="/programe">Programe</a>
+                <li>
+                  <a href="../assets/pdf/mlf.pdf" target="_blank" attributes-list> Programme </a>
                 </li>
                 <li><a href="/speaker">Speakers</a>
                 </li>
@@ -161,7 +165,7 @@
                 <li><a href="/about-book-Plus">About Book Plus</a></li>
               </ul>
             </li>
-            <li><a href="/programe">Programe</a>
+            <li><a href="/programe">Programme</a>
             </li>
             <li><a href="/speaker">Speaker</a>
             <li><a href="/gallery">Gallery</a>
@@ -199,6 +203,7 @@
               <div class="malabar-title">
                 <img src="assets/images/malabar.png" alt="">
               </div>
+              <a href="/register"> <button class="register-wave-btn">Register</button></a>
             </div>
           </div>
         </div>
@@ -220,10 +225,12 @@
       <div class="about"
         style="background-image: url('assets/images/about.png'); position: absolute; z-index: 10; margin-top: -33px; background-repeat: no-repeat; background-size: cover; width: 100%; object-fit:contain; height: 678.41px; overflow:hidden;">
         <div class="about-title">
-          <h1>About us</h1>
+          <h1>About</h1>
         </div>
         <h2 class="about-para">
-          <%= aboutData[0].shortDescription %>
+          <%= aboutData[0].aboutMlf %>
+
+
         </h2>
 
       </div>
@@ -327,11 +334,11 @@
     <div class="news-details">
       <div class="row news-details-head">
         <div class="col-12 col-xl-6 news-details-head-img">
-          <!-- <img src="assets/images/news1.png" alt=""> -->
+
           <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[0].image }` %>" alt="">
         </div>
         <div class="col-12 col-xl-6 ">
-          <h1>
+          <h1 class="news-details-head-title">
             <%= newsData[0].title %>
           </h1>
           <div class="dates">
@@ -691,122 +698,122 @@
     ============================================ -->
 
 
-<!-- JS
+  <!-- JS
   ============================================ -->
 
-<!-- carousel & jQuery JS -->
+  <!-- carousel & jQuery JS -->
 
-<script src="assets/js/js/jquery.min.js"></script>
-<script src="assets/js/js/owl.carousel.min.js"></script>
-<script src="assets/js/js/main.js"></script>
+  <script src="assets/js/js/jquery.min.js"></script>
+  <script src="assets/js/js/owl.carousel.min.js"></script>
+  <script src="assets/js/js/main.js"></script>
 
-<!-- Modernizer & jQuery JS -->
-<script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
-<script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
+  <!-- Modernizer & jQuery JS -->
+  <script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
+  <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
 
-<!-- Bootstrap JS -->
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
 
-<!-- Plugins JS -->
-<script src="assets/js/swiper-bundle.min.js"></script>
-<script src="assets/js/back-to-top.js"></script>
-<script src="assets/js/jquery.magnific-popup.min.js"></script>
-<script src="assets/js/jquery.counterup.min.js"></script>
-<script src="assets/js/waypoints.min.js"></script>
-<script src="assets/js/aos.js"></script>
-<script src="assets/js/jquery.nice-select.min.js"></script>
-<!-- Main JS -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
-<script src="assets/js/main.js"></script>
+  <!-- Plugins JS -->
+  <script src="assets/js/swiper-bundle.min.js"></script>
+  <script src="assets/js/back-to-top.js"></script>
+  <script src="assets/js/jquery.magnific-popup.min.js"></script>
+  <script src="assets/js/jquery.counterup.min.js"></script>
+  <script src="assets/js/waypoints.min.js"></script>
+  <script src="assets/js/aos.js"></script>
+  <script src="assets/js/jquery.nice-select.min.js"></script>
+  <!-- Main JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
+  <script src="assets/js/main.js"></script>
 
 
-<script>
-  const next = document.querySelector(".next");
-  const prev = document.querySelector(".previous");
-  const slides = document.querySelectorAll(".slide");
+  <script>
+    const next = document.querySelector(".next");
+    const prev = document.querySelector(".previous");
+    const slides = document.querySelectorAll(".slide");
 
-  let index = 0;
-  display(index);
-
-  function display(index) {
-    slides.forEach((slide) => {
-      slide.style.display = "none";
-    });
-    slides[index].style.display = "flex";
-  }
-
-  function nextSlide() {
-    index++;
-    if (index > slides.length - 1) {
-      index = 0;
-    }
+    let index = 0;
     display(index);
-  }
 
-  function prevSlide() {
-    index--;
-    if (index < 0) {
-      index = slides.length - 1;
+    function display(index) {
+      slides.forEach((slide) => {
+        slide.style.display = "none";
+      });
+      slides[index].style.display = "flex";
     }
-    display(index);
-  }
 
-  next.addEventListener("click", nextSlide);
-  prev.addEventListener("click", prevSlide);
-
-
-</script>
-
-
-<script>
-  const circle1 = document.getElementById('circle1');
-  const numberElement1 = document.getElementById('number1');
-  let currentNumber1 = 0;
-  const targetNumber1 = 200;
-  const increment1 = (targetNumber1 - currentNumber1) / (3000 / 30);
-
-  const circle2 = document.getElementById('circle2');
-  const numberElement2 = document.getElementById('number2');
-  let currentNumber2 = 0;
-  const targetNumber2 = 2000;
-  const increment2 = (targetNumber2 - currentNumber2) / (9000 / 90);
-
-  const circle3 = document.getElementById('circle3');
-  const numberElement3 = document.getElementById('number3');
-  let currentNumber3 = 0;
-  const targetNumber3 = 200;
-  const increment3 = (targetNumber3 - currentNumber3) / (3000 / 30);
-
-  function animateNumber1() {
-    currentNumber1 += increment1;
-    if (currentNumber1 >= targetNumber1) {
-      currentNumber1 = targetNumber1;
+    function nextSlide() {
+      index++;
+      if (index > slides.length - 1) {
+        index = 0;
+      }
+      display(index);
     }
-    numberElement1.textContent = ` ${Math.round(currentNumber1)}+`;
-  }
 
-  function animateNumber2() {
-    currentNumber2 += increment2;
-    if (currentNumber2 >= targetNumber2) {
-      currentNumber2 = targetNumber2;
+    function prevSlide() {
+      index--;
+      if (index < 0) {
+        index = slides.length - 1;
+      }
+      display(index);
     }
-    numberElement2.textContent = `${Math.round(currentNumber2)}+`;
-  }
 
-  function animateNumber3() {
-    currentNumber3 += increment3;
-    if (currentNumber3 >= targetNumber3) {
-      currentNumber3 = targetNumber3;
+    next.addEventListener("click", nextSlide);
+    prev.addEventListener("click", prevSlide);
+
+
+  </script>
+
+
+  <script>
+    const circle1 = document.getElementById('circle1');
+    const numberElement1 = document.getElementById('number1');
+    let currentNumber1 = 0;
+    const targetNumber1 = 200;
+    const increment1 = (targetNumber1 - currentNumber1) / (3000 / 30);
+
+    const circle2 = document.getElementById('circle2');
+    const numberElement2 = document.getElementById('number2');
+    let currentNumber2 = 0;
+    const targetNumber2 = 2000;
+    const increment2 = (targetNumber2 - currentNumber2) / (9000 / 90);
+
+    const circle3 = document.getElementById('circle3');
+    const numberElement3 = document.getElementById('number3');
+    let currentNumber3 = 0;
+    const targetNumber3 = 200;
+    const increment3 = (targetNumber3 - currentNumber3) / (3000 / 30);
+
+    function animateNumber1() {
+      currentNumber1 += increment1;
+      if (currentNumber1 >= targetNumber1) {
+        currentNumber1 = targetNumber1;
+      }
+      numberElement1.textContent = ` ${Math.round(currentNumber1)}+`;
     }
-    numberElement3.textContent = ` ${Math.round(currentNumber3)}+`;
-  }
 
-  setInterval(animateNumber1, 30);
-  setInterval(animateNumber2, 90);
-  setInterval(animateNumber3, 30);
-</script>
+    function animateNumber2() {
+      currentNumber2 += increment2;
+      if (currentNumber2 >= targetNumber2) {
+        currentNumber2 = targetNumber2;
+      }
+      numberElement2.textContent = `${Math.round(currentNumber2)}+`;
+    }
+
+    function animateNumber3() {
+      currentNumber3 += increment3;
+      if (currentNumber3 >= targetNumber3) {
+        currentNumber3 = targetNumber3;
+      }
+      numberElement3.textContent = ` ${Math.round(currentNumber3)}+`;
+    }
+
+    setInterval(animateNumber1, 30);
+    setInterval(animateNumber2, 90);
+    setInterval(animateNumber3, 30);
+  </script>
 
 
 </body>
