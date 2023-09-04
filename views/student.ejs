@@ -205,6 +205,9 @@
           <div class="register-form">
             <div class="container">
               <div id="submit-message" class="alert alert-success" style="display: none;"></div>
+              <div class="alert alert-info" id="submitting-alert" style="display: none;">
+                Submitting...
+              </div>
               <form action="/student" method="post" enctype="multipart/form-data" id="studentForm">
                 <input type="hidden" name="type" value="student">
                 <div class="row">
@@ -432,37 +435,48 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <script>
     $(document).ready(function () {
-      $("#studentForm").submit(function (event) {
+      $("#attendeForm").submit(function (event) {
         event.preventDefault(); // Prevent the default form submission
   
-        // Serialize the form data
-        var formData = new FormData(this);
+        // Show the "Submitting..." alert message
+        $("#submitting-alert").show();
   
-        // Send an AJAX request to your server
+        // Serialize the form data
+        var formData = $(this).serialize();
+  
+        // Send an AJAX request to your server to handle form submission
         $.ajax({
           type: "POST",
-          url: "/student", 
+          url: "/student",
           data: formData,
-          contentType: false, // Set content type to false to allow FormData to be sent
-          processData: false, // Prevent jQuery from processing the data
           success: function (response) {
+            // Hide the "Submitting..." alert message
+            $("#submitting-alert").hide();
+  
             // Display the success message
             $("#submit-message").removeClass("alert-danger").addClass("alert-success");
             $("#submit-message").html(response.message); // Use the message from the response
             $("#submit-message").show();
   
             // Clear the form fields if needed
-            $("#studentForm")[0].reset();
+            $("#attendeForm")[0].reset();
   
             // Set a timer to hide the success message after 3 seconds
             setTimeout(function () {
               $("#submit-message").hide();
             }, 3000);
+  
+            // Send a WhatsApp message using the WhatsApp API
+            sendWhatsAppMessage(response.number, response.message);
           },
           error: function (xhr, status, error) {
+            // Hide the "Submitting..." alert message
+            $("#submitting-alert").hide();
+  
             // Display an error message if the registration fails
             $("#submit-message").removeClass("alert-success").addClass("alert-danger");
             $("#submit-message").html(xhr.responseJSON.error); // Use the error message from the response
@@ -470,6 +484,37 @@
           },
         });
       });
+  
+      // Function to send a WhatsApp message using the WhatsApp API
+      function sendWhatsAppMessage(number, message) {
+        // WhatsApp API endpoint URL
+        var whatsappApiUrl = "https://text.dxing.in/api/send";
+  
+        // WhatsApp API request data
+        var requestData = {
+          number: number,
+          type: "text",
+          message: message,
+          instance_id: "64F332EFCDADD",
+          access_token: "64afe205189a4"
+        };
+  
+        // Send the WhatsApp message using AJAX
+        $.ajax({
+          type: "POST",
+          url: whatsappApiUrl,
+          contentType: "application/json",
+          data: JSON.stringify(requestData),
+          success: function (response) {
+            // Handle the success response if needed
+            console.log("WhatsApp message sent successfully:", response);
+          },
+          error: function (xhr, status, error) {
+            // Handle any errors in sending the WhatsApp message
+            console.error("Error sending WhatsApp message:", error);
+          },
+        });
+      }
     });
   </script>
 

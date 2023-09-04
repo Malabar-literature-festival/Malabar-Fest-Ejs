@@ -18,6 +18,9 @@ const AboutUsSchema = new mongoose.Schema(
       type: String,
       // enum: ["English", "Arabic", "Urdu"]
     },
+    aboutMalabar: {
+      type: String,
+    },
     aboutMlf: {
       type: String,
     },
