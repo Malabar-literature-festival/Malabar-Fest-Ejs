@@ -17,34 +17,36 @@ router.post("/", upload.single('photo'), async function (req, res, next) {
 
     // Check if a user with the same email already exists
     const existingUser = await Registration.findOne({ email: req.body.email });
-    if (existingUser) {
-      return res.status(400).json({ error: "Email already exists" });
+
+    if (!existingUser) {
+      // Handle the case where the user's basic data is not found
+      return res.status(404).json({ error: "User not found" });
     }
 
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    if (existingUser.regType === "attende" || existingUser.regType === "student" || existingUser.regType === "delegate") {
+      // User has already registered
+      console.log("User has already registered");
+      return res.status(400).json({ error: "User has already registered" });
+    }
 
-    const newRegistration = new Registration({
-      regType: req.body.type,
-      name: req.body.name,
-      gender: req.body.gender,
-      mobileNumber: req.body.contact,
-      email: req.body.email,
-      password: hashedPassword,
-      profession: req.body.profession,
-      regDate: req.body.day,
-      matterOfInterest: req.body.interest,
-      image: imagePath,
-    });
+    if (existingUser.commonReg === "commonReg") {
+      // Update the existing "commonReg" registration data
+      existingUser.profession = req.body.profession;
+      existingUser.regDate = req.body.day;
+      existingUser.matterOfInterest = req.body.interest;
+      existingUser.regType = req.body.type;
+      existingUser.image = imagePath;
+      await existingUser.save();
 
-    // Save the registration data to the database
-    await newRegistration.save();
-
-    return res.sendStatus(200);
+      // Respond with a success message
+      return res.status(200).json({ message: "Registration Successful" });
+    }
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
   }
 });
+
 
 router.post("/check-email", async function (req, res, next) {
   try {

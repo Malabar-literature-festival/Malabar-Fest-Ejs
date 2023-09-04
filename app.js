@@ -39,6 +39,8 @@ var Conditions = require("./routes/conditions");
 var AboutMlf = require("./routes/aboutMlf");
 var AboutBookPlus = require("./routes/aboutBookPlus");// ADDED NEWS ROUTES-------
 
+const CommonReg = require('./routes/commonReg')
+
 
 var app = express();
 
@@ -84,6 +86,7 @@ app.use("/refund", Refund);
 app.use("/terms-conditions", Conditions);
 app.use("/about-Mlf", AboutMlf);
 app.use("/about-book-Plus", AboutBookPlus);
+app.use("/common-reg", CommonReg);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

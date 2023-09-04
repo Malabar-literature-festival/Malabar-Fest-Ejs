@@ -204,31 +204,11 @@
           </div>
           <div class="register-form">
             <div class="container">
+              <div id="submit-message" class="alert alert-success" style="display: none;"></div>
               <form action="/student" method="post" enctype="multipart/form-data" id="studentForm">
                 <input type="hidden" name="type" value="student">
                 <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="name">Name:</label>
-                      <input type="text" id="name" name="name" class="form-control" required>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="gender">Gender:</label>
-                      <select id="gender" name="gender" class="form-control" required>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
 
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="contact">Contact Number:</label>
-                      <input type="tel" id="contact" name="contact" class="form-control" required>
-                    </div>
-                  </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="email">Email ID:</label>
@@ -236,19 +216,7 @@
                       <p id="emailError" class="text-danger"></p>
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="password">Create Password:</label>
-                      <input type="password" id="password" name="password" class="form-control" required>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="confirm_password">Confirm Password:</label>
-                      <input type="password" id="confirm_password" name="confirm_password" class="form-control"
-                        required>
-                    </div>
-                  </div>
+
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="photo">Add Photo:</label>
@@ -342,6 +310,7 @@
                   </div>
                 </div>
               </form>
+              
             </div>
           </div>
         </div>
@@ -350,15 +319,6 @@
       </div>
     </div>
   </div>
-
-
-
-
-
-
-
-
-
 
   <!-- Footer Start -->
   <div class="footer"
@@ -472,6 +432,46 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
   <script src="assets/js/main.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $("#studentForm").submit(function (event) {
+        event.preventDefault(); // Prevent the default form submission
+  
+        // Serialize the form data
+        var formData = new FormData(this);
+  
+        // Send an AJAX request to your server
+        $.ajax({
+          type: "POST",
+          url: "/student", 
+          data: formData,
+          contentType: false, // Set content type to false to allow FormData to be sent
+          processData: false, // Prevent jQuery from processing the data
+          success: function (response) {
+            // Display the success message
+            $("#submit-message").removeClass("alert-danger").addClass("alert-success");
+            $("#submit-message").html(response.message); // Use the message from the response
+            $("#submit-message").show();
+  
+            // Clear the form fields if needed
+            $("#studentForm")[0].reset();
+  
+            // Set a timer to hide the success message after 3 seconds
+            setTimeout(function () {
+              $("#submit-message").hide();
+            }, 3000);
+          },
+          error: function (xhr, status, error) {
+            // Display an error message if the registration fails
+            $("#submit-message").removeClass("alert-success").addClass("alert-danger");
+            $("#submit-message").html(xhr.responseJSON.error); // Use the error message from the response
+            $("#submit-message").show();
+          },
+        });
+      });
+    });
+  </script>
 
 </body>
 
