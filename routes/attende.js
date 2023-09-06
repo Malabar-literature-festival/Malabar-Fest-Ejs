@@ -3,6 +3,17 @@ var router = express.Router();
 const Registration = require("../models/Registration");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
+const nodemailer = require("nodemailer");
+
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
+  secure: true,
+  auth: {
+    user: process.env.SMTP_USERNAME,
+    pass: process.env.SMTP_PASSWORD,
+  },
+});
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -67,6 +78,22 @@ router.post("/", async function (req, res) {
             .json({ error: "Error sending WhatsApp message" });
         });
     }
+    const mailOptions = {
+      from: 'info@malabarliteraturefestival.com', // Sender's Gmail email address
+      to: existingUser.email, // Recipient's email address
+      subject: "Registration Successful",
+      text: `Hello ${existingUser.name},\n\nThank you for registering...`, // Email message
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.error("Error sending email:", error);
+        return res.status(500);
+      } else {
+        console.log("Email sent successfully:", info.response);
+        return res.status(200);
+      }
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });

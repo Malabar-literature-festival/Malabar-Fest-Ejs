@@ -44,7 +44,7 @@ router.post("/", async function (req, res, next) {
     const whatsappData = {
       number: mobileNumber,
       type: "text",
-      message: `Hello ${existingUser.name}. Thank you for registering...`,
+      message: `Hello ${req.body.name}. Thank you for registering...`,
       instance_id: "64F332EFCDADD",
       access_token: "64afe205189a4",
     };
