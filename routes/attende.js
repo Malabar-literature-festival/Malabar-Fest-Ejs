@@ -13,6 +13,8 @@ const transporter = nodemailer.createTransport({
     user: process.env.SMTP_USERNAME,
     pass: process.env.SMTP_PASSWORD,
   },
+  connectionTimeout: 30000, // 30 seconds
+  timeout: 60000, // 60 seconds
 });
 
 /* GET home page. */
@@ -79,7 +81,7 @@ router.post("/", async function (req, res) {
         });
     }
     const mailOptions = {
-      from: 'info@malabarliteraturefestival.com', // Sender's Gmail email address
+      from: "info@malabarliteraturefestival.com", // Sender's Gmail email address
       to: existingUser.email, // Recipient's email address
       subject: "Registration Successful",
       text: `Hello ${existingUser.name},\n\nThank you for registering...`, // Email message
