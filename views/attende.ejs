@@ -93,50 +93,77 @@
           <span></span>
         </div>
       </div>
-      <!-- Preloader End -->
 
-      <!-- Header Start -->
-      <div class="meeta-header-section meeta-header-2 meeta-header-3">
-        <!-- Header Middle Start -->
-        <div class="header-middle header-sticky">
-          <div class="container">
-            <div class="header-wrap">
-              <!-- Header Logo Start -->
-              <div class="header-logo header-logo-3">
-                <a class="logo-black" href="/"
-                  ><img src="assets/images/favnew.svg" alt="Logo"
-                /></a>
-                <a class="logo-white" href="/"
-                  ><img src="assets/images/favnew.svg" alt="Logo"
-                /></a>
-              </div>
-              <!-- Header Logo End -->
+    </div>
+    <!-- Preloader End -->
 
-              <!-- Header Navigation Start -->
-              <div class="header-navigation d-none d-lg-block">
-                <ul class="main-menu">
-                  <li class="active-menu"><a href="/">Home</a></li>
+    <!-- Header Start -->
+    <div class="meeta-header-section meeta-header-2 meeta-header-3">
+
+      <!-- Header Middle Start -->
+      <div class="header-middle header-sticky">
+        <div class="container">
+
+          <div class="header-wrap">
+            <!-- Header Logo Start -->
+            <div class="header-logo header-logo-3">
+              <a class="logo-black" href="/"><img src="assets/images/favnew.svg" alt="Logo"></a>
+              <a class="logo-white" href="/"><img src="assets/images/favnew.svg" alt="Logo"></a>
+            </div>
+            <!-- Header Logo End -->
+
+            <!-- Header Navigation Start -->
+            <div class="header-navigation d-none d-lg-block">
+              <ul class="main-menu">
+                <li class="active-menu"><a href="/">Home</a>
+
+                </li>
+                <li><a href="#">About</a>
+                  <ul class="sub-menu">
+                    <li><a href="/about">About Malabar</a></li>
+                    <li><a href="/about-Mlf">About MLF</a></li>
+                    <li><a href="/about-book-Plus">About Book Plus</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="../assets/pdf/MLF_Brochure.pdf" target="_blank" attributes-list> Programme </a>
+                </li>
+                <!-- <li><a href="/speaker">Speakers</a>
+                </li>
+                <li><a href="/gallery">Gallery</a></li> -->
+                <li><a href="/contact">Contact</a></li>
+                <div class="header-btn d-none d-md-block ">
                   <li>
-                    <a href="">About</a>
+                    <a id="reg-drop-down" href="#" class="register_style"><span class="wtstyle">
+                        Register
+                      </span></a>
                     <ul class="sub-menu">
-                      <li><a href="/about">About Malabar</a></li>
-                      <li><a href="/about-Mlf">About MLF</a></li>
-                      <li><a href="/about-book-Plus">About Book Plus</a></li>
+                      <li><a href="/common-reg">Delegate Registration</a></li>
+                      <li><a href="/volunter">Volunteer Registration</a></li>
+
                     </ul>
                   </li>
-                  <li>
-                    <a
-                      href="../assets/pdf/mlf.pdf"
-                      target="_blank"
-                      attributes-list
-                    >
-                      Programme
-                    </a>
-                  </li>
-                  <li><a href="/speaker">Speakers</a></li>
-                  <li><a href="/gallery">Gallery</a></li>
-                  <li><a href="/contact">Contact</a></li>
-                </ul>
+
+                </div>
+              </ul>
+            </div>
+            <!-- Header Navigation End -->
+
+            <!-- Header Meta Start -->
+            <div class="header-meta">
+
+              <!-- <div class="header-btn d-none d-md-block">
+                <a href="/register" class="btn-2">Register</a>
+              </div> -->
+
+              <!-- Header Toggle Start -->
+              <div class="header-toggle d-lg-none">
+                <button data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </button>
+
               </div>
               <!-- Header Navigation End -->
 
@@ -204,50 +231,32 @@
       </div>
       <!-- Offcanvas End -->
 
-      <div class="container">
-        <div class="attende-registration" style="margin-top: 100px">
-          <div class="registration-title">
-            <h1>Registration</h1>
-          </div>
+
+    <div class="container">
+      <div class="attende-registration" style="margin-top: 100px;">
+        <div class="registration-title">
+          <h1>Attendee</h1>
         </div>
       </div>
-      <div
-        class="register-table"
-        style="
-          background-image: url('assets/images/RegisterUnion.png');
-          background-size: cover;
-          background-position: center center;
-          margin-top: 60px;
-          width: 100%;
-          min-height: 818px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        "
-      >
-        <div class="container">
-          <div class="delegate-table-section">
-            <div class="delegate-title">
-              <h1>Attendee</h1>
-            </div>
-            <div class="register-form">
-              <div class="container">
-                <div
-                  id="submit-message"
-                  class="alert alert-success"
-                  style="display: none"
-                ></div>
-                <div
-                  class="alert alert-info"
-                  id="submitting-alert"
-                  style="display: none"
-                >
-                  Submitting...
-                </div>
-                <form action="/attende" method="post" id="attendeForm">
-                  <input type="hidden" name="type" value="attende" />
-                  <div class="row">
-                    <!-- <div class="col-md-6">
+    </div>
+    <div class="register-table"
+      style="background-image: url('assets/images/RegisterUnion.png'); background-size: cover; background-position: center center;  width: 100%; min-height: 818px; display: flex; justify-content: center; align-items: center;">
+      <div class="container">
+        <div class="delegate-table-section">
+          <!-- <div class="delegate-title">
+            <h1>Attendee</h1>
+          </div> -->
+          <div class="register-form">
+            <div class="container">
+              <div id="submit-message" class="alert alert-success" style="display: none;"></div>
+              <div class="alert alert-info" id="submitting-alert" style="display: none;">
+                Submitting...
+              </div>
+              <form action="/attende" method="post" id="attendeForm">
+                <input type="hidden" name="type" value="attende">
+                <div class="row">
+                  <!-- <div class="col-md-6">
+
                     <div class="form-group">
                       <label for="name">Name:</label>
                       <input type="text" id="name" name="name" class="form-control" required>

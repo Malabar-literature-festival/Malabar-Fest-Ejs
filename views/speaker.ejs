@@ -154,7 +154,9 @@
                     <li><a href="/about-book-Plus">About Book Plus</a></li>
                   </ul>
                 </li>
-                <li> <a href="../assets/pdf/mlf.pdf" target="_blank" attributes-list> Programme </a>
+                <li>
+                  <a href="../assets/pdf/MLF_Brochure.pdf" target="_blank" attributes-list> Programme </a>
+                </li>
 
                 </li>
                 <li class="active-menu"><a href="/speaker">Speakers</a>
@@ -221,8 +223,8 @@
                 <li><a href="/about-book-Plus">About Book Plus</a></li>
               </ul>
             </li>
-            <li> <a href="../assets/pdf/mlf.pdf" target="_blank" attributes-list> Programme </a>
-
+            <li>
+              <a href="../assets/pdf/MLF_Brochure.pdf" target="_blank" attributes-list> Programme </a>
             </li>
             <li class="active-menu"><a href="/speaker">Speaker</a>
             <li><a href="/gallery">Gallery</a>
@@ -252,53 +254,26 @@
 
           <!-- Trigger/Open The Modal -->
 
-
-
           <div class="row">
-
-            <div class="col-xs-12 col-sm-6 col-lg-3">
-              <% speakerData.forEach(speaker=> { %>
-
-                <div class="speaker-cards open-modal-button" data-modal-id="<%= speaker.id %>" id="myBtn">
-
+            <% speakerData.forEach(speaker=> { %>
+              <div class="col-xs-6 col-sm-6 col-lg-2">
+                <!-- id="myBtn" -->
+                <div class="col-md-3 speaker-cards">
                   <div class="speaker-imgs">
                     <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speaker.image }` %>" alt="">
-                    <div class="speaker-content" style="background-image: url('assets/images/blackshade.svg');">
-                      <h3 class="speakers-name">
-                        <%= speaker.name %>
-                      </h3>
-
-                    </div>
                   </div>
-
-                  <!-- Speaker Card Content -->
-
-
                 </div>
-
-            </div>
-
-
-
-            <!-- Inside the loop -->
-            <div class="col-xs-12 col-sm-6 col-lg-3">
-              <!-- The Modal -->
-              <div id="<%= speaker.id %>" class="modal">
-                <!-- Modal content -->
-                <div class="modal-content">
-                  <span class="close"></span>
-                  <p>
+                <div class="speaker-content-inner">
+                  <h3 class="speakers-name">
+                    <%= speaker.name %>
+                  </h3>
+                  <p class="speakers-para">
                     <%= speaker.description %>
                   </p>
                 </div>
               </div>
+
               <% }); %>
-            </div>
-            <!-- End of loop -->
-
-
-
-
           </div>
 
 
