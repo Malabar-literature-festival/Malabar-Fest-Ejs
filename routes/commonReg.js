@@ -6,6 +6,14 @@ const axios = require("axios");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
+  const savedEmail = req.session.email;
+
+  if (savedEmail) {
+    // You can use the savedEmail variable here
+    console.log("Email retrieved from session:", savedEmail);
+  } else {
+    // Handle the case where the email is not found in the session
+  }
   res.render("commonReg");
 });
 
@@ -13,14 +21,17 @@ router.post("/", async function (req, res, next) {
   try {
     console.log(req.body);
 
+    const email = req.body.email;
+
+    // Store the email in the session
+    req.session.email = email;
+
     // Check if a user with the same email already exists
     const existingUser = await Registration.findOne({ email: req.body.email });
     console.log("Existing user In common Reg :", existingUser);
     if (existingUser) {
       return res.redirect("/register");
     }
-
-    //   const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
     const newRegistration = new Registration({
       commonReg: req.body.type,
