@@ -18,7 +18,15 @@ const transporter = nodemailer.createTransport({
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("delegate", { title: "Express" });
+  const savedEmail = req.session.email;
+
+  if (savedEmail) {
+    // You can use the savedEmail variable here
+    console.log("Email retrieved from session:", savedEmail);
+  } else {
+    // Handle the case where the email is not found in the session
+  }
+  res.render("delegate", { title: "Express", savedEmail });
 });
 
 router.post("/", upload.single("photo"), async function (req, res, next) {
@@ -54,6 +62,8 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       existingUser.image = imagePath;
       await existingUser.save();
 
+      delete req.session.email;
+      
       let mobileNumber = existingUser.mobileNumber;
 
       if (!mobileNumber.startsWith("91")) {

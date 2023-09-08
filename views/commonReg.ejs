@@ -239,7 +239,11 @@
             </div> -->
             <div class="register-form">
               <div class="container">
-
+                <div
+                id="submit-message"
+                class="alert alert-success"
+                style="display: none"
+              ></div>
                 <form
                   action="/common-reg"
                   method="post"
@@ -448,5 +452,36 @@
       src="node_modules/slick-carousel/slick/slick.min.js"
     ></script>
     <script src="assets/js/main.js"></script>
+
+<script>
+  $.ajax({
+  type: "POST",
+  url: "/common-reg",
+  data: formData,
+  success: function (response) {
+    // Hide the "Submitting..." alert message
+    $("#submitting-alert").hide();
+
+    // Display the success message
+    $("#submit-message")
+      .removeClass("alert-danger")
+      .addClass("alert-success");
+
+    // Update the content of a specific element with the HTML response
+    $("#submit-message").html(response);
+
+    $("#submit-message").show();
+
+    // Clear the form fields if needed
+    $("#commonReg-form")[0].reset();
+
+    // Set a timer to hide the success message after 3 seconds
+    setTimeout(function () {
+      $("#submit-message").hide();
+    }, 3000);
+  },
+});
+
+</script>
   </body>
 </html>
