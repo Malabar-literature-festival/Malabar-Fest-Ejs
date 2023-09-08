@@ -69,12 +69,29 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       if (!mobileNumber.startsWith("91")) {
         mobileNumber = "91" + mobileNumber;
       }
+      const WhatsappMessage = `
+      Dear ${existingUser.name},
+
+      We are thrilled to inform you that your registration for the Malabar Literature Festival 2023 has been successfully confirmed! We can't wait to welcome you to this exciting literary event, which will take place at the beautiful Calicut Beach from November 30th to December 3rd.
+      
+      We look forward to seeing you at the Malabar Literature Festival 2023 and sharing in the celebration of literature and culture.
+      
+      Thank you for your participation, and best wishes for an inspiring and memorable festival!
+      
+      Warm regards,
+      
+      K. P. Ramanunni
+      Festival Director
+      Malabar Literature Festival Organizing Committee
+      Help Desk: +91 9539327252
+      `;
+
       // Send a WhatsApp message using the WhatsApp API
       const whatsappApiUrl = "https://text.dxing.in/api/send";
       const whatsappData = {
         number: mobileNumber,
         type: "text",
-        message: `Hello ${existingUser.name}. Thank you for registering...`,
+        message: WhatsappMessage,
         instance_id: "64F332EFCDADD",
         access_token: "64afe205189a4",
       };
@@ -93,11 +110,35 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
             .json({ error: "Error sending WhatsApp message" });
         });
     }
+
+    const html = `
+    Dear ${existingUser.name},
+        
+    We are thrilled to inform you that your registration for the Malabar Literature Festival 2023 has been successfully confirmed! We can't wait to welcome you to this exciting literary event, which will take place at the beautiful Calicut Beach from November 30th to December 3rd.
+    
+    Your participation in the Malabar Literature Festival will grant you access to a diverse range of literary discussions, author sessions, workshops, and cultural performances. We have a spectacular lineup of renowned authors, poets, and speakers who will engage in thought-provoking conversations, and we are confident that you will have an enriching and enjoyable experience.
+    
+    Please keep an eye on your email for further updates, including the festival schedule, information about speakers and sessions, and any last-minute changes. We recommend that you arrive at the venue well in advance to ensure you get the best experience possible.
+    
+    If you have any questions or require additional information, please do not hesitate to contact our support team at info@malabarliteraturefestival.com or call us at +91 9539327252.
+    
+    We look forward to seeing you at the Malabar Literature Festival 2023 and sharing in the celebration of literature and culture.
+    
+    Thank you for your participation, and best wishes for an inspiring and memorable festival!
+    
+    Warm regards,
+    
+    K. P. Ramanunni
+    Festival Director
+    Malabar Literature Festival Organizing Committee
+    Help Desk: +91 9539327252
+    `;
+
     const mailOptions = {
-      from: 'info@malabarliteraturefestival.com', // Sender's Gmail email address
-      to: existingUser.email, // Recipient's email address
-      subject: "Registration Successful",
-      text: `Hello ${existingUser.name},\n\nThank you for registering...`, // Email message
+      from: process.env.SMTP_FROM_EMAIL,
+      to: existingUser.email,
+      subject: `Registration Confirmation for ${existingUser.regType} at Malabar Literature Festival 2023`,
+      text: html,
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
