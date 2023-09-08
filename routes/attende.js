@@ -71,10 +71,10 @@ router.post("/", async function (req, res) {
       if (!mobileNumber.startsWith("91")) {
         mobileNumber = "91" + mobileNumber;
       }
-      const WhatsappMessage = `Dear ${existingUser.name},
+      const WhatsappMessage = `
+      Dear ${existingUser.name},
 
-      We are thrilled to inform you that your registration for the Malabar Literature Festival 2023 has been successfully confirmed!
-      We can't wait to welcome you to this exciting literary event, which will take place at the beautiful Calicut Beach from November 30th to December 3rd.
+      We are thrilled to inform you that your registration for the Malabar Literature Festival 2023 has been successfully confirmed! We can't wait to welcome you to this exciting literary event, which will take place at the beautiful Calicut Beach from November 30th to December 3rd.
       
       We look forward to seeing you at the Malabar Literature Festival 2023 and sharing in the celebration of literature and culture.
       
@@ -85,7 +85,8 @@ router.post("/", async function (req, res) {
       K. P. Ramanunni
       Festival Director
       Malabar Literature Festival Organizing Committee
-      Help Desk: +91 9539327252`;
+      Help Desk: +91 9539327252
+      `;
 
       // Send a WhatsApp message using the WhatsApp API
       const whatsappApiUrl = "https://text.dxing.in/api/send";
