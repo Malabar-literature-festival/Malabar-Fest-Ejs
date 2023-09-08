@@ -3,6 +3,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const session = require('express-session');
 
 const connectDB = require("./config/db");
 
@@ -43,6 +44,13 @@ const CommonReg = require('./routes/commonReg')
 
 
 var app = express();
+
+// Configure the session middleware
+app.use(session({
+  secret: 'sessionSecretKey',
+  resave: false,
+  saveUninitialized: true,
+}));
 
 // Connect to MongoDB database
 connectDB();
