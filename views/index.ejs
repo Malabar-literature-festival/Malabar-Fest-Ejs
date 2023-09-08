@@ -257,62 +257,20 @@
           <div class="featured-carousel owl-carousel mt-5">
 
 
-
+            <% speakerData.forEach(speaker=> { %>
             <div class="col-md-3 speaker-cards-landing">
               <div class="speaker-imgs">
-                <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speakerData[0].image }` %>"
+                <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speaker.image }` %>"
                   alt="">
                 <div class="speaker-content" style="background-image: url('assets/images/blackshade1.svg');">
                   <h3 class="speakers-name">
-                    <%= speakerData[0].name %>
+                    <%= speaker.name %>
                   </h3>
 
                 </div>
               </div>
             </div>
-
-
-
-            <div class="col-md-3 speaker-cards-landing">
-              <div class="speaker-imgs">
-                <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speakerData[1].image }` %>"
-                  alt="">
-                <div class="speaker-content" style="background-image: url('assets/images/blackshade1.svg');">
-                  <h3 class="speakers-name">
-                    <%= speakerData[1].name %>
-                  </h3>
-
-                </div>
-              </div>
-            </div>
-
-
-            <div class="col-md-3 speaker-cards-landing">
-              <div class="speaker-imgs">
-                <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speakerData[2].image }` %>"
-                  alt="">
-                <div class="speaker-content" style="background-image: url('assets/images/blackshade1.svg');">
-                  <h3 class="speakers-name">
-                    <%= speakerData[2].name %>
-                  </h3>
-
-                </div>
-              </div>
-            </div>
-
-
-            <div class="col-md-3 speaker-cards-landing">
-              <div class="speaker-imgs">
-                <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speakerData[3].image }` %>"
-                  alt="">
-                <div class="speaker-content" style="background-image: url('assets/images/blackshade1.svg');">
-                  <h3 class="speakers-name">
-                    <%= speakerData[3].name %>
-                  </h3>
-
-                </div>
-              </div>
-            </div>
+            <% }); %>
 
           </div>
         </div>

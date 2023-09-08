@@ -13163,6 +13163,7 @@ figcaption {
 .speaker-imgs img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 .speaker-content {
   position: absolute;
