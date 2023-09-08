@@ -62,12 +62,7 @@
   <div class="main-wrapper">
 
     <!-- Preloader start -->
-    <div id="preloader">
-      <div class="preloader">
-        <span></span>
-        <span></span>
-      </div>
-    </div>
+
     <!-- Preloader End -->
 
     <!-- Header Start -->
@@ -91,30 +86,43 @@
                 <li class="active-menu"><a href="/">Home</a>
 
                 </li>
-                <li><a href="">About</a>
+                <li><a href="#">About</a>
                   <ul class="sub-menu">
                     <li><a href="/about">About Malabar</a></li>
                     <li><a href="/about-Mlf">About MLF</a></li>
                     <li><a href="/about-book-Plus">About Book Plus</a></li>
                   </ul>
                 </li>
-                <li> <a href="../assets/pdf/mlf.pdf" target="_blank" attributes-list> Programme </a>
-
+                <li>
+                  <a href="../assets/pdf/MLF_Brochure.pdf" target="_blank" attributes-list> Programme </a>
                 </li>
-                <li><a href="/speaker">Speakers</a>
+                <!-- <li><a href="/speaker">Speakers</a>
                 </li>
-                <li><a href="/gallery">Gallery</a></li>
+                <li><a href="/gallery">Gallery</a></li> -->
                 <li><a href="/contact">Contact</a></li>
+                <div class="header-btn d-none d-md-block ">
+                  <li>
+                    <a id="reg-drop-down" href="#" class="register_style"><span class="wtstyle">
+                        Register
+                      </span></a>
+                    <ul class="sub-menu">
+                      <li><a href="/common-reg">Delegate Registration</a></li>
+                      <li><a href="/volunter">Volunteer Registration</a></li>
+
+                    </ul>
+                  </li>
+
+                </div>
               </ul>
             </div>
             <!-- Header Navigation End -->
 
             <!-- Header Meta Start -->
             <div class="header-meta">
-
+              <!-- 
               <div class="header-btn d-none d-md-block">
                 <a href="/register" class="btn-2">Register</a>
-              </div>
+              </div> -->
 
               <!-- Header Toggle Start -->
               <div class="header-toggle d-lg-none">
@@ -159,11 +167,11 @@
 
             </li>
             <li><a href="/about">About</a></li>
-            <li> <a href="../assets/pdf/mlf.pdf" target="_blank" attributes-list> Programme </a>
+            <li> <a href="../assets/pdf/MLF_Brochure.pdf" target="_blank" attributes-list> Programme </a>
 
             </li>
-            <li><a href="/speaker">Speaker</a>
-            <li><a href="/gallery">Gallery</a>
+            <!-- <li><a href="/speaker">Speaker</a>
+            <li><a href="/gallery">Gallery</a> -->
             </li>
             <li><a href="/contact">Contact</a></li>
             <li>
@@ -185,17 +193,17 @@
     <div class="container">
       <div class="attende-registration" style="margin-top: 100px;">
         <div class="registration-title">
-          <h1>Registration</h1>
+          <h1>Volunteer Registration</h1>
         </div>
       </div>
     </div>
     <div class="register-table"
       style="background-image: url('assets/images/RegisterUnion.png'); background-size: cover; background-position: center center; margin-top: 60px; width: 100%; min-height: 818px; display: flex; justify-content: center; align-items: center;">
       <div class="container">
-        <div class="delegate-table-section">
-          <div class="delegate-title">
+        <div class="delegate-table-section-v">
+          <!-- <div class="delegate-title">
             <h1>Volunteer Registration</h1>
-          </div>
+          </div> -->
           <div class="register-form">
             <div class="container">
               <form action="/volunter" method="post" enctype="multipart/form-data" id="volunteerForm">
@@ -275,20 +283,7 @@
                     <div class="form-group">
                       <label for="age">Age:</label>
                       <select id="age" name="age" class="form-control" size="1" required>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
+
                         <option value="15">15</option>
                         <option value="16">16</option>
                         <option value="17">17</option>
@@ -378,29 +373,19 @@
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="reference">Reference if Any:</label>
 
-                    </div>
                     <div class="form-group">
-                      <label for="reference_name">Name:</label>
+                      <label for="reference_name">Reference if Any: Name:</label>
                       <input type="text" id="reference_name" name="reference_name" class="form-control">
                     </div>
+                  </div>
+
+
+                  <div class="col-md-6">
                     <div class="form-group">
                       <label for="mobile">Contact Number:</label>
                       <input type="text" id="mobile" name="mobile" class="form-control">
                     </div>
-                  </div>
-
-
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="day">Select Day:</label>
-                      <input type="date" id="day" name="day" class="form-control" required>
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
                     <div class="form-group">
                       <label for="interest">Matter Of Interest</label>
                       <select id="interest" name="interest" class="form-control scrollable-dropdown" required>
@@ -441,11 +426,19 @@
                       </select>
                     </div>
                   </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="day">Select Day:</label>
+                      <input type="date" id="day" name="day" class="form-control" required>
+                    </div>
+
+                  </div>
                 </div>
                 <div class="row register-amount-btn">
                   <div class=" col-12 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary" style="border-radius: 20px;">Pay
-                      to Register ₹-580.00</button>
+                    <button type="submit" class="btn btn-primary" style="border-radius: 20px;">Register
+                    </button>
                   </div>
                 </div>
               </form>

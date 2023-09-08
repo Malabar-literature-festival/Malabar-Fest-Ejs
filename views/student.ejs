@@ -62,12 +62,12 @@
   <div class="main-wrapper">
 
     <!-- Preloader start -->
-    <div id="preloader">
+    <!-- <div id="preloader">
       <div class="preloader">
         <span></span>
         <span></span>
       </div>
-    </div>
+    </div> -->
     <!-- Preloader End -->
 
     <!-- Header Start -->
@@ -91,20 +91,33 @@
                 <li class="active-menu"><a href="/">Home</a>
 
                 </li>
-                <li><a href="">About</a>
+                <li><a href="#">About</a>
                   <ul class="sub-menu">
                     <li><a href="/about">About Malabar</a></li>
                     <li><a href="/about-Mlf">About MLF</a></li>
                     <li><a href="/about-book-Plus">About Book Plus</a></li>
                   </ul>
                 </li>
-                <li> <a href="../assets/pdf/mlf.pdf" target="_blank" attributes-list> Programme </a>
-
+                <li>
+                  <a href="../assets/pdf/MLF_Brochure.pdf" target="_blank" attributes-list> Programme </a>
                 </li>
-                <li><a href="/speaker">Speakers</a>
+                <!-- <li><a href="/speaker">Speakers</a>
                 </li>
-                <li><a href="/gallery">Gallery</a></li>
+                <li><a href="/gallery">Gallery</a></li> -->
                 <li><a href="/contact">Contact</a></li>
+                <div class="header-btn d-none d-md-block ">
+                  <li>
+                    <a id="reg-drop-down" href="#" class="register_style"><span class="wtstyle">
+                        Register
+                      </span></a>
+                    <ul class="sub-menu">
+                      <li><a href="/common-reg">Delegate Registration</a></li>
+                      <li><a href="/volunter">Volunteer Registration</a></li>
+
+                    </ul>
+                  </li>
+
+                </div>
               </ul>
             </div>
             <!-- Header Navigation End -->
@@ -112,9 +125,9 @@
             <!-- Header Meta Start -->
             <div class="header-meta">
 
-              <div class="header-btn d-none d-md-block">
+              <!-- <div class="header-btn d-none d-md-block">
                 <a href="/register" class="btn-2">Register</a>
-              </div>
+              </div> -->
 
               <!-- Header Toggle Start -->
               <div class="header-toggle d-lg-none">
@@ -165,11 +178,11 @@
                 <li><a href="/about-book-Plus">About Book Plus</a></li>
               </ul>
             </li>
-            <li> <a href="../assets/pdf/mlf.pdf" target="_blank" attributes-list> Programme </a>
+            <li> <a href="../assets/pdf/MLF_Brochure.pdf" target="_blank" attributes-list> Programme </a>
 
             </li>
-            <li><a href="/speaker">Speaker</a>
-            <li><a href="/gallery">Gallery</a>
+            <!-- <li><a href="/speaker">Speaker</a>
+            <li><a href="/gallery">Gallery</a> -->
             </li>
             <li><a href="/contact">Contact</a></li>
             <li>
@@ -191,17 +204,17 @@
     <div class="container">
       <div class="attende-registration" style="margin-top: 100px;">
         <div class="registration-title">
-          <h1>Registration</h1>
+          <h1>Student</h1>
         </div>
       </div>
     </div>
     <div class="register-table"
-      style="background-image: url('assets/images/RegisterUnion.png'); background-size: cover; background-position: center center; margin-top: 60px; width: 100%; min-height: 818px; display: flex; justify-content: center; align-items: center;">
+      style="background-image: url('assets/images/RegisterUnion.png'); background-size: cover; background-position: center center;  width: 100%; min-height: 818px; display: flex; justify-content: center; align-items: center;">
       <div class="container">
         <div class="delegate-table-section">
-          <div class="delegate-title">
+          <!-- <div class="delegate-title">
             <h1>Student</h1>
-          </div>
+          </div> -->
           <div class="register-form">
             <div class="container">
               <div id="submit-message" class="alert alert-success" style="display: none;"></div>
@@ -313,7 +326,7 @@
                   </div>
                 </div>
               </form>
-              
+
             </div>
           </div>
         </div>
@@ -441,13 +454,13 @@
     $(document).ready(function () {
       $("#attendeForm").submit(function (event) {
         event.preventDefault(); // Prevent the default form submission
-  
+
         // Show the "Submitting..." alert message
         $("#submitting-alert").show();
-  
+
         // Serialize the form data
         var formData = $(this).serialize();
-  
+
         // Send an AJAX request to your server to handle form submission
         $.ajax({
           type: "POST",
@@ -456,27 +469,27 @@
           success: function (response) {
             // Hide the "Submitting..." alert message
             $("#submitting-alert").hide();
-  
+
             // Display the success message
             $("#submit-message").removeClass("alert-danger").addClass("alert-success");
             $("#submit-message").html(response.message); // Use the message from the response
             $("#submit-message").show();
-  
+
             // Clear the form fields if needed
             $("#attendeForm")[0].reset();
-  
+
             // Set a timer to hide the success message after 3 seconds
             setTimeout(function () {
               $("#submit-message").hide();
             }, 3000);
-  
+
             // Send a WhatsApp message using the WhatsApp API
             sendWhatsAppMessage(response.number, response.message);
           },
           error: function (xhr, status, error) {
             // Hide the "Submitting..." alert message
             $("#submitting-alert").hide();
-  
+
             // Display an error message if the registration fails
             $("#submit-message").removeClass("alert-success").addClass("alert-danger");
             $("#submit-message").html(xhr.responseJSON.error); // Use the error message from the response
@@ -484,12 +497,12 @@
           },
         });
       });
-  
+
       // Function to send a WhatsApp message using the WhatsApp API
       function sendWhatsAppMessage(number, message) {
         // WhatsApp API endpoint URL
         var whatsappApiUrl = "https://text.dxing.in/api/send";
-  
+
         // WhatsApp API request data
         var requestData = {
           number: number,
@@ -498,7 +511,7 @@
           instance_id: "64F332EFCDADD",
           access_token: "64afe205189a4"
         };
-  
+
         // Send the WhatsApp message using AJAX
         $.ajax({
           type: "POST",
