@@ -252,7 +252,7 @@
         </div>
         <div class="row register-amount-btn">
           <div class="col-12 d-flex justify-content-center">
-            <button type="button" class="btn btn-primary" style="border-radius: 20px" onclick="submitForm()">
+            <button type="button" class="btn btn-primary" id="submit-button" style="border-radius: 20px" onclick="submitForm()">
               Book Your Ticket
             </button>
           </div>
@@ -317,11 +317,12 @@
             </ul>
           </div>
         </div>
-        <div class="address">
-          <i class="fas fa-map-marker-alt"></i> Malabar Literature Festival
-          BookPlus Publishers,Hidaya Nagar
-          Chemmad,Malappuram,Kerala,India-67663060494-2463681,+91 9562661133
-        </div>
+<div class="address">
+  <i class="fas fa-map-marker-alt"></i> Malabar Literature Festival<br>
+  BookPlus Publishers, Hidaya Nagar
+  Chemmad, Malappuram, Kerala, India-67663060494-2463681, +91 9562661133
+</div>
+
       </div>
       <hr class="footer-hr" />
       <div class="last-section-footer">
@@ -394,25 +395,32 @@
           success: function (response) {
             // Display the success message in the alert div
             $("#alert-message").removeClass("alert-danger").addClass("alert-success").text(response.message).show();
-            
+    
+            // Hide the form and the submit button after a successful submission
+            $("#commonReg-form").hide();
+            $("#submit-button").hide();
+    
             // Set a timer to hide the success message after 3 seconds
             setTimeout(function () {
               $("#alert-message").hide();
-            }, 3000);
+              window.location.href = "/home";
+            }, 6000);
           },
-          
+    
           error: function (error) {
             // Display the error message in the alert div
             $("#alert-message").removeClass("alert-success").addClass("alert-danger").text(error.responseJSON.error).show();
-            
+    
             // Set a timer to hide the error message after 3 seconds
             setTimeout(function () {
               $("#alert-message").hide();
-            }, 3000);
+              window.location.href = "/home"
+            }, 4000);
           },
         });
       }
     </script>
+    
     
   </body>
 </html>
