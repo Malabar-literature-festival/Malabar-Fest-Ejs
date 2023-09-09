@@ -18,7 +18,7 @@ router.get("/", async function (req, res, next) {
 
     const testimonialData = await Testimonial.find()
     console.log(testimonialData)
-    res.render("landing", { title, aboutData, speakerData, newsData, testimonialData });
+    res.render("index", { title, aboutData, speakerData, newsData, testimonialData });
   } catch (error) {
     console.error("Error:", error);
   }

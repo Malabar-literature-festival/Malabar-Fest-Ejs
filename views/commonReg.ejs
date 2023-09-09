@@ -210,11 +210,8 @@
             <div class="container">
             <div class="register-form">
               <div class="container">
-                <div
-                id="submit-message"
-                class="alert alert-success"
-                style="display: none"
-              ></div>
+                <div id="alert-message" class="alert" style="display: none;"></div>
+
               <form action="/common-reg" method="post" id="commonReg-form">
 
                 <input type="hidden" name="type" value="commonReg">
@@ -231,6 +228,7 @@
                       <select id="gender" name="gender" class="form-control" required>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
+                        <option value="other">Other</option>
                       </select>
                     </div>
                   </div>
@@ -254,7 +252,7 @@
         </div>
         <div class="row register-amount-btn">
           <div class="col-12 d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary" style="border-radius: 20px">
+            <button type="button" class="btn btn-primary" style="border-radius: 20px" onclick="submitForm()">
               Book Your Ticket
             </button>
           </div>
@@ -321,7 +319,7 @@
         </div>
         <div class="address">
           <i class="fas fa-map-marker-alt"></i> Malabar Literature Festival
-          Book Plus Foundation,Hidaya Nagar
+          BookPlus Publishers,Hidaya Nagar
           Chemmad,Malappuram,Kerala,India-67663060494-2463681,+91 9562661133
         </div>
       </div>
@@ -386,36 +384,36 @@
     ></script>
     <script src="assets/js/main.js"></script>
 
-<script>
-  $.ajax({
-  type: "POST",
-  url: "/common-reg",
-  data: formData,
-  success: function (response) {
-    // Hide the "Submitting..." alert message
-    $("#submitting-alert").hide();
-
-    // Display the success message
-    $("#submit-message")
-      .removeClass("alert-danger")
-      .addClass("alert-success");
-
-    // Update the content of a specific element with the HTML response
-    $("#submit-message").html(response);
-
-    $("#submit-message").show();
-
-    // Clear the form fields if needed
-    $("#commonReg-form")[0].reset();
-
-    // Set a timer to hide the success message after 3 seconds
-    setTimeout(function () {
-      $("#submit-message").hide();
-    }, 3000);
-  },
-});
-
-</script>
+    <script>
+      function submitForm() {
+        // Use JavaScript to send an AJAX request to your backend route
+        $.ajax({
+          type: "POST",
+          url: "/common-reg",
+          data: $("#commonReg-form").serialize(),
+          success: function (response) {
+            // Display the success message in the alert div
+            $("#alert-message").removeClass("alert-danger").addClass("alert-success").text(response.message).show();
+            
+            // Set a timer to hide the success message after 3 seconds
+            setTimeout(function () {
+              $("#alert-message").hide();
+            }, 3000);
+          },
+          
+          error: function (error) {
+            // Display the error message in the alert div
+            $("#alert-message").removeClass("alert-success").addClass("alert-danger").text(error.responseJSON.error).show();
+            
+            // Set a timer to hide the error message after 3 seconds
+            setTimeout(function () {
+              $("#alert-message").hide();
+            }, 3000);
+          },
+        });
+      }
+    </script>
+    
   </body>
 </html>
 

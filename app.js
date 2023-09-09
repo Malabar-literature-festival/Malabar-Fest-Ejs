@@ -12,6 +12,7 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./config/.env" });
 
 var indexRouter = require("./routes/index");
+var homeRouter = require("./routes/home");
 var usersRouter = require("./routes/users");
 var aboutRouter = require("./routes/about");
 var contactRouter = require("./routes/contact");
@@ -67,6 +68,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static("uploads")); // Serve uploaded images
 
 app.use("/", indexRouter);
+app.use("/home", homeRouter);
 app.use("/users", usersRouter);
 app.use("/about", aboutRouter);
 app.use("/contact", contactRouter);

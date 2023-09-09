@@ -3,6 +3,19 @@ const Registration = require("../models/Registration");
 var router = express.Router();
 // const bcrypt = require('bcrypt')
 const axios = require("axios");
+const nodemailer = require("nodemailer");
+
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
+  secure: true,
+  auth: {
+    user: process.env.SMTP_USERNAME,
+    pass: process.env.SMTP_PASSWORD,
+  },
+  connectionTimeout: 30000, // 30 seconds
+  timeout: 60000, // 60 seconds
+});
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -30,7 +43,7 @@ router.post("/", async function (req, res, next) {
     const existingUser = await Registration.findOne({ email: req.body.email });
     console.log("Existing user In common Reg :", existingUser);
     if (existingUser) {
-      return res.redirect("/register");
+       return res.json({message:"You are already registered"})//redirect("/register");
     }
 
     const newRegistration = new Registration({
@@ -55,20 +68,20 @@ router.post("/", async function (req, res, next) {
     const whatsappData = {
       number: mobileNumber,
       type: "text",
-      message: `Dear ${req.body.name}. 
+      message: `Dear ${req.body.name},
+          
+      Your registration for the Malabar Literature Festival 2023 has been successfully confirmed.
+
+      We welcome you to this exciting literary event, which will take place at Calicut Beach from November 30th to December 3rd.     
       
-Your registration for the Malabar Literature Festival 2023 has been successfully confirmed.
-
- We welcome you to this exciting literary event, which will take place at Calicut Beach from November 30th to December 3rd.
- 
-Thank you for your participation, and best wishes for an inspiring and memorable festival.
-
-Warm regards,
-
-K. P. Ramanunni
-Festival Director
-Malabar Literature Festival Organizing Committee
-Help Desk: +91 9539327252`,
+      Thank you for your participation, and best wishes for an inspiring and memorable festival!
+      
+      Warm regards,
+      
+      K. P. Ramanunni
+      Festival Director
+      Malabar Literature Festival Organizing Committee
+      Help Desk: +91 9539327252`,
       instance_id: "64F332EFCDADD",
       access_token: "64afe205189a4",
     };
@@ -78,12 +91,47 @@ Help Desk: +91 9539327252`,
       .post(whatsappApiUrl, whatsappData)
       .then(function (response) {
         console.log("WhatsApp message sent successfully:", response.data);
-        return res.status(200).redirect("/register");
+        return res.status(200).json({ message: `Dear ${req.body.name},
+        Your registration for the Malabar Literature Festival 2023 has been successfully confirmed.` });
       })
       .catch(function (error) {
         console.error("Error sending WhatsApp message:", error);
-        return res.status(500).redirect("/common-reg");
+        return res.status(500).json({ error: "Error sending WhatsApp message" });
         // return res.status(500).json({ error: "Error sending WhatsApp message" });
+      });
+      
+      const html = `
+      Dear ${req.body.name},
+          
+      Your registration for the Malabar Literature Festival 2023 has been successfully confirmed.
+
+      We welcome you to this exciting literary event, which will take place at Calicut Beach from November 30th to December 3rd.     
+      
+      Thank you for your participation, and best wishes for an inspiring and memorable festival!
+      
+      Warm regards,
+      
+      K. P. Ramanunni
+      Festival Director
+      Malabar Literature Festival Organizing Committee
+      Help Desk: +91 9539327252
+      `;
+  
+      const mailOptions = {
+        from: process.env.SMTP_FROM_EMAIL,
+        to: req.body.email,
+        subject: `Registration Confirmation for Malabar Literature Festival 2023`,
+        text: html,
+      };
+  
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.error("Error sending email:", error);
+          return res.status(500);
+        } else {
+          console.log("Email sent successfully:", info.response);
+          return res.status(200);
+        }
       });
   } catch (error) {
     console.error(error);
