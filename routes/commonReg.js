@@ -55,7 +55,20 @@ router.post("/", async function (req, res, next) {
     const whatsappData = {
       number: mobileNumber,
       type: "text",
-      message: `Hello ${req.body.name}. Thank you for registering...`,
+      message: `Dear ${req.body.name}. 
+      
+Your registration for the Malabar Literature Festival 2023 has been successfully confirmed.
+
+ We welcome you to this exciting literary event, which will take place at Calicut Beach from November 30th to December 3rd.
+ 
+Thank you for your participation, and best wishes for an inspiring and memorable festival.
+
+Warm regards,
+
+K. P. Ramanunni
+Festival Director
+Malabar Literature Festival Organizing Committee
+Help Desk: +91 9539327252`,
       instance_id: "64F332EFCDADD",
       access_token: "64afe205189a4",
     };
