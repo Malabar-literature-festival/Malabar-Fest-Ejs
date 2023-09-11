@@ -26,7 +26,7 @@ router.get("/", function (req, res, next) {
   } else {
     // Handle the case where the email is not found in the session
   }
-  res.render("student",{savedEmail});
+  res.render("student", { savedEmail });
 });
 
 router.post("/", upload.single("photo"), async function (req, res, next) {
@@ -65,7 +65,7 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       await existingUser.save();
 
       delete req.session.email;
-      
+
       let mobileNumber = existingUser.mobileNumber;
 
       if (!mobileNumber.startsWith("91")) {
@@ -93,7 +93,7 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
         number: mobileNumber,
         type: "text",
         message: WhatsappMessage,
-        instance_id: "64F332EFCDADD",
+        instance_id: "64FD58E3440E2",
         access_token: "64afe205189a4",
       };
 
@@ -111,7 +111,7 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
             .json({ error: "Error sending WhatsApp message" });
         });
     }
-    
+
     const html = `
     Dear ${existingUser.name},
         

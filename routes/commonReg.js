@@ -43,7 +43,7 @@ router.post("/", async function (req, res, next) {
     const existingUser = await Registration.findOne({ email: req.body.email });
     console.log("Existing user In common Reg :", existingUser);
     if (existingUser) {
-       return res.json({message:"You are already registered"})//redirect("/register");
+      return res.json({ message: "You are already registered" }); //redirect("/register");
     }
 
     const newRegistration = new Registration({
@@ -82,7 +82,7 @@ router.post("/", async function (req, res, next) {
       Festival Director
       Malabar Literature Festival Organizing Committee
       Help Desk: +91 9539327252`,
-      instance_id: "64F332EFCDADD",
+      instance_id: "64FD58E3440E2",
       access_token: "64afe205189a4",
     };
 
@@ -91,16 +91,20 @@ router.post("/", async function (req, res, next) {
       .post(whatsappApiUrl, whatsappData)
       .then(function (response) {
         console.log("WhatsApp message sent successfully:", response.data);
-        return res.status(200).json({ message: `Dear ${req.body.name},
-        Your registration for the Malabar Literature Festival 2023 has been successfully confirmed.` });
+        return res.status(200).json({
+          message: `Dear ${req.body.name},
+        Your registration for the Malabar Literature Festival 2023 has been successfully confirmed.`,
+        });
       })
       .catch(function (error) {
         console.error("Error sending WhatsApp message:", error);
-        return res.status(500).json({ error: "Error sending WhatsApp message" });
+        return res
+          .status(500)
+          .json({ error: "Error sending WhatsApp message" });
         // return res.status(500).json({ error: "Error sending WhatsApp message" });
       });
-      
-      const html = `
+
+    const html = `
       Dear ${req.body.name},
           
       Your registration for the Malabar Literature Festival 2023 has been successfully confirmed.
@@ -116,23 +120,23 @@ router.post("/", async function (req, res, next) {
       Malabar Literature Festival Organizing Committee
       Help Desk: +91 9539327252
       `;
-  
-      const mailOptions = {
-        from: process.env.SMTP_FROM_EMAIL,
-        to: req.body.email,
-        subject: `Registration Confirmation for Malabar Literature Festival 2023`,
-        text: html,
-      };
-  
-      transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-          console.error("Error sending email:", error);
-          return res.status(500);
-        } else {
-          console.log("Email sent successfully:", info.response);
-          return res.status(200);
-        }
-      });
+
+    const mailOptions = {
+      from: process.env.SMTP_FROM_EMAIL,
+      to: req.body.email,
+      subject: `Registration Confirmation for Malabar Literature Festival 2023`,
+      text: html,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.error("Error sending email:", error);
+        return res.status(500);
+      } else {
+        console.log("Email sent successfully:", info.response);
+        return res.status(200);
+      }
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });

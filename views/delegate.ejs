@@ -1,205 +1,314 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="en">
-
-
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Malabar Literature Festival </title>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Malabar Literature Festival</title>
     <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favnew.svg">
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/images/favnew.svg"
+    />
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@300;400;500;600;700;800&amp;family=Open+Sans:wght@300;400;500;600;700;800&amp;display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Archivo:wght@300;400;500;600;700&amp;display=swap"
-        rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@300;400;500;600;700;800&amp;family=Open+Sans:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Archivo:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
 
-    <link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet" />
+    <link
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      rel="stylesheet"
+    />
 
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,500"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- CSS
 	============================================ -->
 
     <!-- Icon Font CSS -->
-    <link rel="stylesheet" href="assets/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/flaticon.css" />
 
     <!-- Plugins CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/aos.css">
-    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/magnific-popup.css" />
+    <link rel="stylesheet" href="assets/css/aos.css" />
+    <link rel="stylesheet" href="assets/css/nice-select.css" />
 
     <!-- Main Style CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css" />
 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css"
+    />
 
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-1.12.0.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"
+    ></script>
 
     <!-- carousel Style CSS -->
-    <link rel="stylesheet" href="assets/css/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
-    <link rel="stylesheet" href="assets/css/css/style.css">
-</head>
+    <link rel="stylesheet" href="assets/css/css/owl.carousel.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/css/style.css" />
+  </head>
 
-<body>
-
+  <body>
     <div class="main-wrapper">
+      <!-- Header Navigation Start -->
+      <%- include('header.ejs') %>
+      <!-- Header Navigation End -->
 
-        <!-- Header Navigation Start -->
-        <%- include('header.ejs') %>
-        <!-- Header Navigation End -->
-
-        <div class="container">
-            <div class="attende-registration" style="margin-top: 100px;">
-                <div class="registration-title">
-                    <h1>Delegate Registration</h1>
-                </div>
-            </div>
+      <div class="container">
+        <div class="attende-registration" style="margin-top: 100px">
+          <div class="registration-title">
+            <h1>Delegate Registration</h1>
+          </div>
         </div>
-        <div class="register-table"
-            style="background-image: url('assets/images/RegisterUnion.png'); background-size: cover; background-position: center center; width: 100%; min-height: 818px; display: flex; justify-content: center; align-items: center;">
-            <div class="container">
-                <div class="delegate-table-section">
-                    <!-- <div class="delegate-title">
+      </div>
+      <div
+        class="register-table"
+        style="
+          background-image: url('assets/images/RegisterUnion.png');
+          background-size: cover;
+          background-position: center center;
+          width: 100%;
+          min-height: 818px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <div class="container">
+          <div class="delegate-table-section">
+            <!-- <div class="delegate-title">
                         <h1>Delegate</h1>
                     </div> -->
-                    <div class="register-form">
-                        <div class="container">
-                            <div id="submit-message" class="alert alert-success" style="display: none;"></div>
-                            <div class="alert alert-info" id="submitting-alert" style="display: none;">
-                                Submitting...
-                            </div>
-                            <form action="/delegate" method="post" enctype="multipart/form-data" id="delegateForm">
-                                <input type="hidden" name="type" value="delegate">
-                                <div class="row">
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                          <label for="email">Registered Mail:</label>
-                                          <input
-                                            type="email"
-                                            id="email"
-                                            name="email"
-                                            class="form-control"
-                                            value="<%= savedEmail %>"
-                                            readonly
-                                            required
-                                          />
-                                          <p id="emailError" class="text-danger"></p>
-                                        </div>
-                                      </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="photo">Add Photo:</label>
-                                            <input type="file" id="photo" name="photo" required
-                                                class="form-control-file form-control" style="width: 100%;">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="professions">profession:</label>
-                                            <select id="professions" name="profession"
-                                                class="form-control scrollable-dropdown" required>
-                                                <option value="education">Education</option>
-                                                <option value="literature">Literature</option>
-                                                <option value="research">Research</option>
-                                                <option value="business">Business</option>
-                                                <option value="art">Art</option>
-                                                <option value="media">Media</option>
-                                                <option value="film">Film</option>
-                                                <option value="it">Information Technology</option>
-                                                <option value="healthcare">Health Care</option>
-                                                <option value="law">Law & Order</option>
-                                                <option value="music">Music</option>
-                                                <option value="ngo">NGO</option>
-                                                <option value="public-service">Public Service</option>
-                                                <option value="other">Other</option>
-                                            </select>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="day">Select Day:</label>
-                                            <input type="date" id="day" name="day" class="form-control" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="interest">Matter Of Interest:</label>
-                                            <select id="interest" name="interest" class="form-control" required multiple>
-                                                <option value="Mappila Literature">Mappila Literature</option>
-                                                <option value="Mappila Literature">Mappila Literature</option>
-                                                <option value="Arabi Malayalam">Arabi Malayalam</option>
-                                                <option value="Dalit Literature">Dalit Literature</option>
-                                                <option value="Folklore Literature">Folklore Literature</option>
-                                                <option value="Classical Literature">Classical Literature</option>
-                                                <option value="Urdu Literature">Urdu Literature</option>
-                                                <option value="Indo-Malabar">Indo-Malabar</option>
-                                                <option value="Arabi Malayalam">Arabi Malayalam</option>
-                                                <option value="Kids Literature">Kids Literature</option>
-                                                <option value="Family Literature">Family Literature</option>
-                                                <option value="Foreign Literature">Foreign Literature</option>
-                                                <option value="Arab Culture and Literature">Arab Culture and Literature
-                                                </option>
-                                                <option value="Women Literature">Women Literature</option>
-                                                <option value="Gender Literature">Gender Literature</option>
-                                                <option value="Translation">Translation</option>
-                                                <option value="Travel & Outdoor">Travel & Outdoor</option>
-                                                <option value="Food Culture">Food Culture</option>
-                                                <option value="Festivals">Festivals</option>
-                                                <option value="Art">Art</option>
-                                                <option value="Performance Art">Performance Art</option>
-                                                <option value="Fine Arts">Fine Arts</option>
-                                                <option value="Architecture">Architecture</option>
-                                                <option value="Film & Music">Film & Music</option>
-                                                <option value="Health">Health</option>
-                                                <option value="Spirituality">Spirituality</option>
-                                                <option value="Sufism">Sufism</option>
-                                                <option value="Sports & Fitness">Sports & Fitness</option>
-                                                <option value="Science & Tech">Science & Tech</option>
-                                                <option value="Charity & Causes">Charity & Causes</option>
-                                                <option value="Family & Education">Family & Education</option>
-                                                <option value="Social Media">Social Media</option>
-                                                <option value="Social Activism">Social Activism</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="row register-amount-btn">
-                                    <div class=" col-12 d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-primary" style="border-radius: 20px;">Pay
-                                            to Register ₹399.00</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+            <div class="register-form">
+              <div class="container">
+                <div
+                  id="submit-message"
+                  class="alert alert-success"
+                  style="display: none"
+                ></div>
+                <div
+                  class="alert alert-info"
+                  id="submitting-alert"
+                  style="display: none"
+                >
+                  Submitting...
                 </div>
+                <form
+                  action="/delegate"
+                  method="post"
+                  enctype="multipart/form-data"
+                  id="delegateForm"
+                >
+                  <input type="hidden" name="type" value="delegate" />
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="email">Registered Mail:</label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          class="form-control"
+                          value="<%= savedEmail %>"
+                          readonly
+                          required
+                        />
+                        <p id="emailError" class="text-danger"></p>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="photo">Add Photo:</label>
+                        <input
+                          type="file"
+                          id="photo"
+                          name="photo"
+                          required
+                          class="form-control-file form-control"
+                          style="width: 100%"
+                        />
+                      </div>
+                    </div>
 
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="professions">profession:</label>
+                        <select
+                          id="professions"
+                          name="profession"
+                          class="form-control scrollable-dropdown"
+                          required
+                        >
+                          <option value="education">Education</option>
+                          <option value="literature">Literature</option>
+                          <option value="research">Research</option>
+                          <option value="business">Business</option>
+                          <option value="art">Art</option>
+                          <option value="media">Media</option>
+                          <option value="film">Film</option>
+                          <option value="it">Information Technology</option>
+                          <option value="healthcare">Health Care</option>
+                          <option value="law">Law & Order</option>
+                          <option value="music">Music</option>
+                          <option value="ngo">NGO</option>
+                          <option value="public-service">Public Service</option>
+                          <option value="other">Other</option>
+                        </select>
+                      </div>
+                    </div>
 
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="day">Select Day:</label>
+                        <input
+                          type="date"
+                          id="day"
+                          name="day"
+                          class="form-control"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="interest">Matter Of Interest:</label>
+                        <select
+                          id="interest"
+                          name="interest"
+                          class="form-control"
+                          required
+                          multiple
+                        >
+                          <option value="Mappila Literature">
+                            Mappila Literature
+                          </option>
+                          <option value="Mappila Literature">
+                            Mappila Literature
+                          </option>
+                          <option value="Arabi Malayalam">
+                            Arabi Malayalam
+                          </option>
+                          <option value="Dalit Literature">
+                            Dalit Literature
+                          </option>
+                          <option value="Folklore Literature">
+                            Folklore Literature
+                          </option>
+                          <option value="Classical Literature">
+                            Classical Literature
+                          </option>
+                          <option value="Urdu Literature">
+                            Urdu Literature
+                          </option>
+                          <option value="Indo-Malabar">Indo-Malabar</option>
+                          <option value="Arabi Malayalam">
+                            Arabi Malayalam
+                          </option>
+                          <option value="Kids Literature">
+                            Kids Literature
+                          </option>
+                          <option value="Family Literature">
+                            Family Literature
+                          </option>
+                          <option value="Foreign Literature">
+                            Foreign Literature
+                          </option>
+                          <option value="Arab Culture and Literature">
+                            Arab Culture and Literature
+                          </option>
+                          <option value="Women Literature">
+                            Women Literature
+                          </option>
+                          <option value="Gender Literature">
+                            Gender Literature
+                          </option>
+                          <option value="Translation">Translation</option>
+                          <option value="Travel & Outdoor">
+                            Travel & Outdoor
+                          </option>
+                          <option value="Food Culture">Food Culture</option>
+                          <option value="Festivals">Festivals</option>
+                          <option value="Art">Art</option>
+                          <option value="Performance Art">
+                            Performance Art
+                          </option>
+                          <option value="Fine Arts">Fine Arts</option>
+                          <option value="Architecture">Architecture</option>
+                          <option value="Film & Music">Film & Music</option>
+                          <option value="Health">Health</option>
+                          <option value="Spirituality">Spirituality</option>
+                          <option value="Sufism">Sufism</option>
+                          <option value="Sports & Fitness">
+                            Sports & Fitness
+                          </option>
+                          <option value="Science & Tech">Science & Tech</option>
+                          <option value="Charity & Causes">
+                            Charity & Causes
+                          </option>
+                          <option value="Family & Education">
+                            Family & Education
+                          </option>
+                          <option value="Social Media">Social Media</option>
+                          <option value="Social Activism">
+                            Social Activism
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row register-amount-btn">
+                    <div class="col-12 d-flex justify-content-center">
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        style="border-radius: 20px"
+                      >
+                        Pay to Register ₹399.00
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Footer Start -->
@@ -233,91 +342,96 @@
     <script src="assets/js/jquery.nice-select.min.js"></script>
     <!-- Main JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
+    <script
+      type="text/javascript"
+      src="node_modules/slick-carousel/slick/slick.min.js"
+    ></script>
     <script src="assets/js/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        $(document).ready(function () {
-            $("#attendeForm").submit(function (event) {
-                event.preventDefault(); // Prevent the default form submission
+      $(document).ready(function () {
+        $("#attendeForm").submit(function (event) {
+          event.preventDefault(); // Prevent the default form submission
 
-                // Show the "Submitting..." alert message
-                $("#submitting-alert").show();
+          // Show the "Submitting..." alert message
+          $("#submitting-alert").show();
 
-                // Serialize the form data
-                var formData = $(this).serialize();
+          // Serialize the form data
+          var formData = $(this).serialize();
 
-                // Send an AJAX request to your server to handle form submission
-                $.ajax({
-                    type: "POST",
-                    url: "/delegate",
-                    data: formData,
-                    success: function (response) {
-                        // Hide the "Submitting..." alert message
-                        $("#submitting-alert").hide();
+          // Send an AJAX request to your server to handle form submission
+          $.ajax({
+            type: "POST",
+            url: "/delegate",
+            data: formData,
+            success: function (response) {
+              // Hide the "Submitting..." alert message
+              $("#submitting-alert").hide();
 
-                        // Display the success message
-                        $("#submit-message").removeClass("alert-danger").addClass("alert-success");
-                        $("#submit-message").html(response.message); // Use the message from the response
-                        $("#submit-message").show();
+              // Display the success message
+              $("#submit-message")
+                .removeClass("alert-danger")
+                .addClass("alert-success");
+              $("#submit-message").html(response.message); // Use the message from the response
+              $("#submit-message").show();
 
-                        // Clear the form fields if needed
-                        $("#attendeForm")[0].reset();
+              // Clear the form fields if needed
+              $("#attendeForm")[0].reset();
 
-                        // Set a timer to hide the success message after 3 seconds
-                        setTimeout(function () {
-                            $("#submit-message").hide();
-                        }, 3000);
+              // Set a timer to hide the success message after 3 seconds
+              setTimeout(function () {
+                $("#submit-message").hide();
+              }, 3000);
 
-                        // Send a WhatsApp message using the WhatsApp API
-                        sendWhatsAppMessage(response.number, response.message);
-                    },
-                    error: function (xhr, status, error) {
-                        // Hide the "Submitting..." alert message
-                        $("#submitting-alert").hide();
+              // Send a WhatsApp message using the WhatsApp API
+              sendWhatsAppMessage(response.number, response.message);
+            },
+            error: function (xhr, status, error) {
+              // Hide the "Submitting..." alert message
+              $("#submitting-alert").hide();
 
-                        // Display an error message if the registration fails
-                        $("#submit-message").removeClass("alert-success").addClass("alert-danger");
-                        $("#submit-message").html(xhr.responseJSON.error); // Use the error message from the response
-                        $("#submit-message").show();
-                    },
-                });
-            });
-
-            // Function to send a WhatsApp message using the WhatsApp API
-            function sendWhatsAppMessage(number, message) {
-                // WhatsApp API endpoint URL
-                var whatsappApiUrl = "https://text.dxing.in/api/send";
-
-                // WhatsApp API request data
-                var requestData = {
-                    number: number,
-                    type: "text",
-                    message: message,
-                    instance_id: "64F332EFCDADD",
-                    access_token: "64afe205189a4"
-                };
-
-                // Send the WhatsApp message using AJAX
-                $.ajax({
-                    type: "POST",
-                    url: whatsappApiUrl,
-                    contentType: "application/json",
-                    data: JSON.stringify(requestData),
-                    success: function (response) {
-                        // Handle the success response if needed
-                        console.log("WhatsApp message sent successfully:", response);
-                    },
-                    error: function (xhr, status, error) {
-                        // Handle any errors in sending the WhatsApp message
-                        console.error("Error sending WhatsApp message:", error);
-                    },
-                });
-            }
+              // Display an error message if the registration fails
+              $("#submit-message")
+                .removeClass("alert-success")
+                .addClass("alert-danger");
+              $("#submit-message").html(xhr.responseJSON.error); // Use the error message from the response
+              $("#submit-message").show();
+            },
+          });
         });
+
+        // Function to send a WhatsApp message using the WhatsApp API
+        function sendWhatsAppMessage(number, message) {
+          // WhatsApp API endpoint URL
+          var whatsappApiUrl = "https://text.dxing.in/api/send";
+
+          // WhatsApp API request data
+          var requestData = {
+            number: number,
+            type: "text",
+            message: message,
+            instance_id: "64FD58E3440E2",
+            access_token: "64afe205189a4",
+          };
+
+          // Send the WhatsApp message using AJAX
+          $.ajax({
+            type: "POST",
+            url: whatsappApiUrl,
+            contentType: "application/json",
+            data: JSON.stringify(requestData),
+            success: function (response) {
+              // Handle the success response if needed
+              console.log("WhatsApp message sent successfully:", response);
+            },
+            error: function (xhr, status, error) {
+              // Handle any errors in sending the WhatsApp message
+              console.error("Error sending WhatsApp message:", error);
+            },
+          });
+        }
+      });
     </script>
-
-</body>
-
+  </body>
 </html>

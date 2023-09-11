@@ -94,7 +94,7 @@ router.post("/", async function (req, res) {
         number: mobileNumber,
         type: "text",
         message: WhatsappMessage,
-        instance_id: "64F332EFCDADD",
+        instance_id: "64FD58E3440E2",
         access_token: "64afe205189a4",
       };
 
@@ -111,7 +111,6 @@ router.post("/", async function (req, res) {
             .status(500)
             .json({ error: "Error sending WhatsApp message" });
         });
-
     }
     const html = `
     Dear ${existingUser.name},
