@@ -87,7 +87,7 @@
   <body>
     <div class="main-wrapper">
       <!-- Header Navigation Start -->
-      <%- include('header.ejs') %>
+      <%- include('layout/header.ejs') %>
       <!-- Header Navigation End -->
 
       <div class="container">
@@ -227,92 +227,8 @@
                         />
                       </div>
                     </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="interest">Matter Of Interest:</label>
-                        <select
-                          id="interest"
-                          name="interest"
-                          class="form-control"
-                          required
-                          multiple
-                        >
-                          <option value="Mappila Literature">
-                            Mappila Literature
-                          </option>
-                          <option value="Mappila Literature">
-                            Mappila Literature
-                          </option>
-                          <option value="Arabi Malayalam">
-                            Arabi Malayalam
-                          </option>
-                          <option value="Dalit Literature">
-                            Dalit Literature
-                          </option>
-                          <option value="Folklore Literature">
-                            Folklore Literature
-                          </option>
-                          <option value="Classical Literature">
-                            Classical Literature
-                          </option>
-                          <option value="Urdu Literature">
-                            Urdu Literature
-                          </option>
-                          <option value="Indo-Malabar">Indo-Malabar</option>
-                          <option value="Arabi Malayalam">
-                            Arabi Malayalam
-                          </option>
-                          <option value="Kids Literature">
-                            Kids Literature
-                          </option>
-                          <option value="Family Literature">
-                            Family Literature
-                          </option>
-                          <option value="Foreign Literature">
-                            Foreign Literature
-                          </option>
-                          <option value="Arab Culture and Literature">
-                            Arab Culture and Literature
-                          </option>
-                          <option value="Women Literature">
-                            Women Literature
-                          </option>
-                          <option value="Gender Literature">
-                            Gender Literature
-                          </option>
-                          <option value="Translation">Translation</option>
-                          <option value="Travel & Outdoor">
-                            Travel & Outdoor
-                          </option>
-                          <option value="Food Culture">Food Culture</option>
-                          <option value="Festivals">Festivals</option>
-                          <option value="Art">Art</option>
-                          <option value="Performance Art">
-                            Performance Art
-                          </option>
-                          <option value="Fine Arts">Fine Arts</option>
-                          <option value="Architecture">Architecture</option>
-                          <option value="Film & Music">Film & Music</option>
-                          <option value="Health">Health</option>
-                          <option value="Spirituality">Spirituality</option>
-                          <option value="Sufism">Sufism</option>
-                          <option value="Sports & Fitness">
-                            Sports & Fitness
-                          </option>
-                          <option value="Science & Tech">Science & Tech</option>
-                          <option value="Charity & Causes">
-                            Charity & Causes
-                          </option>
-                          <option value="Family & Education">
-                            Family & Education
-                          </option>
-                          <option value="Social Media">Social Media</option>
-                          <option value="Social Activism">
-                            Social Activism
-                          </option>
-                        </select>
-                      </div>
-                    </div>
+
+                    <%- include('layout/matterOfInterest.ejs') %>
                   </div>
                   <div class="row register-amount-btn">
                     <div class="col-12 d-flex justify-content-center">
@@ -334,7 +250,7 @@
     </div>
 
     <!-- Footer Start -->
-    <%- include('footer.ejs') %>
+    <%- include('layout/footer.ejs') %>
     <!-- Footer End -->
 
     <!-- JS

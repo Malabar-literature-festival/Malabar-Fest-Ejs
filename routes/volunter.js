@@ -40,7 +40,7 @@ router.post("/", upload.single('photo'), async function (req, res, next) {
         contact: req.body.mobile
       },
       day: req.body.day,
-      matterOfInterest: req.body.profession,
+      matterOfInterest: req.body.interest,
       image: imagePath,
     });
 

@@ -55,7 +55,7 @@ const volunteerSchema = new mongoose.Schema({
         required: true
     },
     matterOfInterest: {
-        type: String,
+        type: [String],
         required: true,
     },
     image: {
