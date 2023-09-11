@@ -4,12 +4,15 @@ const RegistrationSchema = new mongoose.Schema(
     {
         name: {
             type: String,
+            required: true,
         },
         mobileNumber: {
             type: String,
+            required: true,
         },
         email: {
             type: String,
+            required: true,
         },
         password: {
             type: String,
@@ -17,6 +20,7 @@ const RegistrationSchema = new mongoose.Schema(
         gender: {
             type: String,
             enum: ["Male", "Female", "Other"],
+            required: true,
         },
         address: {
             type: String,
