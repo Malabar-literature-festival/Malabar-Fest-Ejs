@@ -68,7 +68,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static("uploads")); // Serve uploaded images
 
 app.use("/", indexRouter);
-app.use("/home", homeRouter);
+// app.use("/home", homeRouter);
 app.use("/users", usersRouter);
 app.use("/about", aboutRouter);
 app.use("/contact", contactRouter);

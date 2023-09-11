@@ -1,0 +1,156 @@
+<!-- Preloader start -->
+<div id="preloader">
+  <div class="preloader">
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<!-- Preloader End -->
+
+<!-- Header Start -->
+<div class="meeta-header-section meeta-header-2 meeta-header-3">
+  <!-- Header Middle Start -->
+  <div class="header-middle header-sticky">
+    <div class="container">
+      <div class="header-wrap">
+        <!-- Header Logo Start -->
+        <div class="header-logo header-logo-3">
+          <a class="logo-black" href="/"
+            ><img src="assets/images/favnew.svg" alt="Logo"
+          /></a>
+          <a class="logo-white" href="/"
+            ><img src="assets/images/favnew.svg" alt="Logo"
+          /></a>
+        </div>
+        <!-- Header Logo End -->
+
+        <!-- Header Navigation Start -->
+        <div class="header-navigation d-none d-lg-block">
+          <ul class="main-menu">
+            <li class="active-menu"><a href="/">Home</a></li>
+            <li>
+              <a href="#">About</a>
+              <ul class="sub-menu">
+                <li><a href="/about">About Malabar</a></li>
+                <li><a href="/about-Mlf">About MLF</a></li>
+                <li><a href="/about-book-Plus">About Book Plus</a></li>
+              </ul>
+            </li>
+            <li>
+              <a
+                href="../assets/pdf/MLF_Brochure.pdf"
+                target="_blank"
+                attributes-list
+              >
+                Programme
+              </a>
+            </li>
+            <li><a href="/speaker">Speakers</a></li>
+            <li><a href="/gallery">Gallery</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <div class="header-btn d-none d-md-block">
+              <li>
+                <a id="reg-drop-down" href="#" class="register_style"
+                  ><span class="wtstyle"> Register </span></a
+                >
+                <ul class="sub-menu drop-nav">
+                  <li><a href="/common-reg">Delegate Registration</a></li>
+                  <li><a href="/volunter">Volunteer Registration</a></li>
+                </ul>
+              </li>
+            </div>
+          </ul>
+        </div>
+        <!-- Header Navigation End -->
+
+        <!-- Header Meta Start -->
+        <div class="header-meta">
+          <!-- Header Toggle Start -->
+          <div class="header-toggle d-lg-none">
+            <button
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasExample"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+          <!-- Header Toggle End -->
+        </div>
+        <!-- Header Meta End -->
+      </div>
+    </div>
+  </div>
+  <!-- Header Middle End -->
+</div>
+
+<!-- Offcanvas Start-->
+<div class="offcanvas offcanvas-start" id="offcanvasExample">
+  <div class="offcanvas-header">
+    <!-- Offcanvas Logo Start -->
+    <div class="offcanvas-logo">
+      <a href="/"><img src="assets/images/favnew.svg" alt="" /></a>
+    </div>
+    <!-- Offcanvas Logo End -->
+    <button type="button" class="close-btn" data-bs-dismiss="offcanvas">
+      <i class="flaticon-close"></i>
+    </button>
+  </div>
+
+  <!-- Offcanvas Body Start  -->
+  <div class="offcanvas-body">
+    <div class="offcanvas-menu offcanvas-menu-2">
+      <ul class="main-menu">
+        <li class="active-menu"><a href="/">Home</a></li>
+        <li>
+          <a href="#">About</a>
+          <ul class="sub-menu">
+            <li><a href="/about">About Malabar</a></li>
+            <li><a href="/about-Mlf">About MLF</a></li>
+            <li><a href="/about-book-Plus">About Book Plus</a></li>
+          </ul>
+        </li>
+        <li><a href="/programe">Programme</a></li>
+        <li><a href="/speaker">Speaker</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <div class="header-btn">
+          <li>
+            <a
+              id="reg-drop-down"
+              href="#"
+              class="register_style"
+              style="
+                width: fit-content;
+                padding-left: 23px;
+                padding-right: 23px;
+              "
+            >
+              <span class="wtstyle">Register</span>
+            </a>
+            <ul class="sub-menu drop-nav">
+              <li><a href="/common-reg">Delegate Registration</a></li>
+              <li><a href="/volunter">Volunteer Registration</a></li>
+            </ul>
+          </li>
+        </div>
+      </ul>
+    </div>
+  </div>
+  <!-- Offcanvas Body End -->
+</div>
+<!-- Offcanvas End -->
+
+<script>
+  // Get the current URL path
+  var path = window.location.pathname;
+
+  // Find the corresponding menu item and add the 'active-menu' class
+  $("ul.main-menu li").each(function () {
+    var menuItemLink = $(this).find("a").attr("href");
+    if (path === menuItemLink) {
+      $(this).addClass("active-menu");
+    }
+  });
+</script>

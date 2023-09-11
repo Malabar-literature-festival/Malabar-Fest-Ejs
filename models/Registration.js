@@ -38,7 +38,7 @@ const RegistrationSchema = new mongoose.Schema(
             type: String,
         },
         matterOfInterest: {
-            type: String,
+            type: [String],
         },
         regType: {
             type: String,
