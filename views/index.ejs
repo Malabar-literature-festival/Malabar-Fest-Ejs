@@ -561,12 +561,14 @@
       }
 
       function animateNumber2() {
-        currentNumber2 += increment2;
-        if (currentNumber2 >= targetNumber2) {
-          currentNumber2 = targetNumber2;
-        }
-        numberElement2.textContent = `${Math.round(currentNumber2)}+`;
-      }
+  currentNumber2 += increment2;
+  if (currentNumber2 >= targetNumber2) {
+    currentNumber2 = targetNumber2;
+  }
+  const formattedNumber = Math.round(currentNumber2).toLocaleString(); // Add commas for thousands
+  numberElement2.textContent = `${formattedNumber}+`;
+}
+
 
       function animateNumber3() {
         currentNumber3 += increment3;
