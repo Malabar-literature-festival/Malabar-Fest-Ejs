@@ -12298,6 +12298,7 @@ img {
   text-decoration-style: wavy;
   text-decoration-skip-ink: none;
   text-underline-offset: 15px;
+  padding-bottom: 60px;
   /* Adjust the value as needed */
 }
 .speaker-title h1 {
@@ -12943,6 +12944,7 @@ li a {
 .register-amount-btn {
   align-items: center;
   margin-top: 50px;
+  padding-bottom: 50px;
 }
 
 /* gallerey */
@@ -13026,6 +13028,7 @@ figcaption {
 @media (max-width: 768px) {
   .sponsors-imgs {
     padding: 15px !important;
+    /* margin-top: 100px; */
   }
   .column {
     flex: 50%;
@@ -13662,6 +13665,7 @@ ul li:hover {
     margin-left: 0 !important;
     font-size: 10px;
     font-size: initial;
+    display: none;
   }
 
   .main-contact {
@@ -13832,4 +13836,15 @@ ul li:hover {
   background-image: url("/assets/images/wave_bg.png");
   background-repeat: no-repeat;
   background-position: center;
+}
+.formobile {
+  display: none;
+}
+@media (max-width: 700px) {
+  .formobile {
+    display: block;
+  }
+  .forweb {
+    display: none;
+  }
 }

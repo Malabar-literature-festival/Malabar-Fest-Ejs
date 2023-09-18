@@ -1,14 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
 
 <body>
-    Programme
+    <div class="main-wrapper">
+        <!-- Header Navigation Start -->
+        <%- include('layout/header.ejs') %>
+            <!-- Header Navigation End -->
+
+            <div class="container">
+                <div class="attende-registration" style="margin-top: 100px">
+                    <div class="registration-title">
+                        <h1>Programmee</h1>
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <img src="/assets/images/pdf1.png" alt="">
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <img src="/assets/images/pdf2.png" alt="">
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <img src="/assets/images/pdf3.png" alt="">
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <img src="/assets/images/pdf4.png" alt="">
+                    </div>
+
+                </div>
+            </div>
+
+    </div>
+
+    <!-- Footer Start -->
+    <%- include('layout/footer.ejs') %>
+        <!-- Footer End -->
+
+
 </body>
+
 
 </html>
