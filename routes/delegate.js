@@ -87,7 +87,7 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       `;
 
       // Send a WhatsApp message using the WhatsApp API
-      const whatsappApiUrl = "https://text.dxing.in/api/send";
+      const whatsappApiUrl = "https://text.dxing.in/api/send";z
       const whatsappData = {
         number: mobileNumber,
         type: "text",

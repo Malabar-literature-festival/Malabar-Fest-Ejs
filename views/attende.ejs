@@ -264,9 +264,8 @@
                       </div>
                     </div>
 
-                    <%- include('layout/calender.ejs') %>
-
-                    <%- include('layout/matterOfInterest.ejs') %>
+                    <%- include('layout/calender.ejs') %> <%-
+                    include('layout/matterOfInterest.ejs') %>
                   </div>
 
                   <div
@@ -390,37 +389,6 @@
           },
         });
       });
-
-      // Function to send a WhatsApp message using the WhatsApp API
-      function sendWhatsAppMessage(number, message) {
-        // WhatsApp API endpoint URL
-        var whatsappApiUrl = "https://text.dxing.in/api/send";
-
-        // WhatsApp API request data
-        var requestData = {
-          number: number,
-          type: "text",
-          message: message,
-          instance_id: "64FD58E3440E2",
-          access_token: "64afe205189a4",
-        };
-
-        // Send the WhatsApp message using AJAX
-        $.ajax({
-          type: "POST",
-          url: whatsappApiUrl,
-          contentType: "application/json",
-          data: JSON.stringify(requestData),
-          success: function (response) {
-            // Handle the success response if needed
-            console.log("WhatsApp message sent successfully:", response);
-          },
-          error: function (xhr, status, error) {
-            // Handle any errors in sending the WhatsApp message
-            console.error("Error sending WhatsApp message:", error);
-          },
-        });
-      }
     });
   </script>
 </html>
