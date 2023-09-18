@@ -1,0 +1,587 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+
+<body>
+  <div class="main-wrapper">
+
+    <%- include('layout/header.ejs') %>
+
+      <!-- Slider Section Start  -->
+      <div class="meeta-hero-section-3 d-flex align-items-center">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-12">
+              <div class="meeta-hero-content">
+                <div class="malabar-title">
+                  <img src="assets/images/1111.svg" alt="">
+                </div>
+                <div class="malabar-title-mobile">
+                  <img src="assets/images/111-mobile.svg" alt="">
+                </div>
+                <a href="/common-reg"> <button class="register-wave-btn">Register</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="position: relative;">
+        <div class="animation-wrapper">
+          <div class="water">
+            <ul class="waves">
+              <li class="wave-one" style="background-image: url('assets/images/Vector (8).png');"></li>
+              <li class="wave-two" style="background-image: url('assets/images/Vector (9).png');"></li>
+              <li class="wave-three" style="background-image: url('assets/images/Vector (10).png');"></li>
+              <li class="wave-four" style="background-image: url('assets/images/Vector (11).png');"></li>
+              <li class="wave-five" style="background-image: url('assets/images/Vector (12).png');"></li>
+            </ul>
+          </div>
+        </div>
+        <div class="about"
+          style="background-image: url('assets/images/about.png'); position: absolute; z-index: 10; margin-top: -33px; background-repeat: no-repeat; background-size: cover; width: 100%;     min-height: 700px; object-fit:contain; overflow:hidden;">
+          <div class="about-title">
+            <h1>About</h1>
+          </div>
+          <h2 class="about-para">
+            <%= aboutData[0].aboutMlf %>
+
+          </h2>
+
+        </div>
+      </div>
+  </div>
+  <!-- Slider Section End -->
+  <!-- Speakers Start -->
+
+
+
+
+  <div class="meeta-speakers-3 section-padding">
+    <div class="container wave_bg">
+
+      <div class="row">
+        <div class="organizing-commite-section">
+          <div class="org-committe-title">
+            <h1>Creative Team</h1>
+          </div>
+          <div class="organizing-imgs p-5">
+
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6 col-12">
+                  <div class="organizing_box">
+                    <div class="org-img">
+                      <img src="assets/images/shihab.png" alt="">
+                      <div class="speaker-content-inner">
+                        <h3 class="speakers-name">Sayyid Munavvar Ali Shihab Thangal</h3>
+                        <p class="speakers-para">Chairman</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="col-md-6 col-12">
+                  <div class="organizing_box">
+                    <div class="org-img">
+                      <img src="assets/images/kp.png" alt="">
+                      <div class="speaker-content-inner">
+                        <h3 class="speakers-name">KP Ramanunni</h3>
+                        <p class="speakers-para">Festival Director</p>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+
+            </div>
+          </div>
+          <!-- 
+          <div class="organizing-imgs">
+            <div class="container">
+              <div class="row">
+
+                <div class="col-sm">
+                  <div class="col-12 d-flex justify-content-center p-2">
+                    <button type="submit" class="btn btn-primary" style="border-radius: 20px">
+                      <a href="/common-reg">Delegate Registration</a>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="col-sm">
+                  <div class="col-12 d-flex justify-content-center p-2">
+                    <button type="submit" class="btn btn-primary" style="border-radius: 20px">
+                      <a href="/volunter">Volunteer Registration</a>
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div> -->
+        </div>
+      </div>
+
+
+
+    </div>
+    <!-- <div class="meeta-speakers-wrap p-5">
+      <div class="speaker-title pb-5">
+        <h1>Speakers</h1>
+      </div>
+      <div class="col-md-12 mt-5">
+        <div class="featured-carousel owl-carousel mt-5">
+
+          <div class="col-md-3 speaker-cards-landing">
+            <div class="speaker-imgs">
+              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speakerData[0].image }` %>"
+                alt="">
+              <div class="speaker-content" style="background-image: url('assets/images/blackshade1.svg');">
+                <h3 class="speakers-name">
+                  <%= speakerData[0].name %>
+                </h3>
+
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-md-3 speaker-cards-landing">
+            <div class="speaker-imgs">
+              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speakerData[1].image }` %>"
+                alt="">
+              <div class="speaker-content" style="background-image: url('assets/images/blackshade1.svg');">
+                <h3 class="speakers-name">
+                  <%= speakerData[1].name %>
+                </h3>
+
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-3 speaker-cards-landing">
+            <div class="speaker-imgs">
+              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speakerData[2].image }` %>"
+                alt="">
+              <div class="speaker-content" style="background-image: url('assets/images/blackshade1.svg');">
+                <h3 class="speakers-name">
+                  <%= speakerData[2].name %>
+                </h3>
+
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="col-md-3 speaker-cards-landing">
+            <div class="speaker-imgs">
+              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speakerData[3].image }` %>"
+                alt="">
+              <div class="speaker-content" style="background-image: url('assets/images/blackshade1.svg');">
+                <h3 class="speakers-name">
+                  <%= speakerData[3].name %>
+                </h3>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+    </div> -->
+  </div>
+
+
+  <!-- Water wave animation -->
+  <div>
+    <img src="assets/images/withboat.png" alt="" style="width: 100%">
+  </div>
+  <!-- Speakers End -->
+  <!-- <div class="container">
+    <div class="news-section">
+      <h1>News And Updates</h1>
+    </div>
+    <div class="news-details">
+      <div class="row news-details-head">
+        <div class="col-12 col-xl-6 news-details-head-img">
+
+          <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[0].image }` %>" alt="">
+        </div>
+        <div class="col-12 col-xl-6 ">
+          <h1 class="news-details-head-title">
+            <%= newsData[0].title %>
+          </h1>
+          <div class="dates">
+            <h6 style="display: inline; font-size: 10px">Latest</h6><span class="time"
+              style="display: inline; padding-left: 10px;font-size: 10px">32
+              MINUTES AGO</span>
+          </div>
+          <p>
+            <%= newsData[0].description %>
+          </p>
+          <div>
+            <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="col-md-12 mt-5 ">
+        <div class="featured-carousel owl-carousel">
+          <div class="item">
+            <div class="card" style="width: 18rem; ">
+              <img class="card-img-top"
+                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[0].image }` %>"
+                alt="Card image cap" style="border-radius: 10px;">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= newsData[0].title %>
+                </h5>
+                <ul style="list-style: none; padding-left: 0;">
+                  <li style="display: inline; font-size: 12px;"> <span
+                      style="font-size: 20px; color: #49BDF2;">&bull;</span> 32 MINUTES
+                    AGO
+                  </li>
+                </ul>
+                <P class="card-text-para">
+                  <%= newsData[0].description %>
+                </P>
+                <div>
+                  <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="card" style="width: 18rem; ">
+              <img class="card-img-top"
+                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[0].image }` %>"
+                alt="Card image cap" style="border-radius: 10px;">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= newsData[0].title %>
+                </h5>
+                <ul style="list-style: none; padding-left: 0;">
+                  <li style="display: inline; font-size: 12px"> <span
+                      style="font-size: 20px; color: #49BDF2;">&bull;</span> 32 MINUTES
+                    AGO
+                  </li>
+                </ul>
+                <P class="card-text-para">
+                  <%= newsData[0].description %>
+                </P>
+                <div>
+                  <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="item">
+            <div class="card" style="width: 18rem; ">
+              <img class="card-img-top"
+                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[0].image }` %>"
+                alt="Card image cap" style="border-radius: 10px;">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= newsData[0].title %>
+                </h5>
+                <ul style="list-style: none; padding-left: 0;">
+                  <li style="display: inline; font-size: 12px"> <span
+                      style="font-size: 20px; color: #49BDF2;">&bull;</span> 32 MINUTES
+                    AGO
+                  </li>
+                </ul>
+                <P class="card-text-para">
+                  <%= newsData[0].description %>
+                </P>
+                <div>
+                  <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="item">
+            <div class="card" style="width: 18rem; ">
+              <img class="card-img-top"
+                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[0].image }` %>"
+                alt="Card image cap" style="border-radius: 10px;">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= newsData[0].title %>
+                </h5>
+                <ul style="list-style: none; padding-left: 0;">
+                  <li style="display: inline; font-size: 12px"> <span
+                      style="font-size: 20px; color: #49BDF2;">&bull;</span> 32 MINUTES
+                    AGO
+                  </li>
+                </ul>
+                <P class="card-text-para">
+                  <%= newsData[0].description %>
+                </P>
+                <div>
+                  <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="card" style="width: 18rem; ">
+              <img class="card-img-top"
+                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[0].image }` %>"
+                alt="Card image cap" style="border-radius: 10px;">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= newsData[0].title %>
+                </h5>
+                <ul style="list-style: none; padding-left: 0;">
+                  <li style="display: inline; font-size: 12px"> <span
+                      style="font-size: 20px; color: #49BDF2;">&bull;</span> 32 MINUTES
+                    AGO
+                  </li>
+                </ul>
+                <P class="card-text-para">
+                  <%= newsData[0].description %>
+                </P>
+                <div>
+                  <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div> -->
+  </div>
+
+
+  <!-- Pricing Start -->
+  <div class="wheel"
+    style="background-image: url('assets/images/rewheel.png'); background-size: cover; background-position: center; overflow: hidden; position: relative;">
+    <div class="timer" style="display: flex;">
+      <div class="circle" id="circle">
+        <span id="number1">0</span>
+        <div class="timer-title">
+          <h3>Speakers</h3>
+        </div>
+
+      </div>
+      <div class="circle" id="circle">
+        <span id="number2">0</span>
+        <div class="timer-title">
+          <h3>Attendence</h3>
+        </div>
+      </div>
+      <div class="circle" id="circle">
+        <span id="number3">0</span>
+        <div class="timer-title">
+          <h3>sessions</h3>
+        </div>
+      </div>
+    </div>
+    <!-- <a href="/common-reg"> <img class="registration-continue" src="assets/images/registration-continue.svg" alt="img"
+        style="position: absolute; left: 50%; transform: translateX(-50%); bottom: 10%; width:35%;"></a> -->
+
+  </div>
+
+
+  <!-- <div class="sponsors">
+    <div class="container">
+      <div class="sponsors-title">
+        <h1>Partners and Sponsors</h1>
+      </div>
+      <div class="sponsors-imgs" style="padding: 50px;">
+        <img src="assets/images/sponsors.png" alt="sponsors" style="max-width: 100%; height: auto;">
+      </div>
+
+    </div>
+  </div> -->
+  <div class="sponsors-imgs" style="padding: 50px;">
+    <img src="assets/images/mlf-banner.png" alt="sponsors" style="max-width: 100%; height: auto; border-radius: 30px;">
+  </div>
+  <!-- <div class="testimonial" style="background-image:url('assets/images/grill.png');padding-bottom: 100px;">
+    <div class="testimonial-title">
+      <h1>Testimonials</h1>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="testimonial-cards justify-content-center">
+
+
+          <main>
+
+            <div class="slider">
+
+              <div class="buttons">
+                <div class="previous"></div>
+                <div class="next"></div>
+              </div>
+
+              <div class="slide">
+                <div class="testimonial">
+                  <blockquote>“ I’ve been interested in coding for a while but never
+                    taken the jump, until now.
+                    I couldn’t recommend this course enough. I’m now in the job of my
+                    dreams and so excited about the future. ”</blockquote>
+                  <p class="author">Tanya Sinclair
+                    <span>UX Engineer</span>
+                  </p>
+                </div>
+
+                <div class="slider-img">
+                  <img src="https://alcs-slider.netlify.app/images/image-tanya.jpg" alt="Author Image">
+                </div>
+
+              </div>
+
+              <div class="slide">
+                <div class="testimonial">
+                  <blockquote>“<%= testimonialData[0].content %> ”</blockquote>
+                  <p class="author">
+                    <%= testimonialData[0].title %>
+
+                  </p>
+                </div>
+
+                <div class="slider-img">
+                  <img
+                    src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ testimonialData[0].image }` %>"
+                    alt="Author Image">
+                </div>
+
+              </div>
+
+            </div>
+
+          </main>
+
+
+
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+  </div> -->
+  </div>
+
+  <!-- Footer Start -->
+  <%- include('layout/footer.ejs') %>
+    <!-- Footer End -->
+
+
+
+    <script>
+      const next = document.querySelector(".next");
+      const prev = document.querySelector(".previous");
+      const slides = document.querySelectorAll(".slide");
+
+      let index = 0;
+      display(index);
+
+      function display(index) {
+        slides.forEach((slide) => {
+          slide.style.display = "none";
+        });
+        slides[index].style.display = "flex";
+      }
+
+      function nextSlide() {
+        index++;
+        if (index > slides.length - 1) {
+          index = 0;
+        }
+        display(index);
+      }
+
+      function prevSlide() {
+        index--;
+        if (index < 0) {
+          index = slides.length - 1;
+        }
+        display(index);
+      }
+
+      next.addEventListener("click", nextSlide);
+      prev.addEventListener("click", prevSlide);
+
+
+    </script>
+
+
+    <script>
+      const circle1 = document.getElementById('circle1');
+      const numberElement1 = document.getElementById('number1');
+      let currentNumber1 = 0;
+      const targetNumber1 = 250;
+      const increment1 = (targetNumber1 - currentNumber1) / (3000 / 30);
+
+      const circle2 = document.getElementById('circle2');
+      const numberElement2 = document.getElementById('number2');
+      let currentNumber2 = 0;
+      const targetNumber2 = 100000; // Correct way to represent 100,000
+
+
+      const increment2 = (targetNumber2 - currentNumber2) / (9000 / 90);
+
+      const circle3 = document.getElementById('circle3');
+      const numberElement3 = document.getElementById('number3');
+      let currentNumber3 = 0;
+      const targetNumber3 = 100;
+      const increment3 = (targetNumber3 - currentNumber3) / (3000 / 30);
+
+      function animateNumber1() {
+        currentNumber1 += increment1;
+        if (currentNumber1 >= targetNumber1) {
+          currentNumber1 = targetNumber1;
+        }
+        numberElement1.textContent = ` ${Math.round(currentNumber1)}+`;
+      }
+
+      function animateNumber2() {
+        currentNumber2 += increment2;
+        if (currentNumber2 >= targetNumber2) {
+          currentNumber2 = targetNumber2;
+        }
+        numberElement2.textContent = `${Math.round(currentNumber2)}+`;
+      }
+
+      function animateNumber3() {
+        currentNumber3 += increment3;
+        if (currentNumber3 >= targetNumber3) {
+          currentNumber3 = targetNumber3;
+        }
+        numberElement3.textContent = ` ${Math.round(currentNumber3)}+`;
+      }
+
+      setInterval(animateNumber1, 30);
+      setInterval(animateNumber2, 90);
+      setInterval(animateNumber3, 30);
+    </script>
+
+
+</body>
+
+</html>

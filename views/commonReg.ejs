@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+
+
+<body>
+  <div class="main-wrapper">
+
+    <!-- Header Navigation Start -->
+    <%- include('layout/header.ejs') %>
+      <!-- Header Navigation End -->
+
+      <div class="container">
+        <div class="attende-registration" style="margin-top: 100px">
+          <div class="registration-title">
+            <h1>Registration</h1>
+          </div>
+        </div>
+      </div>
+      <div class="register-table" style="
+          background-image: url('assets/images/RegisterUnion2.svg');
+          background-size: cover;
+          background-position: center center;
+          width: 100%;
+          min-height: 450px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        ">
+        <div class="container">
+          <div class="common-reg-table-section">
+            <!-- <div class="delegate-title">
+              <h1>Student</h1>
+            </div> -->
+
+            <div class="register-form">
+              <div class="container">
+                <div class="register-form">
+                  <div class="container">
+                    <div id="alert-message" class="alert" style="display: none;"></div>
+
+                    <form action="/common-reg" method="post" id="commonReg-form">
+
+                      <input type="hidden" name="type" value="commonReg">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" class="form-control" required />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="gender">Gender:</label>
+                            <select id="gender" name="gender" class="form-control" required>
+                              <option value="Male">Male</option>
+                              <option value="Female">Female</option>
+                              <option value="Other">Other</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="contact">Contact Number:</label>
+                            <input type="tel" id="contact" name="contact" class="form-control" required />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="email">Email ID:</label>
+                            <input type="email" id="email" name="email" class="form-control" required />
+                            <p id="emailError" class="text-danger"></p>
+                          </div>
+                        </div>
+                      </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="row register-amount-btn">
+                <div class="col-12 d-flex justify-content-center">
+                  <button type="button" class="btn btn-primary" id="submit-button" style="border-radius: 20px"
+                    onclick="submitForm()">
+                    Book Your Ticket
+                  </button>
+                </div>
+              </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </div>
+
+  <!-- Footer Start -->
+  <%- include('layout/footer.ejs') %>
+    <!-- Footer End -->
+
+    <!-- JS
+  ============================================ -->
+
+    <!-- carousel & jQuery JS -->
+
+    <script src="assets/js/js/jquery.min.js"></script>
+    <script src="assets/js/js/owl.carousel.min.js"></script>
+    <script src="assets/js/js/main.js"></script>
+
+    <!-- Modernizer & jQuery JS -->
+    <script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
+    <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- Plugins JS -->
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/back-to-top.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/aos.js"></script>
+    <script src="assets/js/jquery.nice-select.min.js"></script>
+    <!-- Main JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+      function submitForm() {
+        // Use JavaScript to send an AJAX request to your backend route
+        $.ajax({
+          type: "POST",
+          url: "/common-reg",
+          data: $("#commonReg-form").serialize(),
+          success: function (response) {
+            // Display the success message in the alert div
+            $("#alert-message").removeClass("alert-danger").addClass("alert-success").text(response.message).show();
+
+            // Hide the form and the submit button after a successful submission
+            // $("#commonReg-form").hide();
+            // $("#submit-button").hide();
+
+            // Set a timer to hide the success message after 3 seconds
+            setTimeout(function () {
+              $("#alert-message").hide();
+              window.location.href = "/register";
+            }, 3000);
+          },
+
+          error: function (error) {
+            // Display the error message in the alert div
+            $("#alert-message").removeClass("alert-success").addClass("alert-danger").text(error.responseJSON.error).show();
+
+            // Set a timer to hide the error message after 3 seconds
+            setTimeout(function () {
+              $("#alert-message").hide();
+              window.location.href = "/"
+            }, 4000);
+          },
+        });
+      }
+    </script>
+
+</body>
+
+</html>
