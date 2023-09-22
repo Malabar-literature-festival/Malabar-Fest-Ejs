@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const Registration = require("../models/Registration");
-const upload = require("../middleware/upload");
+const upload = require("../middleware/uploadEjs");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
 const nodemailer = require("nodemailer");
@@ -80,8 +80,6 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       
       Warm regards,
       
-      K. P. Ramanunni
-      Festival Director
       Malabar Literature Festival Organizing Committee
       Help Desk: +91 9539327252
       `;
@@ -128,8 +126,6 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
     
     Warm regards,
     
-    K. P. Ramanunni
-    Festival Director
     Malabar Literature Festival Organizing Committee
     Help Desk: +91 9539327252
     `;
