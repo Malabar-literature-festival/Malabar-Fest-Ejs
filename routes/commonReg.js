@@ -78,8 +78,6 @@ router.post("/", async function (req, res, next) {
       
       Warm regards,
       
-      K. P. Ramanunni
-      Festival Director
       Malabar Literature Festival Organizing Committee
       Help Desk: +91 9539327252`,
       instance_id: "64FD58E3440E2",
@@ -115,8 +113,6 @@ router.post("/", async function (req, res, next) {
       
       Warm regards,
       
-      K. P. Ramanunni
-      Festival Director
       Malabar Literature Festival Organizing Committee
       Help Desk: +91 9539327252
       `;
