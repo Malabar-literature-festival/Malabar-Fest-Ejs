@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-  <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favnew.svg">
-
-<body>
-  <div class="main-wrapper">
-    <!-- Header Navigation Start -->
+  <link
+    rel="shortcut icon"
+    type="image/x-icon"
+    href="/assets/images/favnew.svg"
+  />
+  <head>
+    <title><%= title %></title>
+    <meta name="description" content="<%= metaTags[0].description %>" />
+    <meta name="keywords" content="<%= metaTags[1].keywords %>" />
+    <meta name="author" content="<%= metaTags[2].author %>" />
+    <meta name="robots" content="<%= metaTags[3].robots %>" />
     <%- include('layout/header.ejs') %>
-      <!-- Header Navigation End -->
-
+  </head>
+  <body>
+    <div class="main-wrapper">
       <div class="container">
         <div class="attende-registration" style="margin-top: 100px">
           <div class="registration-title">
@@ -15,7 +22,9 @@
           </div>
         </div>
       </div>
-      <div class="register-table" style="
+      <div
+        class="register-table"
+        style="
           background-image: url('assets/images/RegisterUnion.png');
           background-size: cover;
           background-position: center center;
@@ -24,7 +33,8 @@
           display: flex;
           justify-content: center;
           align-items: center;
-        ">
+        "
+      >
         <div class="container">
           <div class="delegate-table-section">
             <!-- <div class="delegate-title">
@@ -32,33 +42,64 @@
                     </div> -->
             <div class="register-form">
               <div class="container">
-                <div id="submit-message" class="alert alert-success" style="display: none"></div>
-                <div class="alert alert-info" id="submitting-alert" style="display: none">
+                <div
+                  id="submit-message"
+                  class="alert alert-success"
+                  style="display: none"
+                ></div>
+                <div
+                  class="alert alert-info"
+                  id="submitting-alert"
+                  style="display: none"
+                >
                   Submitting...
                 </div>
-                <form action="/delegate" method="post" enctype="multipart/form-data" id="delegateForm">
+                <form
+                  action="/delegate"
+                  method="post"
+                  enctype="multipart/form-data"
+                  id="delegateForm"
+                >
                   <input type="hidden" name="type" value="delegate" />
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="email">Registered Mail:</label>
-                        <input type="email" id="email" name="email" class="form-control" value="<%= savedEmail %>"
-                          readonly required />
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          class="form-control"
+                          value="<%= savedEmail %>"
+                          readonly
+                          required
+                        />
                         <p id="emailError" class="text-danger"></p>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="photo">Add Photo:</label>
-                        <input type="file" id="photo" name="photo" required class="form-control-file form-control"
-                          style="width: 100%" />
+                        <input
+                          type="file"
+                          id="photo"
+                          name="photo"
+                          required
+                          class="form-control-file form-control"
+                          style="width: 100%"
+                        />
                       </div>
                     </div>
 
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="professions">profession:</label>
-                        <select id="professions" name="profession" class="form-control scrollable-dropdown" required>
+                        <select
+                          id="professions"
+                          name="profession"
+                          class="form-control scrollable-dropdown"
+                          required
+                        >
                           <option value="education">Education</option>
                           <option value="literature">Literature</option>
                           <option value="research">Research</option>
@@ -77,13 +118,16 @@
                       </div>
                     </div>
 
-                    <%- include('layout/calender.ejs') %>
-
-                      <%- include('layout/matterOfInterest.ejs') %>
+                    <%- include('layout/calender.ejs') %> <%-
+                    include('layout/matterOfInterest.ejs') %>
                   </div>
                   <div class="row register-amount-btn">
                     <div class="col-12 d-flex justify-content-center">
-                      <button type="submit" class="btn btn-primary" style="border-radius: 20px">
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        style="border-radius: 20px"
+                      >
                         Pay to Register ₹399.00
                       </button>
                     </div>
@@ -94,10 +138,10 @@
           </div>
         </div>
       </div>
-  </div>
+    </div>
 
-  <!-- Footer Start -->
-  <%- include('layout/footer.ejs') %>
+    <!-- Footer Start -->
+    <%- include('layout/footer.ejs') %>
     <!-- Footer End -->
 
     <!-- JS
@@ -127,7 +171,10 @@
     <script src="assets/js/jquery.nice-select.min.js"></script>
     <!-- Main JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
+    <script
+      type="text/javascript"
+      src="node_modules/slick-carousel/slick/slick.min.js"
+    ></script>
     <script src="assets/js/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -184,6 +231,5 @@
         });
       });
     </script>
-</body>
-
+  </body>
 </html>

@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-
-
-<body>
-  <div class="main-wrapper">
-    <!-- Header Navigation Start -->
+  <head>
+    <title><%= title %></title>
+    <meta name="description" content="<%= metaTags[0].description %>" />
+    <meta name="keywords" content="<%= metaTags[1].keywords %>" />
+    <meta name="author" content="<%= metaTags[2].author %>" />
+    <meta name="robots" content="<%= metaTags[3].robots %>" />
     <%- include('layout/header.ejs') %>
-      <!-- Header Navigation End -->
+  </head>
+  <body>
+    <div class="main-wrapper">
 
       <div style="background-image: url('assets/images/upgrill.png')">
         <div class="container">
@@ -15,21 +18,23 @@
               <h1>About Malabar</h1>
             </div>
             <div class="about-mlf-img">
-              <img src="assets/images/aboutmlf.png" alt="" style="max-width: 100%; height: auto" />
+              <img
+                src="assets/images/aboutmlf.png"
+                alt=""
+                style="max-width: 100%; height: auto"
+              />
             </div>
 
             <div class="about-mlf-para">
-              <p>
-                <%= aboutData[0].aboutMalabar %>
-              </p>
+              <p><%= aboutData[0].aboutMalabar %></p>
             </div>
           </div>
         </div>
       </div>
-  </div>
+    </div>
 
-  <!-- Footer Start -->
-  <%- include('layout/footer.ejs') %>
+    <!-- Footer Start -->
+    <%- include('layout/footer.ejs') %>
     <!-- Footer End -->
 
     <!-- JS
@@ -59,8 +64,10 @@
     <script src="assets/js/jquery.nice-select.min.js"></script>
     <!-- Main JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
+    <script
+      type="text/javascript"
+      src="node_modules/slick-carousel/slick/slick.min.js"
+    ></script>
     <script src="assets/js/main.js"></script>
-</body>
-
+  </body>
 </html>

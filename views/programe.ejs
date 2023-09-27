@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favnew.svg">
-
-<body>
+  <link
+    rel="shortcut icon"
+    type="image/x-icon"
+    href="/assets/images/favnew.svg"
+  />
+  <head>
+    <title><%= title %></title>
+    <meta name="description" content="<%= metaTags[0].description %>" />
+    <meta name="keywords" content="<%= metaTags[1].keywords %>" />
+    <meta name="author" content="<%= metaTags[2].author %>" />
+    <meta name="robots" content="<%= metaTags[3].robots %>" />
+    <%- include('layout/header.ejs') %>
+  </head>
+  <body>
     <div class="main-wrapper">
-        <!-- Header Navigation Start -->
-        <%- include('layout/header.ejs') %>
-            <!-- Header Navigation End -->
-
-            <div class="container">
-                <div class="attende-registration" style="margin-top: 100px">
-                    <div class="registration-title">
-                        <h1>Programmee</h1>
-                    </div>
-                    <div style="margin-top: 5px;">
-                        <img src="/assets/images/pdf1.png" alt="">
-                    </div>
-                    <div style="margin-top: 5px;">
-                        <img src="/assets/images/pdf2.png" alt="">
-                    </div>
-                    <div style="margin-top: 5px;">
-                        <img src="/assets/images/pdf3.png" alt="">
-                    </div>
-                    <div style="margin-top: 5px;">
-                        <img src="/assets/images/pdf4.png" alt="">
-                    </div>
-
-                </div>
-            </div>
-
+      <div class="container">
+        <div class="attende-registration" style="margin-top: 100px">
+          <div class="registration-title">
+            <h1>Programmee</h1>
+          </div>
+          <div style="margin-top: 5px">
+            <img src="/assets/images/pdf1.png" alt="" />
+          </div>
+          <div style="margin-top: 5px">
+            <img src="/assets/images/pdf2.png" alt="" />
+          </div>
+          <div style="margin-top: 5px">
+            <img src="/assets/images/pdf3.png" alt="" />
+          </div>
+          <div style="margin-top: 5px">
+            <img src="/assets/images/pdf4.png" alt="" />
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Footer Start -->
     <%- include('layout/footer.ejs') %>
-        <!-- Footer End -->
-
-
-</body>
-
-
+    <!-- Footer End -->
+  </body>
 </html>

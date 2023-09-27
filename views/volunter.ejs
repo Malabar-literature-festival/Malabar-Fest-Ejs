@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-  <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favnew.svg">
-
-<body>
-  <div class="main-wrapper">
-    <!-- Header Navigation Start -->
+  <link
+    rel="shortcut icon"
+    type="image/x-icon"
+    href="/assets/images/favnew.svg"
+  />
+  <head>
+    <title><%= title %></title>
+    <meta name="description" content="<%= metaTags[0].description %>" />
+    <meta name="keywords" content="<%= metaTags[1].keywords %>" />
+    <meta name="author" content="<%= metaTags[2].author %>" />
+    <meta name="robots" content="<%= metaTags[3].robots %>" />
     <%- include('layout/header.ejs') %>
-      <!-- Header Navigation End -->
-
+  </head>
+  <body>
+    <div class="main-wrapper">
       <div class="container">
         <div class="attende-registration" style="margin-top: 100px">
           <div class="registration-title">
@@ -15,7 +22,9 @@
           </div>
         </div>
       </div>
-      <div class="register-table" style="
+      <div
+        class="register-table"
+        style="
           background-image: url('assets/images/RegisterUnion.png');
           background-size: cover;
           background-position: center center;
@@ -25,7 +34,8 @@
           display: flex;
           justify-content: center;
           align-items: center;
-        ">
+        "
+      >
         <div class="container">
           <div class="delegate-table-section-v">
             <!-- <div class="delegate-title">
@@ -33,18 +43,34 @@
           </div> -->
             <div class="register-form">
               <div class="container">
-                <form action="/volunter" method="post" enctype="multipart/form-data" id="volunteerForm">
+                <form
+                  action="/volunter"
+                  method="post"
+                  enctype="multipart/form-data"
+                  id="volunteerForm"
+                >
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" class="form-control" required />
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          class="form-control"
+                          required
+                        />
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="gender">Gender:</label>
-                        <select id="gender" name="gender" class="form-control" required>
+                        <select
+                          id="gender"
+                          name="gender"
+                          class="form-control"
+                          required
+                        >
                           <option value="Male">Male</option>
                           <option value="Female">Female</option>
                         </select>
@@ -53,47 +79,89 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="contact">Contact Number:</label>
-                        <input type="tel" id="contact" name="contact" class="form-control" required />
+                        <input
+                          type="tel"
+                          id="contact"
+                          name="contact"
+                          class="form-control"
+                          required
+                        />
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="email">Email ID:</label>
-                        <input type="email" id="email" name="email" class="form-control" required />
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          class="form-control"
+                          required
+                        />
                         <p id="emailError" class="text-danger"></p>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="password">Create Password:</label>
-                        <input type="password" id="password" name="password" class="form-control" required />
+                        <input
+                          type="password"
+                          id="password"
+                          name="password"
+                          class="form-control"
+                          required
+                        />
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="confirm_password">Confirm Password:</label>
-                        <input type="password" id="confirm_password" name="confirm_password" class="form-control"
-                          required />
+                        <input
+                          type="password"
+                          id="confirm_password"
+                          name="confirm_password"
+                          class="form-control"
+                          required
+                        />
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="photo">Add Photo:</label>
-                        <input type="file" id="photo" name="photo" class="form-control-file form-control"
-                          style="width: 100%" required />
+                        <input
+                          type="file"
+                          id="photo"
+                          name="photo"
+                          class="form-control-file form-control"
+                          style="width: 100%"
+                          required
+                        />
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="institute">Name of Company / Institute:</label>
-                        <input type="text" id="institute" name="institute" class="form-control" required />
+                        <label for="institute"
+                          >Name of Company / Institute:</label
+                        >
+                        <input
+                          type="text"
+                          id="institute"
+                          name="institute"
+                          class="form-control"
+                          required
+                        />
                       </div>
                     </div>
 
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="category">Category:</label>
-                        <select id="category" name="category" class="form-control" required>
+                        <select
+                          id="category"
+                          name="category"
+                          class="form-control"
+                          required
+                        >
                           <option value="Student">Student</option>
                           <option value="Employee">Employee</option>
                         </select>
@@ -102,13 +170,25 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="place">Place:</label>
-                        <input type="text" id="place" name="place" class="form-control" required />
+                        <input
+                          type="text"
+                          id="place"
+                          name="place"
+                          class="form-control"
+                          required
+                        />
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="age">Age:</label>
-                        <select id="age" name="age" class="form-control" size="1" required>
+                        <select
+                          id="age"
+                          name="age"
+                          class="form-control"
+                          size="1"
+                          required
+                        >
                           <option value="15">15</option>
                           <option value="16">16</option>
                           <option value="17">17</option>
@@ -181,7 +261,12 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="workType">Full Time / Part Time:</label>
-                        <select id="workType" name="workType" class="form-control" required>
+                        <select
+                          id="workType"
+                          name="workType"
+                          class="form-control"
+                          required
+                        >
                           <option value="Full Time">Full Time</option>
                           <option value="Part Time">Part Time</option>
                         </select>
@@ -190,7 +275,12 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="timeSlot">Time Slot:</label>
-                        <select id="timeSlot" name="timeSlot" class="form-control" required>
+                        <select
+                          id="timeSlot"
+                          name="timeSlot"
+                          class="form-control"
+                          required
+                        >
                           <option value="09 am - 01 pm">09 am - 01 pm</option>
                           <option value="02 pm - 05 pm">02 pm - 05 pm</option>
                           <option value="05 pm - 09 pm">05 pm - 09 pm</option>
@@ -199,15 +289,27 @@
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="reference_name">Reference if Any: Name:</label>
-                        <input type="text" id="reference_name" name="reference_name" class="form-control" />
+                        <label for="reference_name"
+                          >Reference if Any: Name:</label
+                        >
+                        <input
+                          type="text"
+                          id="reference_name"
+                          name="reference_name"
+                          class="form-control"
+                        />
                       </div>
                     </div>
 
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="mobile">Contact Number:</label>
-                        <input type="text" id="mobile" name="mobile" class="form-control" />
+                        <input
+                          type="text"
+                          id="mobile"
+                          name="mobile"
+                          class="form-control"
+                        />
                       </div>
                       <div class="form-group">
                         <%- include('layout/matterOfInterest.ejs') %>
@@ -218,7 +320,11 @@
                   </div>
                   <div class="row register-amount-btn">
                     <div class="col-12 d-flex justify-content-center">
-                      <button type="submit" class="btn btn-primary" style="border-radius: 20px">
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        style="border-radius: 20px"
+                      >
                         Register
                       </button>
                     </div>
@@ -229,10 +335,10 @@
           </div>
         </div>
       </div>
-  </div>
+    </div>
 
-  <!-- Footer Start -->
-  <%- include('layout/footer.ejs') %>
+    <!-- Footer Start -->
+    <%- include('layout/footer.ejs') %>
     <!-- Footer End -->
 
     <!-- JS
@@ -262,8 +368,10 @@
     <script src="assets/js/jquery.nice-select.min.js"></script>
     <!-- Main JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
+    <script
+      type="text/javascript"
+      src="node_modules/slick-carousel/slick/slick.min.js"
+    ></script>
     <script src="assets/js/main.js"></script>
-</body>
-
+  </body>
 </html>
