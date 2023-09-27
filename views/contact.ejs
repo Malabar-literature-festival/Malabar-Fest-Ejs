@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-
-<link rel="shortcut icon" type="image/x-icon" href="/assets/images/favnew.svg">
-
-<body>
-  <div class="main-wrapper">
-    <!-- Header Navigation Start -->
+  <link
+    rel="shortcut icon"
+    type="image/x-icon"
+    href="/assets/images/favnew.svg"
+  />
+  <head>
+    <title><%= title %></title>
+    <meta name="description" content="<%= metaTags[0].description %>" />
+    <meta name="keywords" content="<%= metaTags[1].keywords %>" />
+    <meta name="author" content="<%= metaTags[2].author %>" />
+    <meta name="robots" content="<%= metaTags[3].robots %>" />
     <%- include('layout/header.ejs') %>
-      <!-- Header Navigation End -->
+  </head>
+  <body>
+    <div class="main-wrapper">
 
       <!-- Page Banner Start -->
       <div class="section page-banner-section">
@@ -45,35 +52,54 @@
                       <div class="col-md-6">
                         <!-- Single Form Start -->
                         <div class="single-form">
-                          <input class="form-control" type="text" placeholder="Your Name" />
+                          <input
+                            class="form-control"
+                            type="text"
+                            placeholder="Your Name"
+                          />
                         </div>
                         <!-- Single Form End -->
                       </div>
                       <div class="col-md-6">
                         <!-- Single Form Start -->
                         <div class="single-form">
-                          <input class="form-control" type="email" placeholder="Your Email" />
+                          <input
+                            class="form-control"
+                            type="email"
+                            placeholder="Your Email"
+                          />
                         </div>
                         <!-- Single Form End -->
                       </div>
                       <div class="col-md-6">
                         <!-- Single Form Start -->
                         <div class="single-form">
-                          <input class="form-control" type="text" placeholder="Your Number" />
+                          <input
+                            class="form-control"
+                            type="text"
+                            placeholder="Your Number"
+                          />
                         </div>
                         <!-- Single Form End -->
                       </div>
                       <div class="col-md-6">
                         <!-- Single Form Start -->
                         <div class="single-form">
-                          <input class="form-control" type="text" placeholder="Subject" />
+                          <input
+                            class="form-control"
+                            type="text"
+                            placeholder="Subject"
+                          />
                         </div>
                         <!-- Single Form End -->
                       </div>
                       <div class="col-md-12">
                         <!-- Single Form Start -->
                         <div class="single-form">
-                          <textarea class="form-control" placeholder="Write A Message"></textarea>
+                          <textarea
+                            class="form-control"
+                            placeholder="Write A Message"
+                          ></textarea>
                         </div>
                         <!-- Single Form End -->
                       </div>
@@ -141,17 +167,23 @@
       <!-- Contact Map Start -->
       <div class="section contact-map-section">
         <div class="contact-map-wrap">
-          <iframe id="gmap_canvas"
+          <iframe
+            id="gmap_canvas"
             src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d250672.2990066982!2d75.85530751201227!3d10.981881070005917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sHidaya%20Nagar%20Chemmad!5e0!3m2!1sen!2sin!4v1692797125558!5m2!1sen!2sin"
-            width="600" height="450" style="border: 0" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+            width="600"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </div>
       <!-- Contact Map End -->
-  </div>
+    </div>
 
-  <!-- Footer Start -->
-  <%- include('layout/footer.ejs') %>
+    <!-- Footer Start -->
+    <%- include('layout/footer.ejs') %>
     <!-- Footer End -->
 
     <!-- JS
@@ -181,8 +213,10 @@
     <script src="assets/js/jquery.nice-select.min.js"></script>
     <!-- Main JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
+    <script
+      type="text/javascript"
+      src="node_modules/slick-carousel/slick/slick.min.js"
+    ></script>
     <script src="assets/js/main.js"></script>
-</body>
-
+  </body>
 </html>
