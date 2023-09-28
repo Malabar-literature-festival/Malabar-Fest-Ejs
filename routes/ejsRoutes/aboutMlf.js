@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const AboutUs = require("../models/AboutUs");
+const AboutUs = require("../../models/AboutUs");
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {

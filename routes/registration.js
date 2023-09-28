@@ -1,12 +1,11 @@
 const router = require("express").Router();
 // Controllers
 const {
-    createGallery,
-    getGallery,
-    updateGallery,
-    deleteGallery,
-    // getByFranchise,
-} = require("../controllers/gallery");
+    createRegistration,
+    getRegistration,
+    updateRegistration,
+    deleteRegistration,
+} = require("../controllers/registration");
 // Middleware
 const { protect, authorize } = require("../middleware/auth");
 const { reqFilter } = require("../middleware/filter");
@@ -16,15 +15,15 @@ const getUploadMiddleware = require("../middleware/upload");
 router
     .route("/")
     .post(
-        getUploadMiddleware("uploads/gallery", ["image"]),
+        getUploadMiddleware("uploads/registration", ["image"]),
         getS3Middleware(["image"]),
-        createGallery
+        createRegistration
     )
-    .get(reqFilter, getGallery)
+    .get(reqFilter, getRegistration)
     .put(
-        getUploadMiddleware("uploads/gallery", ["image"]),
-        getS3Middleware(["image"]), updateGallery
+        getUploadMiddleware("uploads/registration", ["image"]),
+        getS3Middleware(["image"]), updateRegistration
     )
-    .delete(deleteGallery);
+    .delete(deleteRegistration);
 
 module.exports = router;
