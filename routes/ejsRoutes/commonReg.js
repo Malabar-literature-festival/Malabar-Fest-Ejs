@@ -1,5 +1,5 @@
 var express = require("express");
-const Registration = require("../models/Registration");
+const Registration = require("../../models/Registration");
 var router = express.Router();
 // const bcrypt = require('bcrypt')
 const axios = require("axios");
@@ -46,7 +46,7 @@ router.get("/", function (req, res, next) {
   } else {
     // Handle the case where the email is not found in the session
   }
-  res.render("commonReg",{title, metaTags});
+  res.render("commonReg", { title, metaTags });
 });
 
 router.post("/", async function (req, res, next) {

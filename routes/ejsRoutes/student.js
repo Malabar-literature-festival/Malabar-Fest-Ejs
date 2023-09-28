@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
-const Registration = require("../models/Registration");
-const upload = require("../middleware/uploadEjs");
+const upload = require("../../middleware/uploadEjs");
+const Registration = require("../../models/Registration");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
 const nodemailer = require("nodemailer");
@@ -45,13 +45,13 @@ router.get("/", function (req, res, next) {
   } else {
     // Handle the case where the email is not found in the session
   }
-  res.render("delegate", { title, savedEmail, metaTags });
+  res.render("student", { savedEmail, title, metaTags });
 });
 
 router.post("/", upload.single("photo"), async function (req, res, next) {
   try {
-    const imagePath = req.file ? req.file.path : null;
     console.log(req.body);
+    const imagePath = req.file ? req.file.path : null;
     console.log(imagePath);
 
     // Check if a user with the same email already exists
@@ -77,6 +77,8 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       existingUser.profession = req.body.profession;
       existingUser.regDate = req.body.day;
       existingUser.matterOfInterest = req.body.interest;
+      existingUser.institution = req.body.institution;
+      existingUser.category = req.body.category;
       existingUser.regType = req.body.type;
       existingUser.image = imagePath;
       await existingUser.save();
@@ -102,10 +104,8 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       Malabar Literature Festival Organizing Committee
       Help Desk: +91 9539327252
       `;
-
       // Send a WhatsApp message using the WhatsApp API
       const whatsappApiUrl = "https://text.dxing.in/api/send";
-      z;
       const whatsappData = {
         number: mobileNumber,
         type: "text",

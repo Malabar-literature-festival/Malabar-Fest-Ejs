@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const Registration = require("../models/Registration");
+const Registration = require("../../models/Registration");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
 const nodemailer = require("nodemailer");

@@ -1,9 +1,6 @@
-const express = require("express");
-const AboutUs = require("../models/AboutUs");
-const Speakers = require("../models/Speakers");
-const News = require("../models/News");
-const Testimonial = require("../models/Testimonial");
-const router = express.Router();
+var express = require("express");
+var router = express.Router();
+const Speakers = require("../../models/Speakers");
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
@@ -27,25 +24,11 @@ router.get("/", async function (req, res, next) {
 
     const title =
       "Malabar Literature Festival | Celebrating History, Language, and Culture";
-
-    const aboutData = await AboutUs.find();
-
     const speakerData = await Speakers.find();
-
-    const newsData = await News.find();
-
-    const testimonialData = await Testimonial.find();
-    console.log(testimonialData);
-    res.render("index", {
-      title,
-      aboutData,
-      speakerData,
-      newsData,
-      testimonialData,
-      metaTags,
-    });
+    console.log(speakerData);
+    res.render("speaker", { title, metaTags, speakerData });
   } catch (error) {
-    console.error("Error:", error);
+    console.error(error);
   }
 });
 

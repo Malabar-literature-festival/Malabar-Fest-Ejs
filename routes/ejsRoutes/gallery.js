@@ -1,6 +1,6 @@
 var express = require("express");
+const Gallery = require("../../models/Gallery");
 var router = express.Router();
-const AboutUs = require("../models/AboutUs");
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
@@ -24,7 +24,9 @@ router.get("/", async function (req, res, next) {
 
     const title =
       "Malabar Literature Festival | Celebrating History, Language, and Culture";
-    res.render("refund", { title, metaTags });
+    const galleryData = await Gallery.find();
+    console.log(galleryData);
+    res.render("gallery", { galleryData, title, metaTags });
   } catch (error) {
     console.error(error);
   }

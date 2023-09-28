@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
-const upload = require("../middleware/uploadEjs");
-const Volunteer = require("../models/Volunteer");
+const upload = require("../../middleware/uploadEjs");
+const Volunteer = require("../../models/Volunteer");
 const bcrypt = require("bcrypt");
 
 /* GET home page. */
