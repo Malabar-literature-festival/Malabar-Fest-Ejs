@@ -68,8 +68,7 @@ const allowedOrigins = [
   "http://localhost:3001",
   "http://localhost:8010",
   "https://malabarliteraturefestival.com",
-  "https://lemon-grass-0c88ad110.3.azurestaticapps.net",
-  "https://lively-wave-04701e810.3.azurestaticapps.net",
+ "https://yellow-desert-0e7088300.3.azurestaticapps.net",
 ];
 
 //cors policy
