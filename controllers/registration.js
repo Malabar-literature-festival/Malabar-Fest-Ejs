@@ -1,4 +1,4 @@
-const { default: mongoose } = require("mongoose");
+const { default: mongoose, isValidObjectId } = require("mongoose");
 const Registration = require("../models/Registration");
 const { encrypt } = require("../middleware/ccavutil");
 const dotenv = require("dotenv"); // Import dotenv
@@ -118,19 +118,42 @@ exports.deleteRegistration = async (req, res) => {
 
 exports.paymentGeneration = async (req, res) => {
   try {
-    const orderId = 1234578;
-    const amount = 100.0;
-    //Generate Md5 hash for the key and then convert in base64 string
-    var md5 = crypto.createHash("md5").update(process.env.WORKINGKEY).digest();
-    var keyBase64 = Buffer.from(md5).toString("base64");
-    console.log(keyBase64);
-    //Initializing Vector and then convert in base64 string
-    var ivBase64 = Buffer.from([0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f]).toString("base64");
+    const { user = "65162a32231407d101433ca2" } = req.body;
+    if (isValidObjectId(user)) {
+      //const userDetails= //get user details
+      const domain = `${req.protocol}://${req.get("host")}`;
+      // Generate a unique order id
 
-    const plainText = `merchant_id=${process.env.MERCHENTID}&order_id=${orderId}&currency=INR&amount=${amount}&redirect_url=https://mlfevent.azurewebsites.net/payment-status&https://mlfevent.azurewebsites.net`;
-    const encRequest = encrypt(plainText, keyBase64, ivBase64);
-    console.log(plainText, encRequest);
-    res.status(200).send('<form id="nonseamless" method="post" name="redirect" action="https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction"/> <input type="hidden" id="encRequest" name="encRequest" value="' + encRequest + '"><input type="hidden" name="access_code" id="access_code" value="' + process.env.ACCESSCODE + '"><script language="javascript">document.redirect.submit();</script></form>');
+      //create a order table and add each payment activity order number in the table to check payment status and update payment status or to get user details
+      const orderId = 1234578;
+      //asssind amount in same format
+      const amount = 100.0;
+
+      // Generate Md5 hash for the key and then convert to base64 string
+      var md5 = crypto.createHash("md5").update(process.env.WORKINGKEY).digest();
+      var keyBase64 = Buffer.from(md5).toString("base64");
+      //Initializing Vector and then convert in base64 string
+      var ivBase64 = Buffer.from([0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f]).toString("base64");
+
+      const plainText = `merchant_id=${process.env.MERCHENTID}&order_id=${orderId}&currency=INR&amount=${amount}&redirect_url=${domain}/register/payment-status/${user}&cancel_url=${domain}/register/${user}`;
+      const encRequest = encrypt(plainText, keyBase64, ivBase64);
+
+      // Prepare the response with a form for redirection
+      // this will auto redirect to payment page
+      res.status(200).send(`
+     <form id="nonseamless" method="post" name="redirect" action="https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction"/>
+       <input type="hidden" id="encRequest" name="encRequest" value="${encRequest}">
+       <input type="hidden" name="access_code" id="access_code" value="${process.env.ACCESSCODE}">
+       <script language="javascript">document.redirect.submit();</script>
+     </form>
+   `);
+    } else {
+      console.log(err);
+      res.status(404).json({
+        success: false,
+        message: err,
+      });
+    }
   } catch (err) {
     console.log(err);
     res.status(400).json({
