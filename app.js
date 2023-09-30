@@ -63,24 +63,18 @@ const testimonial = require("./routes/testimonial");
 
 var app = express();
 
-const allowedOrigins = [
-  "http://localhost:3000",
-  "http://localhost:3001",
-  "http://localhost:8010",
-  "https://malabarliteraturefestival.com",
- "https://yellow-desert-0e7088300.3.azurestaticapps.net",
-];
+const allowedOrigins = [null, "http://localhost:3000", "http://localhost:3001", "http://localhost:8010", "https://malabarliteraturefestival.com", "https://yellow-desert-0e7088300.3.azurestaticapps.net", "https://test.ccavenue.com", "https://secure.ccavenue.com", "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction"];
 
 //cors policy
 app.use(
   cors({
     origin: function (origin, callback) {
+      console.log("origin", origin);
       // allow requests with no origin (like mobile apps or curl requests)
       if (!origin) return callback(null, true);
+      if (typeof origin === "undefined" || origin === "null") return callback(null, true);
       if (allowedOrigins.indexOf(origin) === -1) {
-        const msg =
-          "The CORS policy for this site does not allow access from the specified Origin.";
-        return callback(new Error(msg), false);
+        return callback(new Error(origin), false);
       }
       return callback(null, true);
     },
@@ -135,7 +129,6 @@ app.use("/speaker", Speaker);
 app.use("/volunter", Volunter);
 app.use("/programe", Programe);
 app.use("/news", News);
-
 // LATESTS-----
 app.use("/privacy", Privacy);
 app.use("/refund", Refund);
