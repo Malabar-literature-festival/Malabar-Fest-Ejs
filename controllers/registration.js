@@ -130,7 +130,7 @@ exports.paymentGeneration = async (req, res) => {
     const plainText = `merchant_id=${process.env.MERCHENTID}&order_id=${orderId}&currency=INR&amount=${amount}&redirect_url=https://mlfevent.azurewebsites.net/payment-status&https://mlfevent.azurewebsites.net`;
     const encRequest = encrypt(plainText, keyBase64, ivBase64);
     console.log(plainText, encRequest);
-    res.status(200).send('<form id="nonseamless" method="post" name="redirect" action="https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction"/> <input type="hidden" id="encRequest" name="encRequest" value="' + encRequest + '"><input type="hidden" name="access_code" id="access_code" value="' + process.env.ACCESSCODE + '"><script language="javascript">document.redirect.submit();</script></form>');
+    res.status(200).send('<form id="nonseamless" method="post" name="redirect" action="https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction"/> <input type="hidden" id="encRequest" name="encRequest" value="' + encRequest + '"><input type="hidden" name="access_code" id="access_code" value="' + process.env.ACCESSCODE + '"><script language="javascript">document.redirect.submit();</script></form>');
   } catch (err) {
     console.log(err);
     res.status(400).json({
