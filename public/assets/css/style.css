@@ -1280,7 +1280,7 @@ label {
   width: 270px;
   background-color: #ffffff;
   box-shadow: 0 2px 29px rgba(0, 0, 0, 0.05);
-  padding: 20px 0;
+  /* padding: 20px 0; */
   border-radius: 5px;
   z-index: 99;
   border-bottom: 3px solid #49bdf2;
@@ -13938,7 +13938,6 @@ ul li:hover {
   opacity: 1;
   transform: translateX(0); /* End position */
 }
-
 
 /* CSS */
 .fade-in {
