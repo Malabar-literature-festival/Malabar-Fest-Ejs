@@ -1,43 +1,155 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-  <link
-    rel="shortcut icon"
-    type="image/x-icon"
-    href="/assets/images/favnew.svg"
-  />
-  <head>
-    <title><%= title %></title>
-    <meta name="description" content="<%= metaTags[0].description %>" />
-    <meta name="keywords" content="<%= metaTags[1].keywords %>" />
-    <meta name="author" content="<%= metaTags[2].author %>" />
-    <meta name="robots" content="<%= metaTags[3].robots %>" />
-    <%- include('layout/header.ejs') %>
-  </head>
-  <body>
-    <div class="main-wrapper">
-      <div class="container">
-        <div class="attende-registration" style="margin-top: 100px">
-          <div class="registration-title">
-            <h1>Programmee</h1>
-          </div>
-          <div style="margin-top: 5px">
-            <img src="/assets/images/pdf1.png" alt="" />
-          </div>
-          <div style="margin-top: 5px">
-            <img src="/assets/images/pdf2.png" alt="" />
-          </div>
-          <div style="margin-top: 5px">
-            <img src="/assets/images/pdf3.png" alt="" />
-          </div>
-          <div style="margin-top: 5px">
-            <img src="/assets/images/pdf4.png" alt="" />
-          </div>
+<link rel="shortcut icon" type="image/x-icon" href="/assets/images/favnew.svg" />
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <meta name="description" content="<%= metaTags[0].description %>" />
+  <meta name="keywords" content="<%= metaTags[1].keywords %>" />
+  <meta name="author" content="<%= metaTags[2].author %>" />
+  <meta name="robots" content="<%= metaTags[3].robots %>" />
+  <%- include('layout/header.ejs') %>
+</head>
+
+<body>
+  <div class="main-wrapper">
+    <div class="container">
+      <div class="attende-registration" style="margin-top: 100px">
+        <div class="registration-title">
+          <h1>Programmee</h1>
         </div>
+
+        <script>
+          // Function to check if an element is in the viewport
+          function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+              rect.top >= 0 &&
+              rect.left >= 0 &&
+              rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+              rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+          }
+
+          // Function to handle scroll events
+          function handleScroll() {
+            const elements = document.querySelectorAll("#animation-container .fade-in-left, #animation-container .fade-in-right, #animation-container .fade-in-top, #animation-container .fade-in-bottom");
+
+            elements.forEach((element) => {
+              if (isElementInViewport(element)) {
+                if (!element.classList.contains("animated")) {
+                  element.classList.add("animated");
+                }
+              } else {
+                element.classList.remove("animated");
+              }
+            });
+          }
+
+          // Attach the scroll event listener
+          window.addEventListener("scroll", handleScroll);
+
+          // Initially trigger the handleScroll to check elements in the viewport
+          handleScroll();
+        </script>
+
+
+        <style>
+          /* Define the animation for fading in from the left */
+          @keyframes fadeInLeft {
+            from {
+              opacity: 0;
+              transform: translateX(-100%);
+            }
+
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+
+          /* Define the animation for fading in from the right */
+          @keyframes fadeInRight {
+            from {
+              opacity: 0;
+              transform: translateX(100%);
+            }
+
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+
+          /* Define the animation for fading in from the top */
+          @keyframes fadeInTop {
+            from {
+              opacity: 0;
+              transform: translateY(-100%);
+            }
+
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          /* Define the animation for fading in from the bottom */
+          @keyframes fadeInBottom {
+            from {
+              opacity: 0;
+              transform: translateY(100%);
+            }
+
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          /* Apply the animation to the image elements */
+          .fade-in-left {
+            animation: fadeInLeft 4s;
+          }
+
+          .fade-in-right {
+            animation: fadeInRight 4s;
+          }
+
+          .fade-in-top {
+            animation: fadeInTop 4s
+          }
+
+          .fade-in-bottom {
+            animation: fadeInBottom 4s;
+          }
+        </style>
+
+        <div style="margin-top: 5px" class="fade-in-left">
+          <img src="/assets/images/pdf1.png" alt="PDF Document 1" class="img-one" />
+        </div>
+        <div style="margin-top: 5px" class="fade-in-right">
+          <img src="/assets/images/pdf2.png" alt="PDF Document 2" class="img-two" />
+        </div>
+        <div style="margin-top: 5px" class="fade-in-top">
+          <img src="/assets/images/pdf3.png" alt="PDF Document 3" class="img-three" />
+        </div>
+        <div style="margin-top: 5px" class="fade-in-bottom">
+          <img src="/assets/images/pdf4.png" alt="PDF Document 4" class="img-four" />
+        </div>
+
+
+
       </div>
     </div>
+  </div>
 
-    <!-- Footer Start -->
-    <%- include('layout/footer.ejs') %>
+  <!-- Footer Start -->
+  <%- include('layout/footer.ejs') %>
     <!-- Footer End -->
-  </body>
+
+</body>
+
 </html>

@@ -60,6 +60,14 @@
 :root {
   --font-playfair: "Playfair Display", serif;
   --font-Inter: "Inter", sans-serif;
+  --font-century: "Century Gothic", Arial, sans-serif;
+}
+@font-face {
+  font-family: "Century Gothic";
+  src: url("fonts/centurygothic.woff2") format("woff2"),
+    /* Modern Browsers */ url("fonts/centurygothic.woff") format("woff"); /* Older Browsers */
+  font-weight: normal;
+  font-style: normal;
 }
 
 *,
@@ -74,7 +82,8 @@ body {
   font-size: 15px;
   line-height: 1.75;
   font-weight: 200;
-  font-family: "Open Sans", sans-serif;
+  /* font-family: "Open Sans", sans-serif; */
+  font-family: "Century Gothic", Arial, sans-serif;
   color: #666666;
   outline: none;
   visibility: visible;
@@ -12242,7 +12251,6 @@ img {
   font-family: var(--font-Inter);
   font-size: 1.3em;
   line-height: 1.8;
-
   font-weight: normal;
 }
 
@@ -13852,5 +13860,97 @@ ul li:hover {
   }
   .forweb {
     display: none;
+  }
+}
+
+/* animations side______ */
+@keyframes fadeTop {
+  0% {
+    opacity: 0;
+    transform: translateY(200px); /* Move the element up by 200px */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(
+      0
+    ); /* Move the element back to its original position */
+  }
+}
+
+/* Apply the animation to the .malabar-title element */
+.malabar-title {
+  animation: fadeTop 3s ease-in-out; /* Adjust the duration and timing function as needed */
+}
+.malabar-title-mobile {
+  animation: fadeTop 3s ease-in-out; /* Adjust the duration and timing function as needed */
+}
+
+/* about animation--- */
+.about-para {
+  opacity: 0;
+  transform: translateX(-100px); /* Start position to the left */
+  transition: opacity 4s, transform 4s;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateX(0); /* End position */
+}
+
+/* commite-sections--- */
+.organizing-commite-section {
+  opacity: 0;
+  transform: translateX(-100px); /* Start position to the left */
+  transition: opacity 2s, transform 2s;
+}
+.fade-in {
+  opacity: 1;
+  transform: translateX(0); /* End position */
+}
+
+/* sponsors..... */
+.sponsors-imgs2 {
+  opacity: 0;
+  transform: translateY(300px); /* Start position to the left */
+  transition: opacity 2s, transform 4s;
+}
+.fade-in-right {
+  opacity: 1;
+  transform: translateY(0); /* End position */
+}
+/* about */
+.about-mlf-img {
+  opacity: 0;
+  transform: translateY(300px); /* Start position to the left */
+  transition: opacity 2s, transform 4s;
+}
+.fade-in-right {
+  opacity: 1;
+  transform: translateY(0); /* End position */
+}
+.about-mlf-para {
+  opacity: 0;
+  transform: translateX(-150px); /* Start position to the left */
+  transition: opacity 3s ease, transform 5s ease;
+}
+
+.about-mlf-para.fade-in {
+  opacity: 1;
+  transform: translateX(0); /* End position */
+}
+
+
+/* CSS */
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

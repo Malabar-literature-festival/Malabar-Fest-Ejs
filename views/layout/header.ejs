@@ -59,6 +59,8 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
   <script type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
   <!-- carousel Style CSS -->
   <link rel="stylesheet" href="/assets/css/css/owl.carousel.min.css">
@@ -208,5 +210,152 @@
     if (path === menuItemLink) {
       $(this).addClass("active-menu");
     }
+  });
+</script>
+
+<!-- about -->
+<script>
+  $(document).ready(function () {
+    var aboutPara = $(".about-para");
+    var animationApplied = false;
+
+    function checkAnimation() {
+      var windowTop = $(window).scrollTop();
+      var elementTop = aboutPara.offset().top;
+      var windowHeight = $(window).height();
+
+      if (windowTop + windowHeight > elementTop && !animationApplied) {
+        aboutPara.addClass("fade-in");
+        animationApplied = true;
+      } else if (windowTop + windowHeight <= elementTop && animationApplied) {
+        // Reset animation when the element goes out of view
+        aboutPara.removeClass("fade-in");
+        animationApplied = false;
+      }
+    }
+
+    // Check for animation when the page loads
+    checkAnimation();
+
+    // Re-check for animation when the window is scrolled
+    $(window).scroll(function () {
+      checkAnimation();
+    });
+  });
+</script>
+
+<!-- committe -->
+<script>
+  $(document).ready(function () {
+    var organizingSection = $(".organizing-commite-section");
+    var animationApplied = false;
+
+    function checkAnimation() {
+      var windowTop = $(window).scrollTop();
+      var elementTop = organizingSection.offset().top;
+      var windowHeight = $(window).height();
+
+      if (windowTop + windowHeight > elementTop && !animationApplied) {
+        organizingSection.addClass("fade-in");
+        animationApplied = true;
+      } else if (windowTop + windowHeight <= elementTop && animationApplied) {
+        // Reset animation when the element goes out of view
+        organizingSection.removeClass("fade-in");
+        animationApplied = false;
+      }
+    }
+
+    // Check for animation when the page loads
+    checkAnimation();
+
+    // Re-check for animation when the window is scrolled
+    $(window).scroll(function () {
+      checkAnimation();
+    });
+  });
+</script>
+
+<!-- sponsor--- -->
+<script>
+  $(document).ready(function () {
+    var organizingSection = $(".sponsors-imgs2");
+    var animationApplied = false;
+
+    function checkAnimation() {
+      var windowTop = $(window).scrollTop();
+      var elementTop = organizingSection.offset().top;
+      var windowHeight = $(window).height();
+
+      if (windowTop + windowHeight > elementTop && !animationApplied) {
+        organizingSection.addClass("fade-in-right");
+        animationApplied = true;
+      } else if (windowTop + windowHeight <= elementTop && animationApplied) {
+        // Reset animation when the element goes out of view
+        organizingSection.removeClass("fade-in-right");
+        animationApplied = false;
+      }
+    }
+
+    // Check for animation when the page loads
+    checkAnimation();
+
+    // Re-check for animation when the window is scrolled
+    $(window).scroll(function () {
+      checkAnimation();
+    });
+  });
+</script>
+
+<!-- about -->
+<script>
+
+  $(document).ready(function () {
+    var organizingSection = $(".about-mlf-img");
+    var animationApplied = false;
+
+    function checkAnimation() {
+      var windowTop = $(window).scrollTop();
+      var elementTop = organizingSection.offset().top;
+      var windowHeight = $(window).height();
+
+      if (windowTop + windowHeight > elementTop && !animationApplied) {
+        organizingSection.addClass("fade-in-right");
+        animationApplied = true;
+      }
+    }
+
+    // Check for animation when the page loads
+    checkAnimation();
+
+    // Re-check for animation when the window is scrolled
+    $(window).scroll(function () {
+      checkAnimation();
+    });
+  });
+</script>
+<!-- about mlf para-->
+<script>
+  $(document).ready(function () {
+    var aboutMlfPara = $(".about-mlf-para");
+    var animationApplied = false;
+
+    function checkAnimation() {
+      var windowTop = $(window).scrollTop();
+      var elementTop = aboutMlfPara.offset().top;
+      var windowHeight = $(window).height();
+
+      if (windowTop + windowHeight > elementTop && !animationApplied) {
+        aboutMlfPara.addClass("fade-in");
+        animationApplied = true;
+      }
+    }
+
+    // Check for animation when the page loads
+    checkAnimation();
+
+    // Re-check for animation when the window is scrolled
+    $(window).scroll(function () {
+      checkAnimation();
+    });
   });
 </script>

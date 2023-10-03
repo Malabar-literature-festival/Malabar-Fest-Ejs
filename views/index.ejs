@@ -1,61 +1,65 @@
 <!doctype html>
 <html class="no-js" lang="en">
-  <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favnew.svg">
+<link rel="shortcut icon" type="image/x-icon" href="/assets/images/favnew.svg">
+
 <head>
-      <title><%= title %></title>
-      <meta name="description" content="<%= metaTags[0].description %>">
-      <meta name="keywords" content="<%= metaTags[1].keywords %>">
-      <meta name="author" content="<%= metaTags[2].author %>">
-      <meta name="robots" content="<%= metaTags[3].robots %>">
-      <%- include('layout/header.ejs') %>
+  <title>
+    <%= title %>
+  </title>
+  <meta name="description" content="<%= metaTags[0].description %>">
+  <meta name="keywords" content="<%= metaTags[1].keywords %>">
+  <meta name="author" content="<%= metaTags[2].author %>">
+  <meta name="robots" content="<%= metaTags[3].robots %>">
+  <%- include('layout/header.ejs') %>
 </head>
+
 <body>
   <div class="main-wrapper">
 
 
-      <!-- Slider Section Start  -->
-      <div class="meeta-hero-section-3 d-flex align-items-center">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-12">
-              <div class="meeta-hero-content">
-                <div class="malabar-title">
-                  <img src="assets/images/1111.svg" alt="">
-                </div>
-                <div class="malabar-title-mobile">
-                  <img src="assets/images/111-mobile.svg" alt="">
-                </div>
-                <a href="/common-reg"> <button class="register-wave-btn">Register</button></a>
+    <!-- Slider Section Start  -->
+    <div class="meeta-hero-section-3 d-flex align-items-center">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-12">
+            <div class="meeta-hero-content">
+              <div class="malabar-title">
+                <img src="assets/images/1111.svg" alt="">
               </div>
+              <div class="malabar-title-mobile">
+                <img src="assets/images/111-mobile.svg" alt="">
+              </div>
+              <a href="/common-reg"> <button class="register-wave-btn">Register</button></a>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <div style="position: relative;">
-        <div class="animation-wrapper">
-          <div class="water">
-            <ul class="waves">
-              <li class="wave-one" style="background-image: url('assets/images/Vector (8).png');"></li>
-              <li class="wave-two" style="background-image: url('assets/images/Vector (9).png');"></li>
-              <li class="wave-three" style="background-image: url('assets/images/Vector (10).png');"></li>
-              <li class="wave-four" style="background-image: url('assets/images/Vector (11).png');"></li>
-              <li class="wave-five" style="background-image: url('assets/images/Vector (12).png');"></li>
-            </ul>
-          </div>
-        </div>
-        <div class="about"
-          style="background-image: url('assets/images/about.png'); position: absolute; z-index: 10; margin-top: -33px; background-repeat: no-repeat; background-size: cover; width: 100%;     min-height: 700px; object-fit:contain; overflow:hidden;">
-          <div class="about-title">
-            <h1>About</h1>
-          </div>
-          <h2 class="about-para">
-            <%= aboutData[0].aboutMlf %>
-
-          </h2>
-
+    <div style="position: relative;">
+      <div class="animation-wrapper">
+        <div class="water">
+          <ul class="waves">
+            <li class="wave-one" style="background-image: url('assets/images/Vector (8).png');"></li>
+            <li class="wave-two" style="background-image: url('assets/images/Vector (9).png');"></li>
+            <li class="wave-three" style="background-image: url('assets/images/Vector (10).png');"></li>
+            <li class="wave-four" style="background-image: url('assets/images/Vector (11).png');"></li>
+            <li class="wave-five" style="background-image: url('assets/images/Vector (12).png');"></li>
+          </ul>
         </div>
       </div>
+      <div class="about"
+        style="background-image: url('assets/images/about.png'); position: absolute; z-index: 10; margin-top: -33px; background-repeat: no-repeat; background-size: cover; width: 100%;     min-height: 700px; object-fit:contain; overflow:hidden;">
+        <div class="about-title">
+          <h1>About</h1>
+        </div>
+        <h2 class="about-para">
+          <%= aboutData[0].aboutMlf %>
+
+        </h2>
+
+      </div>
+    </div>
   </div>
   <!-- Slider Section End -->
   <!-- Speakers Start -->
@@ -80,7 +84,7 @@
                     <div class="org-img">
                       <img src="assets/images/shihab.png" alt="">
                       <div class="speaker-content-inner">
-                        <h3 class="speakers-name">Sayyid Munavvar Ali Shihab Thangal</h3>
+                        <h3 class="speakers-name">Sayyid Munavvar Ali <br> Shihab Thangal</h3>
                         <p class="speakers-para">Chairman</p>
                       </div>
                     </div>
