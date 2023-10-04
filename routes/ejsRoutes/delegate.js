@@ -63,6 +63,7 @@ exports.paymentGeneration = async (req, res, delegateData) => {
         existingUser.regType = delegateData.regType;
         existingUser.image = delegateData.image;
         existingUser.orderId = orderId;
+        existingUser.amount = amount;
 
         await existingUser.save();
 

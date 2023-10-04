@@ -68,12 +68,14 @@ router.post("/payment-status/:user", async function (req, res, next) {
   console.log("User :- ", user);
   // get user details and update payment status
   if (responseArray["order_status"] === "Success") {
-    res.render("success", { title: "Payment Success", metaTags });
+    const registeredUser = await Registration.findById({ _id: user });
+    console.log("Payment Success User :- ", registeredUser);
+    res.render("success", { title: "Payment Success", metaTags, registeredUser });
   } else {
     const registeredUser = await Registration.findById({ _id: user });
     console.log("Payment failed User :- ", registeredUser);
     await Registration.deleteOne({ _id: user });
-    res.render("failed", { title: "Payment Failed", metaTags });
+    res.render("failed", { title: "Payment Failed", metaTags, registeredUser });
   }
 });
 
