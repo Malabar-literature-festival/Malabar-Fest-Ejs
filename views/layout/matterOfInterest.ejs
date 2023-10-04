@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malabar Literature Festival | Celebrating History, Language, and Culture</title>
+    <style>
+        /* Styles for the dropdown container */
+        .dropdown-container {
+          position: relative;
+          display: inline-block;
+        }
+  
+        /* Styles for the dropdown button */
+        .dropdown-button {
+          background-color: #f8f8f8;
+          border: none;
+          color: #333;
+          padding: 10px 20px;
+          text-align: left;
+          text-decoration: none;
+          display: block;
+          border: 2px solid #ccc;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+  
+        .dropdown-button:hover {
+          background-color: #e0e0e0;
+        }
+  
+        /* Styles for the dropdown content */
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f8f8f8;
+          width: 200px;
+          border: 2px solid #ccc;
+          border-radius: 5px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+          z-index: 1;
+        }
+  
+        /* Styles for the checkboxes */
+        .dropdown-content label {
+          display: block;
+          padding: 10px;
+          cursor: pointer;
+        }
+  
+        .dropdown-content label:hover {
+          background-color: #e0e0e0;
+        }
+  
+        /* Show the dropdown content when button is clicked */
+        .dropdown-container:hover .dropdown-content {
+          display: block;
+        }
+      </style>
+</head>
+<body>
+    <div class="col-md-6">
+        <div class="form-group">
+          <label for="intrest">Matter Of Intrest:</label>
+          <div class="dropdown-container">
+            <button
+              type="button"
+              class="dropdown-button"
+              id="intrestDropdownBtn"
+            >
+              Select your interests
+            </button>
+            <div class="dropdown-content" id="intrestDropdown">
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Mappila Literature"
+                />
+                Mappila Literature
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Arabi Malayalam"
+                />
+                Arabi Malayalam
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Dalit Literature"
+                />
+                Dalit Literature
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Folklore Literature"
+                />
+                Folklore Literature
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Classical Literature"
+                />
+                Classical Literature
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Urdu Literature"
+                />
+                Urdu Literature
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Indo-Malabar"
+                />
+                Indo-Malabar
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Kids Literature"
+                />
+                Kids Literature
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Family Literature"
+                />
+                Family Literature
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Foreign Literature"
+                />
+                Foreign Literature
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Arab Culture and Literature"
+                />
+                Arab Culture and Literature
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Women Literature"
+                />
+                Women Literature
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Gender Literature"
+                />
+                Gender Literature
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Translation"
+                />
+                Translation
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Travel & Outdoor"
+                />
+                Travel & Outdoor
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Food Culture"
+                />
+                Food Culture
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Festivals"
+                />
+                Festivals
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Art"
+                />
+                Art
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Performance Art"
+                />
+                Performance Art
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Fine Arts"
+                />
+                Fine Arts
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Architecture"
+                />
+                Architecture
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Film & Music"
+                />
+                Film & Music
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Health"
+                />
+                Health
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Spirituality"
+                />
+                Spirituality
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Sufism"
+                />
+                Sufism
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Sports & Fitness"
+                />
+                Sports & Fitness
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Science & Tech"
+                />
+                Science & Tech
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Charity & Causes"
+                />
+                Charity & Causes
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Family & Education"
+                />
+                Family & Education
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Social Media"
+                />
+                Social Media
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="intrest"
+                  value="Social Activism"
+                />
+                Social Activism
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        // JavaScript to show/hide the dropdown content
+        document
+          .getElementById("intrestDropdownBtn")
+          .addEventListener("click", function () {
+            var dropdown = document.getElementById("intrestDropdown");
+            if (dropdown.style.display === "block") {
+              dropdown.style.display = "none";
+            } else {
+              dropdown.style.display = "block";
+            }
+          });
+  
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+          if (!event.target.matches(".dropdown-button")) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.style.display === "block") {
+                openDropdown.style.display = "none";
+              }
+            }
+          }
+        };
+      </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Malabar Literature Festival | Celebrating History, Language, and Culture
+    </title>
+    <!-- Include flatpickr CSS from CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+
+    <!-- Include flatpickr JavaScript from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  </head>
+  <body>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="day">Select Day:</label>
+        <input
+          type="text"
+          id="day"
+          name="day"
+          class="form-control datepicker-input"
+          placeholder="Select your Day"
+          required
+        />
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentDate = new Date();
+        const novemberFirst = new Date(currentDate.getFullYear(), 10, 30);
+        const decemberLast = new Date(currentDate.getFullYear(), 11, 3);
+
+        flatpickr(".datepicker-input", {
+          dateFormat: "Y-m-d",
+          minDate: novemberFirst,
+          maxDate: decemberLast,
+        });
+      });
+    </script>
+  </body>
+</html>
