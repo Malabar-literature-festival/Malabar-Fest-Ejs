@@ -165,9 +165,10 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       email: req.body.email || delegateData.email,
     });
 
-    console.log("User ID: ", userId);
+    const Id = userId._id
+    console.log("User ID: ", Id);
 
-    exports.paymentGeneration(req, res, delegateData, userId);
+    exports.paymentGeneration(req, res, delegateData, Id);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
