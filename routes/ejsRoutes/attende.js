@@ -56,9 +56,9 @@ router.post("/", async function (req, res) {
     // Check if a user with the same email already exists
     const existingUser = await Registration.findOne({ email: req.body.email });
 
-    if (!existingUser) {
-      return res.status(404).json({ error: "User not registered" });
-    }
+    // if (!existingUser) {
+    //   return res.status(404).json({ error: "User not registered" });
+    // }
 
     if (
       existingUser.regType === "attende" ||
@@ -71,10 +71,6 @@ router.post("/", async function (req, res) {
 
     const savedEmail = req.session.email;
 
-    if (
-      existingUser.commonReg === "commonReg" &&
-      existingUser.email === savedEmail
-    ) {
       // Update the existing "commonReg" registration data
       existingUser.district = req.body.location;
       existingUser.profession = req.body.profession;
@@ -128,7 +124,7 @@ router.post("/", async function (req, res) {
             .status(500)
             .json({ error: "Error sending WhatsApp message" });
         });
-    }
+    
     const html = `
     Dear ${existingUser.name},
         
