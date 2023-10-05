@@ -60,6 +60,14 @@
 :root {
   --font-playfair: "Playfair Display", serif;
   --font-Inter: "Inter", sans-serif;
+  --font-century: "Century Gothic", Arial, sans-serif;
+}
+@font-face {
+  font-family: "Century Gothic";
+  src: url("fonts/centurygothic.woff2") format("woff2"),
+    /* Modern Browsers */ url("fonts/centurygothic.woff") format("woff"); /* Older Browsers */
+  font-weight: normal;
+  font-style: normal;
 }
 
 *,
@@ -74,7 +82,8 @@ body {
   font-size: 15px;
   line-height: 1.75;
   font-weight: 200;
-  font-family: "Open Sans", sans-serif;
+  /* font-family: "Open Sans", sans-serif; */
+  font-family: "Century Gothic", Arial, sans-serif;
   color: #666666;
   outline: none;
   visibility: visible;
@@ -1271,7 +1280,7 @@ label {
   width: 270px;
   background-color: #ffffff;
   box-shadow: 0 2px 29px rgba(0, 0, 0, 0.05);
-  padding: 20px 0;
+  /* padding: 20px 0; */
   border-radius: 5px;
   z-index: 99;
   border-bottom: 3px solid #49bdf2;
@@ -12242,7 +12251,6 @@ img {
   font-family: var(--font-Inter);
   font-size: 1.3em;
   line-height: 1.8;
-
   font-weight: normal;
 }
 
@@ -13812,6 +13820,7 @@ ul li:hover {
 
 .header-btn li span {
   color: #fff !important;
+  padding: 0px 7px;
 }
 
 .register_style .sub-menu ul {
@@ -13854,3 +13863,48 @@ ul li:hover {
     display: none;
   }
 }
+.form_head {
+  margin-top: 250px;
+}
+
+/* animations side______ */
+@keyframes fadeTop {
+  0% {
+    opacity: 0;
+    transform: translateY(200px); /* Move the element up by 200px */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(
+      0
+    ); /* Move the element back to its original position */
+  }
+}
+
+/* Apply the animation to the .malabar-title element */
+.malabar-title {
+  animation: fadeTop 3s ease-in-out; /* Adjust the duration and timing function as needed */
+}
+.malabar-title-mobile {
+  animation: fadeTop 3s ease-in-out; /* Adjust the duration and timing function as needed */
+}
+
+/* about para */
+.about-para {
+  opacity: 0; /* Initially, make the element transparent */
+  transform: translateX(-100%); /* Move the element to the left */
+  animation: fadeLeft 5s ease-in-out forwards; /* Apply the animation */
+}
+
+@keyframes fadeLeft {
+  0% {
+    opacity: 0; /* Start fully transparent */
+    transform: translateX(-100%); /* Start off-screen to the left */
+  }
+  100% {
+    opacity: 1; /* Fully opaque */
+    transform: translateX(0); /* Back to its original position */
+  }
+}
+
+/* committe section  */
