@@ -14,7 +14,7 @@ const crypto = require("crypto");
 exports.paymentGeneration = async (req, res, delegateData, userId) => {
   try {
     const user = userId;
-    if (isValidObjectId(user)) {
+    if (isValidObjectId(userId)) {
       //const userDetails= //get user details
       const domain = `${req.protocol}://${req.get("host")}`;
       // Generate a unique order id
