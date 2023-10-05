@@ -11,9 +11,9 @@ const { encrypt } = require("../../middleware/ccavutil");
 const dotenv = require("dotenv"); // Import dotenv
 const crypto = require("crypto");
 
-exports.paymentGeneration = async (req, res, delegateData) => {
+exports.paymentGeneration = async (req, res, delegateData, userId) => {
   try {
-    const user = delegateData.user;
+    const user = userId;
     if (isValidObjectId(user)) {
       //const userDetails= //get user details
       const domain = `${req.protocol}://${req.get("host")}`;
@@ -56,28 +56,26 @@ exports.paymentGeneration = async (req, res, delegateData) => {
 
       console.log("interest :- ", delegateData.matterOfInterest);
       console.log("delegateData :- ", delegateData);
-      if (existingUser.commonReg === "commonReg") {
-        existingUser.profession = delegateData.profession;
-        existingUser.regDate = delegateData.regDate;
-        existingUser.matterOfInterest = delegateData.matterOfInterest;
-        existingUser.regType = delegateData.regType;
-        existingUser.image = delegateData.image;
-        existingUser.orderId = orderId;
-        existingUser.amount = amount;
+      existingUser.profession = delegateData.profession;
+      existingUser.regDate = delegateData.regDate;
+      existingUser.matterOfInterest = delegateData.matterOfInterest;
+      existingUser.regType = delegateData.regType;
+      existingUser.image = delegateData.image;
+      existingUser.orderId = orderId;
+      existingUser.amount = amount;
 
-        await existingUser.save();
+      await existingUser.save();
 
-        // Now that the payment is successful and delegate data is saved, send email and WhatsApp message
-        // sendConfirmationEmail(existingUser);
-        sendWhatsAppMessage(existingUser);
+      // Now that the payment is successful and delegate data is saved, send email and WhatsApp message
+      // sendConfirmationEmail(existingUser);
+      sendWhatsAppMessage(existingUser);
 
-        delete req.session.email;
-      }
+      delete req.session.email;
     } else {
-      console.log(err);
+      // console.log(err);
       res.status(404).json({
         success: false,
-        message: err,
+        // message: err,
       });
     }
   } catch (err) {
@@ -129,35 +127,47 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
 
     // Check if a user with the same email already exists
     const existingUser = await Registration.findOne({ email: req.body.email });
+    console.log(existingUser);
 
-    if (!existingUser) {
-      // Handle the case where the user's basic data is not found
-      return res.status(404).json({ error: "User not registered" });
+    // if (!existingUser) {
+    //   // Handle the case where the user's basic data is not found
+    //   return res.status(404).json({ error: "User not registered" });
+    // }
+
+    if (existingUser) {
+      if (
+        existingUser.regType === "attende" ||
+        existingUser.regType === "student" ||
+        existingUser.regType === "delegate"
+      ) {
+        // User has already registered
+        console.log("User has already registered");
+        return res.status(400).json({ error: "User has already registered" });
+      }
     }
 
-    if (
-      existingUser.regType === "attende" ||
-      existingUser.regType === "student" ||
-      existingUser.regType === "delegate"
-    ) {
-      // User has already registered
-      console.log("User has already registered");
-      return res.status(400).json({ error: "User has already registered" });
-    }
+    const delegateData = new Registration({
+      name: req.body.name,
+      gender: req.body.gender,
+      mobileNumber: req.body.contact,
+      email: req.body.email,
+      profession: req.body.profession,
+      regDate: req.body.day,
+      matterOfInterest: req.body.intrest,
+      regType: req.body.type,
+      image: imagePath,
+    });
 
-    if (existingUser.commonReg === "commonReg") {
-      const delegateData = {
-        email: existingUser.email,
-        user: existingUser._id,
-        profession: req.body.profession,
-        regDate: req.body.day,
-        matterOfInterest: req.body.intrest,
-        regType: req.body.type,
-        image: imagePath,
-      };
+    // Save the registration data to the database
+    await delegateData.save();
 
-      exports.paymentGeneration(req, res, delegateData);
-    }
+    const userId = await Registration.findOne({
+      email: req.body.email || delegateData.email,
+    });
+
+    console.log("User ID: ", userId);
+
+    exports.paymentGeneration(req, res, delegateData, userId);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
