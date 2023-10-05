@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-  <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favnew.svg">
-  <head>
-    <title><%= title %></title>
-    <meta name="description" content="<%= metaTags[0].description %>" />
-    <meta name="keywords" content="<%= metaTags[1].keywords %>" />
-    <meta name="author" content="<%= metaTags[2].author %>" />
-    <meta name="robots" content="<%= metaTags[3].robots %>" />
-    <%- include('layout/header.ejs') %>
-  </head>
+<link rel="shortcut icon" type="image/x-icon" href="/assets/images/favnew.svg">
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <meta name="description" content="<%= metaTags[0].description %>" />
+  <meta name="keywords" content="<%= metaTags[1].keywords %>" />
+  <meta name="author" content="<%= metaTags[2].author %>" />
+  <meta name="robots" content="<%= metaTags[3].robots %>" />
+  <%- include('layout/header.ejs') %>
+</head>
+
 <body>
   <div class="main-wrapper">
 
-      <div class="container">
-        <div class="attende-registration" style="margin-top: 100px">
-          <div class="registration-title">
-            <h1>Attendee</h1>
-          </div>
+    <div class="container">
+      <div class="attende-registration" style="margin-top: 100px">
+        <div class="registration-title">
+          <h1>Attendee</h1>
         </div>
       </div>
-      <div class="register-table" style="
+    </div>
+    <div class="register-table" style="
           background-image: url('assets/images/RegisterUnion.png');
           background-size: cover;
           background-position: center center;
@@ -29,102 +33,107 @@
           justify-content: center;
           align-items: center;
         ">
-        <div class="container">
-          <div class="delegate-table-section">
-            <!-- <div class="delegate-title">
+      <div class="container">
+        <div class="delegate-table-section">
+          <!-- <div class="delegate-title">
             <h1>Attendee</h1>
           </div> -->
-            <div class="register-form">
-              <div class="container">
-                <div id="submit-message" class="alert alert-success" style="display: none"></div>
-                <div class="alert alert-info" id="submitting-alert" style="display: none">
-                  Submitting...
-                </div>
-                <form action="/attende" method="post" id="attendeForm">
-                  <input type="hidden" name="type" value="attende" />
-                  <div class="row">
-                    <!-- <div class="col-md-6">
-
+          <div class="register-form">
+            <div class="container">
+              <div id="submit-message" class="alert alert-success" style="display: none"></div>
+              <div class="alert alert-info" id="submitting-alert" style="display: none">
+                Submitting...
+              </div>
+              <form action="/attende" method="post" id="attendeForm">
+                <input type="hidden" name="type" value="attende" />
+                <div class="row form_head">
+                  <div class="col-md-6">
                     <div class="form-group">
                       <label for="name">Name:</label>
-                      <input type="text" id="name" name="name" class="form-control" required>
+                      <input type="text" id="name" name="name" class="form-control" required />
                     </div>
-                  </div> -->
-
-                    <!-- <div class="col-md-6">
+                  </div>
+                  <div class="col-md-6">
                     <div class="form-group">
                       <label for="gender">Gender:</label>
                       <select id="gender" name="gender" class="form-control" required>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
-
+                        <option value="Other">Other</option>
                       </select>
                     </div>
-                  </div> -->
-
-                    <!-- <div class="col-md-6">
+                  </div>
+                  <div class="col-md-6">
                     <div class="form-group">
                       <label for="contact">Contact Number:</label>
-                      <input type="tel" id="contact" name="contact" class="form-control" required>
+                      <input type="tel" id="contact" name="contact" class="form-control" required />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="email">Email ID:</label>
+                      <input type="email" id="email" name="email" class="form-control" required />
+                      <p id="emailError" class="text-danger"></p>
+                    </div>
+                  </div>
+
+
+                  <!-- <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="email">Registered Mail:</label>
+                      <input type="email" id="email" name="email" class="form-control" value="<%= savedEmail %>"
+                        readonly required />
+                      <p id="emailError" class="text-danger"></p>
                     </div>
                   </div> -->
 
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="email">Registered Mail:</label>
-                        <input type="email" id="email" name="email" class="form-control" value="<%= savedEmail %>"
-                          readonly required />
-                        <p id="emailError" class="text-danger"></p>
-                      </div>
-                    </div>
-
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="location">Location, City/Place, Country -
-                          State/District:</label>
-                        <input type="text" id="location" name="location" class="form-control" style="width: 100%"
-                          placeholder="City, Country - State/District" required />
-                      </div>
-                    </div>
-
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="professions">profession:</label>
-                        <select id="professions" name="profession" class="form-control scrollable-dropdown" required>
-                          <option value="education">Education</option>
-                          <option value="literature">Literature</option>
-                          <option value="research">Research</option>
-                          <option value="business">Business</option>
-                          <option value="art">Art</option>
-                          <option value="media">Media</option>
-                          <option value="film">Film</option>
-                          <option value="it">Information Technology</option>
-                          <option value="healthcare">Health Care</option>
-                          <option value="law">Law & Order</option>
-                          <option value="music">Music</option>
-                          <option value="ngo">NGO</option>
-                          <option value="public-service">Public Service</option>
-                          <option value="other">Other</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <%- include('layout/calender.ejs') %> <%- include('layout/matterOfInterest.ejs') %>
-                  </div>
-
-                  <div class="row" style="align-items: center; margin-top: 50px">
-                    <div class="col-12 d-flex justify-content-center">
-                      <button type="submit" class="btn btn-primary" style="border-radius: 20px">
-                        Register
-                      </button>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="location">Location, City/Place, Country -
+                        State/District:</label>
+                      <input type="text" id="location" name="location" class="form-control" style="width: 100%"
+                        placeholder="City, Country - State/District" required />
                     </div>
                   </div>
-                </form>
-              </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="professions">profession:</label>
+                      <select id="professions" name="profession" class="form-control scrollable-dropdown" required>
+                        <option value="education">Education</option>
+                        <option value="literature">Literature</option>
+                        <option value="research">Research</option>
+                        <option value="business">Business</option>
+                        <option value="art">Art</option>
+                        <option value="media">Media</option>
+                        <option value="film">Film</option>
+                        <option value="it">Information Technology</option>
+                        <option value="healthcare">Health Care</option>
+                        <option value="law">Law & Order</option>
+                        <option value="music">Music</option>
+                        <option value="ngo">NGO</option>
+                        <option value="public-service">Public Service</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <%- include('layout/calender.ejs') %> <%- include('layout/matterOfInterest.ejs') %>
+                </div>
+
+                <div class="row" style="align-items: center; margin-top: 50px">
+                  <div class="col-12 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary" style="border-radius: 20px">
+                      Register
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
+    </div>
   </div>
 
   <!-- Footer Start -->

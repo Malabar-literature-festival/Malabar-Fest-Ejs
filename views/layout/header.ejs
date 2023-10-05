@@ -116,7 +116,7 @@
               <li>
                 <a id="reg-drop-down" href="#" class="register_style"><span class="wtstyle"> Register </span></a>
                 <ul class="sub-menu drop-nav">
-                  <li><a href="/common-reg">Delegate Registration</a></li>
+                  <li><a href="/register">Delegate Registration</a></li>
                   <li><a href="/volunter">Volunteer Registration</a></li>
                 </ul>
               </li>
@@ -188,7 +188,7 @@
               <span class="wtstyle">Register</span>
             </a>
             <ul class="sub-menu drop-nav">
-              <li><a href="/common-reg">Delegate Registration</a></li>
+              <li><a href="/register">Delegate Registration</a></li>
               <li><a href="/volunter">Volunteer Registration</a></li>
             </ul>
           </li>
@@ -210,5 +210,33 @@
     if (path === menuItemLink) {
       $(this).addClass("active-menu");
     }
+  });
+</script>
+<!-- about para----- -->
+<script>
+  $(document).ready(function () {
+    var aboutParaElement = $('.about-para');
+
+    // Set initial state - element is transparent and off-screen
+    aboutParaElement.css({
+      opacity: 0,
+      transform: 'translateX(-100%)'
+    });
+
+    $(window).on('scroll', function () {
+      var windowTop = $(window).scrollTop();
+      var aboutParaTop = aboutParaElement.offset().top;
+      var windowHeight = window.innerHeight;
+
+      // Calculate the position where the animation should trigger
+      var triggerPosition = aboutParaTop - windowHeight + (windowHeight / 2);
+
+      // Check if the user has scrolled to the trigger position
+      if (windowTop >= triggerPosition) {
+        aboutParaElement.addClass('fade-in');
+      } else {
+        aboutParaElement.removeClass('fade-in');
+      }
+    });
   });
 </script>

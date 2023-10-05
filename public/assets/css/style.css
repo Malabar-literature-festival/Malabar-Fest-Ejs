@@ -13820,6 +13820,7 @@ ul li:hover {
 
 .header-btn li span {
   color: #fff !important;
+  padding: 0px 7px;
 }
 
 .register_style .sub-menu ul {
@@ -13862,6 +13863,9 @@ ul li:hover {
     display: none;
   }
 }
+.form_head {
+  margin-top: 250px;
+}
 
 /* animations side______ */
 @keyframes fadeTop {
@@ -13884,3 +13888,23 @@ ul li:hover {
 .malabar-title-mobile {
   animation: fadeTop 3s ease-in-out; /* Adjust the duration and timing function as needed */
 }
+
+/* about para */
+.about-para {
+  opacity: 0; /* Initially, make the element transparent */
+  transform: translateX(-100%); /* Move the element to the left */
+  animation: fadeLeft 5s ease-in-out forwards; /* Apply the animation */
+}
+
+@keyframes fadeLeft {
+  0% {
+    opacity: 0; /* Start fully transparent */
+    transform: translateX(-100%); /* Start off-screen to the left */
+  }
+  100% {
+    opacity: 1; /* Fully opaque */
+    transform: translateX(0); /* Back to its original position */
+  }
+}
+
+/* committe section  */
