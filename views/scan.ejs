@@ -297,7 +297,7 @@
                   const value = code.data;
 
                   // Send value to API endpoint
-                  fetch("/validateqr", {
+                  fetch("/scan/validateqr", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ value }),
