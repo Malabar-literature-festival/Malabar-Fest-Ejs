@@ -5,6 +5,8 @@ const upload = require("../../middleware/uploadEjs");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
 const nodemailer = require("nodemailer");
+const qr = require("qrcode");
+const fs = require("fs");
 
 const { default: mongoose, isValidObjectId } = require("mongoose");
 const { encrypt } = require("../../middleware/ccavutil");
@@ -165,8 +167,22 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       email: req.body.email || delegateData.email,
     });
 
-    const Id = userId._id
+    const Id = userId._id;
     console.log("User ID: ", Id);
+
+    //--------------------------------- QR CODE START ---------------------------------
+
+    // Create the QR Code Directory if it doesn't exist
+    const qrCodeDirectory = "./uploads/qrcodes";
+    if (!fs.existsSync(qrCodeDirectory)) {
+      fs.mkdirSync(qrCodeDirectory);
+    }
+
+    // Generate QR CODE and save it as PNG file
+    const qrCodeFileName = `${qrCodeDirectory}/${Id}.png`;
+    await qr.toFile(qrCodeFileName, JSON.stringify(Id));
+
+    //--------------------------------- QR CODE END ---------------------------------
 
     exports.paymentGeneration(req, res, delegateData, Id);
   } catch (error) {

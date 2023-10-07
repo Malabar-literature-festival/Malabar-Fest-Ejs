@@ -63,6 +63,10 @@ const RegistrationSchema = new mongoose.Schema(
     amount: {
       type: String,
     },
+    attended: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

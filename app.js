@@ -41,6 +41,7 @@ var Conditions = require("./routes/ejsRoutes/conditions");
 var AboutMlf = require("./routes/ejsRoutes/aboutMlf");
 var AboutBookPlus = require("./routes/ejsRoutes/aboutBookPlus"); // ADDED NEWS ROUTES-------
 const CommonReg = require("./routes/ejsRoutes/commonReg");
+const Scanner = require("./routes/ejsRoutes/scanner");
 
 // Admin route files
 const auth = require("./routes/auth.js");
@@ -63,7 +64,17 @@ const testimonial = require("./routes/testimonial");
 
 var app = express();
 
-const allowedOrigins = [null, "http://localhost:3000", "http://localhost:3001", "http://localhost:8010", "https://malabarliteraturefestival.com", "https://yellow-desert-0e7088300.3.azurestaticapps.net", "https://test.ccavenue.com", "https://secure.ccavenue.com", "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction"];
+const allowedOrigins = [
+  null,
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "http://localhost:8010",
+  "https://malabarliteraturefestival.com",
+  "https://yellow-desert-0e7088300.3.azurestaticapps.net",
+  "https://test.ccavenue.com",
+  "https://secure.ccavenue.com",
+  "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction",
+];
 
 //cors policy
 app.use(
@@ -72,7 +83,8 @@ app.use(
       console.log("origin", origin);
       // allow requests with no origin (like mobile apps or curl requests)
       if (!origin) return callback(null, true);
-      if (typeof origin === "undefined" || origin === "null") return callback(null, true);
+      if (typeof origin === "undefined" || origin === "null")
+        return callback(null, true);
       if (allowedOrigins.indexOf(origin) === -1) {
         return callback(new Error(origin), false);
       }
@@ -136,6 +148,8 @@ app.use("/terms-conditions", Conditions);
 app.use("/about-Mlf", AboutMlf);
 app.use("/about-book-Plus", AboutBookPlus);
 app.use("/common-reg", CommonReg);
+
+app.use("/scan", Scanner);
 
 // mount Admin routers
 app.use("/api/v1/auth", auth);
