@@ -74,7 +74,6 @@ router.post("/payment-status/:user", async function (req, res, next) {
   } else {
     const registeredUser = await Registration.findById({ _id: user });
     console.log("Payment failed User :- ", registeredUser);
-    await Registration.deleteOne({ _id: user });
     res.render("failed", { title: "Payment Failed", metaTags, registeredUser });
   }
 });
