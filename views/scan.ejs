@@ -101,7 +101,13 @@
       let scanning = false;
 
       navigator.mediaDevices
-        .getUserMedia({ video: true })
+        .getUserMedia({
+          video: {
+            facingMode: {
+              exact: "environment",
+            },
+          },
+        })
         .then((stream) => {
           video.srcObject = stream;
         })
