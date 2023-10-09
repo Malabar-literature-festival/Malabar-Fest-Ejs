@@ -8,31 +8,37 @@
       body {
         display: flex;
         justify-content: center;
-        height: 100%;
-        width: 100vw;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
         background-color: #f5f5f5;
-        margin: 10px;
       }
 
       #qr-scanner-container {
-        position: relative;
-        width: 100%;
+        position: fixed;
+        top: 0;
+        width: 100vw;
         max-width: 400px;
-        font-size: larger;
+        height: 50vh;
+        max-height: 60vh;
         background-color: #000;
-        border-radius: 10px;
+        border-radius: 0px;
         overflow: hidden;
       }
 
       #video {
-        width: 200%;
-        height: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
       #start-button,
       #stop-button {
         position: absolute;
-        bottom: 20px;
+        top: 50px;
         left: 50%;
         transform: translateX(-50%);
         padding: 12px 24px;
@@ -52,7 +58,6 @@
 
       #stop-button {
         background-color: red;
-        display: none;
       }
 
       #stop-button:hover {
@@ -60,11 +65,17 @@
       }
 
       .result {
-        border-radius: 0 0 10px 10px;
+        border-radius: 10px 10px 0 0px;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 50%;
         background: white;
         padding: 10px;
         padding-bottom: 20px;
-        text-align: center;
       }
 
       .instruction {
