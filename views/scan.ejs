@@ -1,336 +1,172 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
-    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <style>
       body {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
-        flex-direction: column;
         background-color: #f5f5f5;
+        margin: 0;
       }
 
       #qr-scanner-container {
-        position: fixed;
-        top: 0;
-        width: 100vw;
+        position: relative;
+        width: 100%;
         max-width: 400px;
-        height: 50vh;
-        max-height: 60vh;
+        font-size: larger;
         background-color: #000;
-        border-radius: 0px;
+        border-radius: 10px;
         overflow: hidden;
       }
 
-      #qr-video {
-        position: absolute;
-        top: 0;
-        left: 0;
+      #video {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        height: auto;
       }
 
-      #qr-overlay {
+      #start-button,
+      #stop-button {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-
-      #qr-scan-line {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background-color: #3f51b5;
-        transform: translateY(-50%);
-        animation: scan 2s linear infinite;
-      }
-
-      @keyframes scan {
-        0% {
-          transform: translateY(-50%);
-        }
-        100% {
-          transform: translateY(50%);
-        }
-      }
-
-      #qr-scan-tips {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        width: 100%;
-        text-align: center;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
         color: #fff;
-        font-size: 16px;
-        font-weight: bold;
-        transform: translateY(-50%);
-      }
-
-      #qr-scan-tips:before {
-        content: "";
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        background-color: #3f51b5;
-        border-radius: 50%;
-        margin-right: 8px;
-        vertical-align: middle;
-      }
-
-      #qr-result {
-        margin-top: 16px;
-        padding: 8px;
-        font-size: 16px;
-        text-align: center;
-        background-color: #fff;
-        border-radius: 8px;
-      }
-
-      #qr-result-heading {
-        font-weight: bold;
-      }
-
-      #qr-result-value {
-        margin-top: 8px;
+        border-radius: 32px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
       }
 
       #start-button {
-        position: absolute;
-        top: 50px;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 12px 24px;
-        font-size: 16px;
-        font-weight: bold;
-        color: #fff;
         background-color: green;
-        border-radius: 32px;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
       }
 
       #stop-button {
-        position: absolute;
-        top: 50px;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 12px 24px;
-        font-size: 16px;
-        font-weight: bold;
-        color: #fff;
         background-color: red;
-        border-radius: 32px;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
+        display: none;
       }
 
       #stop-button:hover {
         background-color: #303f9f;
       }
-      .scanned-data {
-        border-radius: 10px 10px 0 0px;
-        display: flex;
-        align-items: center;
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 50%;
+
+      .result {
+        border-radius: 0 0 10px 10px;
         background: white;
         padding: 10px;
         padding-bottom: 20px;
-      }
-      .delegate-info {
-        margin-top: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 10px;
-        display: flex;
-        flex-wrap: wrap;
-      }
-
-      .delegate-info {
-        margin-top: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 10px;
-        display: flex;
-        flex-wrap: wrap;
-      }
-      .delegate-details {
-        justify-content: center;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-      }
-      .delegate-info h2 {
-        font-size: 1rem;
-        font-weight: bold;
-        margin-bottom: 20px;
-        width: 100%;
-        background: green;
-        padding: 10px;
-        border-radius: 10px;
-        color: white;
         text-align: center;
       }
-      .delegate-info h3 {
-        font-size: 1.2rem;
-        font-weight: bold;
-        margin-bottom: 10px;
+
+      .instruction {
+        position: absolute;
+        z-index: 1;
+        text-align: center;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 10px;
       }
 
-      .delegate-info p {
-        font-size: 1rem;
-        margin: 5px 0;
-      }
-      .delegate-info span {
-        font-size: 0.8rem;
-        margin: 5px 0;
-      }
-      .delegate-info img {
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        margin-right: 20px;
-        object-fit: cover;
+      @media (max-width: 768px) {
+        #qr-scanner-container {
+          max-width: 100%;
+          padding: 0px;
+          border-radius: 0;
+        }
       }
     </style>
   </head>
   <body>
     <div id="qr-scanner-container">
-      <div
-        style="
-          font-weight: bold;
-          position: fixed;
-          z-index: 1;
-          text-align: center;
-          width: auto;
-          background: white;
-          left: 0;
-          right: 0;
-          padding: 10px;
-          margin: auto;
-        "
-      >
-        Scan QR Code
-      </div>
-      <video id="qr-video" autoplay muted playsinline></video>
+      <div class="instruction">Mark Attendee by scanning the QR</div>
+      <video id="video" autoplay muted playsinline></video>
       <canvas id="qr-canvas" style="display: none"></canvas>
-      <button style="display: none" id="stop-button">Stop</button>
-      <button id="start-button">Start</button>
+      <button id="start-button">Start Scanning</button>
+      <button id="stop-button" style="display: none">Stop Scanning</button>
     </div>
-    <div id="scanned-data" class="scanned-data"></div>
+    <div class="result" id="result"></div>
 
     <script>
-      const qrScannerContainer = document.getElementById(
-        "qr-scanner-container"
-      );
+      const video = document.getElementById("video");
       const startButton = document.getElementById("start-button");
       const stopButton = document.getElementById("stop-button");
-      let videoStream;
-      let scanningInterval;
+      const resultDiv = document.getElementById("result");
+      let scanning = false;
 
-      function startScanning() {
-        // Ask user for permission to use their camera
-        navigator.mediaDevices
-          .getUserMedia({
-            video: {
-              facingMode: {
-                exact: "environment",
-              },
-            },
-          })
-          .then(function (stream) {
-            // Create a video element and set it as the source for the stream
-            const video = document.getElementById("qr-video");
-            videoStream = stream;
-            video.srcObject = stream;
-            stopButton.style.display = "block";
-            startButton.style.display = "none";
-
-            video.addEventListener("canplay", function () {
-              // Video dimensions are now available
-              const canvas = document.getElementById("qr-canvas");
-              const canvasContext = canvas.getContext("2d");
-              canvas.width = video.videoWidth;
-              canvas.height = video.videoHeight;
-
-              // Start scanning for QR codes
-              scanningInterval = setInterval(function () {
-                canvasContext.drawImage(
-                  video,
-                  0,
-                  0,
-                  canvas.width,
-                  canvas.height
-                );
-                const imageData = canvasContext.getImageData(
-                  0,
-                  0,
-                  canvas.width,
-                  canvas.height
-                );
-                const code = jsQR(
-                  imageData.data,
-                  imageData.width,
-                  imageData.height
-                );
-                if (code) {
-                  // QR code has been found
-                  const value = code.data;
-
-                  // Send value to API endpoint
-                  fetch("/scan/validateqr", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ value }),
-                  }).then((response) => response.json())
-                  .then((data)=>{
-                    const value = data
-                    const scanresult =         
-                    `<p><span class="delegate-info-label">School Name:</span> ${value}</p>`
-                    document.getElementById("scanned-data").innerHTML = scanresult;
-
-
-                  })
-                }
-              }, 1000);
-            });
-          })
-          .catch(function (error) {
-            console.error("Failed to access camera", error);
-          });
-      }
-
-      function stopScanning() {
-        clearInterval(scanningInterval);
-        stopButton.style.display = "none";
-        startButton.style.display = "block";
-
-        videoStream.getTracks().forEach(function (track) {
-          track.stop();
+      navigator.mediaDevices
+        .getUserMedia({ video: true })
+        .then((stream) => {
+          video.srcObject = stream;
+        })
+        .catch((error) => {
+          console.error("Error accessing camera:", error);
         });
-      }
 
-      startButton.addEventListener("click", startScanning);
-      stopButton.addEventListener("click", stopScanning);
+      video.addEventListener("play", () => {
+        const canvas = document.getElementById("qr-canvas");
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext("2d");
+
+        const startScanning = () => {
+          scanning = true;
+          startButton.style.display = "none";
+          stopButton.style.display = "block";
+          resultDiv.textContent = "Scanning...";
+
+          const scan = () => {
+            if (!scanning) return;
+
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = ctx.getImageData(
+              0,
+              0,
+              canvas.width,
+              canvas.height
+            );
+            const code = jsQR(
+              imageData.data,
+              imageData.width,
+              imageData.height
+            );
+
+            if (code) {
+              // QR code has been found
+              const value = code.data;
+
+              // Send value to API endpoint
+              fetch("/scan/validateqr", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ value }),
+              });
+
+              resultDiv.textContent = "QR Code detected: " + code.data;
+            }
+
+            requestAnimationFrame(scan);
+          };
+
+          requestAnimationFrame(scan);
+        };
+
+        const stopScanning = () => {
+          scanning = false;
+          startButton.style.display = "block";
+          stopButton.style.display = "none";
+          resultDiv.textContent = "";
+        };
+
+        startButton.addEventListener("click", startScanning);
+        stopButton.addEventListener("click", stopScanning);
+      });
     </script>
   </body>
 </html>
