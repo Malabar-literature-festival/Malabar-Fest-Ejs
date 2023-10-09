@@ -156,13 +156,19 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       }
     }
 
+// change date string to date
+const dateStrings = req.body.day;
+const dateArray = dateStrings.split(',').map(dateString => dateString.trim());
+const dateObjects = dateArray.map(dateString => new Date(dateString));
+
+
     const delegateData = new Registration({
       name: req.body.name,
       gender: req.body.gender,
       mobileNumber: req.body.contact,
       email: req.body.email,
       profession: req.body.profession,
-      regDate: req.body.day,
+      regDate: dateObjects,
       matterOfInterest: req.body.intrest,
       institution: req.body.institution,
       category: req.body.category,

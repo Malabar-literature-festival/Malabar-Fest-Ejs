@@ -301,8 +301,15 @@
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ value }),
-                  });
-                  //   .then((response) => response.json());
+                  }).then((response) => response.json())
+                  .then((data)=>{
+                    const value = data
+                    const scanresult =         
+                    `<p><span class="delegate-info-label">School Name:</span> ${value}</p>`
+                    document.getElementById("scanned-data").innerHTML = scanresult;
+
+
+                  })
                 }
               }, 1000);
             });

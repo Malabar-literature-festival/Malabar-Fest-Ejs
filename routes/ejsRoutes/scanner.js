@@ -26,6 +26,7 @@ router.post("/validateqr", async (req, res) => {
       });
       console.log(updateddata);
     }
+    res.json(updateddata)
   } catch (error) {
     console.error(err);
     res.status(500).json({ message: err });
