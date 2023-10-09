@@ -156,11 +156,12 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       }
     }
 
-// change date string to date
-const dateStrings = req.body.day;
-const dateArray = dateStrings.split(',').map(dateString => dateString.trim());
-const dateObjects = dateArray.map(dateString => new Date(dateString));
-
+    // change date string to date
+    const dateStrings = req.body.day;
+    const dateArray = dateStrings
+      .split(",")
+      .map((dateString) => dateString.trim());
+    const dateObjects = dateArray.map((dateString) => new Date(dateString));
 
     const delegateData = new Registration({
       name: req.body.name,
@@ -183,8 +184,22 @@ const dateObjects = dateArray.map(dateString => new Date(dateString));
       email: req.body.email || delegateData.email,
     });
 
-    const Id = userId._id
+    const Id = userId._id;
     console.log("User ID: ", Id);
+
+    //--------------------------------- QR CODE START ---------------------------------
+
+    // Create the QR Code Directory if it doesn't exist
+    const qrCodeDirectory = "./uploads/qrcodes";
+    if (!fs.existsSync(qrCodeDirectory)) {
+      fs.mkdirSync(qrCodeDirectory);
+    }
+
+    // Generate QR CODE and save it as PNG file
+    const qrCodeFileName = `${qrCodeDirectory}/${Id}.png`;
+    await qr.toFile(qrCodeFileName, JSON.stringify(Id));
+
+    //--------------------------------- QR CODE END ---------------------------------
 
     exports.paymentGeneration(req, res, delegateData, Id);
   } catch (error) {
