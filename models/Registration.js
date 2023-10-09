@@ -44,9 +44,11 @@ const RegistrationSchema = new mongoose.Schema(
       type: String,
       enum: ["attende", "delegate", "student"],
     },
-    regDate: {
-      type: Date,
-    },
+    regDate: [
+      {
+        type: Date,
+      },
+    ],
     commonReg: {
       type: String,
       enum: ["commonReg"],
