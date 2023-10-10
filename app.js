@@ -3,7 +3,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-const session = require('express-session');
+const session = require("express-session");
 
 const connectDB = require("./config/db");
 
@@ -39,19 +39,22 @@ var Privacy = require("./routes/privacy");
 var Refund = require("./routes/refund");
 var Conditions = require("./routes/conditions");
 var AboutMlf = require("./routes/aboutMlf");
-var AboutBookPlus = require("./routes/aboutBookPlus");// ADDED NEWS ROUTES-------
+var AboutBookPlus = require("./routes/aboutBookPlus"); // ADDED NEWS ROUTES-------
+var Committe = require("./routes/committe");
+var Events = require("./routes/events");
 
-const CommonReg = require('./routes/commonReg')
-
+const CommonReg = require("./routes/commonReg");
 
 var app = express();
 
 // Configure the session middleware
-app.use(session({
-  secret: 'sessionSecretKey',
-  resave: false,
-  saveUninitialized: true,
-}));
+app.use(
+  session({
+    secret: "sessionSecretKey",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 // Connect to MongoDB database
 connectDB();
@@ -97,7 +100,8 @@ app.use("/terms-conditions", Conditions);
 app.use("/about-Mlf", AboutMlf);
 app.use("/about-book-Plus", AboutBookPlus);
 app.use("/common-reg", CommonReg);
-
+app.use("/committe", Committe);
+app.use("/events", Events);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

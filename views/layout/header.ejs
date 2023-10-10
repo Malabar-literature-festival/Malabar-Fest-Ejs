@@ -94,11 +94,15 @@
           <ul class="main-menu">
             <li class=""><a href="/">Home</a></li>
             <li>
-              <a href="#">About</a>
+              <a href="#">Celebrating Malabar</a>
               <ul class="sub-menu">
-                <li><a href="/about">About Malabar</a></li>
-                <li><a href="/about-Mlf">About MLF</a></li>
-                <li><a href="/about-book-Plus">About Book Plus</a></li>
+                <li><a href=" /about">Tales of Malabar </a></li>
+                <li><a href="/about-Mlf"> Malabar literature Festival </a></li>
+
+                <li><a href="/about-book-Plus">Book Plus Publishers</a></li>
+
+                <!-- <li><a href="/committe"> Organizing Committee </a></li> -->
+
               </ul>
             </li>
             <li>
@@ -106,13 +110,24 @@
                 Programme
               </a> -->
               <a href="/programe" target="_blank" attributes-list>
-                Programme
+                Sessions
               </a>
             </li>
-            <!-- <li><a href="/speaker">Speakers</a></li>
-            <li><a href="/gallery">Gallery</a></li> -->
-            <li><a href="/contact">Contact</a></li>
-            <div class="header-btn d-none d-md-block">
+            <!-- <li><a href="/speaker">Speakers</a></li> -->
+            <!-- <li><a href="/events">Events</a></li> -->
+            <li><a href="/gallery">Gallery</a></li>
+            <li>
+              <a href="#">Reach Us</a>
+              <ul class="sub-menu">
+                <li><a href="/faq">FAQs</a></li>
+                <li><a href="/contact">Contact </a></li>
+
+
+              </ul>
+            </li>
+            <!-- <li><a href="/contact"></a> -->
+            </li>
+            <div class="header-btn d-none d-md-block register-drop">
               <li>
                 <a id="reg-drop-down" href="#" class="register_style"><span class="wtstyle"> Register </span></a>
                 <ul class="sub-menu drop-nav">
@@ -166,18 +181,29 @@
 
 
         <li>
-          <a href="#">About</a>
+          <a href="#">Celebrating Malabar</a>
           <ul class="sub-menu">
-            <li><a href="/about">About Malabar</a></li>
-            <li><a href="/about-Mlf">About MLF</a></li>
-            <li><a href="/about-book-Plus">About Book Plus</a></li>
+            <li><a href="/about">Tales of Malabar </a></li>
+            <li><a href="/about-Mlf"> Malabar literature Festival </a></li>
+
+            <li><a href="/about-book-Plus">Book Plus Publishers</a></li>
+            <!-- <li><a href="/committe"> Organizing Committee </a></li> -->
           </ul>
         </li>
 
-        <li><a href="/programe">Programme</a></li>
-        <!-- <li><a href="/speaker">Speaker</a></li>
-        <li><a href="/gallery">Gallery</a></li> -->
-        <li><a href="/contact">Contact</a></li>
+        <li><a href="/programe"> Sessions</a></li>
+        <li><a href="/speaker">Speaker</a></li>
+        <!-- <li><a href="/events">Events</a></li> -->
+        <li><a href="/gallery">Gallery</a></li>
+        <li>
+          <a href="#">Reach Us</a>
+          <ul class="sub-menu">
+            <li><a href="/faq">FAQs</a></li>
+            <li><a href="/contact">Contact </a></li>
+
+
+          </ul>
+        </li>
         <div class="header-btn">
           <li>
             <a id="reg-drop-down" href="#" class="register_style" style="
@@ -237,6 +263,31 @@
       } else {
         aboutParaElement.removeClass('fade-in');
       }
+    });
+  });
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    var carousel = $(".carousel");
+    var slides = $(".carousel-slide");
+    var slideWidth = slides.first().width();
+    var currentIndex = 0;
+
+    function showSlide(index) {
+      currentIndex = index;
+      var offset = -index * slideWidth;
+      carousel.css("transform", "translateX(" + offset + "px)");
+    }
+
+    $(".next").click(function () {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+    });
+
+    $(".prev").click(function () {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      showSlide(currentIndex);
     });
   });
 </script>

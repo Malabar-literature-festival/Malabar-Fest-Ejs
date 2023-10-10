@@ -51,11 +51,12 @@
       <div class="about"
         style="background-image: url('assets/images/about.png'); position: absolute; z-index: 10; margin-top: -33px; background-repeat: no-repeat; background-size: cover; width: 100%;     min-height: 700px; object-fit:contain; overflow:hidden;">
         <div class="about-title">
-          <h1>About</h1>
+          <h1>Celebrating Malabar</h1>
         </div>
         <h2 class="about-para">
-          <%= aboutData[0].aboutMlf %>
-
+          <%= aboutData[0].aboutMlf.substring(0, 700) %>... <br> <a href="/about-mlf">
+              <p>see more...</p>
+            </a>
         </h2>
 
       </div>
@@ -71,9 +72,9 @@
     <div class="container wave_bg">
 
       <div class="row">
-        <div class="organizing-commite-section fade-left">
+        <!-- <div class="organizing-commite-section fade-left">
           <div class="org-committe-title">
-            <h1>Creative Team</h1>
+            <h1></h1>
           </div>
           <div class="organizing-imgs p-5">
 
@@ -90,7 +91,7 @@
                     </div>
                   </div>
                 </div>
-                <!-- <div class="col-md-6 col-12">
+                <div class="col-md-6 col-12">
                   <div class="organizing_box">
                     <div class="org-img">
                       <img src="assets/images/kp.png" alt="">
@@ -100,12 +101,12 @@
                       </div>
                     </div>
                   </div>
-                </div> -->
+                </div>
               </div>
 
             </div>
           </div>
-          <!-- 
+          
           <div class="organizing-imgs">
             <div class="container">
               <div class="row">
@@ -129,8 +130,8 @@
               </div>
             </div>
 
-          </div> -->
-        </div>
+          </div>
+        </div>  -->
       </div>
 
 
@@ -210,12 +211,12 @@
 
 
   <!-- Water wave animation -->
-  <div>
+  <div class="wave-boat">
     <img src="assets/images/withboat.png" alt="" style="width: 100%">
   </div>
   <!-- Speakers End -->
-  <!-- <div class="container">
-    <div class="news-section">
+  <div class="container">
+    <!-- <div class="news-section">
       <h1>News And Updates</h1>
     </div>
     <div class="news-details">
@@ -379,39 +380,46 @@
 
 
 
-    </div>
-  </div> -->
+    </div> -->
+  </div>
   </div>
 
 
   <!-- Pricing Start -->
-  <!-- <div class="wheel"
+  <div class="wheel"
     style="background-image: url('assets/images/rewheel.png'); background-size: cover; background-position: center; overflow: hidden; position: relative;">
     <div class="timer" style="display: flex;">
       <div class="circle" id="circle">
         <span id="number1">0</span>
         <div class="timer-title">
-          <h3>Speakers</h3>
+          <h3>Sessions</h3>
         </div>
 
       </div>
       <div class="circle" id="circle">
         <span id="number2">0</span>
         <div class="timer-title">
-          <h3>Attendence</h3>
+          <h3>Venues </h3>
         </div>
       </div>
       <div class="circle" id="circle">
         <span id="number3">0</span>
         <div class="timer-title">
-          <h3>sessions</h3>
+          <h3>National & International Speakers</h3>
         </div>
       </div>
+      <div class="circle" id="circle">
+        <span id="number4">0</span>
+        <div class="timer-title">
+          <h3>Participants </h3>
+        </div>
+      </div>
+
     </div>
     <a href="/common-reg"> <img class="registration-continue" src="assets/images/registration-continue.svg" alt="img"
         style="position: absolute; left: 50%; transform: translateX(-50%); bottom: 10%; width:35%;"></a>
 
-  </div> -->
+  </div>
 
 
   <!-- <div class="sponsors">
@@ -428,6 +436,22 @@
   <div class="sponsors-imgs2" style="padding: 50px;">
     <img src="assets/images/mlf-banner.png" alt="sponsors" style="max-width: 100%; height: auto; border-radius: 30px;">
   </div>
+  <!-- <div class="featured-carousel owl-carousel">
+    <div class="carousel-slide full-width">
+      <img src="assets/images/mlf-banner.png" alt="Slide 1">
+    </div>
+    <div class="carousel-slide">
+      <img
+        src="https://img.freepik.com/free-photo/college-girls-studying-together_23-2149038414.jpg?t=st=1696728785~exp=1696729385~hmac=2cd4a3a8753d53749e5dafcd2555367ed8e8b2092024f99d1c5b76a0215f9286"
+        alt="Slide 2">
+    </div>
+    <div class="carousel-slide">
+      <img src="assets/images/mlf-banner.png" alt="Slide 3">
+    </div>
+
+  </div> -->
+
+
   <!-- <div class="testimonial" style="background-image:url('assets/images/grill.png');padding-bottom: 100px;">
     <div class="testimonial-title">
       <h1>Testimonials</h1>
@@ -545,22 +569,26 @@
       const circle1 = document.getElementById('circle1');
       const numberElement1 = document.getElementById('number1');
       let currentNumber1 = 0;
-      const targetNumber1 = 250;
+      const targetNumber1 = 100;
       const increment1 = (targetNumber1 - currentNumber1) / (3000 / 30);
 
       const circle2 = document.getElementById('circle2');
       const numberElement2 = document.getElementById('number2');
       let currentNumber2 = 0;
-      const targetNumber2 = 100000; // Correct way to represent 100,000
-
-
+      const targetNumber2 = 4; // Correct way to represent 100,000
       const increment2 = (targetNumber2 - currentNumber2) / (9000 / 90);
 
       const circle3 = document.getElementById('circle3');
       const numberElement3 = document.getElementById('number3');
       let currentNumber3 = 0;
-      const targetNumber3 = 100;
+      const targetNumber3 = 250;
       const increment3 = (targetNumber3 - currentNumber3) / (3000 / 30);
+
+      const circle4 = document.getElementById('circle4');
+      const numberElement4 = document.getElementById('number4');
+      let currentNumber4 = 0;
+      const targetNumber4 = 300000;
+      const increment4 = (targetNumber4 - currentNumber4) / (9000 / 90);
 
       function animateNumber1() {
         currentNumber1 += increment1;
@@ -579,7 +607,6 @@
         numberElement2.textContent = `${formattedNumber}+`;
       }
 
-
       function animateNumber3() {
         currentNumber3 += increment3;
         if (currentNumber3 >= targetNumber3) {
@@ -588,10 +615,21 @@
         numberElement3.textContent = ` ${Math.round(currentNumber3)}+`;
       }
 
+      function animateNumber4() {
+        currentNumber4 += increment4;
+        if (currentNumber4 >= targetNumber4) {
+          currentNumber4 = targetNumber4;
+        }
+        const formattedNumber = Math.round(currentNumber4).toLocaleString(); // Add commas for thousands
+        numberElement4.textContent = `${formattedNumber}+`;
+      }
+
       setInterval(animateNumber1, 30);
       setInterval(animateNumber2, 90);
       setInterval(animateNumber3, 30);
+      setInterval(animateNumber4, 90);
     </script>
+
 
 
 </body>
