@@ -5,6 +5,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const session = require("express-session");
 const cors = require("cors");
+
 const connectDB = require("./config/db");
 
 // Load env vars
@@ -61,6 +62,9 @@ const news = require("./routes/news");
 const speakers = require("./routes/speakers");
 const registration = require("./routes/registration");
 const testimonial = require("./routes/testimonial");
+var Committe = require("./routes/ejsRoutes/committe");
+var Events = require("./routes/ejsRoutes/events");
+
 
 var app = express();
 
@@ -170,6 +174,8 @@ app.use("/api/v1/speakers", speakers);
 app.use("/api/v1/registration", registration);
 app.use("/api/v1/testimonial", testimonial);
 
+app.use("/committe", Committe);
+app.use("/events", Events);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

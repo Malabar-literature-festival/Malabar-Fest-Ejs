@@ -1275,7 +1275,22 @@ label {
 
 .header-navigation .sub-menu {
   position: absolute;
-  top: 110%;
+  top: 80% !important;
+  left: 0;
+  width: 270px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 29px rgba(0, 0, 0, 0.05);
+  /* padding: 20px 0; */
+  border-radius: 5px;
+  z-index: 99;
+  border-bottom: 3px solid #49bdf2;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.register-drop .sub-menu {
+  position: absolute;
+  top: 120% !important;
   left: 0;
   width: 270px;
   background-color: #ffffff;
@@ -12259,7 +12274,7 @@ img {
     font-size: 35px;
   }
   .about-title h1 {
-    font-size: 35px;
+    font-size: 30px;
   }
 
   .about-para {
@@ -12462,7 +12477,7 @@ h2 {
 
 .card {
   border: none;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   margin: auto;
 }
 
@@ -12506,7 +12521,7 @@ h2 {
 
 @media (max-width: 950px) {
   .meeta-speakers-wrap {
-    /* margin-top: 100px; */
+    margin-top: 170px;
   }
 
   .speaker-title h1 {
@@ -12684,15 +12699,18 @@ li a {
 
 #number1,
 #number2,
-#number3 {
+#number3,
+#number4 {
   color: #00acee;
 }
 
 .timer-title h3 {
   color: #fff;
-  font-size: 2vw;
+  font-size: 16px;
   /* font-family: var(--font-Inter); */
-  font-weight: 100;
+  font-weight: 400;
+  padding: 8px;
+  text-align: center;
 }
 
 .timer {
@@ -12713,6 +12731,9 @@ li a {
 }
 
 @media (max-width: 768px) {
+  .wave-boat {
+    margin-top: 150px;
+  }
   .speaker-name {
     top: 40%;
   }
@@ -13754,7 +13775,7 @@ ul li:hover {
 
 @media (max-width: 600px) {
   .wheel {
-    /* display: none; */
+    display: none;
   }
   .delegate-table-section {
     margin-top: -180px !important;
@@ -13817,7 +13838,9 @@ ul li:hover {
   margin-top: 22px !important;
   border-radius: 55px;
 }
-
+.register_head {
+  padding: 180px;
+}
 .header-btn li span {
   color: #fff !important;
   padding: 0px 7px;
@@ -13856,6 +13879,14 @@ ul li:hover {
   display: none;
 }
 @media (max-width: 700px) {
+  .register_head {
+    padding: 0px;
+    margin-top: 170px;
+    margin-bottom: 20px;
+  }
+  .card-mobile {
+    padding-top: 35px !important;
+  }
   .formobile {
     display: block;
   }
@@ -13906,5 +13937,3 @@ ul li:hover {
     transform: translateX(0); /* Back to its original position */
   }
 }
-
-/* committe section  */
