@@ -65,7 +65,6 @@ const testimonial = require("./routes/testimonial");
 var Committe = require("./routes/ejsRoutes/committe");
 var Events = require("./routes/ejsRoutes/events");
 
-const CommonReg = require("./routes/commonReg");
 
 var app = express();
 
