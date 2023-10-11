@@ -12,6 +12,9 @@ const connectDB = require("./config/db");
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config/.env" });
 
+// Sitemap
+// const sitemap = require("./public/sitemap/sitemap.xml");
+
 var indexRouter = require("./routes/ejsRoutes/index");
 var homeRouter = require("./routes/ejsRoutes/home");
 var usersRouter = require("./routes/ejsRoutes/users");
@@ -65,7 +68,6 @@ const testimonial = require("./routes/testimonial");
 var Committe = require("./routes/ejsRoutes/committe");
 var Events = require("./routes/ejsRoutes/events");
 
-
 var app = express();
 
 const allowedOrigins = [
@@ -105,9 +107,15 @@ app.use(
     saveUninitialized: true,
   })
 );
-
+//
 // Connect to MongoDB database
 connectDB();
+
+// Sitemap
+app.get("/sitemap.xml", function (req, res) {
+  res.set("Content-Type", "text/xml");
+  res.sendFile(path.join(__dirname, "public", "sitemap", "sitemap.xml"));
+});
 
 app.use("/images", express.static("./public/user"));
 app.use("/images", express.static("./public/proteincategory"));
@@ -126,7 +134,7 @@ app.use("/uploads", express.static("uploads")); // Serve uploaded images
 app.use("/", indexRouter);
 // app.use("/home", homeRouter);
 app.use("/users", usersRouter);
-app.use("/about", aboutRouter);
+app.use("/Tales-of-Malabar", aboutRouter);
 app.use("/contact", contactRouter);
 app.use("/event-list", event_listRouter);
 app.use("/event-single", event_singleRouter);
@@ -143,14 +151,14 @@ app.use("/delegate", Delegate);
 app.use("/student", Student);
 app.use("/speaker", Speaker);
 app.use("/volunter", Volunter);
-app.use("/programe", Programe);
+app.use("/Sessions", Programe);
 app.use("/news", News);
 // LATESTS-----
 app.use("/privacy", Privacy);
 app.use("/refund", Refund);
 app.use("/terms-conditions", Conditions);
-app.use("/about-Mlf", AboutMlf);
-app.use("/about-book-Plus", AboutBookPlus);
+app.use("/Malabar-literature-Festival", AboutMlf);
+app.use("/Book-Plus-Publishers", AboutBookPlus);
 app.use("/common-reg", CommonReg);
 
 app.use("/scan", Scanner);
