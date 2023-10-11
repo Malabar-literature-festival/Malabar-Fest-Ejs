@@ -1,35 +1,39 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-  <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favnew.svg">
-  <head>
-    <title><%= title %></title>
-    <meta name="description" content="<%= metaTags[0].description %>" />
-    <meta name="keywords" content="<%= metaTags[1].keywords %>" />
-    <meta name="author" content="<%= metaTags[2].author %>" />
-    <meta name="robots" content="<%= metaTags[3].robots %>" />
-    <%- include('layout/header.ejs') %>
-  </head>
+<link rel="shortcut icon" type="image/x-icon" href="/assets/images/favnew.svg">
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <meta name="description" content="<%= metaTags[0].description %>" />
+  <meta name="keywords" content="<%= metaTags[1].keywords %>" />
+  <meta name="author" content="<%= metaTags[2].author %>" />
+  <meta name="robots" content="<%= metaTags[3].robots %>" />
+  <%- include('layout/header.ejs') %>
+</head>
+
 <body>
   <div class="main-wrapper">
 
-      <div style="background-image: url('assets/images/upgrill.png')">
-        <div class="container">
-          <div class="about-malabar">
-            <div class="about-mlf-title">
-              <h1>About Book Plus</h1>
-            </div>
-            <div class="about-mlf-img">
-              <img src="assets/images/aboutmlf.png" alt="" style="max-width: 100%; height: auto" />
-            </div>
+    <div style="background-image: url('assets/images/upgrill.png')">
+      <div class="container">
+        <div class="about-malabar">
+          <div class="about-mlf-title">
+            <h1>Book Plus Publishers</h1>
+          </div>
+          <div class="about-mlf-img">
+            <!-- <img src="assets/images/aboutmlf.png" alt="" style="max-width: 100%; height: auto" /> -->
+          </div>
 
-            <div class="about-mlf-para">
-              <p>
-                <%= aboutData[0].aboutBookPlus %>
-              </p>
-            </div>
+          <div class="about-mlf-para">
+            <p>
+              <%= aboutData[0].aboutBookPlus %>
+            </p>
           </div>
         </div>
       </div>
+    </div>
   </div>
 
   <!-- Footer Start -->

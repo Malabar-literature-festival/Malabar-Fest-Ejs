@@ -55,7 +55,9 @@
   <link rel="stylesheet" href="assets/css/css/owl.carousel.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
   <link rel="stylesheet" href="assets/css/css/style.css">
-  <title><%= title %></title>
+  <title>
+    <%= title %>
+  </title>
   <meta name="description" content="<%= metaTags[0].description %>" />
   <meta name="keywords" content="<%= metaTags[1].keywords %>" />
   <meta name="author" content="<%= metaTags[2].author %>" />
@@ -69,150 +71,118 @@
     <div style="background-image: url('assets/images/grill.png');">
       <div class="container" style="margin-top: 150px;">
         <div class="gallery-about-title">
-          <h1>About Malabar</h1>
+          <!-- <h1>About Malabar</h1> -->
         </div>
         <div class="gallery">
           <div class="column">
             <figure>
               <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[0].image }` %>">
-              <figcaption>
-                <%= galleryData[0].title %>
-              </figcaption>
+
             </figure>
             <figure>
               <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[1].image }` %>" />
-              <figcaption>
-                <%= galleryData[1].title %>
-              </figcaption>
+
             </figure>
             <figure>
               <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[2].image }` %>" />
-              <figcaption>
-                <%= galleryData[2].title %>
-              </figcaption>
+
             </figure>
             <figure>
               <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[3].image }` %>" />
-              <figcaption>
-                <%= galleryData[3].title %>
-              </figcaption>
+
             </figure>
           </div>
           <div class="column">
             <figure>
               <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[4].image }` %>" />
-              <figcaption>
-                <%= galleryData[4].title %>
-              </figcaption>
+
             </figure>
             <figure>
               <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[5].image }` %>" />
-              <figcaption>
-                <%= galleryData[5].title %>
-              </figcaption>
+
             </figure>
             <figure>
               <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[6].image }` %>" />
-              <figcaption>
-                <%= galleryData[6].title %>
-              </figcaption>
+
             </figure>
             <figure>
               <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[7].image }` %>" />
-              <figcaption>
-                <%= galleryData[7].title %>
-              </figcaption>
+
             </figure>
           </div>
           <div class="column">
             <figure>
               <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[8].image }` %>">
-              <figcaption>
-                <%= galleryData[8].title %>
-              </figcaption>
+
             </figure>
             <figure>
               <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[9].image }` %>" />
-              <figcaption>
-                <%= galleryData[9].title %>
-              </figcaption>
+
             </figure>
             <figure>
               <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[10].image }` %>" />
-              <figcaption>
-                <%= galleryData[10].title %>
-              </figcaption>
+
             </figure>
             <figure>
               <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[11].image }` %>" />
-              <figcaption>
-                <%= galleryData[11].title %>
-              </figcaption>
+
             </figure>
           </div>
           <div class="column">
             <figure>
               <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[12].image }` %>" />
-              <figcaption>
-                <%= galleryData[12].title %>
-              </figcaption>
+
             </figure>
             <figure>
               <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[0].image }` %>" />
-              <figcaption>
-                <%= galleryData[0].title %>
-              </figcaption>
+
             </figure>
             <figure>
               <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[3].image }` %>" />
-              <figcaption>
-                <%= galleryData[3].title %>
-              </figcaption>
+
             </figure>
             <figure>
               <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[1].image }` %>" />
-              <figcaption>
-                <%= galleryData[1].title %>
-              </figcaption>
+
             </figure>
           </div>
         </div>
       </div>
     </div>
 
-        <!-- Footer Start -->
-        <%- include('layout/footer.ejs') %>
-        <!-- Footer End -->
+    <!-- Footer Start -->
+    <%- include('layout/footer.ejs') %>
+      <!-- Footer End -->
 
-    <!-- JS
+      <!-- JS
   ============================================ -->
 
-    <!-- carousel & jQuery JS -->
+      <!-- carousel & jQuery JS -->
 
-    <script src="assets/js/js/jquery.min.js"></script>
-    <script src="assets/js/js/owl.carousel.min.js"></script>
-    <script src="assets/js/js/main.js"></script>
+      <script src="assets/js/js/jquery.min.js"></script>
+      <script src="assets/js/js/owl.carousel.min.js"></script>
+      <script src="assets/js/js/main.js"></script>
 
-    <!-- Modernizer & jQuery JS -->
-    <script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
-    <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
+      <!-- Modernizer & jQuery JS -->
+      <script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
+      <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
 
-    <!-- Bootstrap JS -->
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+      <!-- Bootstrap JS -->
+      <script src="assets/js/popper.min.js"></script>
+      <script src="assets/js/bootstrap.min.js"></script>
 
-    <!-- Plugins JS -->
-    <script src="assets/js/swiper-bundle.min.js"></script>
-    <script src="assets/js/back-to-top.js"></script>
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/jquery.counterup.min.js"></script>
-    <script src="assets/js/waypoints.min.js"></script>
-    <script src="assets/js/aos.js"></script>
-    <script src="assets/js/jquery.nice-select.min.js"></script>
-    <!-- Main JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
-    <script src="assets/js/main.js"></script>
+      <!-- Plugins JS -->
+      <script src="assets/js/swiper-bundle.min.js"></script>
+      <script src="assets/js/back-to-top.js"></script>
+      <script src="assets/js/jquery.magnific-popup.min.js"></script>
+      <script src="assets/js/jquery.counterup.min.js"></script>
+      <script src="assets/js/waypoints.min.js"></script>
+      <script src="assets/js/aos.js"></script>
+      <script src="assets/js/jquery.nice-select.min.js"></script>
+      <!-- Main JS -->
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
+      <script src="assets/js/main.js"></script>
 
 </body>
 

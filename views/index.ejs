@@ -212,11 +212,11 @@
 
   <!-- Water wave animation -->
   <div class="wave-boat">
-    <img src="assets/images/withboat.png" alt="" style="width: 100%">
+    <!-- <img src="assets/images/withboat.png" alt="" style="width: 100%"> -->
   </div>
   <!-- Speakers End -->
   <div class="container">
-    <!-- <div class="news-section">
+    <div class="news-section">
       <h1>News And Updates</h1>
     </div>
     <div class="news-details">
@@ -235,7 +235,7 @@
               MINUTES AGO</span>
           </div>
           <p>
-            <%= newsData[0].description %>
+            <%= newsData[0].description.substring(0,500) %>....
           </p>
           <div>
             <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
@@ -264,7 +264,7 @@
                   </li>
                 </ul>
                 <P class="card-text-para">
-                  <%= newsData[0].description %>
+                  <%= newsData[0].description.substring(0,250) %>...
                 </P>
                 <div>
                   <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
@@ -289,33 +289,7 @@
                   </li>
                 </ul>
                 <P class="card-text-para">
-                  <%= newsData[0].description %>
-                </P>
-                <div>
-                  <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="item">
-            <div class="card" style="width: 18rem; ">
-              <img class="card-img-top"
-                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[0].image }` %>"
-                alt="Card image cap" style="border-radius: 10px;">
-              <div class="card-body">
-                <h5 class="card-title">
-                  <%= newsData[0].title %>
-                </h5>
-                <ul style="list-style: none; padding-left: 0;">
-                  <li style="display: inline; font-size: 12px"> <span
-                      style="font-size: 20px; color: #49BDF2;">&bull;</span> 32 MINUTES
-                    AGO
-                  </li>
-                </ul>
-                <P class="card-text-para">
-                  <%= newsData[0].description %>
+                  <%= newsData[0].description.substring(0,250) %>...
                 </P>
                 <div>
                   <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
@@ -341,7 +315,33 @@
                   </li>
                 </ul>
                 <P class="card-text-para">
-                  <%= newsData[0].description %>
+                  <%= newsData[0].description.substring(0,250) %>...
+                </P>
+                <div>
+                  <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="item">
+            <div class="card" style="width: 18rem; ">
+              <img class="card-img-top"
+                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[0].image }` %>"
+                alt="Card image cap" style="border-radius: 10px;">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= newsData[0].title %>
+                </h5>
+                <ul style="list-style: none; padding-left: 0;">
+                  <li style="display: inline; font-size: 12px"> <span
+                      style="font-size: 20px; color: #49BDF2;">&bull;</span> 32 MINUTES
+                    AGO
+                  </li>
+                </ul>
+                <P class="card-text-para">
+                  <%= newsData[0].description.substring(0,250) %>...
                 </P>
                 <div>
                   <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
@@ -366,7 +366,7 @@
                   </li>
                 </ul>
                 <P class="card-text-para">
-                  <%= newsData[0].description %>
+                  <%= newsData[0].description.substring(0,250) %>...
                 </P>
                 <div>
                   <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
@@ -380,7 +380,7 @@
 
 
 
-    </div> -->
+    </div>
   </div>
   </div>
 
