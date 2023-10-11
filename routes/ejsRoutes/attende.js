@@ -60,18 +60,26 @@ router.post("/", async function (req, res) {
     //   return res.status(404).json({ error: "User not registered" });
     // }
 
-    if (
-      existingUser.regType === "attende" ||
-      existingUser.regType === "student" ||
-      existingUser.regType === "delegate"
-    ) {
-      console.log("User has already registered");
-      return res.status(400).json({ error: "User has already registered" });
+    if (existingUser) {
+      if (
+        existingUser.regType === "attende" ||
+        existingUser.regType === "student" ||
+        existingUser.regType === "delegate"
+      ) {
+        // User has already registered
+        console.log("User has already registered");
+        return res.status(400).json({ error: "User has already registered" });
+      }
     }
+
 
     const savedEmail = req.session.email;
 
       // Update the existing "commonReg" registration data
+      existingUser.name = req.body.name,
+      existingUser.gender = req.body.gender,
+      existingUser.mobileNumber = req.body.contact,
+      existingUser.email = req.body.email,
       existingUser.district = req.body.location;
       existingUser.profession = req.body.profession;
       existingUser.regDate = req.body.day;
@@ -79,6 +87,20 @@ router.post("/", async function (req, res) {
       existingUser.regType = req.body.type;
       await existingUser.save();
 
+      const delegateData = new Registration({
+        name: req.body.name,
+        gender: req.body.gender,
+        mobileNumber: req.body.contact,
+        email: req.body.email,
+        district: req.body.location,
+        profession: req.body.profession,
+        regDate: req.body.day,
+        matterOfInterest: req.body.intrest, // Fix the typo in the field name
+        regType: req.body.type,
+      });
+  
+      // Save the registration data to the database
+      await delegateData.save();
       delete req.session.email;
 
       let mobileNumber = existingUser.mobileNumber;

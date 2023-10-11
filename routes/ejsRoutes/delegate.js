@@ -69,7 +69,7 @@ exports.paymentGeneration = async (req, res, delegateData, userId) => {
       await existingUser.save();
 
       // Now that the payment is successful and delegate data is saved, send email and WhatsApp message
-      // sendConfirmationEmail(existingUser);
+      sendConfirmationEmail(existingUser);
       sendWhatsAppMessage(existingUser);
 
       delete req.session.email;
@@ -268,7 +268,7 @@ function sendConfirmationEmail(existingUser) {
     from: process.env.SMTP_FROM_EMAIL,
     to: existingUser.email,
     subject: `Registration Confirmation for ${existingUser.regType} at Malabar Literature Festival 2023`,
-    text: html,
+    html: html,
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
