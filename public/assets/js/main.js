@@ -124,10 +124,10 @@ $(function () {
             $this.parent("li").removeClass("active-expand");
             $this.siblings("ul").slideUp();
           } else {
-            $this.parent("li").addClass("active-expand");
-            $this.closest("li").siblings("li").find("ul:visible").slideUp();
-            $this.closest("li").siblings("li").removeClass("active-expand");
-            $this.siblings("ul").slideDown();
+            // $this.parent("li").addClass("active-expand");
+            // $this.closest("li").siblings("li").find("ul:visible").slideUp();
+            // $this.closest("li").siblings("li").removeClass("active-expand");
+            // $this.siblings("ul").slideDown();
           }
         }
       }
