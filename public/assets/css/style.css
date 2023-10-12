@@ -263,17 +263,23 @@ textarea:-ms-input-placeholder {
   padding-top: 150px;
   /* padding-bottom: 150px; */
 }
+.contact-padding {
+  padding-top: 0px;
+}
 
 @media only screen and (max-width: 1199px) {
   .section-padding {
     padding-top: 110px;
     padding-bottom: 110px;
   }
+  .contact-padding {
+    padding-top: 0px !important;
+  } 
 }
 
 @media only screen and (max-width: 991px) {
   .section-padding {
-    padding-top: 80px;
+    padding-top: 80px !important;
     padding-bottom: 80px;
   }
 }
