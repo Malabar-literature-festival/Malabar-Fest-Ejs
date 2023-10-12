@@ -21,7 +21,7 @@ const { encrypt } = require("../../middleware/ccavutil");
 const dotenv = require("dotenv"); // Import dotenv
 const crypto = require("crypto");
 
-exports.paymentGeneration = async (req, res, delegateData, userId) => {
+exports.paymentGeneration = async (req, res, delegateData, userId, qrCodeFileName) => {
   try {
     const user = userId;
     if (isValidObjectId(user)) {
@@ -78,7 +78,7 @@ exports.paymentGeneration = async (req, res, delegateData, userId) => {
       await existingUser.save();
 
       // Now that the payment is successful and delegate data is saved, send email and WhatsApp message
-      // sendConfirmationEmail(existingUser);
+      sendConfirmationEmail(existingUser, qrCodeFileName);
       sendWhatsAppMessage(existingUser);
 
       delete req.session.email;
@@ -201,7 +201,7 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
 
     //--------------------------------- QR CODE END ---------------------------------
 
-    exports.paymentGeneration(req, res, delegateData, Id);
+    exports.paymentGeneration(req, res, delegateData, Id, qrCodeFileName);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
@@ -242,7 +242,7 @@ function generateUniqueOrderId() {
 }
 
 // Function to send confirmation email
-function sendConfirmationEmail(existingUser) {
+function sendConfirmationEmail(existingUser, qrCodeFileName) {
   console.log("Existing User", existingUser);
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -253,7 +253,12 @@ function sendConfirmationEmail(existingUser) {
       pass: process.env.SMTP_PASSWORD,
     },
   });
-  const html = `
+
+  const mailOptions = {
+    from: process.env.SMTP_FROM_EMAIL,
+    to: existingUser.email,
+    subject: `Registration Confirmation for ${existingUser.regType} at Malabar Literature Festival 2023`,
+    text: `
     Dear ${existingUser.name},
         
     We are thrilled to inform you that your registration for the Malabar Literature Festival 2023 has been successfully confirmed! We can't wait to welcome you to this exciting literary event, which will take place at the beautiful Calicut Beach from November 30th to December 3rd.
@@ -272,13 +277,14 @@ function sendConfirmationEmail(existingUser) {
     
     Malabar Literature Festival Organizing Committee
     Help Desk: +91 9539327252
-  `;
-
-  const mailOptions = {
-    from: process.env.SMTP_FROM_EMAIL,
-    to: existingUser.email,
-    subject: `Registration Confirmation for ${existingUser.regType} at Malabar Literature Festival 2023`,
-    text: html,
+  `,
+    attachments: [
+      {
+        filename: "qr-code.png",
+        path: qrCodeFileName,
+        cid: "qrcodeImage",
+      },
+    ],
   };
 
   transporter.sendMail(mailOptions, function (error, info) {

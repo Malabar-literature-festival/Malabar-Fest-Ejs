@@ -4,6 +4,8 @@ const Registration = require("../../models/Registration");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
 const nodemailer = require("nodemailer");
+const qr = require("qrcode");
+const fs = require("fs");
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -72,44 +74,58 @@ router.post("/", async function (req, res) {
       }
     }
 
+    // change date string to date
+    const dateStrings = req.body.day;
+    const dateArray = dateStrings
+      .split(",")
+      .map((dateString) => dateString.trim());
+    const dateObjects = dateArray.map((dateString) => new Date(dateString));
 
-    const savedEmail = req.session.email;
+    const delegateData = new Registration({
+      name: req.body.name,
+      gender: req.body.gender,
+      mobileNumber: req.body.contact,
+      email: req.body.email,
+      district: req.body.location,
+      profession: req.body.profession,
+      regDate: dateObjects,
+      matterOfInterest: req.body.intrest, // Fix the typo in the field name
+      regType: req.body.type,
+    });
 
-      // Update the existing "commonReg" registration data
-      existingUser.name = req.body.name,
-      existingUser.gender = req.body.gender,
-      existingUser.mobileNumber = req.body.contact,
-      existingUser.email = req.body.email,
-      existingUser.district = req.body.location;
-      existingUser.profession = req.body.profession;
-      existingUser.regDate = req.body.day;
-      existingUser.matterOfInterest = req.body.intrest; // Fix the typo in the field name
-      existingUser.regType = req.body.type;
-      await existingUser.save();
+    // Save the registration data to the database
+    await delegateData.save();
 
-      const delegateData = new Registration({
-        name: req.body.name,
-        gender: req.body.gender,
-        mobileNumber: req.body.contact,
-        email: req.body.email,
-        district: req.body.location,
-        profession: req.body.profession,
-        regDate: req.body.day,
-        matterOfInterest: req.body.intrest, // Fix the typo in the field name
-        regType: req.body.type,
-      });
-  
-      // Save the registration data to the database
-      await delegateData.save();
-      delete req.session.email;
+    const userId = await Registration.findOne({
+      email: req.body.email || delegateData.email,
+    });
 
-      let mobileNumber = existingUser.mobileNumber;
+    const Id = userId._id;
+    console.log("User ID: ", Id);
 
-      if (!mobileNumber.startsWith("91")) {
-        mobileNumber = "91" + mobileNumber;
-      }
-      const WhatsappMessage = `
-      Dear ${existingUser.name},
+    //--------------------------------- QR CODE START ---------------------------------
+
+    // Create the QR Code Directory if it doesn't exist
+    const qrCodeDirectory = "./uploads/qrcodes";
+    if (!fs.existsSync(qrCodeDirectory)) {
+      fs.mkdirSync(qrCodeDirectory);
+    }
+
+    // Generate QR CODE and save it as PNG file
+    const qrCodeFileName = `${qrCodeDirectory}/${Id}.png`;
+    await qr.toFile(qrCodeFileName, JSON.stringify(Id));
+
+    //--------------------------------- QR CODE END ---------------------------------
+
+    let mobileNumber = delegateData.mobileNumber;
+
+    sendConfirmationEmail(delegateData, qrCodeFileName);
+
+    if (!mobileNumber.startsWith("91")) {
+      mobileNumber = "91" + mobileNumber;
+    }
+    const WhatsappMessage = `
+      Dear ${delegateData.name},
 
       We are thrilled to inform you that your registration for the Malabar Literature Festival 2023 has been successfully confirmed! We can't wait to welcome you to this exciting literary event, which will take place at the beautiful Calicut Beach from November 30th to December 3rd.
       
@@ -123,32 +139,54 @@ router.post("/", async function (req, res) {
       Help Desk: +91 9539327252
       `;
 
-      // Send a WhatsApp message using the WhatsApp API
-      const whatsappApiUrl = "https://text.dxing.in/api/send";
-      const whatsappData = {
-        number: mobileNumber,
-        type: "text",
-        message: WhatsappMessage,
-        instance_id: "64FD58E3440E2",
-        access_token: "64afe205189a4",
-      };
+    // Send a WhatsApp message using the WhatsApp API
+    const whatsappApiUrl = "https://text.dxing.in/api/send";
+    const whatsappData = {
+      number: mobileNumber,
+      type: "text",
+      message: WhatsappMessage,
+      instance_id: "64FD58E3440E2",
+      access_token: "64afe205189a4",
+    };
 
-      // Send the WhatsApp message using Axios or another HTTP library
-      axios
-        .post(whatsappApiUrl, whatsappData)
-        .then(function (response) {
-          console.log("WhatsApp message sent successfully:", response.data);
-          return res.status(200).json({ message: "Registration Successful" });
-        })
-        .catch(function (error) {
-          console.error("Error sending WhatsApp message:", error);
-          return res
-            .status(500)
-            .json({ error: "Error sending WhatsApp message" });
-        });
-    
-    const html = `
-    Dear ${existingUser.name},
+    // Send the WhatsApp message using Axios or another HTTP library
+    axios
+      .post(whatsappApiUrl, whatsappData)
+      .then(function (response) {
+        console.log("WhatsApp message sent successfully:", response.data);
+        return res.status(200).json({ message: "Registration Successful" });
+      })
+      .catch(function (error) {
+        console.error("Error sending WhatsApp message:", error);
+        return res
+          .status(500)
+          .json({ error: "Error sending WhatsApp message" });
+      });
+  } catch (error) {
+    delete req.session.email;
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+function sendConfirmationEmail(delegateData, qrCodeFileName) {
+  console.log("Existing User", delegateData);
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT,
+    secure: true,
+    auth: {
+      user: process.env.SMTP_USERNAME,
+      pass: process.env.SMTP_PASSWORD,
+    },
+  });
+
+  const mailOptions = {
+    from: process.env.SMTP_FROM_EMAIL,
+    to: delegateData.email,
+    subject: `Registration Confirmation for ${delegateData.regType} at Malabar Literature Festival 2023`,
+    text: `
+    Dear ${delegateData.name},
         
     We are thrilled to inform you that your registration for the Malabar Literature Festival 2023 has been successfully confirmed! We can't wait to welcome you to this exciting literary event, which will take place at the beautiful Calicut Beach from November 30th to December 3rd.
     
@@ -166,43 +204,23 @@ router.post("/", async function (req, res) {
     
     Malabar Literature Festival Organizing Committee
     Help Desk: +91 9539327252
-    `;
+  `,
+    attachments: [
+      {
+        filename: "qr-code.png",
+        path: qrCodeFileName,
+        cid: "qrcodeImage",
+      },
+    ],
+  };
 
-    const mailOptions = {
-      from: process.env.SMTP_FROM_EMAIL,
-      to: existingUser.email,
-      subject: `Registration Confirmation for ${existingUser.regType} at Malabar Literature Festival 2023`,
-      text: html,
-    };
-
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.error("Error sending email:", error);
-        return res.status(500);
-      } else {
-        console.log("Email sent successfully:", info.response);
-        return res.status(200);
-      }
-    });
-  } catch (error) {
-    delete req.session.email;
-    console.error(error);
-    return res.status(500).json({ error: "Internal server error" });
-  }
-});
-
-router.post("/check-email", async function (req, res, next) {
-  try {
-    const existingUser = await Registration.findOne({ email: req.body.email });
-    if (existingUser) {
-      return res.json({ error: "Email already exists" });
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.error("Error sending email:", error);
+    } else {
+      console.log("Email sent successfully:", info.response);
     }
-
-    return res.json({});
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: "Internal server error" });
-  }
-});
+  });
+}
 
 module.exports = router;
