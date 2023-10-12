@@ -72,6 +72,10 @@ const RegistrationSchema = new mongoose.Schema(
     qrImage: {
       type: String,
     },
+    paymentStatus: {
+      type: Boolean,
+      default: false
+    }
   },
   { timestamps: true }
 );
