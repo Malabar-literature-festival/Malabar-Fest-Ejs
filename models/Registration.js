@@ -69,6 +69,9 @@ const RegistrationSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    qrImage: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
