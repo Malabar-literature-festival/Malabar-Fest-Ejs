@@ -134,7 +134,7 @@ app.use("/uploads", express.static("uploads")); // Serve uploaded images
 app.use("/", indexRouter);
 // app.use("/home", homeRouter);
 app.use("/users", usersRouter);
-app.use("/Tales-of-Malabar", aboutRouter);
+app.use("/tales-of-malabar", aboutRouter);
 app.use("/contact", contactRouter);
 app.use("/event-list", event_listRouter);
 app.use("/event-single", event_singleRouter);
@@ -157,8 +157,8 @@ app.use("/news", News);
 app.use("/privacy", Privacy);
 app.use("/refund", Refund);
 app.use("/terms-conditions", Conditions);
-app.use("/Malabar-literature-Festival", AboutMlf);
-app.use("/Book-Plus-Publishers", AboutBookPlus);
+app.use("/malabar-literature-festival", AboutMlf);
+app.use("/book-plus-publishers", AboutBookPlus);
 app.use("/common-reg", CommonReg);
 
 app.use("/scan", Scanner);
