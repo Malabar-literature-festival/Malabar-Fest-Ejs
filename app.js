@@ -66,6 +66,7 @@ const speakers = require("./routes/speakers");
 const registration = require("./routes/registration");
 const testimonial = require("./routes/testimonial");
 const pendingReg = require("./routes/pendingReg");
+const pendingPayment = require("./routes/pendingPayment");
 // ----------------------------------------------------
 var Committe = require("./routes/ejsRoutes/committe");
 var Events = require("./routes/ejsRoutes/events");
@@ -184,6 +185,7 @@ app.use("/api/v1/speakers", speakers);
 app.use("/api/v1/registration", registration);
 app.use("/api/v1/testimonial", testimonial);
 app.use("/api/v1/pending-reg", pendingReg);
+app.use("/api/v1/pending-payment", pendingPayment);
 
 app.use("/committe", Committe);
 app.use("/events", Events);
