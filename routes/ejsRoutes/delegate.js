@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const Registration = require("../../models/Registration");
+const TempReg = require("../../models/TempReg");
 const upload = require("../../middleware/uploadEjs");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
@@ -57,7 +58,7 @@ exports.paymentGeneration = async (
      </form>
    `);
 
-      const existingUser = await Registration.findOne({
+      const existingUser = await TempReg.findOne({
         email: delegateData.email,
       });
       console.log(existingUser);
@@ -161,7 +162,19 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       .map((dateString) => dateString.trim());
     const dateObjects = dateArray.map((dateString) => new Date(dateString));
 
-    const delegateData = new Registration({
+    // const delegateData = new Registration({
+    //   name: req.body.name,
+    //   gender: req.body.gender,
+    //   mobileNumber: req.body.contact,
+    //   email: req.body.email,
+    //   profession: req.body.profession,
+    //   regDate: dateObjects,
+    //   matterOfInterest: req.body.intrest,
+    //   regType: req.body.type,
+    //   image: imagePath,
+    // });
+
+    const delegateData = new TempReg({
       name: req.body.name,
       gender: req.body.gender,
       mobileNumber: req.body.contact,
@@ -176,7 +189,7 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
     // Save the registration data to the database
     await delegateData.save();
 
-    const userId = await Registration.findOne({
+    const userId = await TempReg.findOne({
       email: req.body.email || delegateData.email,
     });
 

@@ -4,6 +4,7 @@ var router = express.Router();
 const crypto = require("crypto");
 const Registration = require("../../models/Registration");
 const { default: axios } = require("axios");
+const TempReg = require("../../models/TempReg");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -28,6 +29,7 @@ router.get("/", function (req, res, next) {
     "Malabar Literature Festival | Celebrating History, Language, and Culture";
   res.render("register", { title, metaTags });
 });
+// Payment status route
 router.post("/payment-status/:user", async function (req, res, next) {
   try {
     const title =
@@ -49,10 +51,8 @@ router.post("/payment-status/:user", async function (req, res, next) {
       },
     ];
 
-    // Your encryption code here
     var md5 = crypto.createHash("md5").update(process.env.WORKINGKEY).digest();
     var keyBase64 = Buffer.from(md5).toString("base64");
-    // Initializing Vector and then convert it to a base64 string
     var ivBase64 = Buffer.from([
       0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b,
       0x0c, 0x0d, 0x0e, 0x0f,
@@ -60,7 +60,6 @@ router.post("/payment-status/:user", async function (req, res, next) {
     var encryption = req.body.encResp;
     ccavResponse = decrypt(encryption, keyBase64, ivBase64);
 
-    // The final response
     const responseArray = ccavResponse.split("&").reduce((acc, pair) => {
       const [key, value] = pair.split("=");
       acc[key] = value;
@@ -69,12 +68,34 @@ router.post("/payment-status/:user", async function (req, res, next) {
 
     const { user } = req.params;
     console.log("User :- ", user);
-    
-    // Store 'user' in local storage
-    localStorage.setItem("user", user);
 
     if (responseArray["order_status"] === "Success") {
-      const registeredUser = await Registration.findById({ _id: user });
+      const tempRegData = await TempReg.findById(user);
+
+      console.log("tempRegData::", tempRegData)
+      if (tempRegData) {
+        var registrationData = new Registration({
+          name: tempRegData.name,
+          gender: tempRegData.gender,
+          mobileNumber: tempRegData.mobileNumber,
+          email: tempRegData.email,
+          profession: tempRegData.profession,
+          regDate: tempRegData.regDate,
+          matterOfInterest: tempRegData.matterOfInterest,
+          regType: tempRegData.regType,
+          image: tempRegData.image,
+          amount: tempRegData.amount,
+          orderId: tempRegData.orderId,
+        });
+
+        // Save the registration data to the Registration collection
+        await registrationData.save();
+
+        // Delete the tempRegData as it's no longer needed
+        await TempReg.findByIdAndRemove(user);
+      }
+
+      const registeredUser = await Registration.findById(registrationData._id);
       console.log("Payment Success User :- ", registeredUser);
       res.render("success", {
         title: "Payment Success",
@@ -82,7 +103,7 @@ router.post("/payment-status/:user", async function (req, res, next) {
         registeredUser,
       });
     } else {
-      const registeredUser = await Registration.findById({ _id: user });
+      const registeredUser = await TempReg.findById(user);
       console.log("Payment failed User :- ", registeredUser);
       res.render("failed", {
         title: "Payment Failed",

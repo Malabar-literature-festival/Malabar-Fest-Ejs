@@ -80,4 +80,4 @@ const RegistrationSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Registration", RegistrationSchema);
+module.exports = mongoose.model("TempRegistration", RegistrationSchema);
