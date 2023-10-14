@@ -43,57 +43,40 @@
       </div>
 
       <div class="news-details">
-        <div class="row news-details-head">
-          <div class="col-12 col-xl-6 news-details-head-img">
-            <!-- <img src="assets/images/news1.png" alt=""> -->
-            <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData.image }` %>" alt="" />
-          </div>
-          <div class="col-12 col-xl-6">
-            <h1>
-              <%= newsData.title %>
-            </h1>
-            <div class="dates">
-              <h6 style="display: inline">Latest</h6>
-              <span class="time" style="display: inline; padding-left: 10px">32 MINUTES AGO</span>
-            </div>
-            <p>
-              <%= newsData.description.substring(0,350) %>...
-            </p>
-            <div>
-              <a href="/news/<%= newsData._id %>">
-                <button class="readmore">Read More</button></a>
-            </div>
-          </div>
-        </div>
+
 
         <div class="row news-details-carousel" style="display: flex; margin-top: 50px">
-          <% news.forEach(newsData=> { %>
-
-            <div class="card" style="width: 18rem">
-              <img class="card-img-top"
-                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData.image }` %>"
-                alt="Card image cap" style="border-radius: 10px" />
-              <div class="card-body">
-                <h5 class="card-title">
-                  <%= newsData.title %>
-                </h5>
-                <ul style="list-style: none; padding-left: 0">
-                  <li style="display: inline">
-                    <span style="font-size: 20px; color: #49bdf2">&bull;</span>
-                    32 MINUTES AGO
-                  </li>
-                </ul>
-                <P class="card-text-para">
-                  <%= newsData.description.substring(0,350) %>...
-                </P>
-                <div>
-                  <a href="/news/<%= newsData._id %>">
-                    <button class="readmore">Read More</button></a>
+          <div class="featured-carousel owl-carousel">
+            <% news.forEach(newsData=> { %>
+              <div class="item">
+                <div class="card" style="width: 18rem">
+                  <img class="card-img-top"
+                    src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData.image }` %>"
+                    alt="Card image cap" style="border-radius: 10px" />
+                  <div class="card-body">
+                    <h5 class="card-title">
+                      <%= newsData.title %>
+                    </h5>
+                    <ul style="list-style: none; padding-left: 0">
+                      <li style="display: inline">
+                        <span style="font-size: 20px; color: #49bdf2">&bull;</span>
+                        <%= newsData.date %>
+                      </li>
+                    </ul>
+                    <P class="card-text-para">
+                      <%= newsData.description.substring(0,350) %>...
+                    </P>
+                    <div>
+                      <a href="/news/<%= newsData._id %>">
+                        <button class="readmore">Read More</button></a>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <% }); %>
+
+              <% }); %>
+          </div>
         </div>
       </div>
     </div>

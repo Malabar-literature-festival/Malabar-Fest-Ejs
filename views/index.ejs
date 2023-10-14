@@ -231,8 +231,9 @@
           </h1>
           <div class="dates">
             <h6 style="display: inline; font-size: 10px">Latest</h6><span class="time"
-              style="display: inline; padding-left: 10px;font-size: 10px">32
-              MINUTES AGO</span>
+              style="display: inline; padding-left: 10px;font-size: 10px">
+              <%= newsData[0].date %>
+            </span>
           </div>
           <p>
             <%= newsData[0].description.substring(0,500) %>....
@@ -248,132 +249,33 @@
 
       <div class="col-md-12 mt-5 ">
         <div class="featured-carousel owl-carousel">
-          <div class="item">
-            <div class="card" style="width: 18rem; ">
-              <img class="card-img-top"
-                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[0].image }` %>"
-                alt="Card image cap" style="border-radius: 10px;">
-              <div class="card-body">
-                <h5 class="card-title">
-                  <%= newsData[0].title %>
-                </h5>
-                <ul style="list-style: none; padding-left: 0;">
-                  <li style="display: inline; font-size: 12px;"> <span
-                      style="font-size: 20px; color: #49BDF2;">&bull;</span> 32 MINUTES
-                    AGO
-                  </li>
-                </ul>
-                <P class="card-text-para">
-                  <%= newsData[0].description.substring(0,250) %>...
-                </P>
-                <div>
-                  <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
+
+          <% newsData.forEach(function(newsItem) { %>
+            <div class="item">
+              <div class="card" style="width: 18rem;">
+                <img class="card-img-top"
+                  src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${newsItem.image}` %>"
+                  alt="Card image cap" style="border-radius: 10px;">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= newsItem.title %>
+                  </h5>
+                  <ul style="list-style: none; padding-left: 0;">
+                    <li style="display: inline; font-size: 12px">
+                      <span style="font-size: 20px; color: #49BDF2;">&bull;</span>
+                      <%= newsItem.date %>
+                    </li>
+                  </ul>
+                  <p class="card-text-para">
+                    <%= newsItem.description.substring(0, 250) %>...
+                  </p>
+                  <div>
+                    <a href="/news/<%= newsItem._id %>"><button class="readmore">Read More</button></a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="item">
-            <div class="card" style="width: 18rem; ">
-              <img class="card-img-top"
-                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[0].image }` %>"
-                alt="Card image cap" style="border-radius: 10px;">
-              <div class="card-body">
-                <h5 class="card-title">
-                  <%= newsData[0].title %>
-                </h5>
-                <ul style="list-style: none; padding-left: 0;">
-                  <li style="display: inline; font-size: 12px"> <span
-                      style="font-size: 20px; color: #49BDF2;">&bull;</span> 32 MINUTES
-                    AGO
-                  </li>
-                </ul>
-                <P class="card-text-para">
-                  <%= newsData[0].description.substring(0,250) %>...
-                </P>
-                <div>
-                  <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="item">
-            <div class="card" style="width: 18rem; ">
-              <img class="card-img-top"
-                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[0].image }` %>"
-                alt="Card image cap" style="border-radius: 10px;">
-              <div class="card-body">
-                <h5 class="card-title">
-                  <%= newsData[0].title %>
-                </h5>
-                <ul style="list-style: none; padding-left: 0;">
-                  <li style="display: inline; font-size: 12px"> <span
-                      style="font-size: 20px; color: #49BDF2;">&bull;</span> 32 MINUTES
-                    AGO
-                  </li>
-                </ul>
-                <P class="card-text-para">
-                  <%= newsData[0].description.substring(0,250) %>...
-                </P>
-                <div>
-                  <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="item">
-            <div class="card" style="width: 18rem; ">
-              <img class="card-img-top"
-                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[0].image }` %>"
-                alt="Card image cap" style="border-radius: 10px;">
-              <div class="card-body">
-                <h5 class="card-title">
-                  <%= newsData[0].title %>
-                </h5>
-                <ul style="list-style: none; padding-left: 0;">
-                  <li style="display: inline; font-size: 12px"> <span
-                      style="font-size: 20px; color: #49BDF2;">&bull;</span> 32 MINUTES
-                    AGO
-                  </li>
-                </ul>
-                <P class="card-text-para">
-                  <%= newsData[0].description.substring(0,250) %>...
-                </P>
-                <div>
-                  <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="card" style="width: 18rem; ">
-              <img class="card-img-top"
-                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[0].image }` %>"
-                alt="Card image cap" style="border-radius: 10px;">
-              <div class="card-body">
-                <h5 class="card-title">
-                  <%= newsData[0].title %>
-                </h5>
-                <ul style="list-style: none; padding-left: 0;">
-                  <li style="display: inline; font-size: 12px"> <span
-                      style="font-size: 20px; color: #49BDF2;">&bull;</span> 32 MINUTES
-                    AGO
-                  </li>
-                </ul>
-                <P class="card-text-para">
-                  <%= newsData[0].description.substring(0,250) %>...
-                </P>
-                <div>
-                  <a href="/news/<%= newsData[0]._id %>"> <button class="readmore">Read More</button></a>
-                </div>
-              </div>
-            </div>
-          </div>
+            <% }); %>
         </div>
       </div>
 
