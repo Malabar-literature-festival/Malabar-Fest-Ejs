@@ -13124,7 +13124,7 @@ figcaption {
 .header-programe-img img {
   max-width: 100%;
   height: auto;
-  object-fit: scale-down;
+  object-fit: scale-down !important;
   max-height: 500px;
 }
 
@@ -13965,6 +13965,10 @@ ul li:hover {
   padding-top: 3px;
   padding-bottom: 30px;
   line-height: normal;
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 15px;
 }
 .event-cards-sections {
   display: flex;
@@ -13973,7 +13977,7 @@ ul li:hover {
   background-color: #23a4dd;
   width: 23rem;
   height: auto;
-  border: 1px solid #cdb3ff;
+  border: 1px solid #fff;
   border-radius: 30px;
   margin: 10px;
   overflow: hidden;
@@ -14122,7 +14126,7 @@ ul li:hover {
   }
   .event-box {
     width: 23rem;
-    border: 1px solid #8161bf;
+    border: 1px solid #fff;
     border-radius: 30px;
     margin: 10px auto !important; /* Center horizontally */
     overflow: hidden;
