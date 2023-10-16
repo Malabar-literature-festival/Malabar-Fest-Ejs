@@ -14001,7 +14001,7 @@ ul li:hover {
   line-height: normal;
   font-size: 20px;
   font-family: var(--font-fabulous);
-  text-align: justify;
+  text-align: center;
 }
 .event-box-section {
   position: relative;
