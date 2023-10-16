@@ -12716,7 +12716,7 @@ li a {
 }
 
 .timer-title h3 {
-  color: #fff;
+  color: #000;
   font-size: 16px;
   /* font-family: var(--font-Inter); */
   font-weight: 400;
@@ -12728,7 +12728,7 @@ li a {
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 50%;
+  top: 58%;
   left: 50%;
   transform: translate(-50%, -60%);
   width: 100%;
@@ -13124,7 +13124,7 @@ figcaption {
 .header-programe-img img {
   max-width: 100%;
   height: auto;
-  object-fit: scale-down;
+  object-fit: scale-down !important;
   max-height: 500px;
 }
 
@@ -13965,6 +13965,10 @@ ul li:hover {
   padding-top: 3px;
   padding-bottom: 30px;
   line-height: normal;
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 15px;
 }
 .event-cards-sections {
   display: flex;
@@ -13973,7 +13977,7 @@ ul li:hover {
   background-color: #23a4dd;
   width: 23rem;
   height: auto;
-  border: 1px solid #cdb3ff;
+  border: 1px solid #fff;
   border-radius: 30px;
   margin: 10px;
   overflow: hidden;
@@ -13988,7 +13992,7 @@ ul li:hover {
   padding-top: 10px;
 }
 .event-content {
-  padding: 20px 30px !important;
+  padding: 10px 0px !important;
 }
 
 .event-content-head-title p {
@@ -13997,6 +14001,7 @@ ul li:hover {
   line-height: normal;
   font-size: 20px;
   font-family: var(--font-fabulous);
+  text-align: center;
 }
 .event-box-section {
   position: relative;
@@ -14122,7 +14127,7 @@ ul li:hover {
   }
   .event-box {
     width: 23rem;
-    border: 1px solid #8161bf;
+    border: 1px solid #fff;
     border-radius: 30px;
     margin: 10px auto !important; /* Center horizontally */
     overflow: hidden;
@@ -14172,4 +14177,13 @@ ul li:hover {
   border: 1px solid #c149b1;
   border-radius: 10px;
   background-color: #43264e;
+}
+.event_card_inner-title {
+  color: #fff !important;
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 12px;
+  padding-bottom: 15px;
+  text-align: center;
 }
