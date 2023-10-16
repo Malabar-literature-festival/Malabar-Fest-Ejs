@@ -240,8 +240,34 @@
   -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
 }
+.Documentary {
+  text-align: center !important;
+  line-height: initial;
+  padding-bottom: 20px;
+}
 @media (max-width: 600px) {
   .owl-carousel .owl-dots {
     display: none;
   }
+  .Documentary {
+    display: none;
+  }
+  .event_card_inner-title_mobile {
+    display: block !important;
+    color: #fff !important;
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+    text-decoration-skip-ink: none;
+    text-underline-offset: 12px;
+    padding-bottom: 15px;
+    text-align: center;
+  }
+}
+.event_card_inner-title_mobile {
+  display: none;
+}
+.Documentary {
+  text-align: center;
+  line-height: initial;
+  padding-bottom: 20px;
 }
