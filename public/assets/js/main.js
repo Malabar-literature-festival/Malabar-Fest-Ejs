@@ -405,10 +405,10 @@ $(function () {
       Counter Up
     -----------------------------------*/
 
-  $(".counter").counterUp({
-    delay: 10,
-    time: 1500,
-  });
+  // $(".counter").counterUp({
+  //   delay: 10,
+  //   time: 1500,
+  // });
 
   /*--
 		MagnificPopup video view 
