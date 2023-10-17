@@ -232,7 +232,11 @@
           <div class="dates">
             <h6 style="display: inline; font-size: 10px">Latest</h6><span class="time"
               style="display: inline; padding-left: 10px;font-size: 10px">
-              <%= newsData[0].date %>
+              <% const date=new Date(newsData[0].date); %>
+                <%= date.toLocaleDateString(undefined, { weekday: 'long' , year: 'numeric' , month: 'long' ,
+                  day: 'numeric' }) %>
+
+
             </span>
           </div>
           <p>
@@ -258,16 +262,19 @@
                   alt="Card image cap" style="border-radius: 10px;">
                 <div class="card-body">
                   <h5 class="card-title">
-                    <%= newsItem.title %>
+                    <%= newsItem.title.substring(0,40) %>...
                   </h5>
                   <ul style="list-style: none; padding-left: 0;">
                     <li style="display: inline; font-size: 12px">
                       <span style="font-size: 20px; color: #49BDF2;">&bull;</span>
-                      <%= newsItem.date %>
+                      <% const date=new Date(newsItem.date); %>
+                        <%= date.toLocaleDateString(undefined, { weekday: 'long' , year: 'numeric' , month: 'long' ,
+                          day: 'numeric' }) %>
+                          <!-- <%= newsItem.date %> -->
                     </li>
                   </ul>
                   <p class="card-text-para">
-                    <%= newsItem.description.substring(0, 250) %>...
+                    <%= newsItem.description.substring(0, 220) %>...
                   </p>
                   <div>
                     <a href="/news/<%= newsItem._id %>"><button class="readmore">Read More</button></a>
@@ -288,40 +295,39 @@
 
 
   <!-- Pricing Start -->
-  <!-- <div class="wheel"
+  <!-- <div class="wheel" id="animation-container"
     style="background-image: url('assets/images/withboat.png'); background-size: cover; background-position: center; overflow: hidden; position: relative; width: 100%;">
     <div class="timer" style="display: flex;">
-      <div class="circle" id="circle">
+      <div class="circle" id="circle1">
         <span id="number1">0</span>
         <div class="timer-title">
           <h3>Sessions</h3>
         </div>
-
       </div>
-      <div class="circle" id="circle">
+      <div class="circle" id="circle2">
         <span id="number2">0</span>
         <div class="timer-title">
-          <h3>Venues </h3>
+          <h3>Venues</h3>
         </div>
       </div>
-      <div class="circle" id="circle">
+      <div class="circle" id="circle3">
         <span id="number3">0</span>
         <div class="timer-title">
           <h3>National & International Speakers</h3>
         </div>
       </div>
-      <div class="circle" id="circle">
+      <div class="circle" id="circle4">
         <span id="number4">0</span>
         <div class="timer-title">
-          <h3>Participants </h3>
+          <h3>Participants</h3>
         </div>
       </div>
-
     </div>
     <a href="/register"> <img class="registration-continue" src="assets/images/registration-continue.svg" alt="img"
-        style="position: absolute; left: 50%; transform: translateX(-50%); bottom: 1%; width:35%;"></a>
-
+        style="position: absolute; left: 50%; transform: translateX(-50%); bottom: 1%; width: 35%;"></a>
   </div> -->
+
+
 
 
   <!-- <div class="sponsors">
@@ -334,7 +340,7 @@
       </div>
 
     </div>
-  </div> -->
+  </div>
   <div class="sponsors-imgs2" style="padding: 50px;">
     <img src="assets/images/mlf-banner.png" alt="sponsors" style="max-width: 100%; height: auto; border-radius: 30px;">
   </div>
@@ -468,69 +474,99 @@
 
 
     <script>
-      const circle1 = document.getElementById('circle1');
-      const numberElement1 = document.getElementById('number1');
-      let currentNumber1 = 0;
-      const targetNumber1 = 100;
-      const increment1 = (targetNumber1 - currentNumber1) / (3000 / 30);
+      document.addEventListener("DOMContentLoaded", function () {
+        const animationContainer = document.getElementById('animation-container');
+        const options = {
+          threshold: 0.5, // Trigger animation when the element is at least 50% in the viewport
+        };
 
-      const circle2 = document.getElementById('circle2');
-      const numberElement2 = document.getElementById('number2');
-      let currentNumber2 = 0;
-      const targetNumber2 = 4; // Correct way to represent 100,000
-      const increment2 = (targetNumber2 - currentNumber2) / (9000 / 90);
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Start the animation when the element is in the viewport
+              animateNumbers();
+              observer.unobserve(entry.target);
+            }
+          });
+        }, options);
 
-      const circle3 = document.getElementById('circle3');
-      const numberElement3 = document.getElementById('number3');
-      let currentNumber3 = 0;
-      const targetNumber3 = 250;
-      const increment3 = (targetNumber3 - currentNumber3) / (3000 / 30);
+        // Observe the animation container
+        observer.observe(animationContainer);
 
-      const circle4 = document.getElementById('circle4');
-      const numberElement4 = document.getElementById('number4');
-      let currentNumber4 = 0;
-      const targetNumber4 = 300000;
-      const increment4 = (targetNumber4 - currentNumber4) / (9000 / 90);
+        // Your animation code
+        function animateNumbers() {
+          const circle1 = document.getElementById('circle1');
+          const numberElement1 = document.getElementById('number1');
+          let currentNumber1 = 0;
+          const targetNumber1 = 100;
+          const increment1 = (targetNumber1 - currentNumber1) / (3000 / 30);
 
-      function animateNumber1() {
-        currentNumber1 += increment1;
-        if (currentNumber1 >= targetNumber1) {
-          currentNumber1 = targetNumber1;
+          const circle2 = document.getElementById('circle2');
+          const numberElement2 = document.getElementById('number2');
+          let currentNumber2 = 0;
+          const targetNumber2 = 4;
+          const increment2 = (targetNumber2 - currentNumber2) / (9000 / 90);
+
+          const circle3 = document.getElementById('circle3');
+          const numberElement3 = document.getElementById('number3');
+          let currentNumber3 = 0;
+          const targetNumber3 = 250;
+          const increment3 = (targetNumber3 - currentNumber3) / (3000 / 30);
+
+          const circle4 = document.getElementById('circle4');
+          const numberElement4 = document.getElementById('number4');
+          let currentNumber4 = 0;
+          const targetNumber4 = 300000;
+          const increment4 = (targetNumber4 - currentNumber4) / (9000 / 90);
+
+          function animateNumber1() {
+            if (currentNumber1 < targetNumber1) {
+              currentNumber1 += increment1;
+              if (currentNumber1 >= targetNumber1) {
+                currentNumber1 = targetNumber1;
+              }
+              numberElement1.textContent = `${Math.round(currentNumber1)}+`;
+            }
+          }
+
+          function animateNumber2() {
+            if (currentNumber2 < targetNumber2) {
+              currentNumber2 += increment2;
+              if (currentNumber2 >= targetNumber2) {
+                currentNumber2 = targetNumber2;
+              }
+              numberElement2.textContent = `${Math.round(currentNumber2)}+`;
+            }
+          }
+
+          function animateNumber3() {
+            if (currentNumber3 < targetNumber3) {
+              currentNumber3 += increment3;
+              if (currentNumber3 >= targetNumber3) {
+                currentNumber3 = targetNumber3;
+              }
+              numberElement3.textContent = `${Math.round(currentNumber3)}+`;
+            }
+          }
+
+          function animateNumber4() {
+            if (currentNumber4 < targetNumber4) {
+              currentNumber4 += increment4;
+              if (currentNumber4 >= targetNumber4) {
+                currentNumber4 = targetNumber4;
+              }
+              numberElement4.textContent = `${Math.round(currentNumber4)}+`;
+            }
+          }
+
+          setInterval(animateNumber1, 30);
+          setInterval(animateNumber2, 90);
+          setInterval(animateNumber3, 30);
+          setInterval(animateNumber4, 90);
         }
-        numberElement1.textContent = ` ${Math.round(currentNumber1)}+`;
-      }
-
-      function animateNumber2() {
-        currentNumber2 += increment2;
-        if (currentNumber2 >= targetNumber2) {
-          currentNumber2 = targetNumber2;
-        }
-        const formattedNumber = Math.round(currentNumber2).toLocaleString(); // Add commas for thousands
-        numberElement2.textContent = `${formattedNumber}+`;
-      }
-
-      function animateNumber3() {
-        currentNumber3 += increment3;
-        if (currentNumber3 >= targetNumber3) {
-          currentNumber3 = targetNumber3;
-        }
-        numberElement3.textContent = ` ${Math.round(currentNumber3)}+`;
-      }
-
-      function animateNumber4() {
-        currentNumber4 += increment4;
-        if (currentNumber4 >= targetNumber4) {
-          currentNumber4 = targetNumber4;
-        }
-        const formattedNumber = Math.round(currentNumber4).toLocaleString(); // Add commas for thousands
-        numberElement4.textContent = `${formattedNumber}+`;
-      }
-
-      setInterval(animateNumber1, 30);
-      setInterval(animateNumber2, 90);
-      setInterval(animateNumber3, 30);
-      setInterval(animateNumber4, 90);
+      });
     </script>
+
 
 
 
