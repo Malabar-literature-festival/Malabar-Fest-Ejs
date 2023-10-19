@@ -80,6 +80,9 @@ exports.getPendingPayment = async (req, res) => {
         paymentStatus: "Failed",
       });
     } else {
+      await TempReg.findByIdAndUpdate(userId, {
+        paymentStatus: "Success",
+      });
       const tempRegData = await TempReg.findById(userId);
 
       if (tempRegData) {
@@ -100,8 +103,8 @@ exports.getPendingPayment = async (req, res) => {
         // Save the registration data to the Registration collection
         await registrationData.save();
 
-        // Delete the tempRegData as it's no longer needed
-        await TempReg.findByIdAndRemove(userId);
+        // // Delete the tempRegData as it's no longer needed
+        // await TempReg.findByIdAndRemove(userId);
       }
     }
     console.log("Status: ", status);
