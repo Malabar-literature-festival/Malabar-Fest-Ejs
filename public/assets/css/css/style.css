@@ -276,3 +276,76 @@
   margin-top: 150px;
   padding-bottom: 100px;
 }
+.ponanni h1 {
+  font-size: 60px;
+}
+.ponanni_details {
+  padding: 10px 0px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.ponanni-para {
+  padding: 10px 60px;
+}
+.fees_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
+}
+.fees_button button {
+  padding: 10px 70px;
+  color: #fff;
+  background-color: #4faf9e;
+  border: none;
+  border-radius: 20px;
+}
+.fees-details {
+  background-color: #f5ebc6;
+  border-radius: 20px;
+  padding: 10px 0px;
+}
+.fees_parent {
+  padding: 20px;
+  border: 20px;
+}
+.meeting {
+  margin-left: 70px;
+}
+.event_inner_page_para {
+  /* border: 1px solid black; */
+  border-radius: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2) !important;
+}
+.coverage_parent {
+  padding: 10px 60px;
+}
+@media (max-width: 700px) {
+  .ponanni h1 {
+    font-size: 30px;
+    /* margin-left: 10px; */
+  }
+  .ponanni-para {
+    padding: 10px 20px;
+  }
+  .coverage_parent {
+    padding: 10px 30px;
+  }
+  .ponanni_img img {
+    width: 200px;
+  }
+  .meeting {
+    margin-left: 0px;
+  }
+  .fees_button button {
+    padding: 10px 30px;
+    color: #fff;
+    background-color: #4faf9e;
+    border: none;
+    border-radius: 20px;
+  }
+  .fees_button {
+    padding-top: 10px;
+    margin-left: 0px;
+  }
+}
