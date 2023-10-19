@@ -85,9 +85,7 @@ const allowedOrigins = [
   "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction",
   "https://www.malabarliteraturefestival.com",
   "https://test.ccavenue.com/bnk/servlet/processNbkReq?gtwID=AVN&requestType=PAYMENT",
-  "https://www.malabarliteraturefestival.com/register/payment-status"
-
-  
+  "https://test.ccavenue.com",
 ];
 
 //cors policy
