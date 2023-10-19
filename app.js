@@ -31,14 +31,16 @@ app.use(
       console.log("origin", origin);
       // allow requests with no origin (like mobile apps or curl requests)
       if (!origin) return callback(null, true);
-      if (typeof origin === "undefined" || origin === "null")
-        return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        return callback(new Error(origin), false);
-      }
-      return callback(null, true);
-    },
-  })
+
+      // If you want to allow specific origins, you can check them here
+      // Example: if (allowedOrigins.indexOf(origin) === -1) {
+      //   return callback(new Error(origin), false);
+      // }
+
+      // Allow requests from any origin
+      callback(null, true);
+    },
+  })
 );
 
 // Load env vars
