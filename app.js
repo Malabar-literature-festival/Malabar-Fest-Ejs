@@ -5,6 +5,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const session = require("express-session");
 const cors = require("cors");
+var app = express();
 
 const connectDB = require("./config/db");
 
@@ -23,10 +24,26 @@ const allowedOrigins = [
   "https://test.ccavenue.com",
 ];
 
+//cors policy
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      console.log("origin", origin);
+      // allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      if (typeof origin === "undefined" || origin === "null")
+        return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        return callback(new Error(origin), false);
+      }
+      return callback(null, true);
+    },
+  })
+);
+
 // Load env vars
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config/.env" });
-
 
 // Sitemap
 // const sitemap = require("./public/sitemap/sitemap.xml");
@@ -87,24 +104,6 @@ const pendingPayment = require("./routes/pendingPayment");
 var Committe = require("./routes/ejsRoutes/committe");
 var Events = require("./routes/ejsRoutes/events");
 var Event_inner = require("./routes/ejsRoutes/event_inner");
-var app = express();
-
-//cors policy
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      console.log("origin", origin);
-      // allow requests with no origin (like mobile apps or curl requests)
-      if (!origin) return callback(null, true);
-      if (typeof origin === "undefined" || origin === "null")
-        return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        return callback(new Error(origin), false);
-      }
-      return callback(null, true);
-    },
-  })
-);
 
 // Configure the session middleware
 app.use(
