@@ -330,36 +330,110 @@
 
 
 
-  <!-- <div class="sponsors">
+  <div class="sponsors">
     <div class="container">
       <div class="sponsors-title">
-        <h1>Partners and Sponsors</h1>
+        <!-- <h1>Partners and Sponsors</h1> -->
       </div>
-      <div class="sponsors-imgs" style="padding: 50px;">
+      <!-- <div class="sponsors-imgs" style="padding: 50px;">
         <img src="assets/images/sponsors.png" alt="sponsors" style="max-width: 100%; height: auto;">
+      </div> -->
+
+    </div>
+  </div>
+  <div class="container">
+    <div class="carousel-container">
+      <div class="carousel-slide">
+        <img src="assets/images/mlf-banner.png" alt="sponsors"
+          style="max-width: 100%; height: auto; border-radius: 30px;">
       </div>
-
+      <div class="carousel-slide">
+        <img src="assets/images/thunjan.svg" alt="sponsors" style="max-width: 100%; height: auto; border-radius: 30px;">
+      </div>
     </div>
+    <div class="carousel-dots"></div>
   </div>
-  <div class="sponsors-imgs2" style="padding: 50px;">
-    <img src="assets/images/mlf-banner.png" alt="sponsors" style="max-width: 100%; height: auto; border-radius: 30px;">
+
+  <style>
+    .carousel-container {
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-slide {
+      flex: 2;
+      transition: transform 0.5s;
+      display: none;
+      transition: opacity 1s;
+    }
+
+    .carousel-dots {
+      text-align: center;
+    }
+
+    .dot {
+      height: 10px;
+      width: 10px;
+      margin: 0 5px;
+      background-color: #fff;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+    }
+  </style>
+
+
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".carousel-slide");
+    const dotsContainer = document.querySelector(".carousel-dots");
+
+    // Create dots based on the number of slides
+    slides.forEach((slide, index) => {
+      const dot = document.createElement("span");
+      dot.classList.add("dot");
+      dot.addEventListener("click", () => showSlide(index));
+      dotsContainer.appendChild(dot);
+    });
+
+    // Initial image display
+    showSlide(currentSlide);
+
+    let autoSlideInterval = setInterval(() => changeSlide(1), 5000); // Auto slide every 5 seconds
+
+    function changeSlide(n) {
+      currentSlide += n;
+
+      if (currentSlide >= slides.length) {
+        currentSlide = 0;
+      } else if (currentSlide < 0) {
+        currentSlide = slides.length - 1;
+      }
+
+      showSlide(currentSlide);
+    }
+
+    function showSlide(n) {
+      // Hide all slides
+      slides.forEach((slide) => (slide.style.display = "none"));
+
+      // Display the current slide
+      slides[n].style.display = "block";
+
+      // Update the active dot
+      const dots = document.querySelectorAll(".dot");
+      dots.forEach((dot) => dot.classList.remove("active"));
+      dots[n].classList.add("active");
+    }
+  </script>
+
+
+
+
+
   </div>
-  <!-- <div class="featured-carousel owl-carousel">
-    <div class="carousel-slide full-width">
-      <img src="assets/images/mlf-banner.png" alt="Slide 1">
-    </div>
-    <div class="carousel-slide">
-      <img
-        src="https://img.freepik.com/free-photo/college-girls-studying-together_23-2149038414.jpg?t=st=1696728785~exp=1696729385~hmac=2cd4a3a8753d53749e5dafcd2555367ed8e8b2092024f99d1c5b76a0215f9286"
-        alt="Slide 2">
-    </div>
-    <div class="carousel-slide">
-      <img src="assets/images/mlf-banner.png" alt="Slide 3">
-    </div>
-
-  </div> -->
-
-
   <!-- <div class="testimonial" style="background-image:url('assets/images/grill.png');padding-bottom: 100px;">
     <div class="testimonial-title">
       <h1>Testimonials</h1>
@@ -435,42 +509,7 @@
 
 
 
-    <script>
-      const next = document.querySelector(".next");
-      const prev = document.querySelector(".previous");
-      const slides = document.querySelectorAll(".slide");
 
-      let index = 0;
-      display(index);
-
-      function display(index) {
-        slides.forEach((slide) => {
-          slide.style.display = "none";
-        });
-        slides[index].style.display = "flex";
-      }
-
-      function nextSlide() {
-        index++;
-        if (index > slides.length - 1) {
-          index = 0;
-        }
-        display(index);
-      }
-
-      function prevSlide() {
-        index--;
-        if (index < 0) {
-          index = slides.length - 1;
-        }
-        display(index);
-      }
-
-      next.addEventListener("click", nextSlide);
-      prev.addEventListener("click", prevSlide);
-
-
-    </script>
 
 
     <script>
