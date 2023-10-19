@@ -67,7 +67,7 @@ const registration = require("./routes/registration");
 const testimonial = require("./routes/testimonial");
 var Committe = require("./routes/ejsRoutes/committe");
 var Events = require("./routes/ejsRoutes/events");
-
+var Event_inner = require("./routes/ejsRoutes/event_inner");
 var app = express();
 
 const allowedOrigins = [
@@ -160,8 +160,9 @@ app.use("/terms-conditions", Conditions);
 app.use("/malabar-literature-festival", AboutMlf);
 app.use("/book-plus-publishers", AboutBookPlus);
 app.use("/common-reg", CommonReg);
-
 app.use("/scan", Scanner);
+app.use("/book-plus-publishers", AboutBookPlus);
+app.use("/event_inner", Event_inner);
 
 // mount Admin routers
 app.use("/api/v1/auth", auth);

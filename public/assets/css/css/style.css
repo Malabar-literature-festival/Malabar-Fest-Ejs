@@ -271,3 +271,8 @@
   line-height: initial;
   padding-bottom: 20px;
 }
+/* event_inner pagess --------------*/
+.event_inner_page {
+  margin-top: 150px;
+  padding-bottom: 100px;
+}
