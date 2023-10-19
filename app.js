@@ -83,6 +83,7 @@ const allowedOrigins = [
   "https://test.ccavenue.com",
   "https://secure.ccavenue.com",
   "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction",
+  "https://www.malabarliteraturefestival.com"
 ];
 
 //cors policy
