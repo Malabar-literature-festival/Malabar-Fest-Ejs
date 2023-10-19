@@ -17,7 +17,7 @@ router.get("/", function (req, res, next) {
       keywords:
         "Malabar Literature Festival, MLF, Malabar, Kozhikode Beach, Calicut Beach, Malabar culture, literature, history, languages, arts, Kayalpattinam, Gujarat, Lakshadweep, Andaman and Nicobar, Hadhramaut, Malaysia, Africa, Mappila, Dalit, Book Plus, Malayalam readers",
     },
-    {
+    { 
       author: "Malabar Literature Festival ",
     },
     {
