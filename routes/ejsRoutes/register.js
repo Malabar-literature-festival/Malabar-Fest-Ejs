@@ -91,8 +91,8 @@ router.post("/payment-status/:user", async function (req, res, next) {
         // Save the registration data to the Registration collection
         await registrationData.save();
 
-        // Delete the tempRegData as it's no longer needed
-        await TempReg.findByIdAndRemove(user);
+        // // Delete the tempRegData as it's no longer needed
+        // await TempReg.findByIdAndRemove(user);
       }
 
       const registeredUser = await Registration.findById(registrationData._id);

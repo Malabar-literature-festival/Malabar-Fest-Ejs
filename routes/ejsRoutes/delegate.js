@@ -58,8 +58,12 @@ exports.paymentGeneration = async (
      </form>
    `);
 
-      const existingUser = await TempReg.findOne({
-        email: delegateData.email,
+      // const existingUser = await TempReg.findOne({
+      //   email: delegateData.email,
+      // });
+      // Check if a user with the same email or mobile number already exists
+      const existingUser = await Registration.findOne({
+        $or: [{ email: delegateData.email }, { mobileNumber: delegateData.mobileNumber }],
       });
       console.log(existingUser);
 
@@ -134,8 +138,10 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
     console.log("Body Data :- ", req.body);
     console.log(imagePath);
 
-    // Check if a user with the same email already exists
-    const existingUser = await Registration.findOne({ email: req.body.email });
+    // Check if a user with the same email or mobile number already exists
+    const existingUser = await Registration.findOne({
+      $or: [{ email: req.body.email }, { mobileNumber: req.body.contact }],
+    });
     console.log(existingUser);
 
     // if (!existingUser) {
