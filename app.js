@@ -8,9 +8,25 @@ const cors = require("cors");
 
 const connectDB = require("./config/db");
 
+const allowedOrigins = [
+  null,
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "http://localhost:8010",
+  "https://malabarliteraturefestival.com",
+  "https://yellow-desert-0e7088300.3.azurestaticapps.net",
+  "https://test.ccavenue.com",
+  "https://secure.ccavenue.com",
+  "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction",
+  "https://www.malabarliteraturefestival.com",
+  "https://test.ccavenue.com/bnk/servlet/processNbkReq?gtwID=AVN&requestType=PAYMENT",
+  "https://test.ccavenue.com",
+];
+
 // Load env vars
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config/.env" });
+
 
 // Sitemap
 // const sitemap = require("./public/sitemap/sitemap.xml");
@@ -72,21 +88,6 @@ var Committe = require("./routes/ejsRoutes/committe");
 var Events = require("./routes/ejsRoutes/events");
 var Event_inner = require("./routes/ejsRoutes/event_inner");
 var app = express();
-
-const allowedOrigins = [
-  null,
-  "http://localhost:3000",
-  "http://localhost:3001",
-  "http://localhost:8010",
-  "https://malabarliteraturefestival.com",
-  "https://yellow-desert-0e7088300.3.azurestaticapps.net",
-  "https://test.ccavenue.com",
-  "https://secure.ccavenue.com",
-  "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction",
-  "https://www.malabarliteraturefestival.com",
-  "https://test.ccavenue.com/bnk/servlet/processNbkReq?gtwID=AVN&requestType=PAYMENT",
-  "https://test.ccavenue.com",
-];
 
 //cors policy
 app.use(
