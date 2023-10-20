@@ -61,6 +61,7 @@
   --font-playfair: "Playfair Display", serif;
   --font-Inter: "Inter", sans-serif;
   --font-century: "Century Gothic", Arial, sans-serif;
+  --font-blaa: "Blaak Regular PERSONAL USE";
 }
 @font-face {
   font-family: "Century Gothic";
@@ -68,6 +69,15 @@
     /* Modern Browsers */ url("fonts/centurygothic.woff") format("woff"); /* Older Browsers */
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+  font-family: "Blaak Regular PERSONAL USE";
+  src: url("fonts/BlaakRegularPERSONALUSE.woff2") format("woff2"),
+    url("fonts/BlaakRegularPERSONALUSE.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 *,
@@ -79,6 +89,7 @@
 }
 
 body {
+  /* font-family: var(--font-blaa); */
   font-size: 15px;
   line-height: 1.75;
   font-weight: 200;
@@ -13974,14 +13985,16 @@ ul li:hover {
   display: flex;
 }
 .event-box {
-  background-color: #23a4dd;
+  background-color: #fffefb;
   width: 23rem;
   height: auto;
   border: 1px solid #fff;
   border-radius: 30px;
   margin: 10px;
   overflow: hidden;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
+
 .event-box-section {
   padding: 35px;
   position: relative;
@@ -13996,11 +14009,12 @@ ul li:hover {
 }
 
 .event-content-head-title p {
-  padding: 0px 0px;
-  color: #fff;
+  padding: 15px 0px;
+  color: #000;
   line-height: normal;
   font-size: 20px;
-  font-family: var(--font-fabulous);
+  font-family: var(--font-Inter);
+
   text-align: center;
 }
 .event-box-section {
@@ -14111,7 +14125,7 @@ ul li:hover {
     padding: 60px 30px !important;
   }
   .event-content-head-title p {
-    color: #fff;
+    color: #000;
     line-height: normal;
     font-size: 15px !important;
   }
@@ -14170,6 +14184,7 @@ ul li:hover {
   padding: 20px 0px;
 }
 .event-enroll button {
+  /* font-family: var(--font-blaa); */
   font-weight: 600;
   /* margin-bottom: 60px; */
   color: #fff;
@@ -14179,11 +14194,12 @@ ul li:hover {
   background-color: #43264e;
 }
 .event_card_inner-title {
-  color: #fff !important;
-  text-decoration-line: underline;
+  color: #b29c4b;
+  font-family: var(--font-blaa);
+  /* text-decoration-line: underline;
   text-decoration-style: wavy;
   text-decoration-skip-ink: none;
-  text-underline-offset: 12px;
+  text-underline-offset: 12px; */
   padding-bottom: 15px;
   text-align: center;
 }

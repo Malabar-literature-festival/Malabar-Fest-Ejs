@@ -1,3 +1,34 @@
+-----------------------------------------------------------------------------------*/
+/*----------------------------------------*/
+/*  01. Theme default CSS
+/*----------------------------------------*/
+
+/*-- Common Style --*/
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Playfair+Display&display=swap");
+
+:root {
+  --font-playfair: "Playfair Display", serif;
+  --font-Inter: "Inter", sans-serif;
+  --font-century: "Century Gothic", Arial, sans-serif;
+  --font-blaa: "Blaak Regular PERSONAL USE";
+}
+@font-face {
+  font-family: "Century Gothic";
+  src: url("fonts/centurygothic.woff2") format("woff2"),
+    /* Modern Browsers */ url("fonts/centurygothic.woff") format("woff"); /* Older Browsers */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Blaak Regular PERSONAL USE";
+  src: url("fonts/BlaakRegularPERSONALUSE.woff2") format("woff2"),
+    url("fonts/BlaakRegularPERSONALUSE.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 .owl-carousel {
   position: relative;
 }
@@ -254,7 +285,7 @@
   }
   .event_card_inner-title_mobile {
     display: block !important;
-    color: #fff !important;
+    color:#B29C4B;
     text-decoration-line: underline;
     text-decoration-style: wavy;
     text-decoration-skip-ink: none;
@@ -270,6 +301,7 @@
   text-align: center;
   line-height: initial;
   padding-bottom: 20px;
+  color: #b29c4b;
 }
 /* event_inner pagess --------------*/
 .event_inner_page {
@@ -277,7 +309,9 @@
   padding-bottom: 100px;
 }
 .ponanni h1 {
-  font-size: 60px;
+  font-size: 45px;
+  font-family: var(--font-blaa);
+  margin-top: 11px;
 }
 .ponanni_details {
   padding: 10px 0px;
@@ -286,6 +320,11 @@
 }
 .ponanni-para {
   padding: 10px 60px;
+  
+}
+.ponanni-para p{
+  font-family: var(--font-Inter);
+  line-height: initial
 }
 .fees_button {
   display: flex;
@@ -320,9 +359,12 @@
 .coverage_parent {
   padding: 10px 60px;
 }
+.coverage h5{
+  font-family: var(--font-Inter);
+}
 @media (max-width: 700px) {
   .ponanni h1 {
-    font-size: 30px;
+    font-size: 25px;
     /* margin-left: 10px; */
   }
   .ponanni-para {
@@ -343,9 +385,23 @@
     background-color: #4faf9e;
     border: none;
     border-radius: 20px;
+    font-family: var(--font-blaa);
   }
   .fees_button {
     padding-top: 10px;
     margin-left: 0px;
   }
+}
+.event_button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.event_button button{
+  padding: 10px 55px;
+  color: #fff;
+  background-color: #4faf9e;
+  border: none;
+  border-radius: 10px;
+  font-family: var(--font-Inter);
 }
