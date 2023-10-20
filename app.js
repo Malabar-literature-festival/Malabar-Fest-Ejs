@@ -72,6 +72,7 @@ var Speaker = require("./routes/ejsRoutes/speaker");
 var Volunter = require("./routes/ejsRoutes/volunter");
 var Programe = require("./routes/ejsRoutes/programe");
 var News = require("./routes/ejsRoutes/news");
+var Foreign = require("./routes/ejsRoutes/foreign");
 
 // ADDED NEWS ROUTES-------
 var Privacy = require("./routes/ejsRoutes/privacy");
@@ -161,6 +162,7 @@ app.use("/speaker", Speaker);
 app.use("/volunter", Volunter);
 app.use("/Sessions", Programe);
 app.use("/news", News);
+app.use("/foreign", Foreign);
 // LATESTS-----
 app.use("/privacy", Privacy);
 app.use("/refund", Refund);
