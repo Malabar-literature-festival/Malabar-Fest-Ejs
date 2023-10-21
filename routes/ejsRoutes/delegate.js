@@ -62,7 +62,7 @@ exports.paymentGeneration = async (
       //   email: delegateData.email,
       // });
       // Check if a user with the same email or mobile number already exists
-      const existingUser = await Registration.findOne({
+      const existingUser = await TempReg.findOne({
         $or: [{ email: delegateData.email }, { mobileNumber: delegateData.mobileNumber }],
       });
       console.log(existingUser);
@@ -80,8 +80,8 @@ exports.paymentGeneration = async (
       await existingUser.save();
 
       // Now that the payment is successful and delegate data is saved, send email and WhatsApp message
-      sendConfirmationEmail(existingUser, qrCodeFileName);
-      sendWhatsAppMessage(existingUser);
+      // sendConfirmationEmail(existingUser, qrCodeFileName);
+      // sendWhatsAppMessage(existingUser);
 
       delete req.session.email;
     } else {
@@ -351,4 +351,8 @@ function sendWhatsAppMessage(existingUser) {
     });
 }
 
+module.exports = {
+  sendConfirmationEmail,
+  sendWhatsAppMessage
+};
 module.exports = router;

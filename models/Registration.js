@@ -42,7 +42,7 @@ const RegistrationSchema = new mongoose.Schema(
     },
     regType: {
       type: String,
-      enum: ["attende", "delegate", "student"],
+      enum: ["attende", "delegate", "student", "foreign"],
     },
     regDate: [
       {
