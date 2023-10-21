@@ -5,28 +5,37 @@ const Registration = require("../../models/Registration");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
 const nodemailer = require("nodemailer");
+const qr = require("qrcode");
+const fs = require("fs");
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: process.env.SMTP_PORT,
-  secure: true,
-  auth: {
-    user: process.env.SMTP_USERNAME,
-    pass: process.env.SMTP_PASSWORD,
-  },
-});
+// const transporter = nodemailer.createTransport({
+//   host: process.env.SMTP_HOST,
+//   port: process.env.SMTP_PORT,
+//   secure: true,
+//   auth: {
+//     user: process.env.SMTP_USERNAME,
+//     pass: process.env.SMTP_PASSWORD,
+//   },
+// });
 
 const { default: mongoose, isValidObjectId } = require("mongoose");
 const { encrypt } = require("../../middleware/ccavutil");
 const dotenv = require("dotenv"); // Import dotenv
 const crypto = require("crypto");
+const TempReg = require("../../models/TempReg");
 
-exports.paymentGeneration = async (req, res, delegateData, userId, qrCodeFileName) => {
+exports.paymentGeneration = async (
+  req,
+  res,
+  delegateData,
+  userId,
+  qrCodeFileName
+) => {
   try {
     const user = userId;
     if (isValidObjectId(user)) {
       //const userDetails= //get user details
-      const domain = `${req.protocol}://${req.get("host")}`;
+      const domain = `https://${req.get("host")}`;
       // Generate a unique order id
 
       //create a order table and add each payment activity order number in the table to check payment status and update payment status or to get user details
@@ -59,9 +68,10 @@ exports.paymentGeneration = async (req, res, delegateData, userId, qrCodeFileNam
      </form>
    `);
 
-      const existingUser = await Registration.findOne({
-        email: delegateData.email,
-      });
+      // const existingUser = await Registration.findOne({
+      //   email: delegateData.email,
+      // });
+      const existingUser = await TempReg.findOne({_id: userId});
       console.log(existingUser);
 
       console.log("delegateData :- ", delegateData);
@@ -136,26 +146,6 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
     const imagePath = req.file ? req.file.path : null;
     console.log(imagePath);
 
-    // Check if a user with the same email already exists
-    const existingUser = await Registration.findOne({ email: req.body.email });
-
-    // if (!existingUser) {
-    //   // Handle the case where the user's basic data is not found
-    //   return res.status(404).json({ error: "User not registered" });
-    // }
-
-    if (existingUser) {
-      if (
-        existingUser.regType === "attende" ||
-        existingUser.regType === "student" ||
-        existingUser.regType === "delegate"
-      ) {
-        // User has already registered
-        console.log("User has already registered");
-        return res.status(400).json({ error: "User has already registered" });
-      }
-    }
-
     // change date string to date
     const dateStrings = req.body.day;
     const dateArray = dateStrings
@@ -163,7 +153,17 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       .map((dateString) => dateString.trim());
     const dateObjects = dateArray.map((dateString) => new Date(dateString));
 
-    const delegateData = new Registration({
+    // Check if a user with the same email or mobile number already exists in the Registration collection
+    const existingUserInRegistration = await Registration.findOne({
+      $or: [{ email: req.body.email }, { mobileNumber: req.body.contact }],
+    });
+
+    if (existingUserInRegistration) {
+      // Handle the case where the user is already registered in the Registration collection
+      return res.status(400).json({ error: "User is already registered" });
+    }
+
+    const delegateData = new TempReg({
       name: req.body.name,
       gender: req.body.gender,
       mobileNumber: req.body.contact,
@@ -180,11 +180,9 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
     // Save the registration data to the database
     await delegateData.save();
 
-    const userId = await Registration.findOne({
-      email: req.body.email || delegateData.email,
-    });
+    const userId = delegateData._id
 
-    const Id = userId._id;
+    const Id = userId;
     console.log("User ID: ", Id);
 
     //--------------------------------- QR CODE START ---------------------------------
