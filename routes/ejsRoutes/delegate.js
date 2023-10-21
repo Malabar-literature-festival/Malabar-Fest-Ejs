@@ -62,11 +62,11 @@ exports.paymentGeneration = async (
       //   email: delegateData.email,
       // });
       // Check if a user with the same email or mobile number already exists
-      const existingUser = await Registration.findOne({
+      const existingUser = await TempReg.findOne({
         $or: [{ email: delegateData.email }, { mobileNumber: delegateData.mobileNumber }],
       });
       console.log(existingUser);
-
+      console.log(req.body.profession)
       console.log("interest :- ", delegateData.matterOfInterest);
       console.log("delegateData :- ", delegateData);
       existingUser.profession = delegateData.profession;
