@@ -66,7 +66,7 @@ exports.paymentGeneration = async (
         $or: [{ email: delegateData.email }, { mobileNumber: delegateData.mobileNumber }],
       });
       console.log(existingUser);
-
+      console.log(req.body.profession)
       console.log("interest :- ", delegateData.matterOfInterest);
       console.log("delegateData :- ", delegateData);
       existingUser.profession = delegateData.profession;
