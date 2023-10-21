@@ -25,7 +25,7 @@ exports.paymentGeneration = async (
     const user = userId;
     if (isValidObjectId(userId)) {
       //const userDetails= //get user details
-      const domain = `${req.protocol}://${req.get("host")}`;
+      const domain = `https://${req.get("host")}`;
       // Generate a unique order id
 
       //create a order table and add each payment activity order number in the table to check payment status and update payment status or to get user details
@@ -62,9 +62,7 @@ exports.paymentGeneration = async (
       //   email: delegateData.email,
       // });
       // Check if a user with the same email or mobile number already exists
-      const existingUser = await TempReg.findOne({
-        $or: [{ email: delegateData.email }, { mobileNumber: delegateData.mobileNumber }],
-      });
+      const existingUser = await TempReg.findOne({_id: userId});
       console.log(existingUser);
       console.log(req.body.profession)
       console.log("interest :- ", delegateData.matterOfInterest);
@@ -79,16 +77,18 @@ exports.paymentGeneration = async (
 
       await existingUser.save();
 
+      console.log("After Save : ", existingUser)
+
       // Now that the payment is successful and delegate data is saved, send email and WhatsApp message
-      // sendConfirmationEmail(existingUser, qrCodeFileName);
-      // sendWhatsAppMessage(existingUser);
+      sendConfirmationEmail(existingUser, qrCodeFileName);
+      sendWhatsAppMessage(existingUser);
 
       delete req.session.email;
     } else {
       // console.log(err);
       res.status(404).json({
         success: false,
-        // message: err,
+        message: err,
       });
     }
   } catch (err) {
@@ -138,48 +138,24 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
     console.log("Body Data :- ", req.body);
     console.log(imagePath);
 
-    // Check if a user with the same email or mobile number already exists
-    const existingUser = await Registration.findOne({
-      $or: [{ email: req.body.email }, { mobileNumber: req.body.contact }],
-    });
-    console.log(existingUser);
-
-    // if (!existingUser) {
-    //   // Handle the case where the user's basic data is not found
-    //   return res.status(404).json({ error: "User not registered" });
-    // }
-
-    if (existingUser) {
-      if (
-        existingUser.regType === "attende" ||
-        existingUser.regType === "student" ||
-        existingUser.regType === "delegate"
-      ) {
-        // User has already registered
-        console.log("User has already registered");
-        return res.status(400).json({ error: "User has already registered" });
-      }
-    }
-
-    // change date string to date
+    // Change date string to date
     const dateStrings = req.body.day;
     const dateArray = dateStrings
       .split(",")
       .map((dateString) => dateString.trim());
     const dateObjects = dateArray.map((dateString) => new Date(dateString));
 
-    // const delegateData = new Registration({
-    //   name: req.body.name,
-    //   gender: req.body.gender,
-    //   mobileNumber: req.body.contact,
-    //   email: req.body.email,
-    //   profession: req.body.profession,
-    //   regDate: dateObjects,
-    //   matterOfInterest: req.body.intrest,
-    //   regType: req.body.type,
-    //   image: imagePath,
-    // });
+    // Check if a user with the same email or mobile number already exists in the Registration collection
+    const existingUserInRegistration = await Registration.findOne({
+      $or: [{ email: req.body.email }, { mobileNumber: req.body.contact }],
+    });
 
+    if (existingUserInRegistration) {
+      // Handle the case where the user is already registered in the Registration collection
+      return res.status(400).json({ error: "User is already registered" });
+    }
+
+    // Create a new TempReg instance with the registration data
     const delegateData = new TempReg({
       name: req.body.name,
       gender: req.body.gender,
@@ -192,15 +168,10 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       image: imagePath,
     });
 
-    // Save the registration data to the database
+    // Save the registration data to the TempReg collection
     await delegateData.save();
 
-    const userId = await TempReg.findOne({
-      email: req.body.email || delegateData.email,
-    });
-
-    const Id = userId._id;
-    console.log("User ID: ", Id);
+    const userId = delegateData._id; // Access the ID from the instance
 
     //--------------------------------- QR CODE START ---------------------------------
 
@@ -210,13 +181,14 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       fs.mkdirSync(qrCodeDirectory);
     }
 
-    // Generate QR CODE and save it as PNG file
-    const qrCodeFileName = `${qrCodeDirectory}/${Id}.png`;
-    await qr.toFile(qrCodeFileName, JSON.stringify(Id));
+    // Generate QR CODE and save it as a PNG file
+    const qrCodeFileName = `${qrCodeDirectory}/${userId}.png`;
+    await qr.toFile(qrCodeFileName, JSON.stringify(userId));
 
     //--------------------------------- QR CODE END ---------------------------------
 
-    exports.paymentGeneration(req, res, delegateData, Id, qrCodeFileName);
+    // Call the paymentGeneration function with the necessary parameters
+    exports.paymentGeneration(req, res, delegateData, userId, qrCodeFileName);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
