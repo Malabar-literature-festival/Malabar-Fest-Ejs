@@ -1,12 +1,37 @@
 const { default: mongoose } = require("mongoose");
 const News = require("../models/News");
+const slugify = require("slugify");
 
 // @desc      CREATE NEW NEWS
 // @route     POST /api/v1/news
 // @access    private
 exports.createNews = async (req, res) => {
   try {
+    // Generate the initial slug based on the title from the request body
+    const initialSlug = slugify(req.body.title, { lower: true });
+
+    // Check if the initial slug is unique within the collection
+    let counter = 2;
+    let uniqueSlug = initialSlug;
+
+    while (true) {
+      const slugExists = await News.findOne({ slug: uniqueSlug });
+
+      if (!slugExists) {
+        break;
+      }
+
+      // Append a counter to the slug to make it unique
+      uniqueSlug = `${initialSlug}-${counter}`;
+      counter++;
+    }
+
+    // Set the unique slug in the request body
+    req.body.slug = uniqueSlug;
+
+    // Create the news article with the unique slug
     const newNews = await News.create(req.body);
+
     res.status(200).json({
       success: true,
       message: "News created successfully",
