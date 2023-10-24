@@ -26,7 +26,12 @@ router.get("/", async function (req, res, next) {
       "Malabar Literature Festival | Celebrating History, Language, and Culture";
     const speakerData = await Speakers.find();
     console.log(speakerData);
-    res.render("speaker", { title, metaTags, speakerData });
+    res.render("speaker", {
+      title,
+      metaTags,
+      speakerData,
+      img: speakerData.image,
+    });
   } catch (error) {
     console.error(error);
   }
