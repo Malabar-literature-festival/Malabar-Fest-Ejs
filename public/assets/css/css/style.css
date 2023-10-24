@@ -363,6 +363,10 @@
   font-family: var(--font-Inter);
 }
 @media (max-width: 700px) {
+  .event_button {
+  
+    padding-bottom: 56px;
+}
   .ponanni h1 {
     font-size: 25px;
     /* margin-left: 10px; */
@@ -405,3 +409,4 @@
   border-radius: 10px;
   font-family: var(--font-Inter);
 }
+

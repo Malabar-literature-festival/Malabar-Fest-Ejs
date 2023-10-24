@@ -14015,7 +14015,7 @@ ul li:hover {
   font-size: 20px;
   font-family: var(--font-Inter);
 
-  text-align: center;
+  text-align: justify;
 }
 .event-box-section {
   position: relative;
