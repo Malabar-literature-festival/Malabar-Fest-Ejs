@@ -68,12 +68,13 @@ router.post("/", async function (req, res) {
         existingUser.regType === "student" ||
         existingUser.regType === "delegate" ||
         existingUser.regType === "foreign"
-        
       ) {
         // User has already registered
         console.log("User has already registered");
         return res.status(400).json({ error: "User has already registered" });
       }
+      console.log("User has already registered");
+      return res.status(400).json({ error: "User has already registered" });
     }
 
     // change date string to date

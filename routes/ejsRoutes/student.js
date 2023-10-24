@@ -71,7 +71,7 @@ exports.paymentGeneration = async (
       // const existingUser = await Registration.findOne({
       //   email: delegateData.email,
       // });
-      const existingUser = await TempReg.findOne({_id: userId});
+      const existingUser = await TempReg.findOne({ _id: userId });
       console.log(existingUser);
 
       console.log("delegateData :- ", delegateData);
@@ -86,10 +86,6 @@ exports.paymentGeneration = async (
       existingUser.amount = amount;
 
       await existingUser.save();
-
-      // Now that the payment is successful and delegate data is saved, send email and WhatsApp message
-      sendConfirmationEmail(existingUser, qrCodeFileName);
-      sendWhatsAppMessage(existingUser);
 
       delete req.session.email;
     } else {
@@ -180,7 +176,7 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
     // Save the registration data to the database
     await delegateData.save();
 
-    const userId = delegateData._id
+    const userId = delegateData._id;
 
     const Id = userId;
     console.log("User ID: ", Id);

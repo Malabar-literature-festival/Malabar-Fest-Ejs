@@ -25,7 +25,8 @@ exports.paymentGeneration = async (
     const user = userId;
     if (isValidObjectId(userId)) {
       //const userDetails= //get user details
-      const domain = `https://${req.get("host")}`;
+      const domain = `${req.protocol}://${req.get("host")}`;
+      // const domain = `https://${req.get("host")}`;
       // Generate a unique order id
 
       //create a order table and add each payment activity order number in the table to check payment status and update payment status or to get user details
@@ -62,9 +63,9 @@ exports.paymentGeneration = async (
       //   email: delegateData.email,
       // });
       // Check if a user with the same email or mobile number already exists
-      const existingUser = await TempReg.findOne({_id: userId});
+      const existingUser = await TempReg.findOne({ _id: userId });
       console.log(existingUser);
-      console.log(req.body.profession)
+      console.log(req.body.profession);
       console.log("interest :- ", delegateData.matterOfInterest);
       console.log("delegateData :- ", delegateData);
       existingUser.profession = delegateData.profession;
@@ -77,11 +78,7 @@ exports.paymentGeneration = async (
 
       await existingUser.save();
 
-      console.log("After Save : ", existingUser)
-
-      // Now that the payment is successful and delegate data is saved, send email and WhatsApp message
-      sendConfirmationEmail(existingUser, qrCodeFileName);
-      sendWhatsAppMessage(existingUser);
+      console.log("After Save : ", existingUser);
 
       delete req.session.email;
     } else {
@@ -228,103 +225,4 @@ function generateUniqueOrderId() {
   }
 }
 
-// Function to send confirmation email
-function sendConfirmationEmail(existingUser, qrCodeFileName) {
-  console.log("Existing User", existingUser);
-  const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: process.env.SMTP_PORT,
-    secure: true,
-    auth: {
-      user: process.env.SMTP_USERNAME,
-      pass: process.env.SMTP_PASSWORD,
-    },
-  });
-
-  const mailOptions = {
-    from: process.env.SMTP_FROM_EMAIL,
-    to: existingUser.email,
-    subject: `Registration Confirmation for ${existingUser.regType} at Malabar Literature Festival 2023`,
-    text: `
-    Dear ${existingUser.name},
-        
-    We are thrilled to inform you that your registration for the Malabar Literature Festival 2023 has been successfully confirmed! We can't wait to welcome you to this exciting literary event, which will take place at the beautiful Calicut Beach from November 30th to December 3rd.
-    
-    Your participation in the Malabar Literature Festival will grant you access to a diverse range of literary discussions, author sessions, workshops, and cultural performances. We have a spectacular lineup of renowned authors, poets, and speakers who will engage in thought-provoking conversations, and we are confident that you will have an enriching and enjoyable experience.
-    
-    Please keep an eye on your email for further updates, including the festival schedule, information about speakers and sessions, and any last-minute changes. We recommend that you arrive at the venue well in advance to ensure you get the best experience possible.
-    
-    If you have any questions or require additional information, please do not hesitate to contact our support team at info@malabarliteraturefestival.com or call us at +91 9539327252.
-    
-    We look forward to seeing you at the Malabar Literature Festival 2023 and sharing in the celebration of literature and culture.
-    
-    Thank you for your participation, and best wishes for an inspiring and memorable festival!
-    
-    Warm regards,
-    
-    Malabar Literature Festival Organizing Committee
-    Help Desk: +91 9539327252
-  `,
-    attachments: [
-      {
-        filename: "qr-code.png",
-        path: qrCodeFileName,
-        cid: "qrcodeImage",
-      },
-    ],
-  };
-
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.error("Error sending email:", error);
-    } else {
-      console.log("Email sent successfully:", info.response);
-    }
-  });
-}
-
-function sendWhatsAppMessage(existingUser) {
-  console.log("Existing User", existingUser);
-  let mobileNumber = existingUser.mobileNumber;
-  if (!mobileNumber.startsWith("91")) {
-    mobileNumber = "91" + mobileNumber;
-  }
-  const WhatsappMessage = `
-    Dear ${existingUser.name},
-
-    We are thrilled to inform you that your registration for the Malabar Literature Festival 2023 has been successfully confirmed! We can't wait to welcome you to this exciting literary event, which will take place at the beautiful Calicut Beach from November 30th to December 3rd.
-    
-    We look forward to seeing you at the Malabar Literature Festival 2023 and sharing in the celebration of literature and culture.
-    
-    Thank you for your participation, and best wishes for an inspiring and memorable festival!
-    
-    Warm regards,
-    
-    Malabar Literature Festival Organizing Committee
-    Help Desk: +91 9539327252
-  `;
-
-  const whatsappApiUrl = process.env.WHATSAPP_API_URL;
-  const whatsappData = {
-    number: mobileNumber,
-    type: "text",
-    message: WhatsappMessage,
-    instance_id: process.env.WHTSP_INSTANCE_ID,
-    access_token: process.env.WHTSP_ACCESS_TOKEN,
-  };
-
-  axios
-    .post(whatsappApiUrl, whatsappData)
-    .then(function (response) {
-      console.log("WhatsApp message sent successfully:", response.data);
-    })
-    .catch(function (error) {
-      console.error("Error sending WhatsApp message:", error);
-    });
-}
-
-module.exports = {
-  sendConfirmationEmail,
-  sendWhatsAppMessage
-};
 module.exports = router;
