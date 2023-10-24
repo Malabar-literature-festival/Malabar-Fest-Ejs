@@ -3,7 +3,7 @@ const News = require("../../models/News");
 var router = express.Router();
 
 /* GET home page. */
-router.get("/:id", async function (req, res, next) {
+router.get("/:slug", async function (req, res, next) {
   try {
     const metaTags = [
       {
@@ -24,9 +24,9 @@ router.get("/:id", async function (req, res, next) {
 
     const title =
       "Malabar Literature Festival | Celebrating History, Language, and Culture";
-    const id = req.params.id;
-    console.log(id);
-    const newsData = await News.findById(id);
+    const slug = req.params.slug; // Get the slug from the URL
+    console.log("slug", slug);
+    const newsData = await News.findOne({ slug }); // Fetch news using the slug
     const news = await News.find();
     console.log(newsData);
     res.render("news", { title, newsData, metaTags, news });
