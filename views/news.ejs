@@ -55,7 +55,7 @@
                     alt="Card image cap" style="border-radius: 10px" />
                   <div class="card-body">
                     <h5 class="card-title">
-                      <%= newsData.title %>
+                      <%= newsData.title.substring(0,40) %>...
                     </h5>
                     <ul style="list-style: none; padding-left: 0">
                       <li style="display: inline">
@@ -66,7 +66,7 @@
                       </li>
                     </ul>
                     <P class="card-text-para">
-                      <%= newsData.description.substring(0,350) %>...
+                      <%= newsData.description.substring(0,220) %>...
                     </P>
                     <div>
                       <a href="/news/<%= newsData._id %>">

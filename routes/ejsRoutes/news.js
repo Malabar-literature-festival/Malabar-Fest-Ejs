@@ -29,7 +29,13 @@ router.get("/:id", async function (req, res, next) {
     const newsData = await News.findById(id);
     const news = await News.find();
     console.log(newsData);
-    res.render("news", { title, newsData, metaTags, news });
+    res.render("news", {
+      title,
+      newsData,
+      metaTags,
+      news,
+      img: newsData.image,
+    });
   } catch (error) {
     console.error(error);
   }

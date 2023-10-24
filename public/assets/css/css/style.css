@@ -393,6 +393,8 @@
   }
   .ponanni_img img {
     width: 200px;
+    object-fit: cover;
+    height: 24px;
   }
   .meeting {
     margin-left: 0px;
