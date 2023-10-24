@@ -313,11 +313,15 @@
   font-family: var(--font-blaa);
   margin-top: 11px;
 }
+
 .ponanni_details {
   padding: 10px 0px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  margin: 0 50px;
+  gap: 20px;
 }
+
 .ponanni-para {
   padding: 10px 60px;
   
@@ -342,10 +346,11 @@
 .fees-details {
   background-color: #f5ebc6;
   border-radius: 20px;
-  padding: 10px 0px;
+  margin: 10px 40px;
+  padding: 20px 0px;
 }
 .fees_parent {
-  padding: 20px;
+  padding: 20px 13px;
   border: 20px;
 }
 .meeting {
@@ -363,6 +368,15 @@
   font-family: var(--font-Inter);
 }
 @media (max-width: 700px) {
+  .fees-details {
+    background-color: #f5ebc6;
+    border-radius: 20px;
+    margin: 6px 11px;
+    padding: 20px 0px;
+}
+  .ponanni h1{
+    margin-top: -4px;
+  }
   .event_button {
   
     padding-bottom: 56px;
@@ -375,7 +389,7 @@
     padding: 10px 20px;
   }
   .coverage_parent {
-    padding: 10px 30px;
+    padding: 10px 20px;
   }
   .ponanni_img img {
     width: 200px;
@@ -395,6 +409,13 @@
     padding-top: 10px;
     margin-left: 0px;
   }
+  .ponanni_details {
+    padding: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+    margin: 2px 24px;
+    gap: 7px;
+}
 }
 .event_button{
   display: flex;

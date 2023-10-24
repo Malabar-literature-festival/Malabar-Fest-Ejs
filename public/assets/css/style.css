@@ -13988,11 +13988,10 @@ ul li:hover {
   background-color: #fffefb;
   width: 23rem;
   height: auto;
-  border: 1px solid #fff;
+  border: 1px solid #b29c4b7a;
   border-radius: 30px;
   margin: 10px;
   overflow: hidden;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .event-box-section {
@@ -14012,10 +14011,10 @@ ul li:hover {
   padding: 15px 0px;
   color: #000;
   line-height: normal;
-  font-size: 20px;
+  font-size: 18px;
   font-family: var(--font-Inter);
-
   text-align: justify;
+  hyphens: auto;
 }
 .event-box-section {
   position: relative;
