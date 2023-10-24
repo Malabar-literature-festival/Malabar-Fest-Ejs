@@ -25,7 +25,7 @@ router.get("/:slug", async function (req, res, next) {
     const title =
       "Malabar Literature Festival | Celebrating History, Language, and Culture";
     const slug = req.params.slug; // Get the slug from the URL
-    console.log("slug", slug);
+    console.log(slug);
     const newsData = await News.findOne({ slug }); // Fetch news using the slug
     const news = await News.find();
     console.log(newsData);

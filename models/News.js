@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const slugify = require("slugify");
 
 const NewsSchema = new mongoose.Schema(
   {
@@ -25,11 +26,5 @@ const NewsSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
-// Middleware to automatically generate and set the slug when saving a news article
-NewsSchema.pre("save", function (next) {
-  this.slug = slugify(this.title, { lower: true });
-  next();
-});
 
 module.exports = mongoose.model("News", NewsSchema);
