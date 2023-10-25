@@ -13998,7 +13998,7 @@ ul li:hover {
   background-color: #fffefb;
   width: 23rem;
   height: auto;
-  border: 1px solid #b29c4b7a;
+  border: 1px solid #0077b629;
   border-radius: 30px;
   margin: 10px;
   overflow: hidden;
@@ -14150,7 +14150,7 @@ ul li:hover {
   }
   .event-box {
     width: 23rem;
-    border: 1px solid #b29c4b5e;
+    border: 1px solid #0077b65e;
     border-radius: 30px;
     margin: 10px auto !important; /* Center horizontally */
     overflow: hidden;
@@ -14203,7 +14203,7 @@ ul li:hover {
   background-color: #43264e;
 }
 .event_card_inner-title {
-  color: #b29c4b;
+  color: #0077b6;
   font-family: var(--font-blaa);
   /* text-decoration-line: underline;
   text-decoration-style: wavy;

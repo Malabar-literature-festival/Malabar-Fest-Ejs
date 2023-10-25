@@ -39,8 +39,8 @@ app.use(
 
       // Allow requests from any origin
       callback(null, true);
-    },
-  })
+    },
+  })
 );
 
 // Load env vars
@@ -172,7 +172,7 @@ app.use("/book-plus-publishers", AboutBookPlus);
 app.use("/common-reg", CommonReg);
 app.use("/scan", Scanner);
 app.use("/book-plus-publishers", AboutBookPlus);
-app.use("/event_inner", Event_inner);
+app.use("/malabar-heritage-walk", Event_inner);
 
 // mount Admin routers
 app.use("/api/v1/auth", auth);
