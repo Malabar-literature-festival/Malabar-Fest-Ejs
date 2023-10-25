@@ -285,7 +285,7 @@
   }
   .event_card_inner-title_mobile {
     display: block !important;
-    color:#B29C4B;
+    color:#0077b6;
     text-decoration-line: underline;
     text-decoration-style: wavy;
     text-decoration-skip-ink: none;
@@ -301,7 +301,7 @@
   text-align: center;
   line-height: initial;
   padding-bottom: 20px;
-  color: #b29c4b;
+  color: #0077b6;
 }
 /* event_inner pagess --------------*/
 .event_inner_page {
