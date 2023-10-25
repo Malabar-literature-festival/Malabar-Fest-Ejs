@@ -45,8 +45,12 @@ exports.getRegistration = async (req, res) => {
     const query = {
       ...req.filter,
       ...(searchkey && {
-        $or: [{ name: { $regex: searchkey, $options: "i" } }, { mobileNumber: { $regex: searchkey, $options: "i" } }],
+        $or: [
+          { name: { $regex: searchkey, $options: "i" } },
+          { mobileNumber: { $regex: searchkey, $options: "i" } },
+        ],
       }),
+      paymentStatus: { $nin: ["success", "Failed", "Success", "failed"] }, // Exclude "success" and "failed" paymentStatus
     };
     const [totalCount, filterCount, data] = await Promise.all([
       parseInt(skip) === 0 && TempReg.countDocuments(),

@@ -89,6 +89,7 @@ router.post("/payment-status/:user", async function (req, res, next) {
           image: tempRegData.image,
           amount: tempRegData.amount,
           orderId: tempRegData.orderId,
+          paymentStatus: "success",
         });
 
         // Save the registration data to the Registration collection
@@ -103,6 +104,9 @@ router.post("/payment-status/:user", async function (req, res, next) {
 
       const registeredUser = await Registration.findById(registrationData._id);
       console.log("Payment Success User :- ", registeredUser);
+      const tempRegisteredUser = await TempReg.findById(user);
+      tempRegisteredUser.paymentStatus = "success";
+      await tempRegisteredUser.save();
       sendWhatsAppMessage(registeredUser);
       sendConfirmationEmail(registeredUser, qrCodeFileName);
       res.render("success", {
@@ -112,6 +116,8 @@ router.post("/payment-status/:user", async function (req, res, next) {
       });
     } else {
       const registeredUser = await TempReg.findById(user);
+      registeredUser.paymentStatus = "Failed";
+      await registeredUser.save();
       console.log("Payment failed User :- ", registeredUser);
       res.render("failed", {
         title: "Payment Failed",
