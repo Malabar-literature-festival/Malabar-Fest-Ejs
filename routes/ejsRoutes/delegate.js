@@ -25,7 +25,8 @@ exports.paymentGeneration = async (
     const user = userId;
     if (isValidObjectId(userId)) {
       //const userDetails= //get user details
-      const domain = `https://${req.get("host")}`;
+      // const domain = `https://${req.get("host")}`;
+      const domain = `${req.protocol}://${req.get("host")}`;
       // Generate a unique order id
 
       //create a order table and add each payment activity order number in the table to check payment status and update payment status or to get user details

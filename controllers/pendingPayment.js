@@ -98,6 +98,7 @@ exports.getPendingPayment = async (req, res) => {
           image: tempRegData.image,
           amount: tempRegData.amount,
           orderId: tempRegData.orderId,
+          paymentStatus: "success"
         });
 
         // Save the registration data to the Registration collection
