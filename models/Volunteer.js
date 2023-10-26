@@ -50,10 +50,11 @@ const volunteerSchema = new mongoose.Schema({
         name : {type: String},
         contact: {type: String}
     },
-    day: {
-        type: Date,
-        required: true
-    },
+    regDate: [
+        {
+          type: Date,
+        },
+      ],
     matterOfInterest: {
         type: [String],
         required: true,

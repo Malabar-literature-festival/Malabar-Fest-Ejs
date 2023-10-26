@@ -66,7 +66,7 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
     // Save the volunteer registration data to the database
     await newVolunteer.save();
 
-    return res.sendStatus(200);
+    return res.status(200);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
