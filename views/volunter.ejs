@@ -7,6 +7,7 @@
   />
 
   <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title><%= title %></title>
     <meta name="description" content="<%= metaTags[0].description %>" />
     <meta name="keywords" content="<%= metaTags[1].keywords %>" />
@@ -51,13 +52,11 @@
             <h1>Volunteer Registration</h1>
           </div> -->
             <div class="register-form">
-              <div
-                id="successMessage"
-                class="alert alert-success"
-                style="display: none"
-              ></div>
-
               <div class="container">
+                <div id="statusMessageDiv" style="background-color: lightgreen; opacity: 70%; padding: 10px; border-radius: 3px;">
+                  <p id="statusMessage"></p>
+                </div>
+                
                 <form
                   action="/volunter"
                   method="post"
@@ -337,30 +336,63 @@
 
     <!-- JS
   ============================================ -->
+  <script>
+    $(document).ready(function () {
+      // Select the form element
+      const form = $("#volunteerForm");
+  
+      // Select the message and statusMessage elements
+      const messageElement = $("#message");
+      const statusMessage = $("#statusMessage");
+  
+      // Initially hide the status message div
+      $("#statusMessageDiv").hide();
+  
+      // Add a submit event listener to the form
+      form.on("submit", function (event) {
+        event.preventDefault(); // Prevent the default form submission
+  
+        // Create a FormData object to send the form data
+        const formData = new FormData(form[0]);
+  
+        // Make an AJAX request to the server
+        $.ajax({
+          type: "POST",
+          url: "/volunter/submit",
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function (data) {
+            if (data.error) {
+              // Display error message
+              statusMessage.text("Error: " + data.error);
+              statusMessage.css("color", "red");
+            } else if (data.message === "Registration completed") {
+              // Display success message
+              statusMessage.text("Success: Registration completed!");
+              statusMessage.css("color", "green");
+              form[0].reset(); // Clear the form
+  
+              // Show the status message div
+              $("#statusMessageDiv").show();
+  
+              // Set a timeout to redirect to the index page after 3 seconds (3000 milliseconds)
+              setTimeout(function () {
+                window.location.href = "/"; // Redirect to the index page
+              }, 2500);
+            }
+          },
+          error: function (error) {
+            console.error("Error:", error);
+          },
+        });
+      });
+    });
+  </script>
+  
+  
 
     <!-- carousel & jQuery JS -->
-
-    <script>
-      // Function to show the success message
-      function showSuccessMessage(message) {
-        const successMessage = document.getElementById("successMessage");
-        successMessage.innerText = message;
-        successMessage.style.display = "block";
-
-        // Hide the message after 3 seconds
-        setTimeout(function () {
-          successMessage.style.display = "none";
-          // Redirect to the index page
-          window.location.href = "/";
-        }, 3000); // 3000 milliseconds = 3 seconds
-      }
-
-      // Check if a success message is present in the HTML
-      const successMessage = "<%= successMessage %>";
-      if (successMessage) {
-        showSuccessMessage(successMessage);
-      }
-    </script>
 
     <script src="assets/js/js/jquery.min.js"></script>
     <script src="assets/js/js/owl.carousel.min.js"></script>
