@@ -35,7 +35,7 @@ router.get("/", function (req, res, next) {
   res.render("volunter", { title, metaTags, successMessage });
 });
 
-router.post("/", upload.single("photo"), async function (req, res, next) {
+router.post("/submit", upload.single("photo"), async function (req, res, next) {
   try {
     const imagePath = req.file ? req.file.path : null;
     console.log(req.body);
@@ -69,6 +69,22 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
 
     // Save the volunteer registration data to the database
     await newVolunteer.save();
+    //--------------------------------- QR CODE START ---------------------------------
+
+    // Create the QR Code Directory if it doesn't exist
+    const qrCodeDirectory = "./uploads/qrcodes";
+    if (!fs.existsSync(qrCodeDirectory)) {
+      fs.mkdirSync(qrCodeDirectory);
+    }
+
+    // Generate QR CODE and save it as PNG file
+    const qrCodeFileName = `${qrCodeDirectory}/${newVolunteer._id}.png`;
+    await qr.toFile(qrCodeFileName, JSON.stringify(newVolunteer._id));
+
+    //--------------------------------- QR CODE END ---------------------------------
+
+    await sendConfirmationEmail(newVolunteer, qrCodeFileName);
+    await sendWhatsAppMessage(newVolunteer.mobile, newVolunteer);
 
     // Pass a success message to the view
     const successMessage = "Registration successful!";
@@ -93,7 +109,7 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       },
     ];
 
-    res.render("volunter", { title, metaTags, successMessage });
+    return res.status(200).json({ message: "Registration completed" });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
@@ -129,27 +145,77 @@ function sendConfirmationEmail(volunteerData, qrCodeFileName) {
   const mailOptions = {
     from: process.env.SMTP_FROM_EMAIL,
     to: volunteerData.email,
-    subject: `Registration Confirmation for ${volunteerData.regType} at Malabar Literature Festival 2023`,
-    text: `
-    Dear ${volunteerData.name},
-        
-    We are thrilled to inform you that your registration for the Malabar Literature Festival 2023 has been successfully confirmed! We can't wait to welcome you to this exciting literary event, which will take place at the beautiful Calicut Beach from November 30th to December 3rd.
+    subject: `Registration Confirmation for volunteer at Malabar Literature Festival 2023`,
+    html: `<!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        .container {
+            color:white;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          background-color: #05102c;
+          padding: 0px;
+          border: 2px solid #333;
+          width: 400px;
+          margin: 0 auto;
+        }
+        .img{
+            background:white;
+            width:100%;
+            padding:20px;
+            margin-top:5px;
+        }
+        .header {
+          font-size: 24px;
+          font-weight: bold;
+          text-decoration-line: underline;
+          text-decoration-style: wavy;
+          text-decoration-skip-ink: none;
+          text-underline-offset: 15px;
+          padding:20px;
+        }
+        .content {
+          font-size: 16px;
+          padding:20px;
+        }
+        .contact {
+          margin-top: 0px;
+          padding:20px;
+        }
+        .banner {
+          width: 200px;
+          max-height: 150px;
+          object-fit: cover;
+        }
+        a{
+            color:white;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+      <div class="content">
+      <div class="header">
+        <p>Hello ${volunteerData.name},</p>
+      </div>
+          <p>We're happy to inform you that your volunteer application for the Malabar Literature Festival 2023 has been successful!
+          Your eagerness to be part of our dedicated team is highly appreciated. We'll soon send you more details on the following procedures.</p>
+          
+          <p>If you ever feel like sharing your thoughts or have questions, don't hesitate to reach out to us via email.</p>
     
-    Your participation in the Malabar Literature Festival will grant you access to a diverse range of literary discussions, author sessions, workshops, and cultural performances. We have a spectacular lineup of renowned authors, poets, and speakers who will engage in thought-provoking conversations, and we are confident that you will have an enriching and enjoyable experience.
-    
-    Please keep an eye on your email for further updates, including the festival schedule, information about speakers and sessions, and any last-minute changes. We recommend that you arrive at the venue well in advance to ensure you get the best experience possible.
-    
-    If you have any questions or require additional information, please do not hesitate to contact our support team at info@malabarliteraturefestival.com or call us at +91 9539327252.
-    
-    We look forward to seeing you at the Malabar Literature Festival 2023 and sharing in the celebration of literature and culture.
-    
-    Thank you for your participation, and best wishes for an inspiring and memorable festival!
-    
-    Warm regards,
-    
-    Malabar Literature Festival Organizing Committee
-    Help Desk: +91 9539327252
-  `,
+          <div class="contact">
+          <p>Warm regards,</p>
+            <p>Malabar Literature Festival Organizing Committee</p>
+            <p><a href="mailto:info@malabarliteraturefestival.com">info@malabarliteraturefestival.com</a></p>
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>
+    `,
     attachments: [
       {
         filename: "qr-code.png",
@@ -173,20 +239,16 @@ function sendWhatsAppMessage(mobileNumber, volunteerData) {
     mobileNumber = "91" + mobileNumber;
   }
 
-  const WhatsappMessage = `
-    Dear ${volunteerData.name},
-
-    We are thrilled to inform you that your registration for the Malabar Literature Festival 2023 has been successfully confirmed! We can't wait to welcome you to this exciting literary event, which will take place at the beautiful Calicut Beach from November 30th to December 3rd.
+  const WhatsappMessage = `Hello ${volunteerData.name},
+We're happy to  inform you that your volunteer application for the Malabar Literature Festival 2023 has been successfull! 
+Your eagerness to be part of our dedicated team is highly appreciated. 
+We'll soon send you more details on the following procedures. 
+If you ever feel like sharing your thoughts, questions don't hesitate to reach out to us on email. 
     
-    We look forward to seeing you at the Malabar Literature Festival 2023 and sharing in the celebration of literature and culture.
+Warm regards,
     
-    Thank you for your participation, and best wishes for an inspiring and memorable festival!
-    
-    Warm regards,
-    
-    Malabar Literature Festival Organizing Committee
-    Help Desk: +91 9539327252
-  `;
+Malabar Literature Festival Organizing Committee
+info@malabarliteraturefestival.com`;
 
   const whatsappApiUrl = "https://text.dxing.in/api/send";
   const whatsappData = {
