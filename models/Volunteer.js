@@ -18,10 +18,6 @@ const volunteerSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    password: {
-        type: String,
-        required: true
-    },
     institute: {
         type: String,
         required: true
