@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-<link rel="shortcut icon" type="image/x-icon" href="/assets/images/favnew.svg">
+  <link
+    rel="shortcut icon"
+    type="image/x-icon"
+    href="/assets/images/favnew.svg"
+  />
 
-<head>
-  <title>
-    <%= title %>
-  </title>
-  <meta name="description" content="<%= metaTags[0].description %>" />
-  <meta name="keywords" content="<%= metaTags[1].keywords %>" />
-  <meta name="author" content="<%= metaTags[2].author %>" />
-  <meta name="robots" content="<%= metaTags[3].robots %>" />
-  <%- include('layout/header.ejs') %>
-</head>
+  <head>
+    <title><%= title %></title>
+    <meta name="description" content="<%= metaTags[0].description %>" />
+    <meta name="keywords" content="<%= metaTags[1].keywords %>" />
+    <meta name="author" content="<%= metaTags[2].author %>" />
+    <meta name="robots" content="<%= metaTags[3].robots %>" />
+    <%- include('layout/header.ejs') %>
+  </head>
 
-<body>
-  <div class="main-wrapper">
-
-    <div class="container">
-      <div class="attende-registration" style="margin-top: 100px">
-        <div class="registration-title">
-          <h1>Attendee</h1>
+  <body>
+    <div class="main-wrapper">
+      <div class="container">
+        <div class="attende-registration" style="margin-top: 100px">
+          <div class="registration-title">
+            <h1>Attendee</h1>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="register-table" style="
+      <div
+        class="register-table"
+        style="
           background-image: url('assets/images/RegisterUnion.png');
           background-size: cover;
           background-position: center center;
@@ -32,59 +35,92 @@
           display: flex;
           justify-content: center;
           align-items: center;
-        ">
-      <div class="container">
-        <div class="delegate-table-section">
-          <!-- <div class="delegate-title">
+        "
+      >
+        <div class="container">
+          <div class="delegate-table-section">
+            <!-- <div class="delegate-title">
             <h1>Attendee</h1>
           </div> -->
-          <div class="register-form">
-            <div class="container">
-              <div id="submit-message" class="alert alert-success" style="display: none"></div>
-              <div class="alert alert-info" id="submitting-alert" style="display: none">
-                Submitting...
-              </div>
-              <form action="/attende" method="post" id="attendeForm">
-                <input type="hidden" name="type" value="attende" />
-                <div class="row form_head">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="name">Name:</label>
-                      <input type="text" id="name" name="name" class="form-control" required />
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="gender">Gender:</label>
-                      <select id="gender" name="gender" class="form-control" required>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="place">place:</label>
-                      <input type="text" id="place" name="place" class="form-control" required />
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="contact">Contact Number:</label>
-                      <input type="tel" id="contact" name="contact" class="form-control" required />
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="email">Email ID:</label>
-                      <input type="email" id="email" name="email" class="form-control" required />
-                      <p id="emailError" class="text-danger"></p>
-                    </div>
-                  </div>
+            <div class="register-form">
+              <div class="container">
+                <div
+                  id="success-message"
+                  class="alert alert-success"
+                  style="display: none"
+                >
+                  You have registered successfully.
+                </div>
 
+                <form action="/attende" method="post" id="attendeForm">
+                  <input type="hidden" name="type" value="attende" />
+                  <div class="row form_head">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          class="form-control"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <select
+                          id="gender"
+                          name="gender"
+                          class="form-control"
+                          required
+                        >
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="place">place:</label>
+                        <input
+                          type="text"
+                          id="place"
+                          name="place"
+                          class="form-control"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="contact">Contact Number:</label>
+                        <input
+                          type="tel"
+                          id="contact"
+                          name="contact"
+                          class="form-control"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="email">Email ID:</label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          class="form-control"
+                          required
+                        />
+                        <p id="emailError" class="text-danger"></p>
+                      </div>
+                    </div>
 
-                  <!-- <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                     <div class="form-group">
                       <label for="email">Registered Mail:</label>
                       <input type="email" id="email" name="email" class="form-control" value="<%= savedEmail %>"
@@ -93,68 +129,93 @@
                     </div>
                   </div> -->
 
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="location">District:</label>
-                      <input type="text" id="location" name="location" class="form-control" style="width: 100%"
-                        placeholder="District" required />
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="location">District:</label>
+                        <input
+                          type="text"
+                          id="location"
+                          name="location"
+                          class="form-control"
+                          style="width: 100%"
+                          placeholder="District"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="professions">profession:</label>
+                        <select
+                          id="professions"
+                          name="profession"
+                          class="form-control scrollable-dropdown"
+                          required
+                        >
+                          <option value="education">Education</option>
+                          <option value="literature">Literature</option>
+                          <option value="research">Research</option>
+                          <option value="business">Business</option>
+                          <option value="art">Art</option>
+                          <option value="media">Media</option>
+                          <option value="film">Film</option>
+                          <option value="it">Information Technology</option>
+                          <option value="healthcare">Health Care</option>
+                          <option value="law">Law & Order</option>
+                          <option value="music">Music</option>
+                          <option value="ngo">NGO</option>
+                          <option value="public-service">Public Service</option>
+                          <option value="other">Other</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="country">Registering From</label>
+                        <select
+                          id="country"
+                          name="countryFrom"
+                          class="form-control scrollable-dropdown"
+                          required
+                        >
+                          <option value="India">India</option>
+                          <option value="UAE">UAE</option>
+                          <option value="Saudi Arabia">Saudi Arabia</option>
+                          <option value="Qatar">Qatar</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <%- include('layout/calender.ejs') %> <%-
+                    include('layout/matterOfInterest.ejs') %>
+                  </div>
+
+                  <div
+                    class="row"
+                    style="align-items: center; margin-top: 50px"
+                  >
+                    <div class="col-12 d-flex justify-content-center">
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        style="border-radius: 20px"
+                      >
+                        Register
+                      </button>
                     </div>
                   </div>
-
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="professions">profession:</label>
-                      <select id="professions" name="profession" class="form-control scrollable-dropdown" required>
-                        <option value="education">Education</option>
-                        <option value="literature">Literature</option>
-                        <option value="research">Research</option>
-                        <option value="business">Business</option>
-                        <option value="art">Art</option>
-                        <option value="media">Media</option>
-                        <option value="film">Film</option>
-                        <option value="it">Information Technology</option>
-                        <option value="healthcare">Health Care</option>
-                        <option value="law">Law & Order</option>
-                        <option value="music">Music</option>
-                        <option value="ngo">NGO</option>
-                        <option value="public-service">Public Service</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="country">Registering From</label>
-                      <select id="country" name="countryFrom" class="form-control scrollable-dropdown" required>
-                        <option value="India">India</option>
-                        <option value="UAE">UAE</option>
-                        <option value="Saudi Arabia">Saudi Arabia</option>
-                        <option value="Qatar">Qatar</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <%- include('layout/calender.ejs') %> <%- include('layout/matterOfInterest.ejs') %>
-                </div>
-
-                <div class="row" style="align-items: center; margin-top: 50px">
-                  <div class="col-12 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary" style="border-radius: 20px">
-                      Register
-                    </button>
-                  </div>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Footer Start -->
-  <%- include('layout/footer.ejs') %>
+    <!-- Footer Start -->
+    <%- include('layout/footer.ejs') %>
     <!-- Footer End -->
 
     <!-- JS
@@ -184,72 +245,45 @@
     <script src="assets/js/jquery.nice-select.min.js"></script>
     <!-- Main JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
+    <script
+      type="text/javascript"
+      src="node_modules/slick-carousel/slick/slick.min.js"
+    ></script>
     <script src="assets/js/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</body>
-<script>
-  $(document).ready(function () {
-    $("#attendeForm").submit(function (event) {
-      event.preventDefault(); // Prevent the default form submission
+    <script>
+      $(document).ready(function () {
+        // Handle the form submission
+        $("#attendeForm").submit(function (e) {
+          e.preventDefault(); // Prevent the form from submitting in the traditional way
+          const $form = $(this);
 
-      // Remove the readonly attribute from the email field
-      $("#email").prop("readonly", false);
+          // Perform the form submission using AJAX
+          $.ajax({
+            type: "POST",
+            url: "/attende", // Modify this URL to match your server's endpoint
+            data: $form.serialize(), // Serialize form data
+            success: function (response) {
+              // Hide the form
+              $("#attendeForm").hide();
+              // Display the success message
+              $("#success-message").show();
 
-      // Show the "Submitting..." alert message
-      $("#submitting-alert").show();
+              // Clear the form
+              $form[0].reset();
 
-      // Serialize the form data
-      var formData = $(this).serialize();
-
-      // Send an AJAX request to your server to handle form submission
-      $.ajax({
-        type: "POST",
-        url: "/attende",
-        data: formData,
-        success: function (response) {
-          // Hide the "Submitting..." alert message
-          $("#submitting-alert").hide();
-
-          // Display the success message
-          $("#submit-message")
-            .removeClass("alert-danger")
-            .addClass("alert-success");
-          $("#submit-message").html(response.message); // Use the message from the response
-          $("#submit-message").show();
-
-          // Clear the form fields if needed
-          $("#attendeForm")[0].reset();
-
-          // Set a timer to hide the success message after 3 seconds
-          setTimeout(function () {
-            $("#submit-message").hide();
-          }, 3000);
-
-          // Send a WhatsApp message using the WhatsApp API
-          sendWhatsAppMessage(response.number, response.message);
-        },
-        error: function (xhr, status, error) {
-          // Hide the "Submitting..." alert message
-          $("#submitting-alert").hide();
-
-          // Display an error message if the registration fails
-          $("#submit-message")
-            .removeClass("alert-success")
-            .addClass("alert-danger");
-          $("#submit-message").html(xhr.responseJSON.error); // Use the error message from the response
-          $("#submit-message").show();
-
-          $("#attendeForm")[0].reset();
-
-          // Set a timer to hide the success message after 3 seconds
-          setTimeout(function () {
-            $("#submit-message").hide();
-          }, 3000);
-        },
+              // Set a timer to redirect to the home page after 3 seconds
+              setTimeout(function () {
+                window.location.href = "/"; // Replace with your home page URL
+              }, 3000); // 3000 milliseconds (3 seconds)
+            },
+            error: function (error) {
+              console.error(error);
+              // Handle error here if needed
+            },
+          });
+        });
       });
-    });
-  });
-</script>
-
+    </script>
+  </body>
 </html>
