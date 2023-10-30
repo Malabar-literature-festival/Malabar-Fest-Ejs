@@ -81,10 +81,10 @@ exports.paymentGeneration = async (
       existingUser.regType = delegateData.regType;
       existingUser.institution = delegateData.institution;
       existingUser.category = delegateData.category;
+      existingUser.place = delegateData.place;
       existingUser.image = delegateData.image;
       existingUser.orderId = orderId;
       existingUser.amount = amount;
-
       await existingUser.save();
 
       delete req.session.email;
@@ -165,6 +165,7 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       mobileNumber: req.body.contact,
       email: req.body.email,
       profession: req.body.profession,
+      place: req.body.place,
       regDate: dateObjects,
       matterOfInterest: req.body.intrest,
       institution: req.body.institution,

@@ -88,6 +88,8 @@ router.post("/", async function (req, res) {
       email: req.body.email,
       district: req.body.location,
       profession: req.body.profession,
+      countryFrom: req.body.countryFrom,
+      place: req.body.place,
       regDate: dateObjects,
       matterOfInterest: req.body.intrest, // Fix the typo in the field name
       regType: req.body.type,
