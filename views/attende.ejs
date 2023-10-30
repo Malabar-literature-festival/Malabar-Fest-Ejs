@@ -65,6 +65,12 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
+                      <label for="place">place:</label>
+                      <input type="text" id="place" name="place" class="form-control" required />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
                       <label for="contact">Contact Number:</label>
                       <input type="tel" id="contact" name="contact" class="form-control" required />
                     </div>
@@ -89,10 +95,9 @@
 
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="location">Location, City/Place, Country -
-                        State/District:</label>
+                      <label for="location">District:</label>
                       <input type="text" id="location" name="location" class="form-control" style="width: 100%"
-                        placeholder="City, Country - State/District" required />
+                        placeholder="District" required />
                     </div>
                   </div>
 
@@ -114,6 +119,18 @@
                         <option value="ngo">NGO</option>
                         <option value="public-service">Public Service</option>
                         <option value="other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="country">Registering From</label>
+                      <select id="country" name="countryFrom" class="form-control scrollable-dropdown" required>
+                        <option value="India">India</option>
+                        <option value="UAE">UAE</option>
+                        <option value="Saudi Arabia">Saudi Arabia</option>
+                        <option value="Qatar">Qatar</option>
                       </select>
                     </div>
                   </div>
