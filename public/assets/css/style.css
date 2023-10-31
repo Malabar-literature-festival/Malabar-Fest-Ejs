@@ -13293,7 +13293,7 @@ figcaption {
 .speaker-imgs img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .speaker-content-inner {
   /* position: absolute;
@@ -13307,12 +13307,27 @@ figcaption {
   background-repeat: no-repeat;
   padding-top: 10px;
   padding-bottom: 15px;
+  margin-left: -10px;
 }
+#speaker_name {
+  margin-left: 80px;
+  max-width: 100%;
+}
+@media (max-width: 768px) {
+  #speaker_name {
+    margin-left: 0px;
+  }
+  .center_on_mobile {
+    display: grid;
+    place-items: center;
+  }
+}
+
 .speaker-content {
   position: absolute;
   top: 92%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 40%;
+  transform: translate(-50%, -90%);
   text-align: center;
   width: 100%;
   /* background-image: url("assets/images/blackshade.svg") !important; */
@@ -13324,8 +13339,8 @@ figcaption {
 
 .speakers-name {
   width: 100%;
-  color: #49bdf2;
-  font-family: var(--font-Inter);
+  color: #000;
+  font-family: var(--font-blaa);
   font-size: 17px;
   font-weight: 200;
   text-align: center;
