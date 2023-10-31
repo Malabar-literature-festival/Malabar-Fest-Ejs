@@ -46,8 +46,7 @@
               <div class="container">
                 <div
                   id="success-message"
-                  class="alert alert-success"
-                  style="display: none"
+                  class="alert alert-success attende-msg"
                 >
                   Registration Successful! Thank you for registering.
                 </div>
@@ -273,9 +272,9 @@
               $form[0].reset();
 
               // Set a timer to redirect to the home page after 3 seconds
-              setTimeout(function () {
-                window.location.href = "/"; // Replace with your home page URL
-              }, 3000); // 3000 milliseconds (3 seconds)
+              // setTimeout(function () {
+              //   window.location.href = "/"; // Replace with your home page URL
+              // }, 3000); // 3000 milliseconds (3 seconds)
             },
             error: function (error) {
               console.error(error);

@@ -14212,3 +14212,19 @@ ul li:hover {
   padding-bottom: 15px;
   text-align: center;
 }
+
+.attende-msg {
+  display: none;
+  position: relative;
+  bottom: 205px;
+  text-align: center;
+}
+
+@media (min-width: 768px){
+  .attende-msg {
+    display: none;
+    position: relative;
+    bottom: 95px;
+    text-align: center;
+  }
+}
