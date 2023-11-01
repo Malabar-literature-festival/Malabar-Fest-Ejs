@@ -45,7 +45,7 @@ exports.paymentGeneration = async (
         0x0c, 0x0d, 0x0e, 0x0f,
       ]).toString("base64");
 
-      const plainText = `merchant_id=${process.env.MERCHENTID}&order_id=${orderId}&currency=INR&amount=${amount}&redirect_url=${domain}/register/payment-status/${user}&cancel_url=${domain}/register/${user}`;
+      const plainText = `merchant_id=${process.env.MERCHENTID}&order_id=${orderId}&currency=INR&amount=${amount}&redirect_url=${domain}/register/payment-status/${user}&cancel_url=${domain}/register/payment-status/${user}`;
       const encRequest = encrypt(plainText, keyBase64, ivBase64);
 
       // Prepare the response with a form for redirection
@@ -71,6 +71,7 @@ exports.paymentGeneration = async (
       existingUser.regDate = delegateData.regDate;
       existingUser.matterOfInterest = delegateData.matterOfInterest;
       existingUser.regType = delegateData.regType;
+      existingUser.place = delegateData.place;
       existingUser.image = delegateData.image;
       existingUser.orderId = orderId;
       existingUser.amount = amount;
@@ -158,6 +159,7 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       mobileNumber: req.body.contact,
       email: req.body.email,
       profession: req.body.profession,
+      place: req.body.place,
       regDate: dateObjects,
       matterOfInterest: req.body.intrest,
       regType: req.body.type,

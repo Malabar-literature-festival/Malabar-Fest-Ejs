@@ -56,6 +56,12 @@ const RegistrationSchema = new mongoose.Schema(
     regRef: {
       type: String,
     },
+    countryFrom: {
+      type: String,
+    },
+    place: {
+      type: String,
+    },
     image: {
       type: String,
     },
@@ -74,7 +80,7 @@ const RegistrationSchema = new mongoose.Schema(
     },
     paymentStatus: {
       type: String,
-    }
+    },
   },
   { timestamps: true }
 );
