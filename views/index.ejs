@@ -145,7 +145,7 @@
                     <!-- id="myBtn" -->
                     <div class="col-md-3 speaker-cards">
                       <div class="speaker-imgs">
-                        <img style="object-fit: contain; width: 100%; height: 100%;"
+                        <img style="object-fit: cover; width: 100%; height: 100%;"
                           src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speaker.image }` %>"
                           alt="" />
                       </div>
@@ -213,11 +213,11 @@
     <div class="news-details">
       <div class="row news-details-head">
         <div class="col-12 col-xl-6 news-details-head-img">
-          <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[5].image }` %>" alt="" />
+          <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[6].image }` %>" alt="" />
         </div>
         <div class="col-12 col-xl-6">
           <h1 class="news-details-head-title">
-            <%= newsData[5].title %>
+            <%= newsData[6].title %>
           </h1>
           <div class="dates">
             <h6 style="display: inline; font-size: 10px">Latest</h6>
@@ -228,10 +228,10 @@
             </span>
           </div>
           <p>
-            <%= newsData[0].description.substring(0,500) %>....
+            <%= newsData[6].description.substring(0,500) %>....
           </p>
           <div>
-            <a href="/news/<%= newsData[0].slug %>">
+            <a href="/news/<%= newsData[6].slug %>">
               <button class="readmore">Read More</button></a>
           </div>
         </div>
