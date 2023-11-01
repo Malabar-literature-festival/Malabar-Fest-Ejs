@@ -13272,7 +13272,7 @@ figcaption {
 }
 
 .speaker-cards:hover {
-  border: solid 10px #fff;
+  /* border: solid 1px #fff; */
   padding: 12px;
   transition: all 0.125s ease 0s;
 
@@ -13293,7 +13293,7 @@ figcaption {
 }
 
 .speaker-imgs img {
-  width: 100%;  
+  width: 100%;
   height: 100%;
   object-fit: cover;
 }
