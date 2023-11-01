@@ -12416,6 +12416,8 @@ img {
   text-decoration-skip-ink: none;
   text-underline-offset: 15px;
   /* Adjust the value as needed */
+  text-align: center;
+  padding-bottom: 20px;
 }
 
 .news-details {
@@ -12749,7 +12751,7 @@ li a {
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 45%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -60%);
   width: 100%;
@@ -13293,7 +13295,7 @@ figcaption {
 .speaker-imgs img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .speaker-content-inner {
   /* position: absolute;
@@ -13307,12 +13309,27 @@ figcaption {
   background-repeat: no-repeat;
   padding-top: 10px;
   padding-bottom: 15px;
+  margin-left: -10px;
 }
+#speaker_name {
+  margin-left: 80px;
+  max-width: 100%;
+}
+@media (max-width: 768px) {
+  #speaker_name {
+    margin-left: 0px;
+  }
+  .center_on_mobile {
+    display: grid;
+    place-items: center;
+  }
+}
+
 .speaker-content {
   position: absolute;
   top: 92%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 40%;
+  transform: translate(-50%, -90%);
   text-align: center;
   width: 100%;
   /* background-image: url("assets/images/blackshade.svg") !important; */
@@ -13324,8 +13341,8 @@ figcaption {
 
 .speakers-name {
   width: 100%;
-  color: #49bdf2;
-  font-family: var(--font-Inter);
+  color: #000;
+  font-family: var(--font-blaa);
   font-size: 17px;
   font-weight: 200;
   text-align: center;
@@ -14204,7 +14221,7 @@ ul li:hover {
 }
 .event_card_inner-title {
   color: #0077b6;
-  font-family: var(--font-blaa);
+  font-family: var(--font-fabulous);
   /* text-decoration-line: underline;
   text-decoration-style: wavy;
   text-decoration-skip-ink: none;
@@ -14213,18 +14230,10 @@ ul li:hover {
   text-align: center;
 }
 
-.attende-msg {
-  display: none;
-  position: relative;
-  bottom: 205px;
+.Documentary {
   text-align: center;
-}
-
-@media (min-width: 768px){
-  .attende-msg {
-    display: none;
-    position: relative;
-    bottom: 95px;
-    text-align: center;
-  }
+  line-height: initial;
+  padding-bottom: 20px;
+  color: #0077b6;
+  font-family: var(--font-fabulous);
 }
