@@ -12416,6 +12416,8 @@ img {
   text-decoration-skip-ink: none;
   text-underline-offset: 15px;
   /* Adjust the value as needed */
+  text-align: center;
+  padding-bottom: 20px;
 }
 
 .news-details {
@@ -12749,7 +12751,7 @@ li a {
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 45%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -60%);
   width: 100%;
@@ -14219,11 +14221,18 @@ ul li:hover {
 }
 .event_card_inner-title {
   color: #0077b6;
-  font-family: var(--font-blaa);
+  font-family: var(--font-fabulous);
   /* text-decoration-line: underline;
   text-decoration-style: wavy;
   text-decoration-skip-ink: none;
   text-underline-offset: 12px; */
   padding-bottom: 15px;
   text-align: center;
+}
+.Documentary {
+  text-align: center;
+  line-height: initial;
+  padding-bottom: 20px;
+  color: #0077b6;
+  font-family: var(--font-fabulous);
 }
