@@ -139,7 +139,20 @@ router.post("/payment-status/:user", async function (req, res, next) {
         return res.status(400).json("Payment not found");
       }
     } else {
-      return res.status(400).json("Payment may be done or failed");
+      const registeredUser = await TempReg.findById(user)
+      if (responseArray["order_status"] === "Success" && registeredUser.paymentStatus === 'success' || registeredUser.paymentStatus === 'Success') {
+        res.render("success", {
+          title: "Payment Success",
+          metaTags,
+          registeredUser,
+        });
+      } else {
+        res.render("failed", {
+          title: "Payment Failed",
+          metaTags,
+          registeredUser,
+        });
+      }
     }
   } catch (error) {
     console.error("Error:", error);
