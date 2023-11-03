@@ -75,7 +75,8 @@ router.post("/payment-status/:user", async function (req, res, next) {
 
     const tempUser = await TempReg.findById(user);
 
-    if (responseArray.order_id === tempUser.orderId) {
+    if (responseArray.order_id === tempUser.orderId && responseArray.amount == tempUser.amount) {
+      console.log("responseArray", { responseArray });
       if (responseArray["order_status"] === "Success") {
         const tempRegData = await TempReg.findById(user);
 
@@ -86,9 +87,9 @@ router.post("/payment-status/:user", async function (req, res, next) {
             gender: tempRegData.gender,
             mobileNumber: tempRegData.mobileNumber,
             email: tempRegData.email,
-            profession: tempRegData.profession,
-            regDate: tempRegData.regDate,
-            matterOfInterest: tempRegData.matterOfInterest,
+            // profession: tempRegData.profession,
+            // regDate: tempRegData.regDate,
+            // matterOfInterest: tempRegData.matterOfInterest,
             regType: tempRegData.regType,
             image: tempRegData.image,
             amount: tempRegData.amount,
