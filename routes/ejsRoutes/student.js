@@ -75,12 +75,12 @@ exports.paymentGeneration = async (
       console.log(existingUser);
 
       console.log("delegateData :- ", delegateData);
-      existingUser.profession = delegateData.profession;
-      existingUser.regDate = delegateData.regDate;
-      existingUser.matterOfInterest = delegateData.matterOfInterest;
+      // existingUser.profession = delegateData.profession;
+      // existingUser.regDate = delegateData.regDate;
+      // existingUser.matterOfInterest = delegateData.matterOfInterest;
       existingUser.regType = delegateData.regType;
       existingUser.institution = delegateData.institution;
-      existingUser.category = delegateData.category;
+      // existingUser.category = delegateData.category;
       existingUser.place = delegateData.place;
       existingUser.image = delegateData.image;
       existingUser.orderId = orderId;
@@ -164,12 +164,12 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       gender: req.body.gender,
       mobileNumber: req.body.contact,
       email: req.body.email,
-      profession: req.body.profession,
+      // profession: req.body.profession,
       place: req.body.place,
-      regDate: dateObjects,
-      matterOfInterest: req.body.intrest,
+      // regDate: dateObjects,
+      // matterOfInterest: req.body.intrest,
       institution: req.body.institution,
-      category: req.body.category,
+      // category: req.body.category,
       regType: req.body.type,
       image: imagePath,
     });
