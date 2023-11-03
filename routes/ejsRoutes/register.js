@@ -71,10 +71,9 @@ router.post("/payment-status/:user", async function (req, res, next) {
 
     const { user } = req.params;
     console.log("User :- ", req.params);
-    console.log("ccavResponse", ccavResponse);
-    console.log("responseArray", responseArray.order_id);
+    // console.log("ccavResponse", ccavResponse);
 
-    const tempUser = TempReg.findById(user);
+    const tempUser = await TempReg.findById(user);
 
     if (responseArray.order_id === tempUser.orderId) {
       if (responseArray["order_status"] === "Success") {
