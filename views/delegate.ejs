@@ -162,7 +162,15 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="professions">profession:</label>
-                        <select
+                        <input
+                        type="text"
+                        id="profession"
+                        name="profession"
+                        required
+                        class="form-control-file form-control"
+                        style="width: 100%"
+                      />
+                        <!-- <select
                           id="professions"
                           name="profession"
                           class="form-control scrollable-dropdown"
@@ -182,10 +190,10 @@
                           <option value="ngo">NGO</option>
                           <option value="public-service">Public Service</option>
                           <option value="other">Other</option>
-                        </select>
+                        </select> -->
                       </div>
                     </div>
-
+<!-- 
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="day">Select Day:</label>
@@ -198,9 +206,8 @@
                           required
                         />
                       </div>
-                    </div>
+                    </div> -->
 
-                    <%- include('layout/matterOfInterest.ejs') %>
                   </div>
                   <div class="row register-amount-btn">
                     <div class="col-12 d-flex justify-content-center">

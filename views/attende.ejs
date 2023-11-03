@@ -83,18 +83,6 @@
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="place">place:</label>
-                        <input
-                          type="text"
-                          id="place"
-                          name="place"
-                          class="form-control"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
                         <label for="contact">Contact Number:</label>
                         <input
                           type="tel"
@@ -118,6 +106,18 @@
                         <p id="emailError" class="text-danger"></p>
                       </div>
                     </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="place">City:</label>
+                        <input
+                          type="text"
+                          id="place"
+                          name="place"
+                          class="form-control"
+                          required
+                        />
+                      </div>
+                    </div>
 
                     <!-- <div class="col-md-6">
                     <div class="form-group">
@@ -127,7 +127,7 @@
                       <p id="emailError" class="text-danger"></p>
                     </div>
                   </div> -->
-
+<!-- 
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="location">District:</label>
@@ -141,9 +141,11 @@
                           required
                         />
                       </div>
-                    </div>
+                    </div> -->
 
-                    <div class="col-md-6">
+                    <!------------------ profession ------------------------->
+                    
+                    <!-- <div class="col-md-6">
                       <div class="form-group">
                         <label for="professions">profession:</label>
                         <select
@@ -168,13 +170,15 @@
                           <option value="other">Other</option>
                         </select>
                       </div>
-                    </div>
+                    </div> -->
+                    
+                    <!------------------ profession ------------------------->
 
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="country">Registering From</label>
                         <select
-                          id="country"
+                        id="country"
                           name="countryFrom"
                           class="form-control scrollable-dropdown"
                           required
@@ -186,9 +190,6 @@
                         </select>
                       </div>
                     </div>
-
-                    <%- include('layout/calender.ejs') %> <%-
-                    include('layout/matterOfInterest.ejs') %>
                   </div>
 
                   <div
@@ -263,7 +264,7 @@
             .removeClass("alert-danger alert-success")
             .addClass("alert-info");
           $("#alertMessage").html("Submitting...").show();
-          
+
           // Send the form data to the server via AJAX
           $.ajax({
             type: "POST",

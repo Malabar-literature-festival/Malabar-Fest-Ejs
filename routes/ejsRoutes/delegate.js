@@ -67,9 +67,9 @@ exports.paymentGeneration = async (
       console.log(req.body.profession);
       console.log("interest :- ", delegateData.matterOfInterest);
       console.log("delegateData :- ", delegateData);
-      existingUser.profession = delegateData.profession;
-      existingUser.regDate = delegateData.regDate;
-      existingUser.matterOfInterest = delegateData.matterOfInterest;
+      // existingUser.profession = delegateData.profession;
+      // existingUser.regDate = delegateData.regDate;
+      // existingUser.matterOfInterest = delegateData.matterOfInterest;
       existingUser.regType = delegateData.regType;
       existingUser.place = delegateData.place;
       existingUser.image = delegateData.image;
@@ -136,11 +136,11 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
     console.log(imagePath);
 
     // Change date string to date
-    const dateStrings = req.body.day;
-    const dateArray = dateStrings
-      .split(",")
-      .map((dateString) => dateString.trim());
-    const dateObjects = dateArray.map((dateString) => new Date(dateString));
+    // const dateStrings = req.body.day;
+    // const dateArray = dateStrings
+    //   .split(",")
+    //   .map((dateString) => dateString.trim());
+    // const dateObjects = dateArray.map((dateString) => new Date(dateString));
 
     // Check if a user with the same email or mobile number already exists in the Registration collection
     const existingUserInRegistration = await Registration.findOne({
@@ -158,10 +158,10 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       gender: req.body.gender,
       mobileNumber: req.body.contact,
       email: req.body.email,
-      profession: req.body.profession,
+      // profession: req.body.profession,
       place: req.body.place,
-      regDate: dateObjects,
-      matterOfInterest: req.body.intrest,
+      // regDate: dateObjects,
+      // matterOfInterest: req.body.intrest,
       regType: req.body.type,
       image: imagePath,
     });
