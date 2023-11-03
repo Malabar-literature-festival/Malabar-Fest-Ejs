@@ -56,14 +56,14 @@ router.post("/submit", upload.single("photo"), async function (req, res, next) {
       category: req.body.category,
       place: req.body.place,
       age: req.body.age,
-      workType: req.body.workType,
-      timeSlot: req.body.timeSlot,
-      reference: {
-        name: req.body.reference_name,
-        contact: req.body.mobile,
-      },
-      day: req.body.day,
-      matterOfInterest: req.body.interest,
+      // workType: req.body.workType,
+      // timeSlot: req.body.timeSlot,
+      // reference: {
+      //   name: req.body.reference_name,
+      //   contact: req.body.mobile,
+      // },
+      // day: req.body.day,
+      // matterOfInterest: req.body.interest,
       image: imagePath,
     });
 

@@ -2,63 +2,51 @@ const mongoose = require("mongoose");
 
 // Define the schema for volunteer registration
 const volunteerSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
+  name: {
+    type: String,
+  },
+  gender: {
+    type: String,
+  },
+  mobile: {
+    type: String,
+  },
+  email: {
+    type: String,
+  },
+  institute: {
+    type: String,
+  },
+  category: {
+    type: String,
+  },
+  place: {
+    type: String,
+  },
+  age: {
+    type: Number,
+  },
+  workType: {
+    type: String,
+  },
+  timeSlot: {
+    type: String,
+  },
+  reference: {
+    name: { type: String },
+    contact: { type: String },
+  },
+  regDate: [
+    {
+      type: Date,
     },
-    gender : {
-        type: String,
-        required: true
-    },
-    mobile: {
-        type: String,
-        required: true,
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    institute: {
-        type: String,
-        required: true
-    },
-    category: {
-        type: String,
-        required: true
-    },
-    place: {
-        type: String,
-        required: true
-    },
-    age: {
-        type: Number,
-        required: true
-    },
-    workType: {
-        type: String,
-        required: true
-    },
-    timeSlot: {
-        type: String,
-        required: true
-    },
-    reference: {
-        name : {type: String},
-        contact: {type: String}
-    },
-    regDate: [
-        {
-          type: Date,
-        },
-      ],
-    matterOfInterest: {
-        type: [String],
-        required: true,
-    },
-    image: {
-        type: String,
-        required: true,
-    }
+  ],
+  matterOfInterest: {
+    type: [String],
+  },
+  image: {
+    type: String,
+  },
 });
 
 // Create and export the Volunteer model
