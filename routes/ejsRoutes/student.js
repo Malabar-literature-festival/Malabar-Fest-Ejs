@@ -142,12 +142,12 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
     const imagePath = req.file ? req.file.path : null;
     console.log(imagePath);
 
-    // change date string to date
-    const dateStrings = req.body.day;
-    const dateArray = dateStrings
-      .split(",")
-      .map((dateString) => dateString.trim());
-    const dateObjects = dateArray.map((dateString) => new Date(dateString));
+    // // change date string to date
+    // const dateStrings = req.body.day;
+    // const dateArray = dateStrings
+    //   .split(",")
+    //   .map((dateString) => dateString.trim());
+    // const dateObjects = dateArray.map((dateString) => new Date(dateString));
 
     // Check if a user with the same email or mobile number already exists in the Registration collection
     const existingUserInRegistration = await Registration.findOne({
