@@ -61,7 +61,7 @@ router.post("/payment-status/:user", async function (req, res, next) {
       0x0c, 0x0d, 0x0e, 0x0f,
     ]).toString("base64");
     var encryption = req.body.encResp;
-    ccavResponse = decrypt(encryption, keyBase64, ivBase64);
+    var ccavResponse = decrypt(encryption, keyBase64, ivBase64);
 
     const responseArray = ccavResponse.split("&").reduce((acc, pair) => {
       const [key, value] = pair.split("=");
@@ -71,59 +71,69 @@ router.post("/payment-status/:user", async function (req, res, next) {
 
     const { user } = req.params;
     console.log("User :- ", req.params);
+    console.log("ccavResponse", ccavResponse);
+    console.log("responseArray", responseArray.order_id);
 
-    if (responseArray["order_status"] === "Success") {
-      const tempRegData = await TempReg.findById(user);
+    const tempUser = TempReg.findById(user);
 
-      console.log("tempRegData::", tempRegData);
-      if (tempRegData) {
-        var registrationData = new Registration({
-          name: tempRegData.name,
-          gender: tempRegData.gender,
-          mobileNumber: tempRegData.mobileNumber,
-          email: tempRegData.email,
-          profession: tempRegData.profession,
-          regDate: tempRegData.regDate,
-          matterOfInterest: tempRegData.matterOfInterest,
-          regType: tempRegData.regType,
-          image: tempRegData.image,
-          amount: tempRegData.amount,
-          orderId: tempRegData.orderId,
-          paymentStatus: "success",
+    if (responseArray.order_id === tempUser.orderId) {
+      if (responseArray["order_status"] === "Success") {
+        const tempRegData = await TempReg.findById(user);
+
+        console.log("tempRegData::", tempRegData);
+        if (tempRegData) {
+          var registrationData = new Registration({
+            name: tempRegData.name,
+            gender: tempRegData.gender,
+            mobileNumber: tempRegData.mobileNumber,
+            email: tempRegData.email,
+            profession: tempRegData.profession,
+            regDate: tempRegData.regDate,
+            matterOfInterest: tempRegData.matterOfInterest,
+            regType: tempRegData.regType,
+            image: tempRegData.image,
+            amount: tempRegData.amount,
+            orderId: tempRegData.orderId,
+            paymentStatus: "success",
+          });
+
+          // Save the registration data to the Registration collection
+          await registrationData.save();
+        }
+
+        const qrCodeFileName = `./uploads/qrcodes/${user}.png`; // Change to the actual file path
+        const qrCodeImage = fs.readFileSync(qrCodeFileName);
+
+        console.log("qrCodeImage", qrCodeImage);
+        console.log("qrCodeFileName", qrCodeFileName);
+
+        const registeredUser = await Registration.findById(
+          registrationData._id
+        );
+        console.log("Payment Success User :- ", registeredUser);
+        const tempRegisteredUser = await TempReg.findById(user);
+        tempRegisteredUser.paymentStatus = "success";
+        await tempRegisteredUser.save();
+        sendWhatsAppMessage(registeredUser);
+        sendConfirmationEmail(registeredUser, qrCodeFileName);
+        res.render("success", {
+          title: "Payment Success",
+          metaTags,
+          registeredUser,
         });
-
-        // Save the registration data to the Registration collection
-        await registrationData.save();
+      } else {
+        const registeredUser = await TempReg.findById(user);
+        registeredUser.paymentStatus = "Failed";
+        await registeredUser.save();
+        console.log("Payment failed User :- ", registeredUser);
+        res.render("failed", {
+          title: "Payment Failed",
+          metaTags,
+          registeredUser,
+        });
       }
-
-      const qrCodeFileName = `./uploads/qrcodes/${user}.png`; // Change to the actual file path
-      const qrCodeImage = fs.readFileSync(qrCodeFileName);
-
-      console.log("qrCodeImage", qrCodeImage);
-      console.log("qrCodeFileName", qrCodeFileName);
-
-      const registeredUser = await Registration.findById(registrationData._id);
-      console.log("Payment Success User :- ", registeredUser);
-      const tempRegisteredUser = await TempReg.findById(user);
-      tempRegisteredUser.paymentStatus = "success";
-      await tempRegisteredUser.save();
-      sendWhatsAppMessage(registeredUser);
-      sendConfirmationEmail(registeredUser, qrCodeFileName);
-      res.render("success", {
-        title: "Payment Success",
-        metaTags,
-        registeredUser,
-      });
     } else {
-      const registeredUser = await TempReg.findById(user);
-      registeredUser.paymentStatus = "Failed";
-      await registeredUser.save();
-      console.log("Payment failed User :- ", registeredUser);
-      res.render("failed", {
-        title: "Payment Failed",
-        metaTags,
-        registeredUser,
-      });
+      return res.status(400).json("Payment not found");
     }
   } catch (error) {
     console.error("Error:", error);
