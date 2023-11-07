@@ -12236,7 +12236,7 @@ fieldset:disabled .btn {
 
 /*# sourceMappingURL=bootstrap.min.css.map */
 @media (min-width: 600px) {
-.speaker-row{
-padding: 20px;
-}
+  .speaker-row {
+    padding: 20px;
+  }
 }

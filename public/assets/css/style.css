@@ -13745,11 +13745,13 @@ ul li:hover {
     padding: 5%;
   }
 
-  .links,
-  .address {
+  .links {
     margin-left: 0 !important;
     font-size: 10px;
     font-size: initial;
+    /* display: none; */
+  }
+  .address {
     display: none;
   }
 

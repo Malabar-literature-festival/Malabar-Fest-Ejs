@@ -73,6 +73,7 @@
 .owl-carousel .owl-nav .owl-prev span:before,
 .owl-carousel .owl-nav .owl-next span:before {
   font-size: 30px;
+  margin-right: 30px;
 }
 
 .owl-carousel .owl-nav .owl-prev {
