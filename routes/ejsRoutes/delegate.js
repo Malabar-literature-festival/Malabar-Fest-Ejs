@@ -51,7 +51,7 @@ exports.paymentGeneration = async (
       // Prepare the response with a form for redirection
       // this will auto redirect to payment page
       res.status(200).send(`
-     <form id="nonseamless" method="post" name="redirect" action="https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction"/>
+     <form id="nonseamless" method="post" name="redirect" action="https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction"/>
        <input type="hidden" id="encRequest" name="encRequest" value="${encRequest}">
        <input type="hidden" name="access_code" id="access_code" value="${process.env.ACCESSCODE}">
        <script language="javascript">document.redirect.submit();</script>
