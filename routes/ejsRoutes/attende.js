@@ -126,15 +126,19 @@ router.post("/", async function (req, res) {
     if (!mobileNumber.startsWith("91")) {
       mobileNumber = "91" + mobileNumber;
     }
+
     const WhatsappMessage = `Dear ${delegateData.name},
-    We are thrilled to inform you that your registration for the Malabar Literature Festival 2023 has been successfully confirmed! We can't wait to welcome you to this exciting literary event, which will take place at the beautiful Calicut Beach from November 30th to December 3rd.
-    We look forward to seeing you at the Malabar Literature Festival 2023 and sharing in the celebration of literature and culture.
-    Thank you for your participation, and best wishes for an inspiring and memorable festival!
-        
-    Warm regards,
-        
-    Malabar Literature Festival Organizing Committee
-    Help Desk: +91 9539327252`;
+
+We are thrilled to inform you that your registration for the Malabar Literature Festival 2023 has been successfully confirmed! We can't wait to welcome you to this exciting literary event, which will take place at the beautiful Calicut Beach from November 30th to December 3rd.
+
+We look forward to seeing you at the Malabar Literature Festival 2023 and sharing in the celebration of literature and culture.
+
+Thank you for your participation, and best wishes for an inspiring and memorable festival!
+      
+Warm regards,
+      
+Malabar Literature Festival Organizing Committee
+Help Desk: +91 9539327252 `
 
     // Send a WhatsApp message using the WhatsApp API
     const whatsappApiUrl = "https://text.dxing.in/api/send";
