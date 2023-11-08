@@ -16,12 +16,10 @@ const allowedOrigins = [
   "http://localhost:8010",
   "https://malabarliteraturefestival.com",
   "https://yellow-desert-0e7088300.3.azurestaticapps.net",
-  "https://test.ccavenue.com",
   "https://secure.ccavenue.com",
-  "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction",
+  "https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction",
   "https://www.malabarliteraturefestival.com",
-  "https://test.ccavenue.com/bnk/servlet/processNbkReq?gtwID=AVN&requestType=PAYMENT",
-  "https://test.ccavenue.com",
+  "https://secure.ccavenue.com/bnk/servlet/processNbkReq?gtwID=AVN&requestType=PAYMENT",
 ];
 
 //cors policy
