@@ -74,24 +74,24 @@ router.post("/", async function (req, res) {
       }
     }
 
-    // change date string to date
-    const dateStrings = req.body.day;
-    const dateArray = dateStrings
-      .split(",")
-      .map((dateString) => dateString.trim());
-    const dateObjects = dateArray.map((dateString) => new Date(dateString));
+    // // change date string to date
+    // const dateStrings = req.body.day;
+    // const dateArray = dateStrings
+    //   .split(",")
+    //   .map((dateString) => dateString.trim());
+    // const dateObjects = dateArray.map((dateString) => new Date(dateString));
 
     const delegateData = new Registration({
       name: req.body.name,
       gender: req.body.gender,
       mobileNumber: req.body.contact,
       email: req.body.email,
-      district: req.body.location,
-      profession: req.body.profession,
+      // district: req.body.location,
+      // profession: req.body.profession,
       countryFrom: req.body.countryFrom,
       place: req.body.place,
-      regDate: dateObjects,
-      matterOfInterest: req.body.intrest, // Fix the typo in the field name
+      // regDate: dateObjects,
+      // matterOfInterest: req.body.intrest, // Fix the typo in the field name
       regType: req.body.type,
     });
 
