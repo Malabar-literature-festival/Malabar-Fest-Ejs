@@ -59,7 +59,10 @@
   <meta name="keywords" content="<%= metaTags[1].keywords %>">
   <meta name="author" content="<%= metaTags[2].author %>">
   <meta name="robots" content="<%= metaTags[3].robots %>">
-  <%- include('layout/header.ejs') %>
+  <meta property="og:image"
+    content="<% if (typeof img !== 'undefined') { %>https://event-manager.syd1.cdn.digitaloceanspaces.com/<%= img %><% } else { %>https://www.malabarliteraturefestival.com/assets/images/mlflogo.png<% } %>">
+    <meta property="twitter:image" content="https://www.malabarliteraturefestival.com/assets/images/mlflogo.png">
+    <%- include('layout/header.ejs') %>
 </head>
 
 <body>
