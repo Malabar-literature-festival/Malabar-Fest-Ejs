@@ -213,25 +213,25 @@
     <div class="news-details">
       <div class="row news-details-head">
         <div class="col-12 col-xl-6 news-details-head-img">
-          <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[6].image }` %>" alt="" />
+          <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[7].image }` %>" alt="" />
         </div>
         <div class="col-12 col-xl-6">
           <h1 class="news-details-head-title">
-            <%= newsData[6].title %>
+            <%= newsData[7].title %>
           </h1>
           <div class="dates">
             <h6 style="display: inline; font-size: 10px">Latest</h6>
             <span class="time" style="display: inline; padding-left: 10px; font-size: 10px">
-              <% const date=new Date(newsData[5].date); %>
+              <% const date=new Date(newsData[7].date); %>
                 <%= date.toLocaleDateString(undefined, { weekday: 'long' , year: 'numeric' , month: 'long' ,
                   day: 'numeric' }) %>
             </span>
           </div>
           <p>
-            <%= newsData[6].description.substring(0,500) %>....
+            <%= newsData[7].description.substring(0,500) %>....
           </p>
           <div>
-            <a href="/news/<%= newsData[6].slug %>">
+            <a href="/news/<%= newsData[7].slug %>">
               <button class="readmore">Read More</button></a>
           </div>
         </div>
@@ -516,7 +516,7 @@
           const circle2 = document.getElementById("circle2");
           const numberElement2 = document.getElementById("number2");
           let currentNumber2 = 0;
-          const targetNumber2 = 4;
+          const targetNumber2 = 3;
           const increment2 = (targetNumber2 - currentNumber2) / (9000 / 90);
 
           const circle3 = document.getElementById("circle3");
@@ -528,7 +528,7 @@
           const circle4 = document.getElementById("circle4");
           const numberElement4 = document.getElementById("number4");
           let currentNumber4 = 0;
-          const targetNumber4 = 300000;
+          const targetNumber4 = 100000;
           const increment4 = (targetNumber4 - currentNumber4) / (9000 / 90);
 
           function animateNumber1() {
