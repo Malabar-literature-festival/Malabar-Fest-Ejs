@@ -47,7 +47,7 @@ exports.getSubMenuRole = async (req, res) => {
       SubMenuRole.find(query)
         .populate("userType")
         .skip(parseInt(skip) || 0)
-        .limit(parseInt(limit) || 50),
+        .limit(parseInt(limit) || 0),
     ]);
 
     res.status(200).json({

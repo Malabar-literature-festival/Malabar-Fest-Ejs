@@ -81,7 +81,7 @@ exports.getMenuRole = async (req, res) => {
       MenuRole.find(query)
         .populate("userType")
         .skip(parseInt(skip) || 0)
-        .limit(parseInt(limit) || 50),
+        .limit(parseInt(limit) || 0),
     ]);
     res.status(200).json({
       success: true,

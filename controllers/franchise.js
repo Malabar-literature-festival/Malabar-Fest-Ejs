@@ -46,7 +46,7 @@ exports.getFranchise = async (req, res) => {
       parseInt(skip) === 0 && Franchise.countDocuments(query),
       Franchise.find(query)
         .skip(parseInt(skip) || 0)
-        .limit(parseInt(limit) || 50)
+        .limit(parseInt(limit) || 0)
         .sort({ _id: -1 }),
     ]);
 
