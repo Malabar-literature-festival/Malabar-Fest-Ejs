@@ -45,7 +45,7 @@ exports.getSubMenu = async (req, res) => {
       parseInt(skip) === 0 && SubMenu.countDocuments(query),
       SubMenu.find(query)
         .skip(parseInt(skip) || 0)
-        .limit(parseInt(limit) || 50),
+        .limit(parseInt(limit) || 0),
     ]);
 
     res.status(200).json({

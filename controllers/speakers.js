@@ -50,7 +50,7 @@ exports.getSpeakers = async (req, res) => {
       Speakers.find(query)
         // .populate("franchise")
         .skip(parseInt(skip) || 0)
-        .limit(parseInt(limit) || 50),
+        .limit(parseInt(limit) || 0),
     ]);
     res.status(200).json({
       success: true,
