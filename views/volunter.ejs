@@ -1,40 +1,32 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-  <link
-    rel="shortcut icon"
-    type="image/x-icon"
-    href="/assets/images/favnew.svg"
-  />
+<link rel="shortcut icon" type="image/x-icon" href="/assets/images/favnew.svg" />
 
-  <head>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title><%= title %></title>
-    <meta name="description" content="<%= metaTags[0].description %>" />
-    <meta name="keywords" content="<%= metaTags[1].keywords %>" />
-    <meta name="author" content="<%= metaTags[2].author %>" />
-    <meta name="robots" content="<%= metaTags[3].robots %>" />
-    <%- include('layout/header.ejs') %>
-  </head>
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <title>
+    <%= title %>
+  </title>
+  <meta name="description" content="<%= metaTags[0].description %>" />
+  <meta name="keywords" content="<%= metaTags[1].keywords %>" />
+  <meta name="author" content="<%= metaTags[2].author %>" />
+  <meta name="robots" content="<%= metaTags[3].robots %>" />
+  <%- include('layout/header.ejs') %>
+</head>
 
-  <body>
-    <div class="main-wrapper">
-      <div class="container">
-        <div class="attende-registration" style="margin-top: 100px">
-          <div class="registration-title">
-            <h1>Volunteer Registration</h1>
-          </div>
-          <div class="banner-volunter">
-            <img
-              src="/assets/images/banner-volunter.png"
-              alt=""
-              style="border-radius: 30px; padding: 20px"
-            />
-          </div>
+<body>
+  <div class="main-wrapper">
+    <div class="container">
+      <div class="attende-registration" style="margin-top: 100px">
+        <div class="registration-title">
+          <h1>Volunteer Registration</h1>
+        </div>
+        <div class="banner-volunter">
+          <img src="/assets/images/banner-volunter.png" alt="" style="border-radius: 30px; padding: 20px" />
         </div>
       </div>
-      <div
-        class="register-table"
-        style="
+    </div>
+    <div class="register-table" style="
           background-image: url('assets/images/RegisterUnion.png');
           background-size: cover;
           background-position: center center;
@@ -44,255 +36,86 @@
           display: flex;
           justify-content: center;
           align-items: center;
-        "
-      >
-        <div class="container">
-          <div class="delegate-table-section-v">
-            <!-- <div class="delegate-title">
+        ">
+      <div class="container">
+        <div class="delegate-table-section-v">
+          <!-- <div class="delegate-title">
             <h1>Volunteer Registration</h1>
           </div> -->
-            <div class="register-form">
-              <div class="container">
-                <div id="statusMessageDiv" style="background-color: lightgreen; opacity: 70%; padding: 10px; border-radius: 3px;">
-                  <p id="statusMessage"></p>
-                </div>
-                
-                <form
-                  action="/volunter"
-                  method="post"
-                  enctype="multipart/form-data"
-                  id="volunteerForm"
-                >
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          class="form-control"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="gender">Gender:</label>
-                        <select
-                          id="gender"
-                          name="gender"
-                          class="form-control"
-                          required
-                        >
-                          <option value="Male">Male</option>
-                          <option value="Female">Female</option>
-                          <option value="Other">Other</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="contact">Contact Number:</label>
-                        <input
-                          type="tel"
-                          id="contact"
-                          name="contact"
-                          class="form-control"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="email">Email ID:</label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          class="form-control"
-                          required
-                        />
-                        <p id="emailError" class="text-danger"></p>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="place">Place:</label>
-                        <input
-                          type="text"
-                          id="place"
-                          name="place"
-                          class="form-control"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="category">Category:</label>
-                        <select
-                          id="category"
-                          name="category"
-                          class="form-control"
-                          required
-                        >
-                          <option value="Student">Student</option>
-                          <option value="Employee">Employee</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="institute"
-                          >Name of Company / Institute:</label
-                        >
-                        <input
-                          type="text"
-                          id="institute"
-                          name="institute"
-                          class="form-control"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="photo">Add Photo:</label>
-                        <input
-                          type="file"
-                          id="photo"
-                          name="photo"
-                          class="form-control-file form-control"
-                          style="width: 100%"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="age">Age:</label>
-                        <input
-                        type="number"
-                        id="age"
-                        name="age"
-                        class="form-control-file form-control"
-                        style="width: 100%"
-                        required
-                      />
-                      </div>
-                    </div>
-                    <!-- <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="workType">Full Time / Part Time:</label>
-                        <select
-                          id="workType"
-                          name="workType"
-                          class="form-control"
-                          required
-                        >
-                          <option value="Full Time">Full Time</option>
-                          <option value="Part Time">Part Time</option>
-                        </select>
-                      </div>
-                    </div> -->
-                    <!-- <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="timeSlot">Time Slot:</label>
-                        <select
-                          id="timeSlot"
-                          name="timeSlot"
-                          class="form-control"
-                          required
-                        >
-                          <option value="09 am - 01 pm">09 am - 01 pm</option>
-                          <option value="02 pm - 05 pm">02 pm - 05 pm</option>
-                          <option value="05 pm - 09 pm">05 pm - 09 pm</option>
-                        </select>
-                      </div>
-                    </div> -->
-
-                  </div>
-                  <div class="row register-amount-btn">
-                    <div class="col-12 d-flex justify-content-center">
-                      <button
-                        type="submit"
-                        class="btn btn-primary"
-                        style="border-radius: 20px"
-                      >
-                        Register
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+          <h3 style="padding: 50px 0px;
+          text-align: center;
+          color: #0077b6;
+          font-family: var(--font-playfair);
+          font-size: 30px;
+          font-style: normal;
+          font-weight: 300;
+          line-height: normal;">"Volunteer registration closed"</h3>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Footer Start -->
-    <%- include('layout/footer.ejs') %>
+  <!-- Footer Start -->
+  <%- include('layout/footer.ejs') %>
     <!-- Footer End -->
 
     <!-- JS
   ============================================ -->
-  <script>
-    $(document).ready(function () {
-      // Select the form element
-      const form = $("#volunteerForm");
-  
-      // Select the message and statusMessage elements
-      const messageElement = $("#message");
-      const statusMessage = $("#statusMessage");
-  
-      // Initially hide the status message div
-      $("#statusMessageDiv").hide();
-  
-      // Add a submit event listener to the form
-      form.on("submit", function (event) {
-        event.preventDefault(); // Prevent the default form submission
-  
-        // Create a FormData object to send the form data
-        const formData = new FormData(form[0]);
-  
-        // Make an AJAX request to the server
-        $.ajax({
-          type: "POST",
-          url: "/volunter/submit",
-          data: formData,
-          processData: false,
-          contentType: false,
-          success: function (data) {
-            if (data.error) {
-              // Display error message
-              statusMessage.text("Error: " + data.error);
-              statusMessage.css("color", "red");
-            } else if (data.message === "Registration completed") {
-              // Display success message
-              statusMessage.text("Success: Registration completed!");
-              statusMessage.css("color", "green");
-              form[0].reset(); // Clear the form
-  
-              // Show the status message div
-              $("#statusMessageDiv").show();
-  
-              // Set a timeout to redirect to the index page after 3 seconds (3000 milliseconds)
-              setTimeout(function () {
-                window.location.href = "/"; // Redirect to the index page
-              }, 2500);
-            }
-          },
-          error: function (error) {
-            console.error("Error:", error);
-          },
+    <script>
+      $(document).ready(function () {
+        // Select the form element
+        const form = $("#volunteerForm");
+
+        // Select the message and statusMessage elements
+        const messageElement = $("#message");
+        const statusMessage = $("#statusMessage");
+
+        // Initially hide the status message div
+        $("#statusMessageDiv").hide();
+
+        // Add a submit event listener to the form
+        form.on("submit", function (event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          // Create a FormData object to send the form data
+          const formData = new FormData(form[0]);
+
+          // Make an AJAX request to the server
+          $.ajax({
+            type: "POST",
+            url: "/volunter/submit",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+              if (data.error) {
+                // Display error message
+                statusMessage.text("Error: " + data.error);
+                statusMessage.css("color", "red");
+              } else if (data.message === "Registration completed") {
+                // Display success message
+                statusMessage.text("Success: Registration completed!");
+                statusMessage.css("color", "green");
+                form[0].reset(); // Clear the form
+
+                // Show the status message div
+                $("#statusMessageDiv").show();
+
+                // Set a timeout to redirect to the index page after 3 seconds (3000 milliseconds)
+                setTimeout(function () {
+                  window.location.href = "/"; // Redirect to the index page
+                }, 2500);
+              }
+            },
+            error: function (error) {
+              console.error("Error:", error);
+            },
+          });
         });
       });
-    });
-  </script>
-  
-  
+    </script>
+
+
 
     <!-- carousel & jQuery JS -->
 
@@ -318,10 +141,8 @@
     <script src="assets/js/jquery.nice-select.min.js"></script>
     <!-- Main JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script
-      type="text/javascript"
-      src="node_modules/slick-carousel/slick/slick.min.js"
-    ></script>
+    <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
     <script src="assets/js/main.js"></script>
-  </body>
+</body>
+
 </html>
