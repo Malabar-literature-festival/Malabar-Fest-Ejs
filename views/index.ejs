@@ -213,25 +213,27 @@
     <div class="news-details">
       <div class="row news-details-head">
         <div class="col-12 col-xl-6 news-details-head-img">
-          <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[7].image }` %>" alt="" />
+          <img
+            src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[newsData.length - 1].image }` %>"
+            alt="" />
         </div>
         <div class="col-12 col-xl-6">
           <h1 class="news-details-head-title">
-            <%= newsData[7].title %>
+            <%= newsData[newsData.length - 1].title %>
           </h1>
           <div class="dates">
             <h6 style="display: inline; font-size: 10px">Latest</h6>
             <span class="time" style="display: inline; padding-left: 10px; font-size: 10px">
-              <% const date=new Date(newsData[7].date); %>
+              <% const date=new Date(newsData[newsData.length - 1].date); %>
                 <%= date.toLocaleDateString(undefined, { weekday: 'long' , year: 'numeric' , month: 'long' ,
                   day: 'numeric' }) %>
             </span>
           </div>
           <p>
-            <%= newsData[7].description.substring(0,500) %>....
+            <%= newsData[newsData.length - 1].description.substring(0,500) %>....
           </p>
           <div>
-            <a href="/news/<%= newsData[7].slug %>">
+            <a href="/news/<%= newsData[newsData.length - 1].slug %>">
               <button class="readmore">Read More</button></a>
           </div>
         </div>
@@ -311,9 +313,9 @@
       <div class="sponsors-title">
         <!-- <h1>Partners and Sponsors</h1> -->
       </div>
-      <!-- <div class="sponsors-imgs" style="padding: 50px;">
+      <div class="sponsors-imgs" style="padding: 50px;">
         <img src="assets/images/sponsors.png" alt="sponsors" style="max-width: 100%; height: auto;">
-      </div> -->
+      </div>
 
     </div>
   </div>
