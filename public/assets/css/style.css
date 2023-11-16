@@ -1788,6 +1788,16 @@ label {
 .meeta-header-3 .header-middle .header-wrap .header-navigation .main-menu li a {
   color: #1a0a1e;
 }
+.meeta-header-3
+  .header-middle
+  .header-wrap
+  .header-navigation
+  .main-menu
+  .white
+  li
+  a {
+  color: #1a0a1e;
+}
 
 .meeta-header-3
   .header-middle
