@@ -14,6 +14,9 @@ const SpeakersSchema = new mongoose.Schema(
         image: {
             type: String,
         },
+        index: {
+            type: Number,
+        },
         active: {
             type: Boolean,
             default: null,
