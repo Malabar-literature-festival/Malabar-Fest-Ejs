@@ -154,26 +154,34 @@
             }
           </style>
           <div class="row  ">
-            <% speakerData.forEach(speaker=> { %>
-              <div class="col-xs-6 col-sm-6 col-lg-3 center_on_mobile">
-                <!-- id="myBtn" -->
-                <div class="col-md-3 speaker-cards">
-                  <div class="speaker-imgs">
-                    <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speaker.image }` %>"
-                      alt="" />
-                  </div>
-                </div>
-                <div class="speaker-content-inner">
-                  <h3 class="speakers-name">
-                    <%= speaker.name %>
-                  </h3>
-                  <p class="speakers-para">
-                    <!-- <%= speaker.description %> -->
-                  </p>
+            <%
+            // Filter guests (assuming index is a property of the guest objects)
+            const filteredGuests = speakerData.filter(guest => guest.index !== undefined);
+          
+            // Sort the filtered guests by index in ascending order
+            const sortedGuests = filteredGuests.sort((a, b) => a.index - b.index);
+          %>
+          
+          <% sortedGuests.forEach(guest => { %>
+            <div class="col-xs-6 col-sm-6 col-lg-3 center_on_mobile">
+              <div class="col-md-3 speaker-cards">
+                <div class="speaker-imgs">
+                  <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ guest.image }` %>" alt="" />
                 </div>
               </div>
-
-              <% }); %>
+              <div class="speaker-content-inner">
+                <h3 class="speakers-name">
+                  <%= guest.name %>
+                </h3>
+                <p class="speakers-para">
+                  <!-- <%= guest.description %> -->
+                </p>
+              </div>
+            </div>
+          <% }); %>
+          
+            
+            
           </div>
         </div>
       </div>
