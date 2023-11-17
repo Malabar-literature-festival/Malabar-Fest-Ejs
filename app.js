@@ -1,11 +1,11 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 const session = require("express-session");
 const cors = require("cors");
-var app = express();
+const app = express();
 
 const connectDB = require("./config/db");
 
@@ -41,43 +41,42 @@ app.use(
   })
 );
 
-// Load env vars
+// Load env consts
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config/.env" });
 
 // Sitemap
 // const sitemap = require("./public/sitemap/sitemap.xml");
 
-var indexRouter = require("./routes/ejsRoutes/index");
-var homeRouter = require("./routes/ejsRoutes/home");
-var usersRouter = require("./routes/ejsRoutes/users");
-var aboutRouter = require("./routes/ejsRoutes/about");
-var contactRouter = require("./routes/ejsRoutes/contact");
-var event_listRouter = require("./routes/ejsRoutes/event-list");
-var event_singleRouter = require("./routes/ejsRoutes/event-single");
-var scheduleRouter = require("./routes/ejsRoutes/schedule");
-var Gallery = require("./routes/ejsRoutes/gallery");
-var register = require("./routes/ejsRoutes/register");
-var Faq = require("./routes/ejsRoutes/faq");
-var login = require("./routes/ejsRoutes/login");
-var Blog = require("./routes/ejsRoutes/blog");
-var Blog_News = require("./routes/ejsRoutes/blog-news");
-var Blog_Details = require("./routes/ejsRoutes/blog-details");
-var Attende = require("./routes/ejsRoutes/attende");
-var Delegate = require("./routes/ejsRoutes/delegate");
-var Student = require("./routes/ejsRoutes/student");
-var Speaker = require("./routes/ejsRoutes/speaker");
-var Volunter = require("./routes/ejsRoutes/volunter");
-var Programe = require("./routes/ejsRoutes/programe");
-var News = require("./routes/ejsRoutes/news");
-var Foreign = require("./routes/ejsRoutes/foreign");
+const indexRouter = require("./routes/ejsRoutes/index");
+const homeRouter = require("./routes/ejsRoutes/home");
+const usersRouter = require("./routes/ejsRoutes/users");
+const aboutRouter = require("./routes/ejsRoutes/about");
+const contactRouter = require("./routes/ejsRoutes/contact");
+const event_listRouter = require("./routes/ejsRoutes/event-list");
+const event_singleRouter = require("./routes/ejsRoutes/event-single");
+const scheduleRouter = require("./routes/ejsRoutes/schedule");
+const Gallery = require("./routes/ejsRoutes/gallery");
+const register = require("./routes/ejsRoutes/register");
+const Faq = require("./routes/ejsRoutes/faq");
+const Blog = require("./routes/ejsRoutes/blog");
+const Blog_News = require("./routes/ejsRoutes/blog-news");
+const Blog_Details = require("./routes/ejsRoutes/blog-details");
+const Attende = require("./routes/ejsRoutes/attende");
+const Delegate = require("./routes/ejsRoutes/delegate");
+const Student = require("./routes/ejsRoutes/student");
+const Speaker = require("./routes/ejsRoutes/speaker");
+const Volunter = require("./routes/ejsRoutes/volunter");
+const Programe = require("./routes/ejsRoutes/programe");
+const News = require("./routes/ejsRoutes/news");
+const Foreign = require("./routes/ejsRoutes/foreign");
 
 // ADDED NEWS ROUTES-------
-var Privacy = require("./routes/ejsRoutes/privacy");
-var Refund = require("./routes/ejsRoutes/refund");
-var Conditions = require("./routes/ejsRoutes/conditions");
-var AboutMlf = require("./routes/ejsRoutes/aboutMlf");
-var AboutBookPlus = require("./routes/ejsRoutes/aboutBookPlus"); // ADDED NEWS ROUTES-------
+const Privacy = require("./routes/ejsRoutes/privacy");
+const Refund = require("./routes/ejsRoutes/refund");
+const Conditions = require("./routes/ejsRoutes/conditions");
+const AboutMlf = require("./routes/ejsRoutes/aboutMlf");
+const AboutBookPlus = require("./routes/ejsRoutes/aboutBookPlus"); // ADDED NEWS ROUTES-------
 const CommonReg = require("./routes/ejsRoutes/commonReg");
 const Scanner = require("./routes/ejsRoutes/scanner");
 
@@ -103,9 +102,9 @@ const pendingReg = require("./routes/pendingReg");
 const pendingPayment = require("./routes/pendingPayment");
 const volunteer = require("./routes/volunteer.js");
 // ----------------------------------------------------
-var Committe = require("./routes/ejsRoutes/committe");
-var Events = require("./routes/ejsRoutes/events");
-var Event_inner = require("./routes/ejsRoutes/event_inner");
+const Committe = require("./routes/ejsRoutes/committe");
+const Events = require("./routes/ejsRoutes/events");
+const Event_inner = require("./routes/ejsRoutes/event_inner");
 
 // Configure the session middleware
 app.use(
@@ -150,7 +149,6 @@ app.use("/schedule", scheduleRouter);
 app.use("/gallery", Gallery);
 app.use("/register", register);
 app.use("/faq", Faq);
-app.use("/login-register", login);
 app.use("/blog-gird", Blog);
 app.use("/blog-news", Blog_News);
 app.use("/blog-details", Blog_Details);
@@ -197,6 +195,11 @@ app.use("/api/v1/volunteer", volunteer);
 
 app.use("/committe", Committe);
 app.use("/events", Events);
+
+// Flutter Api //
+const login = require("./routes/app/login.js");
+app.use("/api/v1/login", login);
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
