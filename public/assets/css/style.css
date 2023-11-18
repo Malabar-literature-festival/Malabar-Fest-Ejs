@@ -14156,6 +14156,9 @@ ul li:hover {
   }
 }
 @media (max-width: 600px) {
+  .sponsors-imgs {
+    margin-top: 0px !important;
+  }
   .event-img img {
     width: 13rem;
   }
@@ -14248,4 +14251,9 @@ ul li:hover {
   padding-bottom: 20px;
   color: #0077b6;
   font-family: var(--font-fabulous);
+}
+/* last updates .sponsors */
+.sponsors-imgs {
+  padding: 50px;
+  margin-top: -150px;
 }
