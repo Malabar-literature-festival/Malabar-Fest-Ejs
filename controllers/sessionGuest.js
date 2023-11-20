@@ -13,7 +13,6 @@ exports.createSessionGuest = async (req, res) => {
     // Update the existing session by pushing the new guest _id to the sessionGuests array
     await Session.findByIdAndUpdate(session_id, { $push: { sessionGuests: newSessionGuest._id } });
 
-    console.log(req.body)
     res.status(200).json({
       success: true,
       message: "Session guest created successfully",
@@ -79,7 +78,6 @@ exports.getSessionGuest = async (req, res) => {
 // @access    protect
 exports.updateSessionGuest = async (req, res) => {
   try {
-    console.log(req.body);
     const session_id = new ObjectId(req.body.session);
     const sessionGuestId = req.body.id;
 
