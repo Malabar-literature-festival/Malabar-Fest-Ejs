@@ -101,6 +101,7 @@ const testimonial = require("./routes/testimonial");
 const pendingReg = require("./routes/pendingReg");
 const pendingPayment = require("./routes/pendingPayment");
 const volunteer = require("./routes/volunteer.js");
+const album = require("./routes/album.js");
 // ----------------------------------------------------
 const Committe = require("./routes/ejsRoutes/committe");
 const Events = require("./routes/ejsRoutes/events");
@@ -192,13 +193,16 @@ app.use("/api/v1/testimonial", testimonial);
 app.use("/api/v1/pending-reg", pendingReg);
 app.use("/api/v1/pending-payment", pendingPayment);
 app.use("/api/v1/volunteer", volunteer);
+app.use("/api/v1/album", album);
 
 app.use("/committe", Committe);
 app.use("/events", Events);
 
 // Flutter Api //
 const login = require("./routes/app/login.js");
+const feedback = require("./routes/app/feedback.js");
 app.use("/api/v1/login", login);
+app.use("/api/v1/feedback", feedback);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
