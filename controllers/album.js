@@ -1,15 +1,15 @@
 const { default: mongoose } = require("mongoose");
-const Gallery = require("../models/Gallery");
+const Album = require("../models/Album");
 
-// @desc      CREATE NEW GALLERY
+// @desc      CREATE NEW ALBUM
 // @route     POST /api/v1/gallery
 // @access    protect
-exports.createGallery = async (req, res) => {
+exports.createAlbum = async (req, res) => {
   try {
-    const newGallery = await Gallery.create(req.body);
+    const newGallery = await Album.create(req.body);
     res.status(200).json({
       success: true,
-      message: "Gallery created successfully",
+      message: "Album created successfully",
       data: newGallery,
     });
   } catch (err) {
@@ -21,15 +21,15 @@ exports.createGallery = async (req, res) => {
   }
 };
 
-// @desc      GET ALL GALLERY
+// @desc      GET ALL ALBUM
 // @route     GET /api/v1/gallery
 // @access    public
-exports.getGallery = async (req, res) => {
+exports.getAlbum = async (req, res) => {
   try {
     const { id, skip, limit, searchkey } = req.query;
 
     if (id && mongoose.isValidObjectId(id)) {
-      const response = await Gallery.findById(id);
+      const response = await Album.findById(id);
       return res.status(200).json({
         success: true,
         message: "Retrieved specific gallery",
@@ -42,10 +42,9 @@ exports.getGallery = async (req, res) => {
       : req.filter;
 
     const [totalCount, filterCount, data] = await Promise.all([
-      parseInt(skip) === 0 && Gallery.countDocuments(),
-      parseInt(skip) === 0 && Gallery.countDocuments(query),
-      Gallery.find(query)
-        .populate("album")
+      parseInt(skip) === 0 && Album.countDocuments(),
+      parseInt(skip) === 0 && Album.countDocuments(query),
+      Album.find(query)
         .skip(parseInt(skip) || 0)
         .limit(parseInt(limit) || 0)
         .sort({ _id: -1 }),
@@ -68,25 +67,25 @@ exports.getGallery = async (req, res) => {
   }
 };
 
-// @desc      UPDATE SPECIFIC GALLERY
+// @desc      UPDATE SPECIFIC ALBUM
 // @route     PUT /api/v1/gallery/:id
 // @access    protect
-exports.updateGallery = async (req, res) => {
+exports.updateAlbum = async (req, res) => {
   try {
-    const gallerys = await Gallery.findByIdAndUpdate(req.body.id, req.body, {
+    const gallerys = await Album.findByIdAndUpdate(req.body.id, req.body, {
       new: true,
     });
 
     if (!gallerys) {
       return res.status(404).json({
         success: false,
-        message: "Gallery not found",
+        message: "Album not found",
       });
     }
 
     res.status(200).json({
       success: true,
-      message: "Gallery updated successfully",
+      message: "Album updated successfully",
       data: gallerys,
     });
   } catch (err) {
@@ -98,29 +97,42 @@ exports.updateGallery = async (req, res) => {
   }
 };
 
-// @desc      DELETE SPECIFIC GALLERY
+// @desc      DELETE SPECIFIC ALBUM
 // @route     DELETE /api/v1/gallery/:id
 // @access    protect
-exports.deleteGallery = async (req, res) => {
+exports.deleteAlbum = async (req, res) => {
   try {
-    const gallerys = await Gallery.findByIdAndDelete(req.query.id);
+    const gallerys = await Album.findByIdAndDelete(req.query.id);
 
     if (!gallerys) {
       return res.status(404).json({
         success: false,
-        message: "Gallery not found",
+        message: "Album not found",
       });
     }
 
     res.status(200).json({
       success: true,
-      message: "Gallery deleted successfully",
+      message: "Album deleted successfully",
     });
   } catch (err) {
     console.log(err);
     res.status(400).json({
       success: false,
       message: err,
+    });
+  }
+};
+
+exports.select = async (req, res) => {
+  try {
+    const items = await Album.find({}, { _id: 0, id: "$_id", value: "$name" });
+    return res.status(200).send(items);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({
+      success: false,
+      message: err.toString(),
     });
   }
 };
