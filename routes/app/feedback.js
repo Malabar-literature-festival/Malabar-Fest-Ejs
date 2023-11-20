@@ -13,16 +13,6 @@ router.post("/", async function (req, res, next) {
     console.log("dkjf");
     console.log(req.body);
     console.log(req.params);
-    // const mobile = req.body.mobile || req.params.mobile;
-    // const mobileNumber = await Registration.findOne({ mobile });
-    // if (!mobileNumber) {
-    //   return res.status(200).json({ message: "Mobile number not found" });
-    // }
-    // else {
-    //   let otp = Math.floor(Math.random() * 9999);
-    //   console.log(`OTP is ${otp}`);
-    // }
-    // res.render("login");
   } catch (err) {
     console.log(err);
   }
@@ -54,5 +44,6 @@ function sendWhatsAppMessage(existingUser) {
       console.error("Error sending WhatsApp message:", error);
     });
 }
+
 
 module.exports = router;

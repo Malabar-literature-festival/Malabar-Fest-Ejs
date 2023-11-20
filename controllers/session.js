@@ -1,5 +1,7 @@
 const { default: mongoose } = require("mongoose");
 const Session = require("../models/session");
+const sessionGuest = require("../models/sessionGuest");
+const session = require("../models/session");
 
 // @desc      CREATE NEW SESSION
 // @route     POST /api/v1/session
@@ -148,17 +150,8 @@ exports.select = async (req, res) => {
 // @access    public
 exports.getSessionByDay = async (req, res) => {
   try {
-    const sessionsByDay = await Session.aggregate([
-      {
-        $group: {
-          _id: '$day',
-          sessions: { $push: '$$ROOT' },
-        },
-      },
-      {
-        $sort: { _id: 1 },
-      },
-    ]);
+    const sessionsByDay = await session.find().populate("sessionGuests")
+    console.log(sessionsByDay)
 
     res.status(200).json({
       success: true,
