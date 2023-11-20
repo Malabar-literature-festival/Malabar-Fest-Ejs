@@ -1,13 +1,19 @@
 const { default: mongoose } = require("mongoose");
 const SessionGuest = require("../models/sessionGuest");
 const Session = require("../models/session");
+const { ObjectId } = require('mongodb');
 
 // @desc      CREATE NEW SESSION GUEST
 // @route     POST /api/v1/session-guest
 // @access    protect
 exports.createSessionGuest = async (req, res) => {
   try {
+    const session_id = new ObjectId(req.body.session)
     const newSessionGuest = await SessionGuest.create(req.body);
+    // Update the existing session by pushing the new guest _id to the sessionGuests array
+    await Session.findByIdAndUpdate(session_id, { $push: { sessionGuests: newSessionGuest._id } });
+
+    console.log(req.body)
     res.status(200).json({
       success: true,
       message: "Session guest created successfully",
@@ -73,21 +79,34 @@ exports.getSessionGuest = async (req, res) => {
 // @access    protect
 exports.updateSessionGuest = async (req, res) => {
   try {
-    const sessionGuest = await SessionGuest.findByIdAndUpdate(req.body.id, req.body, {
+    console.log(req.body);
+    const session_id = new ObjectId(req.body.session);
+    const sessionGuestId = req.body.id;
+
+    // Update the SessionGuest
+    const updatedSessionGuest = await SessionGuest.findByIdAndUpdate(sessionGuestId, req.body, {
       new: true,
     });
 
-    if (!sessionGuest) {
+    if (!updatedSessionGuest) {
       return res.status(404).json({
         success: false,
         message: "Session guest not found",
       });
     }
 
+    // Check if the guest _id is already in the sessionGuests array of the corresponding Session
+    const session = await Session.findOne({ _id: session_id, sessionGuests: sessionGuestId });
+
+    if (!session) {
+      // If not present, update the existing session by pushing the guest _id to the sessionGuests array
+      await Session.findByIdAndUpdate(session_id, { $push: { sessionGuests: sessionGuestId } });
+    }
+
     res.status(200).json({
       success: true,
       message: "Session guest updated successfully",
-      data: sessionGuest,
+      data: updatedSessionGuest,
     });
   } catch (err) {
     console.log(err);
