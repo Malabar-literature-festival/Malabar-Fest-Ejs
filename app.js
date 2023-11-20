@@ -107,6 +107,9 @@ const Committe = require("./routes/ejsRoutes/committe");
 const Events = require("./routes/ejsRoutes/events");
 const Event_inner = require("./routes/ejsRoutes/event_inner");
 
+const sessions = require("./routes/session");
+const sessionGuest = require("./routes/sessionGuest");
+
 // Configure the session middleware
 app.use(
   session({
@@ -197,6 +200,9 @@ app.use("/api/v1/album", album);
 
 app.use("/committe", Committe);
 app.use("/events", Events);
+
+app.use("/api/v1/session", sessions);
+app.use("/api/v1/session-guest", sessionGuest);
 
 // Flutter Api //
 const login = require("./routes/app/login.js");
