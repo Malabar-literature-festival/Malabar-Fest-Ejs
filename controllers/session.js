@@ -163,7 +163,6 @@ exports.getSessionByDay = async (req, res) => {
         },
       });
     }
-
     aggregationPipeline.push(
       {
         $group: {
