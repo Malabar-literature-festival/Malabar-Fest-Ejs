@@ -45,6 +45,7 @@ exports.getAlbum = async (req, res) => {
       parseInt(skip) === 0 && Album.countDocuments(),
       parseInt(skip) === 0 && Album.countDocuments(query),
       Album.find(query)
+        .populate("images")
         .skip(parseInt(skip) || 0)
         .limit(parseInt(limit) || 0)
         .sort({ _id: -1 }),

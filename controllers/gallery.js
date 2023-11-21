@@ -1,12 +1,19 @@
 const { default: mongoose } = require("mongoose");
 const Gallery = require("../models/Gallery");
+const Album = require("../models/Album");
+const { ObjectId } = require('mongodb');
 
 // @desc      CREATE NEW GALLERY
 // @route     POST /api/v1/gallery
 // @access    protect
 exports.createGallery = async (req, res) => {
   try {
+    const albumId = new ObjectId(req.body.album);
     const newGallery = await Gallery.create(req.body);
+
+    // Find the album by its ID and push the new gallery's ID to the images array
+    const album = await Album.findByIdAndUpdate(albumId, { $push: { images: newGallery._id } }, { new: true });
+
     res.status(200).json({
       success: true,
       message: "Gallery created successfully",
