@@ -12552,7 +12552,7 @@ h2 {
     justify-content: center;
     /* Center horizontally */
     flex-wrap: wrap;
-    /* Allow cards to wrap when screen size is reduced */
+    /* Allow cards_album to wrap when screen size is reduced */
   }
 
   .card {
@@ -14257,8 +14257,9 @@ ul li:hover {
   padding: 50px;
   margin-top: -150px;
 }
+
 /* album cards---------------------------------- */
-.cards {
+.cards_album {
   position: relative;
   height: 200px;
   width: 200px;
@@ -14268,11 +14269,12 @@ ul li:hover {
   transform: translate(-50%, 20%);
 }
 
-.cards:hover {
+.cards_album:hover {
   z-index: 1000;
+  cursor: pointer;
 }
 
-.card {
+.card_album_item {
   display: block;
   position: absolute;
   top: 0px;
@@ -14297,29 +14299,29 @@ ul li:hover {
   box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 5px;
 }
 
-.card:nth-child(2) {
+.card_album_item:nth-child(2) {
   height: 194px;
   width: 194px;
   top: 3px;
   left: 8px;
 }
 
-.card:nth-child(1) {
+.card_album_item:nth-child(1) {
   height: 188px;
   width: 188px;
   top: 6px;
   left: 16px;
 }
 
-.card:nth-child(3) {
+.card_album_item:nth-child(3) {
 }
 
-.cards:hover .card {
+.cards_album:hover .card_album_item {
   width: 200px;
   height: 200px;
 }
 
-.cards .card:nth-child(1) {
+.cards_album .card_album_item:nth-child(1) {
   left: 60px;
   transform: rotate(5deg);
   -ms-transform: rotate(5deg);
@@ -14335,10 +14337,10 @@ ul li:hover {
   /* Opera */
 }
 
-.cards .card:nth-child(2) {
+.cards_album .card_album_item:nth-child(2) {
 }
 
-.cards .card:nth-child(3) {
+.cards_album .card_album_item:nth-child(3) {
   left: -60px;
   transform: rotate(-5deg);
   -ms-transform: rotate(-5deg);
