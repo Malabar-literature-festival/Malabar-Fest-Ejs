@@ -1,74 +1,64 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-  <link
-    rel="shortcut icon"
-    type="image/x-icon"
-    href="/assets/images/favnew.svg"
-  />
+<link rel="shortcut icon" type="image/x-icon" href="/assets/images/favnew.svg" />
 
-  <head>
-    <title><%= title %></title>
-    <meta name="description" content="<%= metaTags[0].description %>" />
-    <meta name="keywords" content="<%= metaTags[1].keywords %>" />
-    <meta name="author" content="<%= metaTags[2].author %>" />
-    <meta name="robots" content="<%= metaTags[3].robots %>" />
-    <%- include('layout/header.ejs') %>
-  </head>
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <meta name="description" content="<%= metaTags[0].description %>" />
+  <meta name="keywords" content="<%= metaTags[1].keywords %>" />
+  <meta name="author" content="<%= metaTags[2].author %>" />
+  <meta name="robots" content="<%= metaTags[3].robots %>" />
+  <%- include('layout/header.ejs') %>
+</head>
 
-  <body>
-    <div class="main-wrapper">
-      <div class="header-programe" style="margin-top: 100px">
-        <div class="container">
-          <div class="header-programe-title">
-            <h1><%= newsData.title %></h1>
-          </div>
+<body>
+  <div class="main-wrapper">
+    <div class="header-programe" style="margin-top: 100px">
+      <div class="container">
+        <div class="header-programe-title">
+          <h1>
+            <%= newsData.title %>
+          </h1>
+        </div>
 
-          <div class="header-programe-img">
-            <img
-              src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData.image }` %>"
-              alt=""
-            />
-            <!-- <img src="assets/images/programeimg.png" alt=""> -->
-          </div>
+        <div class="header-programe-img">
+          <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData.image }` %>" alt="" />
+          <!-- <img src="assets/images/programeimg.png" alt=""> -->
+        </div>
 
-          <div class="header-programe-para">
-            <p><%= newsData.description %></p>
-          </div>
+        <div class="header-programe-para">
+          <p>
+            <%= newsData.description %>
+          </p>
         </div>
       </div>
+    </div>
 
-      <div class="container">
-        <div class="news-section">
-          <h1>News</h1>
-        </div>
+    <div class="container">
+      <div class="news-section">
+        <h1>News</h1>
+      </div>
 
-        <div class="news-details">
-          <div
-            class="row news-details-carousel"
-            style="display: flex; margin-top: 50px"
-          >
-            <div class="featured-carousel owl-carousel">
-              <% news.forEach(newsData=> { %>
+      <div class="news-details">
+        <div class="row news-details-carousel" style="display: flex; margin-top: 50px">
+          <div class="featured-carousel owl-carousel">
+            <% news.forEach(newsData=> { %>
               <div class="item">
                 <div class="card" style="width: 18rem">
-                  <img
-                    class="card-img-top"
+                  <img class="card-img-top"
                     src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData.image }` %>"
-                    alt="Card image cap"
-                    style="border-radius: 10px"
-                  />
+                    alt="Card image cap" style="border-radius: 10px" />
                   <div class="card-body">
                     <h5 class="card-title">
                       <%= newsData.title.substring(0,40) %>...
                     </h5>
                     <ul style="list-style: none; padding-left: 0">
                       <li style="display: inline">
-                        <span style="font-size: 20px; color: #49bdf2"
-                          >&bull;</span
-                        >
-                        <%= newsData.date.toLocaleDateString(undefined, {
-                        weekday: 'long' , year: 'numeric' , month: 'long' , day:
-                        'numeric' }) %>
+                        <span style="font-size: 20px; color: #49bdf2">&bull;</span>
+                        <%= newsData.date.toLocaleDateString(undefined, { weekday: 'long' , year: 'numeric' ,
+                          month: 'long' , day: 'numeric' }) %>
                       </li>
                     </ul>
                     <P class="card-text-para">
@@ -76,22 +66,21 @@
                     </P>
                     <div>
                       <a href="/news/<%= newsData.slug %>">
-                        <button class="readmore">Read More</button></a
-                      >
+                        <button class="readmore">Read More</button></a>
                     </div>
                   </div>
                 </div>
               </div>
 
               <% }); %>
-            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Footer Start -->
-    <%- include('layout/footer.ejs') %>
+  <!-- Footer Start -->
+  <%- include('layout/footer.ejs') %>
     <!-- Footer End -->
 
     <!-- JS
@@ -121,10 +110,8 @@
     <script src="../assets/js/jquery.nice-select.min.js"></script>
     <!-- Main JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script
-      type="text/javascript"
-      src="node_modules/slick-carousel/slick/slick.min.js"
-    ></script>
+    <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
     <script src="../assets/js/main.js"></script>
-  </body>
+</body>
+
 </html>
