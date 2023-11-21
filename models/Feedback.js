@@ -1,0 +1,20 @@
+const mongoose = require("mongoose");
+
+const FeedbackSchema = new mongoose.Schema(
+  {
+    session: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Session",
+    },
+    description: {
+      type: String,
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Registration",
+    },
+  },
+  { timestamps: true }
+);
+
+module.exports = mongoose.model("Feedback", FeedbackSchema);
