@@ -17,4 +17,9 @@ const NoteSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// Adding a virtual field to get createdAt in IST
+NoteSchema.virtual('createdAtIST').get(function() {
+  return this.createdAt.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+});
+
 module.exports = mongoose.model("Note", NoteSchema);
