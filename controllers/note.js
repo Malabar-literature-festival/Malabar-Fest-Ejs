@@ -1,16 +1,16 @@
 const { default: mongoose } = require("mongoose");
-const Gallery = require("../models/Gallery");
+const Note = require("../models/Note");
 
-// @desc      CREATE NEW GALLERY
-// @route     POST /api/v1/gallery
+// @desc      CREATE NEW NOTE
+// @route     POST /api/v1/note
 // @access    protect
-exports.createGallery = async (req, res) => {
+exports.createNote = async (req, res) => {
   try {
-    const newGallery = await Gallery.create(req.body);
+    const newNote = await Note.create(req.body);
     res.status(200).json({
       success: true,
-      message: "Gallery created successfully",
-      data: newGallery,
+      message: "Note created successfully",
+      data: newNote,
     });
   } catch (err) {
     console.log(err);
@@ -21,31 +21,30 @@ exports.createGallery = async (req, res) => {
   }
 };
 
-// @desc      GET ALL GALLERY
-// @route     GET /api/v1/gallery
+// @desc      GET ALL NOTE
+// @route     GET /api/v1/note
 // @access    public
-exports.getGallery = async (req, res) => {
+exports.getNote = async (req, res) => {
   try {
     const { id, skip, limit, searchkey } = req.query;
 
     if (id && mongoose.isValidObjectId(id)) {
-      const response = await Gallery.findById(id);
+      const response = await Note.findById(id);
       return res.status(200).json({
         success: true,
-        message: "Retrieved specific gallery",
+        message: "Retrieved specific notes",
         response,
       });
     }
 
     const query = searchkey
-      ? { ...req.filter, title: { $regex: searchkey, $options: "i" } }
+      ? { ...req.filter, notes: { $regex: searchkey, $options: "i" } }
       : req.filter;
 
     const [totalCount, filterCount, data] = await Promise.all([
-      parseInt(skip) === 0 && Gallery.countDocuments(),
-      parseInt(skip) === 0 && Gallery.countDocuments(query),
-      Gallery.find(query)
-        .populate("album")
+      parseInt(skip) === 0 && Note.countDocuments(),
+      parseInt(skip) === 0 && Note.countDocuments(query),
+      Note.find(query)
         .skip(parseInt(skip) || 0)
         .limit(parseInt(limit) || 0)
         .sort({ _id: -1 }),
@@ -53,7 +52,7 @@ exports.getGallery = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: `Retrieved all gallery`,
+      message: `Retrieved all notes`,
       response: data,
       count: data.length,
       totalCount: totalCount || 0,
@@ -68,26 +67,26 @@ exports.getGallery = async (req, res) => {
   }
 };
 
-// @desc      UPDATE SPECIFIC GALLERY
-// @route     PUT /api/v1/gallery/:id
+// @desc      UPDATE SPECIFIC NOTE
+// @route     PUT /api/v1/note/:id
 // @access    protect
-exports.updateGallery = async (req, res) => {
+exports.updateNote = async (req, res) => {
   try {
-    const gallerys = await Gallery.findByIdAndUpdate(req.body.id, req.body, {
+    const notes = await Note.findByIdAndUpdate(req.body.id, req.body, {
       new: true,
     });
 
-    if (!gallerys) {
+    if (!notes) {
       return res.status(404).json({
         success: false,
-        message: "Gallery not found",
+        message: "Note not found",
       });
     }
 
     res.status(200).json({
       success: true,
-      message: "Gallery updated successfully",
-      data: gallerys,
+      message: "Note updated successfully",
+      data: notes,
     });
   } catch (err) {
     console.log(err);
@@ -98,29 +97,42 @@ exports.updateGallery = async (req, res) => {
   }
 };
 
-// @desc      DELETE SPECIFIC GALLERY
-// @route     DELETE /api/v1/gallery/:id
+// @desc      DELETE SPECIFIC NOTE
+// @route     DELETE /api/v1/note/:id
 // @access    protect
-exports.deleteGallery = async (req, res) => {
+exports.deleteNote = async (req, res) => {
   try {
-    const gallerys = await Gallery.findByIdAndDelete(req.query.id);
+    const notes = await Note.findByIdAndDelete(req.query.id);
 
-    if (!gallerys) {
+    if (!notes) {
       return res.status(404).json({
         success: false,
-        message: "Gallery not found",
+        message: "Note not found",
       });
     }
 
     res.status(200).json({
       success: true,
-      message: "Gallery deleted successfully",
+      message: "Note deleted successfully",
     });
   } catch (err) {
     console.log(err);
     res.status(400).json({
       success: false,
       message: err,
+    });
+  }
+};
+
+exports.select = async (req, res) => {
+  try {
+    const items = await Note.find({}, { _id: 0, id: "$_id", value: "$notes" });
+    return res.status(200).send(items);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({
+      success: false,
+      message: err.toString(),
     });
   }
 };

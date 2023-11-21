@@ -12,6 +12,10 @@ const GallerySchema = new mongoose.Schema(
             type: String,
             // enum: ["English", "Arabic", "Urdu"]
         },
+        album: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Album'
+        },
     },
     { timestamps: true }
 );
