@@ -183,6 +183,25 @@ exports.getSessionByDay = async (req, res) => {
         $sort: {
           _id: 1, // Sort by day in ascending order
         },
+      },
+      {
+        $unwind: "$sessions", // Unwind to prepare for $lookup
+      },
+      {
+        $lookup: {
+          from: "sessionguests", // Replace with the actual name of the SessionGuest collection
+          localField: "sessions.sessionGuests",
+          foreignField: "_id",
+          as: "sessions.guestDetails",
+        },
+      },
+      {
+        $group: {
+          _id: "$_id",
+          sessions: {
+            $push: "$sessions",
+          },
+        },
       }
     );
 
