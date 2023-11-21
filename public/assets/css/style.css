@@ -12552,7 +12552,7 @@ h2 {
     justify-content: center;
     /* Center horizontally */
     flex-wrap: wrap;
-    /* Allow cards to wrap when screen size is reduced */
+    /* Allow cards_album to wrap when screen size is reduced */
   }
 
   .card {
@@ -14256,4 +14256,101 @@ ul li:hover {
 .sponsors-imgs {
   padding: 50px;
   margin-top: -150px;
+}
+
+/* album cards---------------------------------- */
+.cards_album {
+  position: relative;
+  height: 200px;
+  width: 200px;
+  top: 90%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, 20%);
+}
+
+.cards_album:hover {
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.card_album_item {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 200px;
+  height: 200px;
+  background: #fff;
+  transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  /* Firefox 4 */
+
+  -webkit-transition: all 0.3s ease-in-out;
+  /* Safari and Chrome */
+
+  -o-transition: all 0.3s ease-in-out;
+  /* Opera */
+  /*    border:1px solid #ddd;
+    border-bottom: 1px solid #aaa;*/
+
+  overflow: hidden;
+  /* padding: 10px; */
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 5px;
+}
+
+.card_album_item:nth-child(2) {
+  height: 194px;
+  width: 194px;
+  top: 3px;
+  left: 8px;
+}
+
+.card_album_item:nth-child(1) {
+  height: 188px;
+  width: 188px;
+  top: 6px;
+  left: 16px;
+}
+
+.card_album_item:nth-child(3) {
+}
+.cards_album:hover .card_album_item {
+  width: 200px;
+  height: 200px;
+}
+
+.cards_album .card_album_item:nth-child(1) {
+  left: 60px;
+  transform: rotate(5deg);
+  -ms-transform: rotate(5deg);
+  /* IE 9 */
+
+  -moz-transform: rotate(5deg);
+  /* Firefox */
+
+  -webkit-transform: rotate(5deg);
+  /* Safari and Chrome */
+
+  -o-transform: rotate(5deg);
+  /* Opera */
+}
+
+.cards_album .card_album_item:nth-child(2) {
+}
+
+.cards_album .card_album_item:nth-child(3) {
+  left: -60px;
+  transform: rotate(-5deg);
+  -ms-transform: rotate(-5deg);
+  /* IE 9 */
+
+  -moz-transform: rotate(-5deg);
+  /* Firefox */
+
+  -webkit-transform: rotate(-5deg);
+  /* Safari and Chrome */
+
+  -o-transform: rotate(-5deg);
+  /* Opera */
 }

@@ -66,93 +66,107 @@
 </head>
 
 <body>
+  <div style="margin-top: 100px">
+    <div class="gallery-about-title">
+      <h1>Album</h1>
+    </div>
+    <div class="cards_album" style="display: flex;align-items: center;justify-content: center;">
+      <img class="card_album_item" alt=":)" src="http://placekitten.com/200/200?image=3" style=" border: none;">
+      <img class="card_album_item" alt=":)" src="http://placekitten.com/200/200?image=1" style="margin-left: 30px; border: none;">
+      <img class="card_album_item" alt=":)"
+        src="https://img.freepik.com/free-photo/african-american-man-working-open-air-man-suit-sunglasses-with-beard-using-laptop-sitting-terrace-rooftops-working-manager-technology-concept_74855-25538.jpg?t=st=1700476303~exp=1700476903~hmac=cd1f3a9fb421954963b1625bcd20c56fc420a303a313c9f3bec717949ac48312"
+        style="margin-left: 70px;  border: none;">
+    </div>
+  </div>
   <div class="main-wrapper">
 
     <div style="background-image: url('assets/images/grill.png');">
-      <div class="container" style="margin-top: 100px;">
-        <div class="gallery-about-title">
-          <h1>Gallery</h1>
+    </div>
+    <div class="container" style="margin-top: 100px;">
+
+      <div class="gallery-about-title">
+        <h1>Gallery</h1>
+      </div>
+      <div class="gallery">
+        <div class="column">
+          <figure>
+            <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[0].image }` %>">
+
+          </figure>
+          <figure>
+            <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[1].image }` %>" />
+
+          </figure>
+          <figure>
+            <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[2].image }` %>" />
+
+          </figure>
+          <figure>
+            <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[3].image }` %>" />
+
+          </figure>
         </div>
-        <div class="gallery">
-          <div class="column">
-            <figure>
-              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[0].image }` %>">
+        <div class="column">
+          <figure>
+            <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[4].image }` %>" />
 
-            </figure>
-            <figure>
-              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[1].image }` %>" />
+          </figure>
+          <figure>
+            <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[5].image }` %>" />
 
-            </figure>
-            <figure>
-              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[2].image }` %>" />
+          </figure>
+          <figure>
+            <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[6].image }` %>" />
 
-            </figure>
-            <figure>
-              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[3].image }` %>" />
+          </figure>
+          <figure>
+            <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[7].image }` %>" />
 
-            </figure>
-          </div>
-          <div class="column">
-            <figure>
-              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[4].image }` %>" />
+          </figure>
+        </div>
+        <div class="column">
+          <figure>
+            <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[8].image }` %>">
 
-            </figure>
-            <figure>
-              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[5].image }` %>" />
+          </figure>
+          <figure>
+            <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[9].image }` %>" />
 
-            </figure>
-            <figure>
-              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[6].image }` %>" />
+          </figure>
+          <figure>
+            <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[10].image }` %>" />
 
-            </figure>
-            <figure>
-              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[7].image }` %>" />
+          </figure>
+          <figure>
+            <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[11].image }` %>" />
 
-            </figure>
-          </div>
-          <div class="column">
-            <figure>
-              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[8].image }` %>">
+          </figure>
+        </div>
+        <div class="column">
+          <figure>
+            <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[12].image }` %>" />
 
-            </figure>
-            <figure>
-              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[9].image }` %>" />
+          </figure>
+          <figure>
+            <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[0].image }` %>" />
 
-            </figure>
-            <figure>
-              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[10].image }` %>" />
+          </figure>
+          <figure>
+            <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[3].image }` %>" />
 
-            </figure>
-            <figure>
-              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[11].image }` %>" />
+          </figure>
+          <figure>
+            <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[1].image }` %>" />
 
-            </figure>
-          </div>
-          <div class="column">
-            <figure>
-              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[12].image }` %>" />
-
-            </figure>
-            <figure>
-              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[0].image }` %>" />
-
-            </figure>
-            <figure>
-              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[3].image }` %>" />
-
-            </figure>
-            <figure>
-              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${galleryData[1].image }` %>" />
-
-            </figure>
-          </div>
+          </figure>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Footer Start -->
-    <%- include('layout/footer.ejs') %>
-      <!-- Footer End -->
+  <!-- Footer Start -->
+  <%- include('layout/footer.ejs') %>
+    <!-- Footer End -->
 
 
 </body>
