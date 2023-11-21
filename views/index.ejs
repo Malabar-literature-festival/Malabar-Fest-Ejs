@@ -1,72 +1,52 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-  <link
-    rel="shortcut icon"
-    type="image/x-icon"
-    href="/assets/images/favnew.svg"
-  />
+<link rel="shortcut icon" type="image/x-icon" href="/assets/images/favnew.svg" />
 
-  <head>
-    <title><%= title %></title>
-    <meta name="description" content="<%= metaTags[0].description %>" />
-    <meta name="keywords" content="<%= metaTags[1].keywords %>" />
-    <meta name="author" content="<%= metaTags[2].author %>" />
-    <meta name="robots" content="<%= metaTags[3].robots %>" />
-    <%- include('layout/header.ejs') %>
-  </head>
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <meta name="description" content="<%= metaTags[0].description %>" />
+  <meta name="keywords" content="<%= metaTags[1].keywords %>" />
+  <meta name="author" content="<%= metaTags[2].author %>" />
+  <meta name="robots" content="<%= metaTags[3].robots %>" />
+  <%- include('layout/header.ejs') %>
+</head>
 
-  <body>
-    <div class="main-wrapper">
-      <!-- Slider Section Start  -->
-      <div class="meeta-hero-section-3 d-flex align-items-center">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-12">
-              <div class="meeta-hero-content">
-                <div class="malabar-title">
-                  <img src="assets/images/1111.svg" alt="" />
-                </div>
-                <div class="malabar-title-mobile">
-                  <img src="assets/images/111-mobile.svg" alt="" />
-                </div>
-                <a href="/register">
-                  <button class="register-wave-btn">Register</button></a
-                >
+<body>
+  <div class="main-wrapper">
+    <!-- Slider Section Start  -->
+    <div class="meeta-hero-section-3 d-flex align-items-center">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-12">
+            <div class="meeta-hero-content">
+              <div class="malabar-title">
+                <img src="assets/images/1111.svg" alt="" />
               </div>
+              <div class="malabar-title-mobile">
+                <img src="assets/images/111-mobile.svg" alt="" />
+              </div>
+              <a href="/register">
+                <button class="register-wave-btn">Register</button></a>
             </div>
           </div>
         </div>
       </div>
-      <div style="position: relative">
-        <div class="animation-wrapper">
-          <div class="water">
-            <ul class="waves">
-              <li
-                class="wave-one"
-                style="background-image: url('assets/images/Vector (8).png')"
-              ></li>
-              <li
-                class="wave-two"
-                style="background-image: url('assets/images/Vector (9).png')"
-              ></li>
-              <li
-                class="wave-three"
-                style="background-image: url('assets/images/Vector (10).png')"
-              ></li>
-              <li
-                class="wave-four"
-                style="background-image: url('assets/images/Vector (11).png')"
-              ></li>
-              <li
-                class="wave-five"
-                style="background-image: url('assets/images/Vector (12).png')"
-              ></li>
-            </ul>
-          </div>
+    </div>
+    <div style="position: relative">
+      <div class="animation-wrapper">
+        <div class="water">
+          <ul class="waves">
+            <li class="wave-one" style="background-image: url('assets/images/Vector (8).png')"></li>
+            <li class="wave-two" style="background-image: url('assets/images/Vector (9).png')"></li>
+            <li class="wave-three" style="background-image: url('assets/images/Vector (10).png')"></li>
+            <li class="wave-four" style="background-image: url('assets/images/Vector (11).png')"></li>
+            <li class="wave-five" style="background-image: url('assets/images/Vector (12).png')"></li>
+          </ul>
         </div>
-        <div
-          class="about"
-          style="
+      </div>
+      <div class="about" style="
             background-image: url('assets/images/about-banner.svg');
             position: absolute;
             z-index: 10;
@@ -77,28 +57,27 @@
             min-height: 700px;
             object-fit: contain;
             overflow: hidden;
-          "
-        >
-          <div class="about-title">
-            <h1>Celebrating Malabar</h1>
-          </div>
+          ">
+        <div class="about-title">
+          <h1>Celebrating Malabar</h1>
+        </div>
 
-          <h2 class="about-para">
-            <%= aboutData[0].aboutMlf.substring(0, 700) %>... <br />
+        <h2 class="about-para">
+          <%= aboutData[0].aboutMlf.substring(0, 700) %>... <br />
             <a href="/Tales-of-Malabar">
               <p style="color: #0077b6">see more...</p>
             </a>
-          </h2>
-        </div>
+        </h2>
       </div>
     </div>
-    <!-- Slider Section End -->
-    <!-- Speakers Start -->
+  </div>
+  <!-- Slider Section End -->
+  <!-- Speakers Start -->
 
-    <div class="meeta-speakers-3 section-padding">
-      <div class="container wave_bg">
-        <div class="row">
-          <!-- <div class="organizing-commite-section fade-left">
+  <div class="meeta-speakers-3 section-padding">
+    <div class="container wave_bg">
+      <div class="row">
+        <!-- <div class="organizing-commite-section fade-left">
           <div class="org-committe-title">
             <h1></h1>
           </div>
@@ -158,31 +137,31 @@
 
           </div>
         </div>  -->
-        </div>
       </div>
-      <div class="meeta-speakers-wrap p-5">
-        <div class="speaker-title pb-5">
-          <h1>Speakers</h1>
-        </div>
-        <div class="col-md-12 mt-5">
-          <div class="container">
-            <div class="row">
-              <div class="featured-carousel owl-carousel mt-5">
-                <% speakerData.forEach(speaker=> { %>
+    </div>
+    <div class="meeta-speakers-wrap p-5">
+      <div class="speaker-title pb-5">
+        <h1>Speakers</h1>
+      </div>
+      <div class="col-md-12 mt-5">
+        <div class="container">
+          <div class="row">
+            <div class="featured-carousel owl-carousel mt-5">
+              <% speakerData.forEach(speaker=> { %>
                 <a href="/speaker">
                   <div class="col-xs-6 col-sm-6 col-lg-3">
                     <!-- id="myBtn" -->
                     <div class="col-md-3 speaker-cards">
                       <div class="speaker-imgs">
-                        <img
-                          style="object-fit: cover; width: 100%; height: 100%"
+                        <img style="object-fit: cover; width: 100%; height: 100%"
                           src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speaker.image }` %>"
-                          alt=""
-                        />
+                          alt="" />
                       </div>
                     </div>
                     <div id="speaker_name" class="speaker-content-inner">
-                      <h3 class="speakers-name"><%= speaker.name %></h3>
+                      <h3 class="speakers-name">
+                        <%= speaker.name %>
+                      </h3>
                       <p class="speakers-para">
                         <!-- <%= speaker.description %> -->
                       </p>
@@ -191,135 +170,118 @@
                 </a>
 
                 <% }); %>
-              </div>
             </div>
           </div>
         </div>
-
-        <style>
-          .speaker-imgs img {
-            filter: grayscale(100%);
-            transition: filter 0.3s ease;
-          }
-
-          /* Remove the filter on hover to show the original color */
-          .speaker-imgs img:hover {
-            filter: grayscale(0%);
-          }
-
-          .speaker-cards {
-            position: relative;
-            margin: 5px;
-            height: 14rem;
-            width: 14rem;
-            overflow: hidden;
-            transition: all 0.125s ease 0s;
-            padding: 12px;
-            box-shadow: 0.375rem 0.3125rem 1.5625rem rgba(0, 0, 0, 0.2);
-            background-image: url("your-wavy-image.png");
-            /* Set your wavy image here */
-            background-size: cover;
-            background-repeat: no-repeat;
-            border-radius: 50%;
-          }
-        </style>
       </div>
-    </div>
 
-    <!-- Water wave animation -->
-    <div class="wave-boat">
-      <!-- <img src="assets/images/withboat.png" alt="" style="width: 100%"> -->
+      <style>
+        .speaker-imgs img {
+          filter: grayscale(100%);
+          transition: filter 0.3s ease;
+        }
+
+        /* Remove the filter on hover to show the original color */
+        .speaker-imgs img:hover {
+          filter: grayscale(0%);
+        }
+
+        .speaker-cards {
+          position: relative;
+          margin: 5px;
+          height: 14rem;
+          width: 14rem;
+          overflow: hidden;
+          transition: all 0.125s ease 0s;
+          padding: 12px;
+          box-shadow: 0.375rem 0.3125rem 1.5625rem rgba(0, 0, 0, 0.2);
+          background-image: url("your-wavy-image.png");
+          /* Set your wavy image here */
+          background-size: cover;
+          background-repeat: no-repeat;
+          border-radius: 50%;
+        }
+      </style>
     </div>
-    <!-- Speakers End -->
-    <div class="container">
-      <div class="news-section">
-        <h1>News And Updates</h1>
-      </div>
-      <div class="news-details">
-        <div class="row news-details-head">
-          <div class="col-12 col-xl-6 news-details-head-img">
-            <img
-              src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[newsData.length - 1].image }` %>"
-              alt=""
-            />
+  </div>
+
+  <!-- Water wave animation -->
+  <div class="wave-boat">
+    <!-- <img src="assets/images/withboat.png" alt="" style="width: 100%"> -->
+  </div>
+  <!-- Speakers End -->
+  <div class="container">
+    <div class="news-section">
+      <h1>News And Updates</h1>
+    </div>
+    <div class="news-details">
+      <div class="row news-details-head">
+        <div class="col-12 col-xl-6 news-details-head-img">
+          <img
+            src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[newsData.length - 1].image }` %>"
+            alt="" />
+        </div>
+        <div class="col-12 col-xl-6">
+          <h1 class="news-details-head-title">
+            <%= newsData[newsData.length - 1].title %>
+          </h1>
+          <div class="dates">
+            <h6 style="display: inline; font-size: 10px">Latest</h6>
+            <span class="time" style="display: inline; padding-left: 10px; font-size: 10px">
+              <% const date=new Date(newsData[newsData.length - 1].date); %>
+                <%= date.toLocaleDateString(undefined, { weekday: 'long' , year: 'numeric' , month: 'long' ,
+                  day: 'numeric' }) %>
+            </span>
           </div>
-          <div class="col-12 col-xl-6">
-            <h1 class="news-details-head-title">
-              <%= newsData[newsData.length - 1].title %>
-            </h1>
-            <div class="dates">
-              <h6 style="display: inline; font-size: 10px">Latest</h6>
-              <span
-                class="time"
-                style="display: inline; padding-left: 10px; font-size: 10px"
-              >
-                <% const date=new Date(newsData[newsData.length - 1].date); %>
-                <%= date.toLocaleDateString(undefined, { weekday: 'long' , year:
-                'numeric' , month: 'long' , day: 'numeric' }) %>
-              </span>
-            </div>
-            <p>
-              <%= newsData[newsData.length - 1].description.substring(0,500)
-              %>....
-            </p>
-            <div>
-              <a href="/news/<%= newsData[newsData.length - 1].slug %>">
-                <button class="readmore">Read More</button></a
-              >
-            </div>
+          <p>
+            <%= newsData[newsData.length - 1].description.substring(0,500) %>....
+          </p>
+          <div>
+            <a href="/news/<%= newsData[newsData.length - 1].slug %>">
+              <button class="readmore">Read More</button></a>
           </div>
         </div>
-
-        <div class="col-md-12 mt-5">
-          <div class="featured-carousel owl-carousel">
-            <% newsData.forEach(function(newsItem) { %>
+      </div>
+      <div class="col-md-12 mt-5">
+        <div class="featured-carousel owl-carousel">
+          <% newsData.forEach(function(newsItem) { %>
             <div class="item">
               <div class="card" style="width: 18rem">
-                <img
-                  class="card-img-top"
+                <img class="card-img-top"
                   src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${newsItem.image}` %>"
-                  alt="Card image cap"
-                  style="border-radius: 10px"
-                />
+                  alt="Card image cap" style="border-radius: 10px" />
                 <div class="card-body">
                   <h5 class="card-title">
                     <%= newsItem.title.substring(0,40) %>...
                   </h5>
                   <ul style="list-style: none; padding-left: 0">
                     <li style="display: inline; font-size: 12px">
-                      <span style="font-size: 20px; color: #49bdf2"
-                        >&bull;</span
-                      >
-                      <% const date=new Date(newsItem.date); %> <%=
-                      date.toLocaleDateString(undefined, { weekday: 'long' ,
-                      year: 'numeric' , month: 'long' , day: 'numeric' }) %>
-                      <!-- <%= newsItem.date %> -->
+                      <span style="font-size: 20px; color: #49bdf2">&bull;</span>
+                      <% const date=new Date(newsItem.date); %>
+                        <%= date.toLocaleDateString(undefined, { weekday: 'long' , year: 'numeric' , month: 'long' ,
+                          day: 'numeric' }) %>
+                          <!-- <%= newsItem.date %> -->
                     </li>
                   </ul>
                   <p class="card-text-para">
                     <%= newsItem.description.substring(0, 220) %>...
                   </p>
                   <div>
-                    <a
-                      href="https://malabarliteraturefestival.com/news/<%= newsItem.slug %>"
-                      ><button class="readmore">Read More</button></a
-                    >
+                    <a href="https://malabarliteraturefestival.com/news/<%= newsItem.slug %>"><button
+                        class="readmore">Read More</button></a>
                   </div>
 
                 </div>
               </div>
             </div>
             <% }); %>
-          </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Pricing Start -->
-    <div
-      class="wheel"
-      id="animation-container"
-      style="
+  <!-- Pricing Start -->
+  <div class="wheel" id="animation-container" style="
         background-image: url('assets/images/counter4.svg');
         background-size: cover;
         background-position: center;
@@ -327,35 +289,34 @@
         position: relative;
         width: 100%;
         height: 400px;
-      "
-    >
-      <div class="timer" style="display: flex">
-        <div class="circle" id="circle1">
-          <span id="number1">0</span>
-          <div class="timer-title">
-            <h3>Sessions</h3>
-          </div>
+      ">
+    <div class="timer" style="display: flex">
+      <div class="circle" id="circle1">
+        <span id="number1">0</span>
+        <div class="timer-title">
+          <h3>Sessions</h3>
         </div>
-        <div class="circle" id="circle2">
-          <span id="number2">0</span>
-          <div class="timer-title">
-            <h3>Venues</h3>
-          </div>
+      </div>
+      <div class="circle" id="circle2">
+        <span id="number2">0</span>
+        <div class="timer-title">
+          <h3>Venues</h3>
         </div>
-        <div class="circle" id="circle3">
-          <span id="number3">0</span>
-          <div class="timer-title">
-            <h3>National & International Speakers</h3>
-          </div>
+      </div>
+      <div class="circle" id="circle3">
+        <span id="number3">0</span>
+        <div class="timer-title">
+          <h3>National & International Speakers</h3>
         </div>
-        <div class="circle" id="circle4">
-          <span id="number4">0</span>
-          <div class="timer-title">
-            <h3>Participants</h3>
-          </div>
+      </div>
+      <div class="circle" id="circle4">
+        <span id="number4">0</span>
+        <div class="timer-title">
+          <h3>Participants</h3>
         </div>
       </div>
     </div>
+  </div>
 
   </div>
 
@@ -380,28 +341,19 @@
     <div class="container">
       <div class="carousel-container" style="padding-top: 40px">
         <div class="carousel-slide">
-          <img
-            src="assets/images/mlf-banner.png"
-            alt="sponsors"
-            style="max-width: 100%; height: auto; border-radius: 30px"
-          />
+          <img src="assets/images/mlf-banner.png" alt="sponsors"
+            style="max-width: 100%; height: auto; border-radius: 30px" />
         </div>
       </div>
       <div class="container">
         <div class="carousel-container">
           <div class="carousel-slide">
-            <img
-              src="assets/images/mlf-banner.png"
-              alt="sponsors"
-              style="max-width: 100%; height: auto; border-radius: 30px"
-            />
+            <img src="assets/images/mlf-banner.png" alt="sponsors"
+              style="max-width: 100%; height: auto; border-radius: 30px" />
           </div>
           <div class="carousel-slide">
-            <img
-              src="assets/images/thunjan.svg"
-              alt="sponsors"
-              style="max-width: 100%; height: auto; border-radius: 30px"
-            />
+            <img src="assets/images/thunjan.svg" alt="sponsors"
+              style="max-width: 100%; height: auto; border-radius: 30px" />
           </div>
         </div>
         <div class="carousel-dots"></div>
@@ -550,102 +502,103 @@
 
     <!-- Footer Start -->
     <%- include('layout/footer.ejs') %>
-    <!-- Footer End -->
+      <!-- Footer End -->
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const animationContainer = document.getElementById(
-          "animation-container"
-        );
-        const options = {
-          threshold: 0.5, // Trigger animation when the element is at least 50% in the viewport
-        };
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const animationContainer = document.getElementById(
+            "animation-container"
+          );
+          const options = {
+            threshold: 0.5, // Trigger animation when the element is at least 50% in the viewport
+          };
 
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              // Start the animation when the element is in the viewport
-              animateNumbers();
-              observer.unobserve(entry.target);
-            }
-          });
-        }, options);
-
-        // Observe the animation container
-        observer.observe(animationContainer);
-
-        // Your animation code
-        function animateNumbers() {
-          const circle1 = document.getElementById("circle1");
-          const numberElement1 = document.getElementById("number1");
-          let currentNumber1 = 0;
-          const targetNumber1 = 100;
-          const increment1 = (targetNumber1 - currentNumber1) / (3000 / 30);
-
-          const circle2 = document.getElementById("circle2");
-          const numberElement2 = document.getElementById("number2");
-          let currentNumber2 = 0;
-          const targetNumber2 = 3;
-          const increment2 = (targetNumber2 - currentNumber2) / (9000 / 90);
-
-          const circle3 = document.getElementById("circle3");
-          const numberElement3 = document.getElementById("number3");
-          let currentNumber3 = 0;
-          const targetNumber3 = 250;
-          const increment3 = (targetNumber3 - currentNumber3) / (3000 / 30);
-
-          const circle4 = document.getElementById("circle4");
-          const numberElement4 = document.getElementById("number4");
-          let currentNumber4 = 0;
-          const targetNumber4 = 100000;
-          const increment4 = (targetNumber4 - currentNumber4) / (9000 / 90);
-
-          function animateNumber1() {
-            if (currentNumber1 < targetNumber1) {
-              currentNumber1 += increment1;
-              if (currentNumber1 >= targetNumber1) {
-                currentNumber1 = targetNumber1;
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                // Start the animation when the element is in the viewport
+                animateNumbers();
+                observer.unobserve(entry.target);
               }
-              numberElement1.textContent = `${Math.round(currentNumber1)}+`;
-            }
-          }
+            });
+          }, options);
 
-          function animateNumber2() {
-            if (currentNumber2 < targetNumber2) {
-              currentNumber2 += increment2;
-              if (currentNumber2 >= targetNumber2) {
-                currentNumber2 = targetNumber2;
+          // Observe the animation container
+          observer.observe(animationContainer);
+
+          // Your animation code
+          function animateNumbers() {
+            const circle1 = document.getElementById("circle1");
+            const numberElement1 = document.getElementById("number1");
+            let currentNumber1 = 0;
+            const targetNumber1 = 100;
+            const increment1 = (targetNumber1 - currentNumber1) / (3000 / 30);
+
+            const circle2 = document.getElementById("circle2");
+            const numberElement2 = document.getElementById("number2");
+            let currentNumber2 = 0;
+            const targetNumber2 = 3;
+            const increment2 = (targetNumber2 - currentNumber2) / (9000 / 90);
+
+            const circle3 = document.getElementById("circle3");
+            const numberElement3 = document.getElementById("number3");
+            let currentNumber3 = 0;
+            const targetNumber3 = 250;
+            const increment3 = (targetNumber3 - currentNumber3) / (3000 / 30);
+
+            const circle4 = document.getElementById("circle4");
+            const numberElement4 = document.getElementById("number4");
+            let currentNumber4 = 0;
+            const targetNumber4 = 100000;
+            const increment4 = (targetNumber4 - currentNumber4) / (9000 / 90);
+
+            function animateNumber1() {
+              if (currentNumber1 < targetNumber1) {
+                currentNumber1 += increment1;
+                if (currentNumber1 >= targetNumber1) {
+                  currentNumber1 = targetNumber1;
+                }
+                numberElement1.textContent = `${Math.round(currentNumber1)}+`;
               }
-              numberElement2.textContent = `${Math.round(currentNumber2)}+`;
             }
-          }
 
-          function animateNumber3() {
-            if (currentNumber3 < targetNumber3) {
-              currentNumber3 += increment3;
-              if (currentNumber3 >= targetNumber3) {
-                currentNumber3 = targetNumber3;
+            function animateNumber2() {
+              if (currentNumber2 < targetNumber2) {
+                currentNumber2 += increment2;
+                if (currentNumber2 >= targetNumber2) {
+                  currentNumber2 = targetNumber2;
+                }
+                numberElement2.textContent = `${Math.round(currentNumber2)}+`;
               }
-              numberElement3.textContent = `${Math.round(currentNumber3)}+`;
             }
-          }
 
-          function animateNumber4() {
-            if (currentNumber4 < targetNumber4) {
-              currentNumber4 += increment4;
-              if (currentNumber4 >= targetNumber4) {
-                currentNumber4 = targetNumber4;
+            function animateNumber3() {
+              if (currentNumber3 < targetNumber3) {
+                currentNumber3 += increment3;
+                if (currentNumber3 >= targetNumber3) {
+                  currentNumber3 = targetNumber3;
+                }
+                numberElement3.textContent = `${Math.round(currentNumber3)}+`;
               }
-              numberElement4.textContent = `${Math.round(currentNumber4)}+`;
             }
-          }
 
-          setInterval(animateNumber1, 30);
-          setInterval(animateNumber2, 90);
-          setInterval(animateNumber3, 30);
-          setInterval(animateNumber4, 90);
-        }
-      });
-    </script>
-  </body>
+            function animateNumber4() {
+              if (currentNumber4 < targetNumber4) {
+                currentNumber4 += increment4;
+                if (currentNumber4 >= targetNumber4) {
+                  currentNumber4 = targetNumber4;
+                }
+                numberElement4.textContent = `${Math.round(currentNumber4)}+`;
+              }
+            }
+
+            setInterval(animateNumber1, 30);
+            setInterval(animateNumber2, 90);
+            setInterval(animateNumber3, 30);
+            setInterval(animateNumber4, 90);
+          }
+        });
+      </script>
+</body>
+
 </html>
