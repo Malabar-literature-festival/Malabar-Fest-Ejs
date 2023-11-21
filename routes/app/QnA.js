@@ -1,23 +1,25 @@
+// module.exports = router;
+
 const router = require("express").Router();
 // Controllers
 const {
-  createFeedback,
-  getFeedback,
-  updateFeedback,
-  deleteFeedback,
+  createQna,
+  getQna,
+  updateQna,
+  deleteQna,
   select,
   // getByFranchise,
-} = require("../../controllers/feedback");
+} = require("../../controllers/QnA");
 // Middleware
 const { protect, authorize } = require("../../middleware/auth");
 const { reqFilter } = require("../../middleware/filter");
 
 router
   .route("/")
-  .post(createFeedback)
-  .get(reqFilter, getFeedback)
-  .put(updateFeedback)
-  .delete(deleteFeedback);
+  .post(createQna)
+  .get(reqFilter, getQna)
+  .put(updateQna)
+  .delete(deleteQna);
 
 router.get("/select", reqFilter, select);
 
