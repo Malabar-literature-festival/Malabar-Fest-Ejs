@@ -150,12 +150,65 @@ exports.select = async (req, res) => {
 // @access    public
 exports.getSessionByDay = async (req, res) => {
   try {
-    const sessionsByDay = await session.find().populate("sessionGuests")
-    console.log(sessionsByDay)
+    const { day } = req.query;
+
+    // Create the initial aggregation pipeline
+    const aggregationPipeline = [];
+
+    // Add $match stage only if day parameter is provided
+    if (day) {
+      aggregationPipeline.push({
+        $match: {
+          day: day // Filter by the specified day
+        },
+      });
+    }
+    aggregationPipeline.push(
+      {
+        $group: {
+          _id: "$day",
+          sessions: {
+            $push: {
+              _id: "$_id",
+              time: "$time",
+              title: "$title",
+              stage: "$stage",
+              sessionGuests: "$sessionGuests",
+            },
+          },
+        },
+      },
+      {
+        $sort: {
+          _id: 1, // Sort by day in ascending order
+        },
+      },
+      {
+        $unwind: "$sessions", // Unwind to prepare for $lookup
+      },
+      {
+        $lookup: {
+          from: "sessionguests", // Replace with the actual name of the SessionGuest collection
+          localField: "sessions.sessionGuests",
+          foreignField: "_id",
+          as: "sessions.guestDetails",
+        },
+      },
+      {
+        $group: {
+          _id: "$_id",
+          sessions: {
+            $push: "$sessions",
+          },
+        },
+      }
+    );
+
+    const sessionsByDay = await Session.aggregate(aggregationPipeline);
 
     res.status(200).json({
       success: true,
-      message: 'Retrieved sessions grouped by day',
+      message: day ? `Retrieved sessions for day '${day}'` : 'Retrieved sessions for all days',
       response: sessionsByDay,
     });
   } catch (err) {
