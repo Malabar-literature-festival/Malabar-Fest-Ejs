@@ -133,13 +133,6 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
     console.log("Body Data :- ", req.body);
     console.log(imagePath);
 
-    // Change date string to date
-    // const dateStrings = req.body.day;
-    // const dateArray = dateStrings
-    //   .split(",")
-    //   .map((dateString) => dateString.trim());
-    // const dateObjects = dateArray.map((dateString) => new Date(dateString));
-
     // Check if a user with the same email or mobile number already exists in the Registration collection
     const existingUserInRegistration = await Registration.findOne({
       $or: [{ email: req.body.email }, { mobileNumber: req.body.contact }],
@@ -156,15 +149,37 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       gender: req.body.gender,
       mobileNumber: req.body.contact,
       email: req.body.email,
-      // profession: req.body.profession,
-      place: req.body.place,
-      // regDate: dateObjects,
-      // matterOfInterest: req.body.intrest,
+      profession: req.body.profession,
+      // regDate: tempRegData.regDate,
+      // matterOfInterest: tempRegData.matterOfInterest,
       regType: req.body.type,
+      place: req.body.place,
       image: imagePath,
+      transitionId: req.body.transitionId,
+      amount: 399,
+      orderId: "Gpay",
+      paymentStatus: "pending",
+    });
+
+    const registrationData = new Registration({
+      name: req.body.name,
+      gender: req.body.gender,
+      mobileNumber: req.body.contact,
+      email: req.body.email,
+      profession: req.body.profession,
+      // regDate: tempRegData.regDate,
+      // matterOfInterest: tempRegData.matterOfInterest,
+      regType: req.body.type,
+      place: req.body.place,
+      image: imagePath,
+      transactionId: req.body.transactionId,
+      amount: 399,
+      orderId: "Gpay",
+      paymentStatus: "pending",
     });
 
     // Save the registration data to the TempReg collection
+    await registrationData.save();
     await delegateData.save();
 
     const userId = delegateData._id; // Access the ID from the instance
@@ -184,7 +199,8 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
     //--------------------------------- QR CODE END ---------------------------------
 
     // Call the paymentGeneration function with the necessary parameters
-    exports.paymentGeneration(req, res, delegateData, userId, qrCodeFileName);
+    // exports.paymentGeneration(req, res, delegateData, userId, qrCodeFileName);
+    res.status(200).json({ message: "Registration success" });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
