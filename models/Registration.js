@@ -89,6 +89,13 @@ const RegistrationSchema = new mongoose.Schema(
         type: Date,
       },
     },
+    transactionId: {
+      type: String,
+    },
+    approved: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
