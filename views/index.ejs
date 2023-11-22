@@ -331,108 +331,108 @@
 
     </div>
   </div>
+  <!-- <div class="container"> -->
+  <div class="carousel-container" style="padding-top: 40px;">
+    <div class="carousel-slide">
+      <img src="assets/images/mlf-banner.png" alt="sponsors"
+        style="max-width: 100%; height: auto; border-radius: 30px;">
+    </div>
+  </div>
   <div class="container">
-    <div class="carousel-container" style="padding-top: 40px;">
+    <div class="carousel-container" style="padding-top: 40px">
       <div class="carousel-slide">
         <img src="assets/images/mlf-banner.png" alt="sponsors"
-          style="max-width: 100%; height: auto; border-radius: 30px;">
+          style="max-width: 100%; height: auto; border-radius: 30px" />
       </div>
     </div>
     <div class="container">
-      <div class="carousel-container" style="padding-top: 40px">
+      <div class="carousel-container">
         <div class="carousel-slide">
           <img src="assets/images/mlf-banner.png" alt="sponsors"
             style="max-width: 100%; height: auto; border-radius: 30px" />
         </div>
-      </div>
-      <div class="container">
-        <div class="carousel-container">
-          <div class="carousel-slide">
-            <img src="assets/images/mlf-banner.png" alt="sponsors"
-              style="max-width: 100%; height: auto; border-radius: 30px" />
-          </div>
-          <div class="carousel-slide">
-            <img src="assets/images/thunjan.svg" alt="sponsors"
-              style="max-width: 100%; height: auto; border-radius: 30px" />
-          </div>
+        <div class="carousel-slide">
+          <img src="assets/images/thunjan.svg" alt="sponsors"
+            style="max-width: 100%; height: auto; border-radius: 30px" />
         </div>
-        <div class="carousel-dots"></div>
       </div>
+      <div class="carousel-dots"></div>
     </div>
-    <style>
-      .carousel-container {
-        display: flex;
-        overflow: hidden;
-        position: relative;
+  </div>
+  <style>
+    .carousel-container {
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-slide {
+      flex: 2;
+      transition: transform 0.5s;
+      display: none;
+      transition: opacity 1s;
+    }
+
+    .carousel-dots {
+      text-align: center;
+    }
+
+    .dot {
+      height: 10px;
+      width: 10px;
+      margin: 0 5px;
+      background-color: #fff;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+    }
+  </style>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".carousel-slide");
+    const dotsContainer = document.querySelector(".carousel-dots");
+
+    // Create dots based on the number of slides
+    slides.forEach((slide, index) => {
+      const dot = document.createElement("span");
+      dot.classList.add("dot");
+      dot.addEventListener("click", () => showSlide(index));
+      dotsContainer.appendChild(dot);
+    });
+
+    // Initial image display
+    showSlide(currentSlide);
+
+    let autoSlideInterval = setInterval(() => changeSlide(1), 5000); // Auto slide every 5 seconds
+
+    function changeSlide(n) {
+      currentSlide += n;
+
+      if (currentSlide >= slides.length) {
+        currentSlide = 0;
+      } else if (currentSlide < 0) {
+        currentSlide = slides.length - 1;
       }
 
-      .carousel-slide {
-        flex: 2;
-        transition: transform 0.5s;
-        display: none;
-        transition: opacity 1s;
-      }
-
-      .carousel-dots {
-        text-align: center;
-      }
-
-      .dot {
-        height: 10px;
-        width: 10px;
-        margin: 0 5px;
-        background-color: #fff;
-        border-radius: 50%;
-        display: inline-block;
-        cursor: pointer;
-      }
-    </style>
-
-    <script>
-      let currentSlide = 0;
-      const slides = document.querySelectorAll(".carousel-slide");
-      const dotsContainer = document.querySelector(".carousel-dots");
-
-      // Create dots based on the number of slides
-      slides.forEach((slide, index) => {
-        const dot = document.createElement("span");
-        dot.classList.add("dot");
-        dot.addEventListener("click", () => showSlide(index));
-        dotsContainer.appendChild(dot);
-      });
-
-      // Initial image display
       showSlide(currentSlide);
+    }
 
-      let autoSlideInterval = setInterval(() => changeSlide(1), 5000); // Auto slide every 5 seconds
+    function showSlide(n) {
+      // Hide all slides
+      slides.forEach((slide) => (slide.style.display = "none"));
 
-      function changeSlide(n) {
-        currentSlide += n;
+      // Display the current slide
+      slides[n].style.display = "block";
 
-        if (currentSlide >= slides.length) {
-          currentSlide = 0;
-        } else if (currentSlide < 0) {
-          currentSlide = slides.length - 1;
-        }
+      // Update the active dot
+      const dots = document.querySelectorAll(".dot");
+      dots.forEach((dot) => dot.classList.remove("active"));
+      dots[n].classList.add("active");
+    }
+  </script>
 
-        showSlide(currentSlide);
-      }
-
-      function showSlide(n) {
-        // Hide all slides
-        slides.forEach((slide) => (slide.style.display = "none"));
-
-        // Display the current slide
-        slides[n].style.display = "block";
-
-        // Update the active dot
-        const dots = document.querySelectorAll(".dot");
-        dots.forEach((dot) => dot.classList.remove("active"));
-        dots[n].classList.add("active");
-      }
-    </script>
-
-    <!-- <div class="testimonial" style="background-image:url('assets/images/grill.png');padding-bottom: 100px;">
+  <!-- <div class="testimonial" style="background-image:url('assets/images/grill.png');padding-bottom: 100px;">
     <div class="testimonial-title">
       <h1>Testimonials</h1>
     </div>
@@ -500,105 +500,105 @@
 
   </div> -->
 
-    <!-- Footer Start -->
-    <%- include('layout/footer.ejs') %>
-      <!-- Footer End -->
+  <!-- Footer Start -->
+  <%- include('layout/footer.ejs') %>
+    <!-- Footer End -->
 
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const animationContainer = document.getElementById(
-            "animation-container"
-          );
-          const options = {
-            threshold: 0.5, // Trigger animation when the element is at least 50% in the viewport
-          };
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const animationContainer = document.getElementById(
+          "animation-container"
+        );
+        const options = {
+          threshold: 0.5, // Trigger animation when the element is at least 50% in the viewport
+        };
 
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                // Start the animation when the element is in the viewport
-                animateNumbers();
-                observer.unobserve(entry.target);
-              }
-            });
-          }, options);
-
-          // Observe the animation container
-          observer.observe(animationContainer);
-
-          // Your animation code
-          function animateNumbers() {
-            const circle1 = document.getElementById("circle1");
-            const numberElement1 = document.getElementById("number1");
-            let currentNumber1 = 0;
-            const targetNumber1 = 100;
-            const increment1 = (targetNumber1 - currentNumber1) / (3000 / 30);
-
-            const circle2 = document.getElementById("circle2");
-            const numberElement2 = document.getElementById("number2");
-            let currentNumber2 = 0;
-            const targetNumber2 = 3;
-            const increment2 = (targetNumber2 - currentNumber2) / (9000 / 90);
-
-            const circle3 = document.getElementById("circle3");
-            const numberElement3 = document.getElementById("number3");
-            let currentNumber3 = 0;
-            const targetNumber3 = 250;
-            const increment3 = (targetNumber3 - currentNumber3) / (3000 / 30);
-
-            const circle4 = document.getElementById("circle4");
-            const numberElement4 = document.getElementById("number4");
-            let currentNumber4 = 0;
-            const targetNumber4 = 100000;
-            const increment4 = (targetNumber4 - currentNumber4) / (9000 / 90);
-
-            function animateNumber1() {
-              if (currentNumber1 < targetNumber1) {
-                currentNumber1 += increment1;
-                if (currentNumber1 >= targetNumber1) {
-                  currentNumber1 = targetNumber1;
-                }
-                numberElement1.textContent = `${Math.round(currentNumber1)}+`;
-              }
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Start the animation when the element is in the viewport
+              animateNumbers();
+              observer.unobserve(entry.target);
             }
+          });
+        }, options);
 
-            function animateNumber2() {
-              if (currentNumber2 < targetNumber2) {
-                currentNumber2 += increment2;
-                if (currentNumber2 >= targetNumber2) {
-                  currentNumber2 = targetNumber2;
-                }
-                numberElement2.textContent = `${Math.round(currentNumber2)}+`;
+        // Observe the animation container
+        observer.observe(animationContainer);
+
+        // Your animation code
+        function animateNumbers() {
+          const circle1 = document.getElementById("circle1");
+          const numberElement1 = document.getElementById("number1");
+          let currentNumber1 = 0;
+          const targetNumber1 = 100;
+          const increment1 = (targetNumber1 - currentNumber1) / (3000 / 30);
+
+          const circle2 = document.getElementById("circle2");
+          const numberElement2 = document.getElementById("number2");
+          let currentNumber2 = 0;
+          const targetNumber2 = 3;
+          const increment2 = (targetNumber2 - currentNumber2) / (9000 / 90);
+
+          const circle3 = document.getElementById("circle3");
+          const numberElement3 = document.getElementById("number3");
+          let currentNumber3 = 0;
+          const targetNumber3 = 250;
+          const increment3 = (targetNumber3 - currentNumber3) / (3000 / 30);
+
+          const circle4 = document.getElementById("circle4");
+          const numberElement4 = document.getElementById("number4");
+          let currentNumber4 = 0;
+          const targetNumber4 = 100000;
+          const increment4 = (targetNumber4 - currentNumber4) / (9000 / 90);
+
+          function animateNumber1() {
+            if (currentNumber1 < targetNumber1) {
+              currentNumber1 += increment1;
+              if (currentNumber1 >= targetNumber1) {
+                currentNumber1 = targetNumber1;
               }
+              numberElement1.textContent = `${Math.round(currentNumber1)}+`;
             }
-
-            function animateNumber3() {
-              if (currentNumber3 < targetNumber3) {
-                currentNumber3 += increment3;
-                if (currentNumber3 >= targetNumber3) {
-                  currentNumber3 = targetNumber3;
-                }
-                numberElement3.textContent = `${Math.round(currentNumber3)}+`;
-              }
-            }
-
-            function animateNumber4() {
-              if (currentNumber4 < targetNumber4) {
-                currentNumber4 += increment4;
-                if (currentNumber4 >= targetNumber4) {
-                  currentNumber4 = targetNumber4;
-                }
-                numberElement4.textContent = `${Math.round(currentNumber4)}+`;
-              }
-            }
-
-            setInterval(animateNumber1, 30);
-            setInterval(animateNumber2, 90);
-            setInterval(animateNumber3, 30);
-            setInterval(animateNumber4, 90);
           }
-        });
-      </script>
+
+          function animateNumber2() {
+            if (currentNumber2 < targetNumber2) {
+              currentNumber2 += increment2;
+              if (currentNumber2 >= targetNumber2) {
+                currentNumber2 = targetNumber2;
+              }
+              numberElement2.textContent = `${Math.round(currentNumber2)}+`;
+            }
+          }
+
+          function animateNumber3() {
+            if (currentNumber3 < targetNumber3) {
+              currentNumber3 += increment3;
+              if (currentNumber3 >= targetNumber3) {
+                currentNumber3 = targetNumber3;
+              }
+              numberElement3.textContent = `${Math.round(currentNumber3)}+`;
+            }
+          }
+
+          function animateNumber4() {
+            if (currentNumber4 < targetNumber4) {
+              currentNumber4 += increment4;
+              if (currentNumber4 >= targetNumber4) {
+                currentNumber4 = targetNumber4;
+              }
+              numberElement4.textContent = `${Math.round(currentNumber4)}+`;
+            }
+          }
+
+          setInterval(animateNumber1, 30);
+          setInterval(animateNumber2, 90);
+          setInterval(animateNumber3, 30);
+          setInterval(animateNumber4, 90);
+        }
+      });
+    </script>
 </body>
 
 </html>
