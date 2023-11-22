@@ -142,13 +142,6 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
     const imagePath = req.file ? req.file.path : null;
     console.log(imagePath);
 
-    // // change date string to date
-    // const dateStrings = req.body.day;
-    // const dateArray = dateStrings
-    //   .split(",")
-    //   .map((dateString) => dateString.trim());
-    // const dateObjects = dateArray.map((dateString) => new Date(dateString));
-
     // Check if a user with the same email or mobile number already exists in the Registration collection
     const existingUserInRegistration = await Registration.findOne({
       $or: [{ email: req.body.email }, { mobileNumber: req.body.contact }],
@@ -172,9 +165,31 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       // category: req.body.category,
       regType: req.body.type,
       image: imagePath,
+      transactionId: req.body.transactionId,
+      amount: 399,
+      orderId: "Gpay",
+      paymentStatus: "pending",
+    });
+
+    const registrationData = new Registration({
+      name: req.body.name,
+      gender: req.body.gender,
+      mobileNumber: req.body.contact,
+      email: req.body.email,
+      // regDate: tempRegData.regDate,
+      // matterOfInterest: tempRegData.matterOfInterest,
+      institution: req.body.institution,
+      regType: req.body.type,
+      place: req.body.place,
+      image: imagePath,
+      transactionId: req.body.transactionId,
+      amount: 299,
+      orderId: "Gpay",
+      paymentStatus: "pending",
     });
 
     // Save the registration data to the database
+    await registrationData.save();
     await delegateData.save();
 
     const userId = delegateData._id;
@@ -196,7 +211,8 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
 
     //--------------------------------- QR CODE END ---------------------------------
 
-    exports.paymentGeneration(req, res, delegateData, Id, qrCodeFileName);
+    // exports.paymentGeneration(req, res, delegateData, Id, qrCodeFileName);
+    res.status(200).json({ message: "Registration success" });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
