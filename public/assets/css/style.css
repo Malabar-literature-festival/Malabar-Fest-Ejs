@@ -13957,7 +13957,7 @@ ul li:hover {
   }
 }
 .form_head {
-  margin-top: 250px;
+  margin-top: 100px;
 }
 
 /* animations side______ */
@@ -14156,6 +14156,9 @@ ul li:hover {
   }
 }
 @media (max-width: 600px) {
+  .form_head {
+    margin-top: 200px;
+  }
   .sponsors-imgs {
     margin-top: 0px !important;
   }
