@@ -208,11 +208,9 @@ app.use("/api/v1/session-guest", sessionGuest);
 const login = require("./routes/app/login.js");
 const feedback = require("./routes/app/feedback.js");
 const notes = require("./routes/app/note.js");
-const QnA = require("./routes/app/QnA.js");
 app.use("/api/v1/login", login);
 app.use("/api/v1/feedback", feedback);
 app.use("/api/v1/note", notes);
-app.use("/api/v1/qna", QnA);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
