@@ -81,6 +81,14 @@ const RegistrationSchema = new mongoose.Schema(
     paymentStatus: {
       type: String,
     },
+    otp: {
+      code: {
+        type: String,
+      },
+      timestamp: {
+        type: Date,
+      },
+    },
   },
   { timestamps: true }
 );
