@@ -14357,3 +14357,23 @@ ul li:hover {
   -o-transform: rotate(-5deg);
   /* Opera */
 }
+
+.gpay-number {
+  font-weight: bold;
+  font-size: 18px; /* You can adjust the size as needed */
+  text-align: center;
+  margin-bottom: 20px; /* Adjust the margin as needed */
+}
+
+.pay-note-section {
+  text-align: center;
+  margin-top: 20px; /* Adjust the margin as needed */
+  padding: 15px;
+  background-color: #f5f5f5; /* Adjust the background color as needed */
+  border: 1px solid #ddd; /* Adjust the border color as needed */
+}
+
+.pay-note-section p {
+  margin: 0;
+  font-size: 12px; /* Adjust the font size as needed */
+}

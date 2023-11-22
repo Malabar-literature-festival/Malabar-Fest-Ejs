@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-<link rel="shortcut icon" type="image/x-icon" href="/assets/images/favnew.svg" />
+  <link
+    rel="shortcut icon"
+    type="image/x-icon"
+    href="/assets/images/favnew.svg"
+  />
 
-<head>
-  <title>
-    <%= title %>
-  </title>
-  <meta name="description" content="<%= metaTags[0].description %>" />
-  <meta name="keywords" content="<%= metaTags[1].keywords %>" />
-  <meta name="author" content="<%= metaTags[2].author %>" />
-  <meta name="robots" content="<%= metaTags[3].robots %>" />
-  <%- include('layout/header.ejs') %>
+  <head>
+    <title><%= title %></title>
+    <meta name="description" content="<%= metaTags[0].description %>" />
+    <meta name="keywords" content="<%= metaTags[1].keywords %>" />
+    <meta name="author" content="<%= metaTags[2].author %>" />
+    <meta name="robots" content="<%= metaTags[3].robots %>" />
+    <%- include('layout/header.ejs') %>
     <!-- Include flatpickr CSS from CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
 
     <!-- Include flatpickr JavaScript from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-</head>
+  </head>
 
-<body>
-  <div class="main-wrapper">
-    <div class="container">
-      <div class="attende-registration" style="margin-top: 100px">
-        <div class="registration-title">
-          <h1>Delegate Registration</h1>
+  <body>
+    <div class="main-wrapper">
+      <div class="container">
+        <div class="attende-registration" style="margin-top: 100px">
+          <div class="registration-title">
+            <h1>Delegate Registration</h1>
+          </div>
+          <div style="display: flex; justify-content: center">
+            <img style="width: 250px" src="/assets/images/qrcode.jpeg" alt="" />
+          </div>
         </div>
-        <div style="display: flex;justify-content: center;"> <img style="width: 250px;" src="/assets/images/qrcode.jpeg"
-            alt=""></div>
       </div>
-    </div>
-    <div class="register-table" style="
+      <div
+        class="register-table"
+        style="
           background-image: url('assets/images/RegisterUnion.png');
           background-size: cover;
           background-position: center center;
@@ -38,62 +46,110 @@
           display: flex;
           justify-content: center;
           align-items: center;
-        ">
-      <div class="container">
-        <div class="delegate-table-section">
-          <!-- <div class="delegate-title">
+        "
+      >
+        <div class="container">
+          <div class="delegate-table-section">
+            <!-- <div class="delegate-title">
             <h1>Delegate</h1>
           </div> -->
-          <div class="register-form">
-            <div class="container">
-              
-              
-              <form action="/delegate" method="post" enctype="multipart/form-data" id="delegateForm">
-                <input type="hidden" name="type" value="delegate" />
-                
-                <div class="row form_head">
-                  
-                  <div>Gpay No: 9562761133</div>
-                  <div id="success-message" class="alert alert-success" style="display: none;">
-                    Registration successful! Thank you for registering.
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="name">Name:</label>
-                      <input type="text" id="name" name="name" class="form-control" required />
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="gender">Gender:</label>
-                      <select id="gender" name="gender" class="form-control" required>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="contact">Contact Number:</label>
-                      <input type="tel" id="contact" name="contact" class="form-control" required />
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="email">Email ID:</label>
-                      <input type="email" id="email" name="email" class="form-control" required />
-                      <p id="emailError" class="text-danger"></p>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="place">City:</label>
-                      <input type="text" id="place" name="place" class="form-control" required />
-                    </div>
-                  </div>
+            <div class="register-form">
+              <div class="container">
+                <form
+                  action="/delegate"
+                  method="post"
+                  enctype="multipart/form-data"
+                  id="delegateForm"
+                >
+                  <input type="hidden" name="type" value="delegate" />
 
-                  <!-- <div class="col-md-6">
+                  <div class="row form_head">
+                    <div class="gpay-number">
+                      Gpay No: <strong>9562761133</strong>
+                    </div>
+                    <!-- Note Section Start -->
+                    <div class="pay-note-section">
+                      <p>
+                        <strong>Note: </strong> Please scan the Google Pay QR
+                        code or use the Google Pay number 9562761133 for
+                        payment. After completing the payment, kindly copy the
+                        transaction ID and paste it into the registration form.
+                      </p>
+                    </div>
+                    <!-- Note Section End -->
+                    <div
+                      id="success-message"
+                      class="alert alert-success"
+                      style="display: none"
+                    >
+                      Registration successful! Thank you for registering.
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          class="form-control"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <select
+                          id="gender"
+                          name="gender"
+                          class="form-control"
+                          required
+                        >
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="contact">Contact Number:</label>
+                        <input
+                          type="tel"
+                          id="contact"
+                          name="contact"
+                          class="form-control"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="email">Email ID:</label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          class="form-control"
+                          required
+                        />
+                        <p id="emailError" class="text-danger"></p>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="place">City:</label>
+                        <input
+                          type="text"
+                          id="place"
+                          name="place"
+                          class="form-control"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <!-- <div class="col-md-6">
                     <div class="form-group">
                       <label for="email">Registered Mail:</label>
                       <input type="email" id="email" name="email" class="form-control" value="<%= savedEmail %>"
@@ -101,20 +157,32 @@
                       <p id="emailError" class="text-danger"></p>
                     </div>
                   </div> -->
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="photo">Add Photo:</label>
-                      <input type="file" id="photo" name="photo" required class="form-control-file form-control"
-                        style="width: 100%" />
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="photo">Add Photo:</label>
+                        <input
+                          type="file"
+                          id="photo"
+                          name="photo"
+                          required
+                          class="form-control-file form-control"
+                          style="width: 100%"
+                        />
+                      </div>
                     </div>
-                  </div>
 
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="professions">profession:</label>
-                      <input type="text" id="profession" name="profession" required
-                        class="form-control-file form-control" style="width: 100%" />
-                      <!-- <select
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="professions">profession:</label>
+                        <input
+                          type="text"
+                          id="profession"
+                          name="profession"
+                          required
+                          class="form-control-file form-control"
+                          style="width: 100%"
+                        />
+                        <!-- <select
                           id="professions"
                           name="profession"
                           class="form-control scrollable-dropdown"
@@ -135,17 +203,22 @@
                           <option value="public-service">Public Service</option>
                           <option value="other">Other</option>
                         </select> -->
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="transactionId">transaction id:</label>
-                      <input type="text" id="transactionId" name="transactionId" required
-                        class="form-control-file form-control" style="width: 100%" />
-
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="transactionId">transaction id:</label>
+                        <input
+                          type="text"
+                          id="transactionId"
+                          name="transactionId"
+                          required
+                          class="form-control-file form-control"
+                          style="width: 100%"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <!-- 
+                    <!-- 
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="day">Select Day:</label>
@@ -159,27 +232,28 @@
                         />
                       </div>
                     </div> -->
-
-                </div>
-                <div class="row register-amount-btn">
-                  <div class="col-12 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary" style="border-radius: 20px">
-                      Register
-                    </button>
                   </div>
-
-                </div>
-              </form>
-
+                  <div class="row register-amount-btn">
+                    <div class="col-12 d-flex justify-content-center">
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        style="border-radius: 20px"
+                      >
+                        Register
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Footer Start -->
-  <%- include('layout/footer.ejs') %>
+    <!-- Footer Start -->
+    <%- include('layout/footer.ejs') %>
     <!-- Footer End -->
 
     <!-- JS
@@ -209,7 +283,10 @@
     <script src="assets/js/jquery.nice-select.min.js"></script>
     <!-- Main JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
+    <script
+      type="text/javascript"
+      src="node_modules/slick-carousel/slick/slick.min.js"
+    ></script>
     <script src="assets/js/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -217,23 +294,23 @@
       document.addEventListener("DOMContentLoaded", function () {
         const form = document.getElementById("delegateForm");
         const successMessage = document.getElementById("success-message");
-    
+
         form.addEventListener("submit", async function (event) {
           event.preventDefault();
-    
+
           try {
             const response = await fetch("/delegate", {
               method: "POST",
               body: new FormData(form),
             });
-    
+
             if (response.ok) {
               const responseData = await response.json();
-    
+
               if (responseData.message === "Registration success") {
                 // Hide the form and display the success message
                 successMessage.style.display = "block";
-    
+
                 // Clear the form after 3 seconds
                 setTimeout(() => {
                   form.reset();
@@ -255,11 +332,11 @@
             // Display an error message if needed
           }
         });
-    
+
         const currentDate = new Date();
         const novemberFirst = new Date(currentDate.getFullYear(), 10, 30);
         const decemberLast = new Date(currentDate.getFullYear(), 11, 3);
-    
+
         flatpickr(".datepicker-input", {
           dateFormat: "Y-m-d",
           mode: "multiple", // Enable multiple date selection
@@ -267,7 +344,6 @@
           maxDate: decemberLast,
         });
       });
-    </script>    
-</body>
-
+    </script>
+  </body>
 </html>
