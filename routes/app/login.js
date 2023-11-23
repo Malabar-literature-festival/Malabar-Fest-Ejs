@@ -36,7 +36,7 @@ router.post("/verify-otp", async function (req, res, next) {
     const user = await Registration.findOne({ mobileNumber: mobile });
 
     if (!user) {
-      return res.status(200).json({ message: "Mobile number not found" });
+      return res.status(500).json({ message: "Mobile number not found" });
     } else {
       if (user.otp && user.otp.code.toString() === otp.toString()) {
         const timestamp = user.otp.timestamp;

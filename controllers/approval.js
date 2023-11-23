@@ -14,45 +14,58 @@ const qr = require("qrcode");
 
 exports.getApproved = async (req, res) => {
   try {
-    const Id = req.query.userId;
-    const userId = new ObjectId(req.query.userId);
-
-    const user = await Registration.findByIdAndUpdate(
-      userId,
-      { $set: { approved: true, paymentStatus: "success" } },
-      { new: true } // To return the updated document
-    );
-
-        // Create the QR Code Directory if it doesn't exist
-        const qrCodeDirectory = "./uploads/qrcodes";
-        if (!fs.existsSync(qrCodeDirectory)) {
-          fs.mkdirSync(qrCodeDirectory);
-        }
-    
-        // Generate QR CODE and save it as a PNG file
-        const qrCodeFileName = `${qrCodeDirectory}/${Id}.png`;
-        await qr.toFile(qrCodeFileName, JSON.stringify(Id));
-
-
-    // const qrCodeFileName = `./uploads/qrcodes/${user}.png`; // Change to the actual file path
-    const qrCodeImage = fs.readFileSync(qrCodeFileName);
-
-    console.log("qrCodeImage", qrCodeImage);
-    console.log("qrCodeFileName", qrCodeFileName);
-
-    sendWhatsAppMessage(user);
-    sendConfirmationEmail(user, qrCodeFileName);
-
+    const userId = req.query.userId;
+if(isValidObjectId(userId)){
+    const user = await Registration.findOne({ _id: userId });
     if (!user) {
-      return res.status(404).json({ error: "User not found" });
+      return res.status(400).json({message: "User not found"})
     }
+    else if(user.approved == true) {
+      res.status(200).json({message: "Already Approved"})
+    }
+    else {
 
-    console.log("Updated user:", user);
-    res
-      .status(200)
-      .json({
-        message: "User approved and payment status updated successfully",
-      });
+      const user = await Registration.findByIdAndUpdate(
+        userId,
+        { $set: { approved: true, paymentStatus: "success" } },
+        { new: true } // To return the updated document
+      );
+  
+          // Create the QR Code Directory if it doesn't exist
+          const qrCodeDirectory = "./uploads/qrcodes";
+          if (!fs.existsSync(qrCodeDirectory)) {
+            fs.mkdirSync(qrCodeDirectory);
+          }
+      
+          // Generate QR CODE and save it as a PNG file
+          const qrCodeFileName = `${qrCodeDirectory}/${userId}.png`;
+          await qr.toFile(qrCodeFileName, JSON.stringify(userId));
+  
+  
+      // const qrCodeFileName = `./uploads/qrcodes/${user}.png`; // Change to the actual file path
+      const qrCodeImage = fs.readFileSync(qrCodeFileName);
+  
+      console.log("qrCodeImage", qrCodeImage);
+      console.log("qrCodeFileName", qrCodeFileName);
+  
+      sendWhatsAppMessage(user);
+      sendConfirmationEmail(user, qrCodeFileName);
+  
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+  
+      console.log("Updated user:", user);
+      res
+        .status(200)
+        .json({
+          message: "User approved and payment status updated successfully",
+        });
+    }
+  }
+  else {
+    return res.status(404).json({ error: "Invalid User" });
+  }
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error: "Internal server error" });
