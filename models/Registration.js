@@ -92,6 +92,9 @@ const RegistrationSchema = new mongoose.Schema(
     transactionId: {
       type: String,
     },
+    transactionImage: {
+      type: String,
+    },
     approved: {
       type: Boolean,
       default: false,
