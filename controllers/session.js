@@ -152,18 +152,10 @@ exports.getSessionByDay = async (req, res) => {
   try {
     const { day } = req.query;
 
-    // Create the initial aggregation pipeline
-    const aggregationPipeline = [];
-
-    if (day) {
-      aggregationPipeline.push({
-        $match: {
-          day: day,
-        },
-      });
-    }
-
-    aggregationPipeline.push(
+    const aggregationPipeline = [
+      {
+        $match: day ? { day: day } : {},
+      },
       {
         $lookup: {
           from: "sessionguests",
@@ -173,16 +165,37 @@ exports.getSessionByDay = async (req, res) => {
         },
       },
       {
+        $unwind: {
+          path: "$guestDetails",
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+      {
+        $lookup: {
+          from: "guestroles",
+          localField: "guestDetails.guestRole",
+          foreignField: "_id",
+          as: "guestDetails.guestRoleDetails",
+        },
+      },
+      {
         $group: {
-          _id: {
-            stage: "$stage",
-          },
+          _id: { stage: "$stage" },
           sessions: {
             $push: {
               _id: "$_id",
-              time: "$time",
+              startTime: "$startTime",
+              endTime: "$endTime",
               title: "$title",
-              guestDetails: "$guestDetails",
+              guestDetails: {
+                _id: "$guestDetails._id",
+                guest: "$guestDetails.guest",
+                description: "$guestDetails.description",
+                order: "$guestDetails.order",
+                session: "$guestDetails.session",
+                photo: "$guestDetails.photo",
+                guestRoleDetails: "$guestDetails.guestRoleDetails",
+              },
             },
           },
         },
@@ -228,14 +241,16 @@ exports.getSessionByDay = async (req, res) => {
           _id: 0,
           stages: 1,
         },
-      }
-    );
+      },
+    ];
 
     const sessionsByDay = await Session.aggregate(aggregationPipeline);
 
     res.status(200).json({
       success: true,
-      message: day ? `Retrieved sessions for day '${day}'` : 'Retrieved sessions for all days',
+      message: day
+        ? `Retrieved sessions for day '${day}'`
+        : "Retrieved sessions for all days",
       response: sessionsByDay,
     });
   } catch (err) {
