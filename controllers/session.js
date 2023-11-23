@@ -133,7 +133,7 @@ exports.select = async (req, res) => {
   try {
     const items = await Session.find(
       {},
-      { _id: 0, id: "$_id", value: "$day" }
+      { _id: 0, id: "$_id", value: "$title" }
     );
     return res.status(200).send(items);
   } catch (err) {
@@ -155,51 +155,78 @@ exports.getSessionByDay = async (req, res) => {
     // Create the initial aggregation pipeline
     const aggregationPipeline = [];
 
-    // Add $match stage only if day parameter is provided
     if (day) {
       aggregationPipeline.push({
         $match: {
-          day: day // Filter by the specified day
+          day: day,
         },
       });
     }
+
     aggregationPipeline.push(
       {
+        $lookup: {
+          from: "sessionguests",
+          localField: "sessionGuests",
+          foreignField: "_id",
+          as: "guestDetails",
+        },
+      },
+      {
         $group: {
-          _id: "$day",
+          _id: {
+            stage: "$stage",
+          },
           sessions: {
             $push: {
               _id: "$_id",
               time: "$time",
               title: "$title",
-              stage: "$stage",
-              sessionGuests: "$sessionGuests",
+              guestDetails: "$guestDetails",
             },
           },
         },
       },
       {
-        $sort: {
-          _id: 1, // Sort by day in ascending order
+        $group: {
+          _id: null,
+          stages: {
+            $addToSet: {
+              stage: "$_id.stage",
+              sessions: "$sessions",
+            },
+          },
         },
       },
       {
-        $unwind: "$sessions", // Unwind to prepare for $lookup
+        $unwind: "$stages",
       },
       {
-        $lookup: {
-          from: "sessionguests", // Replace with the actual name of the SessionGuest collection
-          localField: "sessions.sessionGuests",
-          foreignField: "_id",
-          as: "sessions.guestDetails",
+        $unwind: "$stages.sessions",
+      },
+      {
+        $group: {
+          _id: "$stages.stage",
+          sessions: {
+            $push: "$stages.sessions",
+          },
         },
       },
       {
         $group: {
-          _id: "$_id",
-          sessions: {
-            $push: "$sessions",
+          _id: null,
+          stages: {
+            $push: {
+              stage: "$_id",
+              sessions: "$sessions",
+            },
           },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          stages: 1,
         },
       }
     );

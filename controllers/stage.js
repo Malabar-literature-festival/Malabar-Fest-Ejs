@@ -126,7 +126,8 @@ exports.deleteStage = async (req, res) => {
 
 exports.select = async (req, res) => {
   try {
-    const items = await Stage.find({}, { _id: 0, id: "$_id", value: "$title" });
+    const items = await Stage.find({}, { _id: 0, id: "$_id", value: "$stage" });
+    console.log(items);
     return res.status(200).send(items);
   } catch (err) {
     console.log(err);

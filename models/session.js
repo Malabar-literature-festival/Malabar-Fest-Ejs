@@ -11,14 +11,43 @@ const SessionSchema = new mongoose.Schema(
     title: {
       type: String,
     },
+    description: {
+      type: String,
+    },
+    startTime: {
+      type: Date,
+    },
+    endTime: {
+      type: Date,
+    },
+    isNote: {
+      type: Boolean,
+      default: false,
+    },
+    isQnA: {
+      type: Boolean,
+      default: false,
+    },
+    isDetails: {
+      type: Boolean,
+      default: false,
+    },
+    orderId: {
+      type: Number,
+    },
+    // stage: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "Stage",
+    // },
     stage: {
       type: String,
-      // enum: ["Stage 1", "Stage 2", "Stage 3"]
     },
-    sessionGuests: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "SessionGuest",
-    }],
+    sessionGuests: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "SessionGuest",
+      },
+    ],
   },
   { timestamps: true }
 );

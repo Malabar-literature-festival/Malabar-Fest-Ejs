@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const StageSchema = new mongoose.Schema(
     {
-        title: {
+        stage: {
             type: String,
         },
     },
