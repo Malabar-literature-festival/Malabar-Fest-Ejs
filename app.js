@@ -110,6 +110,8 @@ const Event_inner = require("./routes/ejsRoutes/event_inner");
 
 const sessions = require("./routes/session");
 const sessionGuest = require("./routes/sessionGuest");
+const stage = require("./routes/stage");
+const guestRole = require("./routes/guestRole");
 
 // Configure the session middleware
 app.use(
@@ -206,6 +208,8 @@ app.use("/events", Events);
 
 app.use("/api/v1/session", sessions);
 app.use("/api/v1/session-guest", sessionGuest);
+app.use("/api/v1/stage", stage);
+app.use("/api/v1/guest-role", guestRole);
 
 // Flutter Api //
 const login = require("./routes/app/login.js");
