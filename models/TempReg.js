@@ -79,6 +79,24 @@ const RegistrationSchema = new mongoose.Schema(
       type: String,
       default: "Processing",
     },
+    otp: {
+      code: {
+        type: String,
+      },
+      timestamp: {
+        type: Date,
+      },
+    },
+    transactionId: {
+      type: String,
+    },
+    transactionImage: {
+      type: String,
+    },
+    approved: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

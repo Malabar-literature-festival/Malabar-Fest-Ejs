@@ -39,6 +39,15 @@ exports.getRegistration = async (req, res) => {
         response,
       });
     }
+
+    if (req.filter.approved === "notapproved") {
+      req.filter.approved = { $ne: true };
+    } else if (req.filter.approved === "all") {
+      delete req.filter.approved;
+    } else {
+      req.filter.approved = true;
+    }
+    
     const query = {
       ...req.filter,
       ...(searchkey && {
@@ -52,6 +61,7 @@ exports.getRegistration = async (req, res) => {
       parseInt(skip) === 0 && Registration.countDocuments(),
       parseInt(skip) === 0 && Registration.countDocuments(query),
       Registration.find(query)
+        .sort({ createdAt: -1 })
         .skip(parseInt(skip) || 0)
         .limit(parseInt(limit) || 0),
     ]);
@@ -188,7 +198,10 @@ exports.paymentStatus = async (req, res) => {
 
 exports.select = async (req, res) => {
   try {
-    const items = await Registration.find({}, { _id: 0, id: "$_id", value: "$name" });
+    const items = await Registration.find(
+      {},
+      { _id: 0, id: "$_id", value: "$name" }
+    );
     return res.status(200).send(items);
   } catch (err) {
     console.log(err);

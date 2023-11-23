@@ -13956,9 +13956,6 @@ ul li:hover {
     display: none;
   }
 }
-.form_head {
-  margin-top: 100px;
-}
 
 /* animations side______ */
 @keyframes fadeTop {
@@ -14362,12 +14359,12 @@ ul li:hover {
   font-weight: bold;
   font-size: 18px; /* You can adjust the size as needed */
   text-align: center;
-  margin-bottom: 13px; /* Adjust the margin as needed */
+  margin-top: 80px;
 }
 
 .pay-note-section {
   text-align: center;
-  margin-top: 20px; /* Adjust the margin as needed */
+  margin-top: 5px; /* Adjust the margin as needed */
   padding: 15px;
   background-color: #f5f5f5; /* Adjust the background color as needed */
   border: 1px solid #ddd; /* Adjust the border color as needed */
@@ -14410,6 +14407,9 @@ ul li:hover {
   z-index: 3;
   cursor: pointer;
 }
+.form_head {
+  margin-top: 150px;
+}
 
 @media (max-width: 600px) {
   .album_head_top {
@@ -14418,6 +14418,16 @@ ul li:hover {
     flex-wrap: wrap;
   }
 
+@media (max-width: 578px) {
+  .gpay-number {
+    font-weight: bold;
+    font-size: 18px; /* You can adjust the size as needed */
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+@media (min-width: 600px) {
   .pay-modal-content {
     width: 76%;
     position: absolute;
@@ -14429,6 +14439,13 @@ ul li:hover {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+  }
+  .gpay-number {
+    font-weight: bold;
+    font-size: 18px; /* You can adjust the size as needed */
+    text-align: center;
+    margin-top: 120px;
+    margin-bottom: 30px;
   }
 }
 .album_head_top {
