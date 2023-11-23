@@ -1,16 +1,16 @@
 const { default: mongoose } = require("mongoose");
-const QnA = require("../models/QnA");
+const GuestRole = require("../models/guestRole");
 
-// @desc      CREATE NEW QNA
-// @route     POST /api/v1/qna
+// @desc      CREATE NEW GUEST ROLE
+// @route     POST /api/v1/guest-role
 // @access    protect
-exports.createQnA = async (req, res) => {
+exports.createGuestRole = async (req, res) => {
   try {
-    const newQnA = await QnA.create(req.body);
+    const newGuestRole = await GuestRole.create(req.body);
     res.status(200).json({
       success: true,
-      message: "QnA created successfully",
-      data: newQnA,
+      message: "Guest role created successfully",
+      data: newGuestRole,
     });
   } catch (err) {
     console.log(err);
@@ -21,30 +21,30 @@ exports.createQnA = async (req, res) => {
   }
 };
 
-// @desc      GET ALL QNA
-// @route     GET /api/v1/qna
+// @desc      GET ALL GUEST ROLE
+// @route     GET /api/v1/guest-role
 // @access    public
-exports.getQnA = async (req, res) => {
+exports.getGuestRole = async (req, res) => {
   try {
     const { id, skip, limit, searchkey } = req.query;
 
     if (id && mongoose.isValidObjectId(id)) {
-      const response = await QnA.findById(id);
+      const response = await GuestRole.findById(id);
       return res.status(200).json({
         success: true,
-        message: "Retrieved specific QnA",
+        message: "Retrieved specific guest role",
         response,
       });
     }
 
     const query = searchkey
-      ? { ...req.filter, question: { $regex: searchkey, $options: "i" } }
+      ? { ...req.filter, title: { $regex: searchkey, $options: "i" } }
       : req.filter;
 
     const [totalCount, filterCount, data] = await Promise.all([
-      parseInt(skip) === 0 && QnA.countDocuments(),
-      parseInt(skip) === 0 && QnA.countDocuments(query),
-      QnA.find(query).populate("session")
+      parseInt(skip) === 0 && GuestRole.countDocuments(),
+      parseInt(skip) === 0 && GuestRole.countDocuments(query),
+      GuestRole.find(query)
         .skip(parseInt(skip) || 0)
         .limit(parseInt(limit) || 0)
         .sort({ _id: -1 }),
@@ -52,7 +52,7 @@ exports.getQnA = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: `Retrieved all QnA`,
+      message: `Retrieved all guest role`,
       response: data,
       count: data.length,
       totalCount: totalCount || 0,
@@ -67,26 +67,26 @@ exports.getQnA = async (req, res) => {
   }
 };
 
-// @desc      UPDATE SPECIFIC QNA
-// @route     PUT /api/v1/qna/:id
+// @desc      UPDATE SPECIFIC GUEST ROLE
+// @route     PUT /api/v1/guest-role/:id
 // @access    protect
-exports.updateQnA = async (req, res) => {
+exports.updateGuestRole = async (req, res) => {
   try {
-    const qna = await QnA.findByIdAndUpdate(req.body.id, req.body, {
+    const guestRoles = await GuestRole.findByIdAndUpdate(req.body.id, req.body, {
       new: true,
     });
 
-    if (!qna) {
+    if (!guestRoles) {
       return res.status(404).json({
         success: false,
-        message: "QnA not found",
+        message: "Guest role not found",
       });
     }
 
     res.status(200).json({
       success: true,
-      message: "QnA updated successfully",
-      data: qna,
+      message: "Guestrole updated successfully",
+      data: guestRoles,
     });
   } catch (err) {
     console.log(err);
@@ -97,23 +97,23 @@ exports.updateQnA = async (req, res) => {
   }
 };
 
-// @desc      DELETE SPECIFIC QNA
-// @route     DELETE /api/v1/qna/:id
+// @desc      DELETE SPECIFIC GUEST ROLE
+// @route     DELETE /api/v1/guest-role/:id
 // @access    protect
-exports.deleteQnA = async (req, res) => {
+exports.deleteGuestRole = async (req, res) => {
   try {
-    const qna = await QnA.findByIdAndDelete(req.query.id);
+    const guestRoles = await GuestRole.findByIdAndDelete(req.query.id);
 
-    if (!qna) {
+    if (!guestRoles) {
       return res.status(404).json({
         success: false,
-        message: "QnA not found",
+        message: "Guest role not found",
       });
     }
 
     res.status(200).json({
       success: true,
-      message: "QnA deleted successfully",
+      message: "Guest role deleted successfully",
     });
   } catch (err) {
     console.log(err);
@@ -126,7 +126,7 @@ exports.deleteQnA = async (req, res) => {
 
 exports.select = async (req, res) => {
   try {
-    const items = await QnA.find({}, { _id: 0, id: "$_id", value: "$question" });
+    const items = await GuestRole.find({}, { _id: 0, id: "$_id", value: "$title" });
     return res.status(200).send(items);
   } catch (err) {
     console.log(err);

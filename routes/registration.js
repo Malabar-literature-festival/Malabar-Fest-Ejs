@@ -1,6 +1,6 @@
 const router = require("express").Router();
 // Controllers
-const { createRegistration, getRegistration, updateRegistration, deleteRegistration, paymentGeneration } = require("../controllers/registration");
+const { createRegistration, getRegistration, updateRegistration, deleteRegistration, paymentGeneration, select } = require("../controllers/registration");
 // Middleware
 const { protect, authorize } = require("../middleware/auth");
 const { reqFilter } = require("../middleware/filter");
@@ -14,4 +14,5 @@ router
   .put(getUploadMiddleware("uploads/registration", ["image"]), getS3Middleware(["image"]), updateRegistration)
   .delete(deleteRegistration);
 router.get("/payment-generation", paymentGeneration);
+router.get("/select", reqFilter, select);
 module.exports = router;

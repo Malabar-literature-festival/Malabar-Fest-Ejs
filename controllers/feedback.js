@@ -44,7 +44,7 @@ exports.getFeedback = async (req, res) => {
     const [totalCount, filterCount, data] = await Promise.all([
       parseInt(skip) === 0 && Feedback.countDocuments(),
       parseInt(skip) === 0 && Feedback.countDocuments(query),
-      Feedback.find(query)
+      Feedback.find(query).populate("session")
         .skip(parseInt(skip) || 0)
         .limit(parseInt(limit) || 0)
         .sort({ _id: -1 }),

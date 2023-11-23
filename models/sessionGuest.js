@@ -15,6 +15,10 @@ const SessionGuestSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Session",
     },
+    guestRole: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "GuestRole",
+    },
     photo: {
       type: String,
     },
