@@ -79,6 +79,7 @@ const AboutMlf = require("./routes/ejsRoutes/aboutMlf");
 const AboutBookPlus = require("./routes/ejsRoutes/aboutBookPlus"); // ADDED NEWS ROUTES-------
 const CommonReg = require("./routes/ejsRoutes/commonReg");
 const Scanner = require("./routes/ejsRoutes/scanner");
+const Album = require("./routes/ejsRoutes/album");
 
 // Admin route files
 const auth = require("./routes/auth.js");
@@ -175,6 +176,7 @@ app.use("/malabar-literature-festival", AboutMlf);
 app.use("/book-plus-publishers", AboutBookPlus);
 app.use("/common-reg", CommonReg);
 app.use("/scan", Scanner);
+app.use("/album", Album);
 app.use("/book-plus-publishers", AboutBookPlus);
 app.use("/malabar-heritage-walk", Event_inner);
 
