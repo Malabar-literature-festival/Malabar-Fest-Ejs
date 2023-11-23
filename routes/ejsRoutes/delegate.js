@@ -129,87 +129,90 @@ router.get("/", function (req, res, next) {
   res.render("delegate", { title, savedEmail, metaTags });
 });
 
-router.post("/", getUploadMiddleware("mlf/uploads/profile", ["photo", "transactionImage"]),getS3Middleware(["photo", "transactionImage"]), async function (req, res, next) {
-  try {
-    const imagePath = req.file ? req.file.path : null;
-    console.log("Body Data :- ", req.body);
-    console.log(imagePath);
+router.post(
+  "/",
+  getUploadMiddleware("mlf/uploads/profile", ["photo", "transactionImage"]),
+  getS3Middleware(["photo", "transactionImage"]),
+  async function (req, res, next) {
+    try {
+      console.log("Body Data :- ", req.body);
 
-    // Check if a user with the same email or mobile number already exists in the Registration collection
-    const existingUserInRegistration = await Registration.findOne({
-      $or: [{ email: req.body.email }, { mobileNumber: req.body.contact }],
-    });
+      // Check if a user with the same email or mobile number already exists in the Registration collection
+      const existingUserInRegistration = await Registration.findOne({
+        $or: [{ email: req.body.email }, { mobileNumber: req.body.contact }],
+      });
 
-    if (existingUserInRegistration) {
-      // Handle the case where the user is already registered in the Registration collection
-      return res.status(400).json({ error: "User is already registered" });
+      if (existingUserInRegistration) {
+        // Handle the case where the user is already registered in the Registration collection
+        return res.status(400).json({ error: "User is already registered" });
+      } else {
+        // Create a new TempReg instance with the registration data
+        const delegateData = new TempReg({
+          name: req.body.name,
+          gender: req.body.gender,
+          mobileNumber: req.body.contact,
+          email: req.body.email,
+          profession: req.body.profession,
+          // regDate: tempRegData.regDate,
+          // matterOfInterest: tempRegData.matterOfInterest,
+          regType: req.body.type,
+          place: req.body.place,
+          image: req.body.photo,
+          transactionImage: req.body.transactionImage,
+          transitionId: req.body.transitionId,
+          amount: 399,
+          orderId: "Gpay",
+          paymentStatus: "pending",
+        });
+
+        const registrationData = new Registration({
+          name: req.body.name,
+          gender: req.body.gender,
+          mobileNumber: req.body.contact,
+          email: req.body.email,
+          profession: req.body.profession,
+          // regDate: tempRegData.regDate,
+          // matterOfInterest: tempRegData.matterOfInterest,
+          regType: req.body.type,
+          place: req.body.place,
+          image: req.body.photo,
+          transactionImage: req.body.transactionImage,
+          transactionId: req.body.transactionId,
+          amount: 399,
+          orderId: "Gpay",
+          paymentStatus: "pending",
+        });
+
+        // Save the registration data to the TempReg collection
+        await registrationData.save();
+        await delegateData.save();
+
+        const userId = delegateData._id; // Access the ID from the instance
+
+        //--------------------------------- QR CODE START ---------------------------------
+
+        // Create the QR Code Directory if it doesn't exist
+        const qrCodeDirectory = "./uploads/qrcodes";
+        if (!fs.existsSync(qrCodeDirectory)) {
+          fs.mkdirSync(qrCodeDirectory);
+        }
+
+        // Generate QR CODE and save it as a PNG file
+        const qrCodeFileName = `${qrCodeDirectory}/${userId}.png`;
+        await qr.toFile(qrCodeFileName, JSON.stringify(userId));
+
+        //--------------------------------- QR CODE END ---------------------------------
+
+        // Call the paymentGeneration function with the necessary parameters
+        // exports.paymentGeneration(req, res, delegateData, userId, qrCodeFileName);
+        res.status(200).json({ message: "Registration success" });
+      }
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Internal server error" });
     }
-
-    // Create a new TempReg instance with the registration data
-    const delegateData = new TempReg({
-      name: req.body.name,
-      gender: req.body.gender,
-      mobileNumber: req.body.contact,
-      email: req.body.email,
-      profession: req.body.profession,
-      // regDate: tempRegData.regDate,
-      // matterOfInterest: tempRegData.matterOfInterest,
-      regType: req.body.type,
-      place: req.body.place,
-      image: req.body.photo,
-      transactionImage: req.body.transactionImage,
-      transitionId: req.body.transitionId,
-      amount: 399,
-      orderId: "Gpay",
-      paymentStatus: "pending",
-    });
-
-    const registrationData = new Registration({
-      name: req.body.name,
-      gender: req.body.gender,
-      mobileNumber: req.body.contact,
-      email: req.body.email,
-      profession: req.body.profession,
-      // regDate: tempRegData.regDate,
-      // matterOfInterest: tempRegData.matterOfInterest,
-      regType: req.body.type,
-      place: req.body.place,
-      image: req.body.photo,
-      transactionImage: req.body.transactionImage,
-      transactionId: req.body.transactionId,
-      amount: 399,
-      orderId: "Gpay",
-      paymentStatus: "pending",
-    });
-
-    // Save the registration data to the TempReg collection
-    await registrationData.save();
-    await delegateData.save();
-
-    const userId = delegateData._id; // Access the ID from the instance
-
-    //--------------------------------- QR CODE START ---------------------------------
-
-    // Create the QR Code Directory if it doesn't exist
-    const qrCodeDirectory = "./uploads/qrcodes";
-    if (!fs.existsSync(qrCodeDirectory)) {
-      fs.mkdirSync(qrCodeDirectory);
-    }
-
-    // Generate QR CODE and save it as a PNG file
-    const qrCodeFileName = `${qrCodeDirectory}/${userId}.png`;
-    await qr.toFile(qrCodeFileName, JSON.stringify(userId));
-
-    //--------------------------------- QR CODE END ---------------------------------
-
-    // Call the paymentGeneration function with the necessary parameters
-    // exports.paymentGeneration(req, res, delegateData, userId, qrCodeFileName);
-    res.status(200).json({ message: "Registration success" });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: "Internal server error" });
   }
-});
+);
 
 // Array to store used order IDs
 const usedOrderIds = [];

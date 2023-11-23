@@ -141,8 +141,6 @@ router.get("/", function (req, res, next) {
 router.post("/", getUploadMiddleware("mlf/uploads/profile", ["photo", "transactionImage"]),getS3Middleware(["photo", "transactionImage"]), async function (req, res, next) {
   try {
     console.log(req.body);
-    const imagePath = req.file ? req.file.path : null;
-    console.log(imagePath);
 
     // Check if a user with the same email or mobile number already exists in the Registration collection
     const existingUserInRegistration = await Registration.findOne({
@@ -166,7 +164,7 @@ router.post("/", getUploadMiddleware("mlf/uploads/profile", ["photo", "transacti
       institution: req.body.institution,
       // category: req.body.category,
       regType: req.body.type,
-      image: imagePath,
+      image: req.body.photo,
       transactionImage: req.body.transactionImage,
       transactionId: req.body.transactionId,
       amount: 399,
@@ -184,7 +182,7 @@ router.post("/", getUploadMiddleware("mlf/uploads/profile", ["photo", "transacti
       institution: req.body.institution,
       regType: req.body.type,
       place: req.body.place,
-      image: imagePath,
+      image: req.body.photo,
       transactionImage: req.body.transactionImage,
       transactionId: req.body.transactionId,
       amount: 299,
