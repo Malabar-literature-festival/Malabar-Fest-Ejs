@@ -4,7 +4,8 @@ const ablum = require("../../models/Album");
 var router = express.Router();
 
 /* GET home page. */
-router.get("/", async function (req, res, next) {
+router.get("/:id", async function (req, res, next) {
+  const id = req.params.id;
   try {
     const metaTags = [
       {
@@ -25,20 +26,10 @@ router.get("/", async function (req, res, next) {
 
     const title =
       "Malabar Literature Festival | Celebrating History, Language, and Culture";
-    const galleryData = await Gallery.find();
-    const albumData = await ablum.find().populate("images").limit(3);
-    const album = await ablum.find().populate("images");
-    const newData = albumData.map((d) => ({
-      ...d.toJSON(),
-      _id: d._id.toString(),
-    }));
-    res.render("gallery", {
-      galleryData,
-      title,
-      metaTags,
-      albumData: newData,
-      album,
-    });
+    const album = await ablum.findById(id).populate("images").lean();
+
+    console.log(album);
+    res.render("album", { album, title, metaTags });
   } catch (error) {
     console.error(error);
   }
