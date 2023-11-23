@@ -52,6 +52,7 @@ exports.getRegistration = async (req, res) => {
       parseInt(skip) === 0 && Registration.countDocuments(),
       parseInt(skip) === 0 && Registration.countDocuments(query),
       Registration.find(query)
+      .sort({ createdAt: -1 })
         .skip(parseInt(skip) || 0)
         .limit(parseInt(limit) || 0),
     ]);
