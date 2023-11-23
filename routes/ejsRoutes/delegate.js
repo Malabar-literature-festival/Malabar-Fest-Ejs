@@ -13,6 +13,8 @@ const { default: mongoose, isValidObjectId } = require("mongoose");
 const { encrypt } = require("../../middleware/ccavutil");
 const dotenv = require("dotenv"); // Import dotenv
 const crypto = require("crypto");
+const { getS3Middleware } = require("../../middleware/s3client");
+const getUploadMiddleware = require("../../middleware/upload");
 
 exports.paymentGeneration = async (
   req,
@@ -127,7 +129,7 @@ router.get("/", function (req, res, next) {
   res.render("delegate", { title, savedEmail, metaTags });
 });
 
-router.post("/", upload.single("photo"), async function (req, res, next) {
+router.post("/", getUploadMiddleware("mlf/uploads/profile", ["photo", "transactionImage"]),getS3Middleware(["photo", "transactionImage"]), async function (req, res, next) {
   try {
     const imagePath = req.file ? req.file.path : null;
     console.log("Body Data :- ", req.body);
@@ -154,7 +156,8 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       // matterOfInterest: tempRegData.matterOfInterest,
       regType: req.body.type,
       place: req.body.place,
-      image: imagePath,
+      image: req.body.photo,
+      transactionImage: req.body.transactionImage,
       transitionId: req.body.transitionId,
       amount: 399,
       orderId: "Gpay",
@@ -171,7 +174,8 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
       // matterOfInterest: tempRegData.matterOfInterest,
       regType: req.body.type,
       place: req.body.place,
-      image: imagePath,
+      image: req.body.photo,
+      transactionImage: req.body.transactionImage,
       transactionId: req.body.transactionId,
       amount: 399,
       orderId: "Gpay",
