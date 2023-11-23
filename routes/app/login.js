@@ -51,7 +51,7 @@ router.post("/verify-otp", async function (req, res, next) {
           await user.save();
           let status = "verified"
           sendWhatsAppVerify(user, status)
-          return res.status(200).json({ message: "OTP verified successfully" });
+          return res.status(200).json({ message: "OTP verified successfully", user });
         } else {
           let status = "expired"
           sendWhatsAppVerify(user, status)
