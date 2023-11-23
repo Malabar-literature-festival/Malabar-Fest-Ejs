@@ -13,6 +13,9 @@ const FeedbackSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Registration",
     },
+    rating: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );

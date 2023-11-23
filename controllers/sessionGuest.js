@@ -50,7 +50,7 @@ exports.getSessionGuest = async (req, res) => {
     const [totalCount, filterCount, data] = await Promise.all([
       parseInt(skip) === 0 && SessionGuest.countDocuments(),
       parseInt(skip) === 0 && SessionGuest.countDocuments(query),
-      SessionGuest.find(query).populate("session")
+      SessionGuest.find(query).populate("session").populate("guestRole")
         .skip(parseInt(skip) || 0)
         .limit(parseInt(limit) || 50)
         .sort({ _id: -1 }),

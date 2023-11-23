@@ -1,16 +1,16 @@
 const { default: mongoose } = require("mongoose");
-const QnA = require("../models/QnA");
+const Stage = require("../models/stage");
 
-// @desc      CREATE NEW QNA
-// @route     POST /api/v1/qna
+// @desc      CREATE NEW STAGE
+// @route     POST /api/v1/stage
 // @access    protect
-exports.createQnA = async (req, res) => {
+exports.createStage = async (req, res) => {
   try {
-    const newQnA = await QnA.create(req.body);
+    const newStage = await Stage.create(req.body);
     res.status(200).json({
       success: true,
-      message: "QnA created successfully",
-      data: newQnA,
+      message: "Stage created successfully",
+      data: newStage,
     });
   } catch (err) {
     console.log(err);
@@ -21,30 +21,30 @@ exports.createQnA = async (req, res) => {
   }
 };
 
-// @desc      GET ALL QNA
-// @route     GET /api/v1/qna
+// @desc      GET ALL STAGE
+// @route     GET /api/v1/stage
 // @access    public
-exports.getQnA = async (req, res) => {
+exports.getStage = async (req, res) => {
   try {
     const { id, skip, limit, searchkey } = req.query;
 
     if (id && mongoose.isValidObjectId(id)) {
-      const response = await QnA.findById(id);
+      const response = await Stage.findById(id);
       return res.status(200).json({
         success: true,
-        message: "Retrieved specific QnA",
+        message: "Retrieved specific stage",
         response,
       });
     }
 
     const query = searchkey
-      ? { ...req.filter, question: { $regex: searchkey, $options: "i" } }
+      ? { ...req.filter, title: { $regex: searchkey, $options: "i" } }
       : req.filter;
 
     const [totalCount, filterCount, data] = await Promise.all([
-      parseInt(skip) === 0 && QnA.countDocuments(),
-      parseInt(skip) === 0 && QnA.countDocuments(query),
-      QnA.find(query).populate("session")
+      parseInt(skip) === 0 && Stage.countDocuments(),
+      parseInt(skip) === 0 && Stage.countDocuments(query),
+      Stage.find(query)
         .skip(parseInt(skip) || 0)
         .limit(parseInt(limit) || 0)
         .sort({ _id: -1 }),
@@ -52,7 +52,7 @@ exports.getQnA = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: `Retrieved all QnA`,
+      message: `Retrieved all stage`,
       response: data,
       count: data.length,
       totalCount: totalCount || 0,
@@ -67,26 +67,26 @@ exports.getQnA = async (req, res) => {
   }
 };
 
-// @desc      UPDATE SPECIFIC QNA
-// @route     PUT /api/v1/qna/:id
+// @desc      UPDATE SPECIFIC STAGE
+// @route     PUT /api/v1/stage/:id
 // @access    protect
-exports.updateQnA = async (req, res) => {
+exports.updateStage = async (req, res) => {
   try {
-    const qna = await QnA.findByIdAndUpdate(req.body.id, req.body, {
+    const stages = await Stage.findByIdAndUpdate(req.body.id, req.body, {
       new: true,
     });
 
-    if (!qna) {
+    if (!stages) {
       return res.status(404).json({
         success: false,
-        message: "QnA not found",
+        message: "Stage not found",
       });
     }
 
     res.status(200).json({
       success: true,
-      message: "QnA updated successfully",
-      data: qna,
+      message: "Stage updated successfully",
+      data: stages,
     });
   } catch (err) {
     console.log(err);
@@ -97,23 +97,23 @@ exports.updateQnA = async (req, res) => {
   }
 };
 
-// @desc      DELETE SPECIFIC QNA
-// @route     DELETE /api/v1/qna/:id
+// @desc      DELETE SPECIFIC STAGE
+// @route     DELETE /api/v1/stage/:id
 // @access    protect
-exports.deleteQnA = async (req, res) => {
+exports.deleteStage = async (req, res) => {
   try {
-    const qna = await QnA.findByIdAndDelete(req.query.id);
+    const stages = await Stage.findByIdAndDelete(req.query.id);
 
-    if (!qna) {
+    if (!stages) {
       return res.status(404).json({
         success: false,
-        message: "QnA not found",
+        message: "Stage not found",
       });
     }
 
     res.status(200).json({
       success: true,
-      message: "QnA deleted successfully",
+      message: "Stage deleted successfully",
     });
   } catch (err) {
     console.log(err);
@@ -126,7 +126,7 @@ exports.deleteQnA = async (req, res) => {
 
 exports.select = async (req, res) => {
   try {
-    const items = await QnA.find({}, { _id: 0, id: "$_id", value: "$question" });
+    const items = await Stage.find({}, { _id: 0, id: "$_id", value: "$title" });
     return res.status(200).send(items);
   } catch (err) {
     console.log(err);
