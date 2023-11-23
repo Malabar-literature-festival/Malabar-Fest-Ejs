@@ -77,13 +77,21 @@
                       </p>
                     </div>
                     <!-- Note Section End -->
-                    <div
+                    <!-- <div
                       id="success-message"
                       class="alert alert-success"
                       style="display: none"
                     >
                       Registration successful! Thank you for registering.
+                    </div> -->
+                    <!-- Modal -->
+                    <div id="myModal" class="pay-modal">
+                      <div class="pay-modal-content">
+                        <span class="pay-close">&times;</span>
+                        <p id="modalMessage"></p>
+                      </div>
                     </div>
+
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="name">Name:</label>
@@ -159,12 +167,11 @@
                   </div> -->
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="photo">Add Photo:</label>
+                        <label for="photo">Add Photo ( Optional ):</label>
                         <input
                           type="file"
                           id="photo"
                           name="photo"
-                          required
                           class="form-control-file form-control"
                           style="width: 100%"
                         />
@@ -182,29 +189,22 @@
                           class="form-control-file form-control"
                           style="width: 100%"
                         />
-                        <!-- <select
-                          id="professions"
-                          name="profession"
-                          class="form-control scrollable-dropdown"
-                          required
-                        >
-                          <option value="education">Education</option>
-                          <option value="literature">Literature</option>
-                          <option value="research">Research</option>
-                          <option value="business">Business</option>
-                          <option value="art">Art</option>
-                          <option value="media">Media</option>
-                          <option value="film">Film</option>
-                          <option value="it">Information Technology</option>
-                          <option value="healthcare">Health Care</option>
-                          <option value="law">Law & Order</option>
-                          <option value="music">Music</option>
-                          <option value="ngo">NGO</option>
-                          <option value="public-service">Public Service</option>
-                          <option value="other">Other</option>
-                        </select> -->
                       </div>
                     </div>
+
+                    <!-- <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="transactionImage">transaction Screenshot:</label>
+                        <input
+                          type="file"
+                          id="transactionImage"
+                          name="transactionImage"
+                          class="form-control-file form-control"
+                          style="width: 100%"
+                        />
+                      </div>
+                    </div> -->
+
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="transactionId">transaction id:</label>
@@ -212,9 +212,9 @@
                           type="text"
                           id="transactionId"
                           name="transactionId"
-                          required
                           class="form-control-file form-control"
                           style="width: 100%"
+                          required
                         />
                       </div>
                     </div>
@@ -293,7 +293,10 @@
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const form = document.getElementById("delegateForm");
-        const successMessage = document.getElementById("success-message");
+        const modal = document.getElementById("myModal");
+        const closeBtn = document.querySelector(".pay-close"); // Correct class
+        const modalMessage = document.getElementById("modalMessage");
+        const registerButton = document.querySelector(".btn.btn-primary");
 
         form.addEventListener("submit", async function (event) {
           event.preventDefault();
@@ -308,15 +311,16 @@
               const responseData = await response.json();
 
               if (responseData.message === "Registration success") {
-                // Hide the form and display the success message
-                successMessage.style.display = "block";
+                // Display the success message in the modal
+                modalMessage.innerHTML =
+                  "Thank you for registering. Our technical team will review and approve your registration. You can expect to receive the ticket in your registered email within the next two days. <br> Help Desk: +91 7907100834";
+                // Show the modal
+                modal.style.display = "block";
 
-                // Clear the form after 3 seconds
-                setTimeout(() => {
-                  form.reset();
-                  form.style.display = "block";
-                  successMessage.style.display = "none";
-                }, 3000);
+                // Remove the button highlight
+                registerButton.blur();
+                // Clear the form
+                form.reset();
               } else {
                 console.error("Unexpected response:", responseData);
                 // Handle unexpected responses if needed
@@ -333,15 +337,16 @@
           }
         });
 
-        const currentDate = new Date();
-        const novemberFirst = new Date(currentDate.getFullYear(), 10, 30);
-        const decemberLast = new Date(currentDate.getFullYear(), 11, 3);
+        // Close the modal when the close button is clicked
+        closeBtn.addEventListener("click", function () {
+          modal.style.display = "none";
+        });
 
-        flatpickr(".datepicker-input", {
-          dateFormat: "Y-m-d",
-          mode: "multiple", // Enable multiple date selection
-          minDate: novemberFirst,
-          maxDate: decemberLast,
+        // Close the modal when clicking outside the modal content
+        window.addEventListener("click", function (event) {
+          if (event.target === modal) {
+            modal.style.display = "none";
+          }
         });
       });
     </script>
