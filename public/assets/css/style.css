@@ -14407,16 +14407,20 @@ ul li:hover {
   z-index: 3;
   cursor: pointer;
 }
+.album_head_top {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
 .form_head {
   margin-top: 150px;
 }
 
-@media (max-width: 600px) {
-  .album_head_top {
-    display: flex;
-    justify-content: center !important;
-    flex-wrap: wrap;
-  }
+.album_head_top {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
 
 @media (max-width: 578px) {
   .gpay-number {
@@ -14448,13 +14452,19 @@ ul li:hover {
     margin-bottom: 30px;
   }
 }
+
 .album_head_top {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 .album_name {
-  margin-left: 50px;
+  font-family: var(--font-blaa);
+  margin-top: 30px;
+  margin-right: 70px;
+  font-size: 18px;
+  font-weight: 100;
+  width: 250px;
 }
 
 .content {
@@ -14496,5 +14506,17 @@ ul li:hover {
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
+  }
+
+  .album_head_top {
+    display: flex;
+    justify-content: center !important;
+    flex-wrap: wrap;
+  }
+  .cards_album {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    margin-top: 50px;
   }
 }
