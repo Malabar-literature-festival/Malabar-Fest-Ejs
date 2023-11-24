@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const SessionSchema = new mongoose.Schema(
   {
     day: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Day",
     },
     time: {
       type: String,
@@ -35,12 +36,9 @@ const SessionSchema = new mongoose.Schema(
     orderId: {
       type: Number,
     },
-    // stage: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "Stage",
-    // },
     stage: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Stage",
     },
     sessionGuests: [
       {

@@ -47,6 +47,8 @@ exports.getSession = async (req, res) => {
       parseInt(skip) === 0 && Session.countDocuments(),
       parseInt(skip) === 0 && Session.countDocuments(query),
       Session.find(query)
+        .populate("day")
+        .populate("stage")
         .skip(parseInt(skip) || 0)
         .limit(parseInt(limit) || 50)
         .sort({ _id: -1 }),
