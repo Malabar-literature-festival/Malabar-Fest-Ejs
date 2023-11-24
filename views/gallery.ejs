@@ -76,17 +76,17 @@
           <a href="<%= `/album/${album._id}` %>">
             <div class="cards_album">
               <img class="card_album_item" alt=":)"
-                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${album.images[0].image}` %>"
+                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${album.images[album.images.length - 1].image}` %>"
                 style="border: none;">
               <img class="card_album_item" alt=":)"
-                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${album.images[1].image}` %>"
+                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${album.images[album.images.length - 2].image}` %>"
                 style="border: none;">
               <img class="card_album_item" alt=":)"
-                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${album.images[2].image}` %>"
+                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${album.images[album.images.length - 3].image}` %>"
                 style="border: none;">
             </div>
             <h1 class="album_name">
-              <%=album.name%>
+              <%= album.name %>
                 <!-- The Malabar Literature Festival is a committed -->
             </h1>
           </a>
