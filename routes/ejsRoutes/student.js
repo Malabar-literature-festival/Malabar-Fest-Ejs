@@ -138,88 +138,122 @@ router.get("/", function (req, res, next) {
   res.render("student", { savedEmail, title, metaTags });
 });
 
-router.post("/", getUploadMiddleware("mlf/uploads/profile", ["photo", "transactionImage"]),getS3Middleware(["photo", "transactionImage"]), async function (req, res, next) {
-  try {
-    console.log(req.body);
+router.post(
+  "/",
+  getUploadMiddleware("mlf/uploads/profile", ["photo", "transactionImage"]),
+  getS3Middleware(["photo", "transactionImage"]),
+  async function (req, res, next) {
+    try {
+      console.log(req.body);
 
-    // Check if a user with the same email or mobile number already exists in the Registration collection
-    const existingUserInRegistration = await Registration.findOne({
-      $or: [{ email: req.body.email }, { mobileNumber: req.body.contact }],
-    });
+      // Check if a user with the same email or mobile number already exists in the Registration collection
+      const existingUserInRegistration = await Registration.findOne({
+        $or: [{ email: req.body.email }, { mobileNumber: req.body.contact }],
+      });
 
-    if (existingUserInRegistration) {
-      // Handle the case where the user is already registered in the Registration collection
-      return res.status(400).json({ error: "User is already registered" });
+      if (existingUserInRegistration) {
+        if (existingUserInRegistration.regType === "attende") {
+          // If the user is already registered and the type is "attende", update the user data
+          await Registration.updateOne(
+            {
+              $or: [
+                { email: req.body.email },
+                { mobileNumber: req.body.contact },
+              ],
+            },
+            {
+              $set: {
+                name: req.body.name,
+                gender: req.body.gender,
+                mobileNumber: req.body.contact,
+                email: req.body.email,
+                institution: req.body.institution,
+                regType: req.body.type,
+                place: req.body.place,
+                image: req.body.photo,
+                transactionImage: req.body.transactionImage,
+                transactionId: req.body.transactionId,
+                amount: 299,
+                orderId: "Gpay",
+                paymentStatus: "pending",
+              },
+            }
+          );
+
+          return res.status(200).json({ message: "Registration success" });
+        } else {
+          // Handle the case where the user is already registered with a different type
+          return res.status(400).json({
+            error: "User is already registered",
+            alreadyRegistered: true,
+          });
+        }
+      }
+
+      // If the user is not already registered, proceed with the registration process
+      const delegateData = new TempReg({
+        name: req.body.name,
+        gender: req.body.gender,
+        mobileNumber: req.body.contact,
+        email: req.body.email,
+        place: req.body.place,
+        institution: req.body.institution,
+        regType: req.body.type,
+        image: req.body.photo,
+        transactionImage: req.body.transactionImage,
+        transactionId: req.body.transactionId,
+        amount: 399,
+        orderId: "Gpay",
+        paymentStatus: "pending",
+      });
+
+      const registrationData = new Registration({
+        name: req.body.name,
+        gender: req.body.gender,
+        mobileNumber: req.body.contact,
+        email: req.body.email,
+        institution: req.body.institution,
+        regType: req.body.type,
+        place: req.body.place,
+        image: req.body.photo,
+        transactionImage: req.body.transactionImage,
+        transactionId: req.body.transactionId,
+        amount: 299,
+        orderId: "Gpay",
+        paymentStatus: "pending",
+      });
+
+      // Save the registration data to the database
+      await registrationData.save();
+      await delegateData.save();
+
+      const userId = delegateData._id;
+
+      const Id = userId;
+      console.log("User ID: ", Id);
+
+      //--------------------------------- QR CODE START ---------------------------------
+
+      // Create the QR Code Directory if it doesn't exist
+      const qrCodeDirectory = "./uploads/qrcodes";
+      if (!fs.existsSync(qrCodeDirectory)) {
+        fs.mkdirSync(qrCodeDirectory);
+      }
+
+      // Generate QR CODE and save it as PNG file
+      const qrCodeFileName = `${qrCodeDirectory}/${Id}.png`;
+      await qr.toFile(qrCodeFileName, JSON.stringify(Id));
+
+      //--------------------------------- QR CODE END ---------------------------------
+
+      // exports.paymentGeneration(req, res, delegateData, Id, qrCodeFileName);
+      res.status(200).json({ message: "Registration success" });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Internal server error" });
     }
-
-    const delegateData = new TempReg({
-      name: req.body.name,
-      gender: req.body.gender,
-      mobileNumber: req.body.contact,
-      email: req.body.email,
-      // profession: req.body.profession,
-      place: req.body.place,
-      // regDate: dateObjects,
-      // matterOfInterest: req.body.intrest,
-      institution: req.body.institution,
-      // category: req.body.category,
-      regType: req.body.type,
-      image: req.body.photo,
-      transactionImage: req.body.transactionImage,
-      transactionId: req.body.transactionId,
-      amount: 399,
-      orderId: "Gpay",
-      paymentStatus: "pending",
-    });
-
-    const registrationData = new Registration({
-      name: req.body.name,
-      gender: req.body.gender,
-      mobileNumber: req.body.contact,
-      email: req.body.email,
-      // regDate: tempRegData.regDate,
-      // matterOfInterest: tempRegData.matterOfInterest,
-      institution: req.body.institution,
-      regType: req.body.type,
-      place: req.body.place,
-      image: req.body.photo,
-      transactionImage: req.body.transactionImage,
-      transactionId: req.body.transactionId,
-      amount: 299,
-      orderId: "Gpay",
-      paymentStatus: "pending",
-    });
-
-    // Save the registration data to the database
-    await registrationData.save();
-    await delegateData.save();
-
-    const userId = delegateData._id;
-
-    const Id = userId;
-    console.log("User ID: ", Id);
-
-    //--------------------------------- QR CODE START ---------------------------------
-
-    // Create the QR Code Directory if it doesn't exist
-    const qrCodeDirectory = "./uploads/qrcodes";
-    if (!fs.existsSync(qrCodeDirectory)) {
-      fs.mkdirSync(qrCodeDirectory);
-    }
-
-    // Generate QR CODE and save it as PNG file
-    const qrCodeFileName = `${qrCodeDirectory}/${Id}.png`;
-    await qr.toFile(qrCodeFileName, JSON.stringify(Id));
-
-    //--------------------------------- QR CODE END ---------------------------------
-
-    // exports.paymentGeneration(req, res, delegateData, Id, qrCodeFileName);
-    res.status(200).json({ message: "Registration success" });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: "Internal server error" });
   }
-});
+);
 
 // Array to store used order IDs
 const usedOrderIds = [];

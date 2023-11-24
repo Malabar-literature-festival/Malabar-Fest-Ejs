@@ -143,8 +143,44 @@ router.post(
       });
 
       if (existingUserInRegistration) {
-        // Handle the case where the user is already registered in the Registration collection
-        return res.status(400).json({ error: "User is already registered" });
+        if (existingUserInRegistration.regType === "attende") {
+          // If the user is already registered and the type is "attende", update the user data
+          await Registration.updateOne(
+            {
+              $or: [
+                { email: req.body.email },
+                { mobileNumber: req.body.contact },
+              ],
+            },
+            {
+              $set: {
+                name: req.body.name,
+                gender: req.body.gender,
+                mobileNumber: req.body.contact,
+                email: req.body.email,
+                profession: req.body.profession,
+                regType: req.body.type,
+                place: req.body.place,
+                image: req.body.photo,
+                transactionImage: req.body.transactionImage,
+                transactionId: req.body.transactionId,
+                amount: 399,
+                orderId: "Gpay",
+                paymentStatus: "pending",
+              },
+            }
+          );
+
+          return res.status(200).json({ message: "Registration success" });
+        } else {
+          // Handle the case where the user is already registered with a different type
+          return res
+            .status(400)
+            .json({
+              error: "User is already registered",
+              alreadyRegistered: true,
+            });
+        }
       } else {
         // Create a new TempReg instance with the registration data
         const delegateData = new TempReg({
@@ -153,8 +189,6 @@ router.post(
           mobileNumber: req.body.contact,
           email: req.body.email,
           profession: req.body.profession,
-          // regDate: tempRegData.regDate,
-          // matterOfInterest: tempRegData.matterOfInterest,
           regType: req.body.type,
           place: req.body.place,
           image: req.body.photo,
@@ -171,8 +205,6 @@ router.post(
           mobileNumber: req.body.contact,
           email: req.body.email,
           profession: req.body.profession,
-          // regDate: tempRegData.regDate,
-          // matterOfInterest: tempRegData.matterOfInterest,
           regType: req.body.type,
           place: req.body.place,
           image: req.body.photo,
