@@ -112,6 +112,8 @@ const sessions = require("./routes/session");
 const sessionGuest = require("./routes/sessionGuest");
 const stage = require("./routes/stage");
 const guestRole = require("./routes/guestRole");
+const appResources = require("./routes/appResources");
+const day = require("./routes/day");
 
 // Configure the session middleware
 app.use(
@@ -210,6 +212,8 @@ app.use("/api/v1/session", sessions);
 app.use("/api/v1/session-guest", sessionGuest);
 app.use("/api/v1/stage", stage);
 app.use("/api/v1/guest-role", guestRole);
+app.use("/api/v1/app-resources", appResources);
+app.use("/api/v1/day", day);
 
 // Flutter Api //
 const login = require("./routes/app/login.js");
