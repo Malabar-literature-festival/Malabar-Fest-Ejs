@@ -75,15 +75,22 @@
         <% albumData.forEach(function(album) { %>
           <a href="<%= `/album/${album._id}` %>">
             <div class="cards_album">
-              <img class="card_album_item" alt=":)"
-                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${album.images[album.images.length - 1].image}` %>"
-                style="border: none;">
-              <img class="card_album_item" alt=":)"
-                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${album.images[album.images.length - 2].image}` %>"
-                style="border: none;">
-              <img class="card_album_item" alt=":)"
-                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${album.images[album.images.length - 3].image}` %>"
-                style="border: none;">
+              <% if (album.images && album.images.length> 0) { %>
+                <img class="card_album_item" alt=":)"
+                  src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${album.images[album.images.length - 1].image}` %>"
+                  style="border: none;">
+                <img class="card_album_item" alt=":)"
+                  src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${album.images[album.images.length - 2].image}` %>"
+                  style="border: none;">
+                <img class="card_album_item" alt=":)"
+                  src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${album.images[album.images.length - 3].image}` %>"
+                  style="border: none;">
+                <% } else { %>
+                  <!-- Display a loading message or a default image -->
+                  <img class="card_album_item" alt="Loading..." src="path/to/loading-image.jpg" style="border: none;">
+                  <img class="card_album_item" alt="Loading..." src="path/to/loading-image.jpg" style="border: none;">
+                  <img class="card_album_item" alt="Loading..." src="path/to/loading-image.jpg" style="border: none;">
+                  <% } %>
             </div>
             <h1 class="album_name">
               <%= album.name %>
@@ -91,10 +98,8 @@
             </h1>
           </a>
           <% }); %>
-
-
-
       </div>
+
     </div>
   </div>
 
