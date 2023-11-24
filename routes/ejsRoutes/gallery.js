@@ -26,7 +26,7 @@ router.get("/", async function (req, res, next) {
     const title =
       "Malabar Literature Festival | Celebrating History, Language, and Culture";
     const galleryData = await Gallery.find();
-    const albumData = await ablum.find().populate("images").limit(3);
+    const albumData = await ablum.find().populate("images").limit(100);
     const album = await ablum.find().populate("images");
     const newData = albumData.map((d) => ({
       ...d.toJSON(),
@@ -39,6 +39,7 @@ router.get("/", async function (req, res, next) {
       albumData: newData,
       album,
     });
+    console.log("testungh", albumData);
   } catch (error) {
     console.error(error);
   }
