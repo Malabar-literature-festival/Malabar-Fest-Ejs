@@ -45,6 +45,7 @@ exports.getNote = async (req, res) => {
       parseInt(skip) === 0 && Note.countDocuments(),
       parseInt(skip) === 0 && Note.countDocuments(query),
       Note.find(query)
+        .populate("session")
         .skip(parseInt(skip) || 0)
         .limit(parseInt(limit) || 0)
         .sort({ _id: -1 }),

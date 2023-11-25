@@ -115,6 +115,9 @@ const stage = require("./routes/stage");
 const guestRole = require("./routes/guestRole");
 const appResources = require("./routes/appResources");
 const day = require("./routes/day");
+const programLocation = require("./routes/programLocation");
+const banners = require("./routes/banners");
+const attendance = require("./routes/attendance");
 
 // Configure the session middleware
 app.use(
@@ -216,6 +219,9 @@ app.use("/api/v1/stage", stage);
 app.use("/api/v1/guest-role", guestRole);
 app.use("/api/v1/app-resources", appResources);
 app.use("/api/v1/day", day);
+app.use("/api/v1/program-location", programLocation);
+app.use("/api/v1/banners", banners);
+app.use("/api/v1/attendance", attendance);
 
 // Flutter Api //
 const login = require("./routes/app/login.js");
