@@ -38,7 +38,7 @@ exports.getAttendance = async (req, res) => {
         }
 
         const query = searchkey
-            ? { ...req.filter, location: { $regex: searchkey, $options: "i" } }
+            ? { ...req.filter, day: { $regex: searchkey, $options: "i" } }
             : req.filter;
 
         const [totalCount, filterCount, data] = await Promise.all([
@@ -131,7 +131,7 @@ exports.deleteAttendance = async (req, res) => {
 // @access    protect
 exports.select = async (req, res) => {
     try {
-        const items = await Attendance.find({}, { _id: 0, id: "$_id", value: "$stage" });
+        const items = await Attendance.find({}, { _id: 0, id: "$_id", value: "$day" });
         console.log(items);
         return res.status(200).send(items);
     } catch (err) {

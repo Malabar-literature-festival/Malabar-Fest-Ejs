@@ -118,6 +118,7 @@ const day = require("./routes/day");
 const programLocation = require("./routes/programLocation");
 const banners = require("./routes/banners");
 const attendance = require("./routes/attendance");
+const article = require("./routes/article");
 
 // Configure the session middleware
 app.use(
@@ -222,6 +223,7 @@ app.use("/api/v1/day", day);
 app.use("/api/v1/program-location", programLocation);
 app.use("/api/v1/banners", banners);
 app.use("/api/v1/attendance", attendance);
+app.use("/api/v1/article", article);
 
 // Flutter Api //
 const login = require("./routes/app/login.js");
