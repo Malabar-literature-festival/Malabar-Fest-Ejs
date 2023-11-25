@@ -44,6 +44,8 @@ exports.getRegistration = async (req, res) => {
       req.filter.approved = { $ne: true };
     } else if (req.filter.approved === "all") {
       delete req.filter.approved;
+    } else if (req.filter.approved === "approved") {
+      req.filter.approved = { $ne: false };
     } else {
       delete req.filter.approved;
     }
