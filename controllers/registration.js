@@ -45,9 +45,21 @@ exports.getRegistration = async (req, res) => {
     } else if (req.filter.approved === "all") {
       delete req.filter.approved;
     } else {
-      req.filter.approved = true;
+      delete req.filter.approved;
     }
-    
+
+    if (req.filter.regType === "attende") {
+      req.filter.regType = "attende";
+    } else if (req.filter.regType === "student") {
+      req.filter.regType = "student";
+    } else if (req.filter.regType === "delegate") {
+      req.filter.regType = "delegate";
+    } else if (req.filter.regType === "all") {
+      delete req.filter.regType;
+    } else {
+      delete req.filter.regType;
+    }    
+
     const query = {
       ...req.filter,
       ...(searchkey && {
