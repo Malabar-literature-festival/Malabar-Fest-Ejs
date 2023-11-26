@@ -104,6 +104,7 @@ const pendingPayment = require("./routes/pendingPayment");
 const volunteer = require("./routes/volunteer.js");
 const album = require("./routes/album.js");
 const approved = require("./routes/approval.js");
+const ask = require("./routes/ask.js");
 // ----------------------------------------------------
 const Committe = require("./routes/ejsRoutes/committe");
 const Events = require("./routes/ejsRoutes/events");
@@ -234,7 +235,7 @@ app.use("/api/v1/login", login);
 app.use("/api/v1/feedback", feedback);
 app.use("/api/v1/note", notes);
 app.use("/api/v1/qna", qnA);
-
+app.use("/api/v1/ask", ask);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
