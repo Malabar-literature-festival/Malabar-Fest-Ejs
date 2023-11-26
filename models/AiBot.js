@@ -4,7 +4,6 @@ const AiBot = new mongoose.Schema(
   {
     assistantId: {
       type: String,
-      unique: true,
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -12,7 +11,6 @@ const AiBot = new mongoose.Schema(
     },
     threadId: {
       type: String,
-      unique: true,
     },
   },
   { timestamps: true }
