@@ -1,6 +1,12 @@
-.vercel
+# Dependency directory
 /node_modules
-config/.env
-/config/.env
+
+# Environment configuration
 .env
-/uploads/*
+config/.env
+
+# Vercel deployment files
+.vercel
+
+# Uploaded files
+/uploads/
