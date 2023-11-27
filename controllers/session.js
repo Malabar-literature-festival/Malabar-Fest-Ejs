@@ -183,6 +183,12 @@ exports.getSessionByDay = async (req, res) => {
         },
       },
       {
+        $unwind: {
+          path: "$guestDetails.guestRoleDetails",
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+      {
         $lookup: {
           from: "speakers", // Update the collection name accordingly
           localField: "guestDetails.guest",
