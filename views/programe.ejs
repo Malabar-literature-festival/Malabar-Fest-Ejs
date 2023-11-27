@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-<link rel="shortcut icon" type="image/x-icon" href="/assets/images/favnew.svg" />
 
 <head>
   <title>
@@ -10,15 +9,103 @@
   <meta name="keywords" content="<%= metaTags[1].keywords %>" />
   <meta name="author" content="<%= metaTags[2].author %>" />
   <meta name="robots" content="<%= metaTags[3].robots %>" />
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favnew.svg" />
   <%- include('layout/header.ejs') %>
+
+    <style>
+      /* Define the animation styles */
+      @keyframes fadeInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-100%);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(100%);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeInTop {
+        from {
+          opacity: 0;
+          transform: translateY(-100%);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInBottom {
+        from {
+          opacity: 0;
+          transform: translateY(100%);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Apply the animation to the image elements */
+      .fade-in-left {
+        animation: fadeInLeft 4s;
+      }
+
+      .fade-in-right {
+        animation: fadeInRight 4s;
+      }
+
+      .fade-in-top {
+        animation: fadeInTop 4s
+      }
+
+      .fade-in-bottom {
+        animation: fadeInBottom 4s;
+      }
+    </style>
 </head>
 
 <body>
   <div class="main-wrapper">
     <div class="container">
-      <div class="attende-registration" style="margin-top: 100px;padding-bottom: 100px;" ;>
+      <div class="attende-registration" style="margin-top: 100px; padding-bottom: 100px;">
         <div class="registration-title">
           <h1>Sessions</h1>
+        </div>
+
+        <div id="imageContainer">
+          <!-- Download button -->
+          <button onclick="printScreen()" id="printButton">Print Screen</button>
+
+          <!-- Image elements with animations -->
+          <div style="margin-top: 5px" class="fade-in-left">
+            <img src="/assets/images/SessionPage1.svg" alt="PDF Document 1" class="img-one" />
+          </div>
+          <div style="margin-top: 5px" class="fade-in-right">
+            <img src="/assets/images/SessionPage2.svg" alt="PDF Document 2" class="img-two" />
+          </div>
+          <div style="margin-top: 5px" class="fade-in-top">
+            <img src="/assets/images/SessionPage3.svg" alt="PDF Document 3" class="img-three" />
+          </div>
+          <div style="margin-top: 5px" class="fade-in-bottom">
+            <img src="/assets/images/SessionPage4.svg" alt="PDF Document 4" class="img-four" />
+          </div>
         </div>
 
         <script>
@@ -35,7 +122,7 @@
 
           // Function to handle scroll events
           function handleScroll() {
-            const elements = document.querySelectorAll("#animation-container .fade-in-left, #animation-container .fade-in-right, #animation-container .fade-in-top, #animation-container .fade-in-bottom");
+            const elements = document.querySelectorAll("#imageContainer .fade-in-left, #imageContainer .fade-in-right, #imageContainer .fade-in-top, #imageContainer .fade-in-bottom");
 
             elements.forEach((element) => {
               if (isElementInViewport(element)) {
@@ -53,95 +140,14 @@
 
           // Initially trigger the handleScroll to check elements in the viewport
           handleScroll();
+
+          // Function to print the screen
+          function printScreen() {
+            window.print();
+            // Hide the button after printing
+            document.getElementById("printButton").style.display = "none";
+          }
         </script>
-
-
-        <style>
-          /* Define the animation for fading in from the left */
-          @keyframes fadeInLeft {
-            from {
-              opacity: 0;
-              transform: translateX(-100%);
-            }
-
-            to {
-              opacity: 1;
-              transform: translateX(0);
-            }
-          }
-
-          /* Define the animation for fading in from the right */
-          @keyframes fadeInRight {
-            from {
-              opacity: 0;
-              transform: translateX(100%);
-            }
-
-            to {
-              opacity: 1;
-              transform: translateX(0);
-            }
-          }
-
-          /* Define the animation for fading in from the top */
-          @keyframes fadeInTop {
-            from {
-              opacity: 0;
-              transform: translateY(-100%);
-            }
-
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-
-          /* Define the animation for fading in from the bottom */
-          @keyframes fadeInBottom {
-            from {
-              opacity: 0;
-              transform: translateY(100%);
-            }
-
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-
-          /* Apply the animation to the image elements */
-          .fade-in-left {
-            animation: fadeInLeft 4s;
-          }
-
-          .fade-in-right {
-            animation: fadeInRight 4s;
-          }
-
-          .fade-in-top {
-            animation: fadeInTop 4s
-          }
-
-          .fade-in-bottom {
-            animation: fadeInBottom 4s;
-          }
-        </style>
-
-        <div style="margin-top: 5px" class="fade-in-left">
-          <img src="/assets/images/SessionPage1.svg" alt="PDF Document 1" class="img-one" />
-        </div>
-        <div style="margin-top: 5px" class="fade-in-right">
-          <img src="/assets/images/SessionPage2.svg" alt="PDF Document 2" class="img-two" />
-        </div>
-        <div style="margin-top: 5px" class="fade-in-top">
-          <img src="/assets/images/SessionPage3.svg" alt="PDF Document 3" class="img-three" />
-        </div>
-        <div style="margin-top: 5px" class="fade-in-bottom">
-          <img src="/assets/images/SessionPage4.svg" alt="PDF Document 4" class="img-four" />
-        </div>
-
-
-
       </div>
     </div>
   </div>
@@ -149,7 +155,6 @@
   <!-- Footer Start -->
   <%- include('layout/footer.ejs') %>
     <!-- Footer End -->
-
 </body>
 
 </html>
