@@ -25,6 +25,10 @@ const SessionSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isFeedback: {
+      type: Boolean,
+      default: false,
+    },
     isQnA: {
       type: Boolean,
       default: false,
