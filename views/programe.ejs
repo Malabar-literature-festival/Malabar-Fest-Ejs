@@ -88,12 +88,11 @@
         <div class="registration-title">
           <h1>Sessions</h1>
         </div>
-
+        <!-- 
         <div id="imageContainer">
-          <!-- Download button -->
+         
 
 
-          <!-- Image elements with animations -->
           <div style="margin-top: 5px" class="fade-in-left">
             <img src="/assets/images/program1.svg" alt="PDF Document 1" class="img-one" />
           </div>
@@ -104,50 +103,49 @@
             <img src="/assets/images/program3.svg" alt="PDF Document 3" class="img-three" />
           </div>
           <div style="margin-top: 5px" class="fade-in-bottom">
-            <img src="/assets/images/program1.svg" alt="PDF Document 4" class="img-four" />
+            <img src="/assets/images/SessionPage4.svg" alt="PDF Document 4" class="img-four" />
           </div>
-        </div>
-
+        </div> -->
+        dksmdlsmdl
+        <div id="pdfViewer"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"
+          integrity="sha512-Z8CqofpIcnJN80feS2uccz+pXWgZzeKxDsDNMD/dJ6997/LSRY+W4NmEt9acwR+Gt9OHN0kkI1CTianCwoqcjQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
-          // Function to check if an element is in thes viewport
-          function isElementInViewport(el) {
-            const rect = el.getBoundingClientRect();
-            return (
-              rect.top >= 0 &&
-              rect.left >= 0 &&
-              rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-              rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
-          }
+          // Include PDF.js
+          // You can download and host these files or link to them directly from a CDN
 
-          // Function to handle scroll events
-          function handleScroll() {
-            const elements = document.querySelectorAll("#imageContainer .fade-in-left, #imageContainer .fade-in-right, #imageContainer .fade-in-top, #imageContainer .fade-in-bottom");
+          // Initialize PDF.js
+          pdfjsLib.getDocument('/assets/pdf/MLF_Program2.pdf').promise.then(function (pdf) {
+            const pdfViewer = document.getElementById('pdfViewer');
 
-            elements.forEach((element) => {
-              if (isElementInViewport(element)) {
-                if (!element.classList.contains("animated")) {
-                  element.classList.add("animated");
-                }
-              } else {
-                element.classList.remove("animated");
-              }
-            });
-          }
+            for (let pageNum = 1; pageNum <= 4; pageNum++) {
+              pdf.getPage(pageNum).then(function (page) {
+                var scale = 1; // Adjust scale as needed
+                var viewport = page.getViewport({ scale: scale });
 
-          // Attach the scroll event listener
-          window.addEventListener("scroll", handleScroll);
+                // Prepare canvas for each page
+                var canvas = document.createElement('canvas');
+                canvas.style.display = "block"; // Ensures each canvas is on a new line
+                var context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
 
-          // Initially trigger the handleScroll to check elements in the viewport
-          handleScroll();
+                // Render each PDF page into its own canvas
+                var renderContext = {
+                  canvasContext: context,
+                  viewport: viewport
+                };
+                page.render(renderContext);
 
-          // Function to print the screen
-          function printScreen() {
-            window.print();
-            // Hide the button after printing
-            document.getElementById("printButton").style.display = "none";
-          }
+                // Append each canvas to the div
+                pdfViewer.appendChild(canvas);
+              });
+            }
+          });
         </script>
+
+
       </div>
     </div>
   </div>
