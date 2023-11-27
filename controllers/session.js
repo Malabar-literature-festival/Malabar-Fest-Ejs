@@ -2,6 +2,7 @@ const { default: mongoose } = require("mongoose");
 const Session = require("../models/session");
 const sessionGuest = require("../models/sessionGuest");
 const session = require("../models/session");
+const { ObjectId } = require('mongodb');
 
 // @desc      CREATE NEW SESSION
 // @route     POST /api/v1/session
@@ -154,9 +155,10 @@ exports.getSessionByDay = async (req, res) => {
   try {
     const { day } = req.query;
 
+    const dayId = new ObjectId(day);
     const aggregationPipeline = [
       {
-        $match: day ? { day: day } : {},
+        $match: day ? { day: dayId } : {},
       },
       {
         $lookup: {
@@ -181,58 +183,68 @@ exports.getSessionByDay = async (req, res) => {
         },
       },
       {
+        $lookup: {
+          from: "speakers", // Update the collection name accordingly
+          localField: "guestDetails.guest",
+          foreignField: "_id",
+          as: "guestDetails.speakerDetails",
+        },
+      },
+      {
+        $lookup: {
+          from: "stages", // Update the collection name accordingly
+          localField: "stage",
+          foreignField: "_id",
+          as: "stage",
+        },
+      },
+      {
+        $unwind: {
+          path: "$stage",
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+      {
+        $addFields: {
+          "guestDetails.speakerDetails": {
+            $arrayElemAt: ["$guestDetails.speakerDetails", 0]
+          }
+        }
+      },
+      {
+        $project: {
+          "_id": 0,
+          "day": 1,
+          "stage": 1,
+          "startTime": 1,
+          "endTime": 1,
+          "title": 1,
+          "guestDetails": {
+            "_id": "$guestDetails._id",
+            "guest": "$guestDetails.guest",
+            "description": "$guestDetails.description",
+            "order": "$guestDetails.order",
+            "session": "$guestDetails.session",
+            "photo": "$guestDetails.photo",
+            "guestRoleDetails": "$guestDetails.guestRoleDetails",
+            "speakerDetails": "$guestDetails.speakerDetails",
+          }
+        }
+      },
+      {
         $group: {
-          _id: { stage: "$stage" },
+          _id: { day: "$day", stage: "$stage" },
           sessions: {
-            $push: {
-              _id: "$_id",
-              startTime: "$startTime",
-              endTime: "$endTime",
-              title: "$title",
-              guestDetails: {
-                _id: "$guestDetails._id",
-                guest: "$guestDetails.guest",
-                description: "$guestDetails.description",
-                order: "$guestDetails.order",
-                session: "$guestDetails.session",
-                photo: "$guestDetails.photo",
-                guestRoleDetails: "$guestDetails.guestRoleDetails",
-              },
-            },
+            $push: "$$ROOT"
           },
         },
       },
       {
         $group: {
-          _id: null,
+          _id: { day: "$_id.day" },
           stages: {
-            $addToSet: {
+            $push: {
               stage: "$_id.stage",
-              sessions: "$sessions",
-            },
-          },
-        },
-      },
-      {
-        $unwind: "$stages",
-      },
-      {
-        $unwind: "$stages.sessions",
-      },
-      {
-        $group: {
-          _id: "$stages.stage",
-          sessions: {
-            $push: "$stages.sessions",
-          },
-        },
-      },
-      {
-        $group: {
-          _id: null,
-          stages: {
-            $push: {
-              stage: "$_id",
               sessions: "$sessions",
             },
           },
