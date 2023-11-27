@@ -5,6 +5,7 @@ const {
     getSpeakers,
     updateSpeakers,
     deleteSpeakers,
+    select,
 } = require("../controllers/speakers");
 // Middleware
 const { protect, authorize } = require("../middleware/auth");
@@ -25,5 +26,6 @@ router
         getS3Middleware(["image"]), updateSpeakers
     )
     .delete(deleteSpeakers);
+    router.get("/select", reqFilter, select);
 
 module.exports = router;

@@ -117,3 +117,19 @@ exports.deleteSpeakers = async (req, res) => {
     });
   }
 };
+
+exports.select = async (req, res) => {
+  try {
+    const items = await Speakers.find(
+      {},
+      { _id: 0, id: "$_id", value: "$name" }
+    );
+    return res.status(200).send(items);
+  } catch (err) {
+    console.log(err);
+    res.status(204).json({
+      success: false,
+      message: err,
+    });
+  }
+};

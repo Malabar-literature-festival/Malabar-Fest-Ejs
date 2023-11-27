@@ -3,10 +3,8 @@ const mongoose = require("mongoose");
 const SessionGuestSchema = new mongoose.Schema(
   {
     guest: {
-      type: String,
-    },
-    description: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Speakers",
     },
     order: {
       type: Number,
