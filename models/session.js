@@ -40,6 +40,9 @@ const SessionSchema = new mongoose.Schema(
     orderId: {
       type: Number,
     },
+    sessionType: {
+      type: String,
+    },
     stage: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Stage",
