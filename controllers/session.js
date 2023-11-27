@@ -193,7 +193,7 @@ exports.getSessionByDay = async (req, res) => {
           from: "speakers", // Update the collection name accordingly
           localField: "guestDetails.guest",
           foreignField: "_id",
-          as: "guestDetails.speakerDetails",
+          as: "guestDetails.guest",
         },
       },
       {
@@ -212,8 +212,8 @@ exports.getSessionByDay = async (req, res) => {
       },
       {
         $addFields: {
-          "guestDetails.speakerDetails": {
-            $arrayElemAt: ["$guestDetails.speakerDetails", 0]
+          "guestDetails.guest": {
+            $arrayElemAt: ["$guestDetails.guest", 0]
           }
         }
       },
@@ -233,7 +233,7 @@ exports.getSessionByDay = async (req, res) => {
             "session": "$guestDetails.session",
             "photo": "$guestDetails.photo",
             "guestRoleDetails": "$guestDetails.guestRoleDetails",
-            "speakerDetails": "$guestDetails.speakerDetails",
+            // "speakerDetails": "$guestDetails.guest",
           }
         }
       },
