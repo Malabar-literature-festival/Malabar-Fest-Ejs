@@ -266,6 +266,11 @@ exports.getSessionByDay = async (req, res) => {
         $unwind: "$stages",
       },
       {
+        $sort: {
+          "stages.stage.order": 1,
+        },
+      },
+      {
         $replaceRoot: {
           newRoot: "$stages",
         },

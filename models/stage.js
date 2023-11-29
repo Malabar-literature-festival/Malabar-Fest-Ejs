@@ -5,6 +5,9 @@ const StageSchema = new mongoose.Schema(
         stage: {
             type: String,
         },
+        order: {
+            type: Number,
+        }
     },
     { timestamps: true }
 );
