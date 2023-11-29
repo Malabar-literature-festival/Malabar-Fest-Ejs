@@ -213,24 +213,8 @@ exports.getSessionByDay = async (req, res) => {
       {
         $addFields: {
           "guestDetails.guest": {
-            $cond: {
-              if: {
-                $isArray: "$guestDetails.guest"
-              },
-              then: {
-                $cond: {
-                  if: {
-                    $eq: [{ $size: "$guestDetails.guest" }, 0]
-                  },
-                  then: null,
-                  else: {
-                    $arrayElemAt: ["$guestDetails.guest", 0]
-                  }
-                }
-              },
-              else: null
-            }
-          }
+            $arrayElemAt: ["$guestDetails.guest", 0],
+          },
         },
       },
       {
@@ -287,11 +271,6 @@ exports.getSessionByDay = async (req, res) => {
         },
       },
       {
-        $match: {
-          "sessions.guestDetails": { $ne: [] }
-        }
-      },
-      {
         $project: {
           _id: 0,
         },
@@ -315,5 +294,4 @@ exports.getSessionByDay = async (req, res) => {
     });
   }
 };
-
 
