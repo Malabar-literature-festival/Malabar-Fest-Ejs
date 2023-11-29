@@ -190,7 +190,7 @@ exports.getSessionByDay = async (req, res) => {
       },
       {
         $lookup: {
-          from: "speakers", // Update the collection name accordingly
+          from: "speakers",
           localField: "guestDetails.guest",
           foreignField: "_id",
           as: "guestDetails.guest",
@@ -198,7 +198,7 @@ exports.getSessionByDay = async (req, res) => {
       },
       {
         $lookup: {
-          from: "stages", // Update the collection name accordingly
+          from: "stages",
           localField: "stage",
           foreignField: "_id",
           as: "stage",
@@ -213,41 +213,47 @@ exports.getSessionByDay = async (req, res) => {
       {
         $addFields: {
           "guestDetails.guest": {
-            $arrayElemAt: ["$guestDetails.guest", 0]
-          }
-        }
-      },
-      {
-        $project: {
-          "_id": 0,
-          "day": 1,
-          "stage": 1,
-          "startTime": 1,
-          "endTime": 1,
-          "title": 1,
-          "guestDetails": {
-            "_id": "$guestDetails._id",
-            "guest": "$guestDetails.guest",
-            "description": "$guestDetails.description",
-            "order": "$guestDetails.order",
-            "session": "$guestDetails.session",
-            "photo": "$guestDetails.photo",
-            "guestRoleDetails": "$guestDetails.guestRoleDetails",
-            // "speakerDetails": "$guestDetails.guest",
-          }
-        }
-      },
-      {
-        $group: {
-          _id: { day: "$day", stage: "$stage" },
-          sessions: {
-            $push: "$$ROOT"
+            $arrayElemAt: ["$guestDetails.guest", 0],
           },
         },
       },
       {
         $group: {
-          _id: { day: "$_id.day" },
+          _id: { day: "$day", stage: "$stage", sessionId: "$_id" },
+          sessionDetails: {
+            $first: {
+              "_id": "$_id",
+              "day": "$day",
+              "stage": "$stage",
+              "startTime": "$startTime",
+              "endTime": "$endTime",
+              "title": "$title",
+            },
+          },
+          guestDetails: {
+            $push: "$guestDetails",
+          },
+        },
+      },
+      {
+        $group: {
+          _id: { day: "$_id.day", stage: "$_id.stage" },
+          sessions: {
+            $push: {
+              "_id": "$sessionDetails._id",
+              "day": "$sessionDetails.day",
+              "stage": "$sessionDetails.stage",
+              "startTime": "$sessionDetails.startTime",
+              "endTime": "$sessionDetails.endTime",
+              "title": "$sessionDetails.title",
+              "guestDetails": "$guestDetails",
+            },
+          },
+        },
+      },
+      {
+        $group: {
+          _id: "$_id.day",
           stages: {
             $push: {
               stage: "$_id.stage",
@@ -257,9 +263,16 @@ exports.getSessionByDay = async (req, res) => {
         },
       },
       {
+        $unwind: "$stages",
+      },
+      {
+        $replaceRoot: {
+          newRoot: "$stages",
+        },
+      },
+      {
         $project: {
           _id: 0,
-          stages: 1,
         },
       },
     ];
@@ -281,3 +294,4 @@ exports.getSessionByDay = async (req, res) => {
     });
   }
 };
+
