@@ -236,12 +236,28 @@ exports.getSessionByDay = async (req, res) => {
         },
       },
       {
+        $lookup: {
+          from: "sessions",
+          localField: "sessionDetails._id",
+          foreignField: "_id",
+          as: "sessionDetails.sessionData",
+        },
+      },
+      {
+        $addFields: {
+          "sessionDetails.sessionData": {
+            $arrayElemAt: ["$sessionDetails.sessionData", 0],
+          },
+        },
+      },
+      {
         $group: {
           _id: { day: "$_id.day", stage: "$_id.stage" },
           sessions: {
             $push: {
               "_id": "$sessionDetails._id",
               "day": "$sessionDetails.day",
+              "sessionData": "$sessionDetails.sessionData",
               "stage": "$sessionDetails.stage",
               "startTime": "$sessionDetails.startTime",
               "endTime": "$sessionDetails.endTime",
@@ -264,6 +280,11 @@ exports.getSessionByDay = async (req, res) => {
       },
       {
         $unwind: "$stages",
+      },
+      {
+        $sort: {
+          "stages.stage.order": 1,
+        },
       },
       {
         $replaceRoot: {
@@ -294,4 +315,6 @@ exports.getSessionByDay = async (req, res) => {
     });
   }
 };
+
+
 
