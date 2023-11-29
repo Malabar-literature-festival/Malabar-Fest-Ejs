@@ -6,9 +6,8 @@ const AttendanceSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "Registration",
         },
-        day: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Day",
+        date: {
+            type: Date,
         },
         status: {
             type: Boolean,
