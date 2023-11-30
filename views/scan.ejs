@@ -116,8 +116,8 @@
 
       navigator.mediaDevices
         .getUserMedia({
-          video: {
-            facingMode: "user", // This requests the front-facing camera, typically the laptop camera
+          facingMode: {
+            exact: "environment",
           },
         })
         .then((stream) => {
