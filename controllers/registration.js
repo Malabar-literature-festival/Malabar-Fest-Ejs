@@ -49,6 +49,16 @@ exports.getRegistration = async (req, res) => {
     } else {
       delete req.filter.approved;
     }
+    
+    if (req.filter.attended === "notattended") {
+      req.filter.attended = { $ne: true };
+    } else if (req.filter.attended === "all") {
+      delete req.filter.attended;
+    } else if (req.filter.attended === "attended") {
+      req.filter.attended = { $ne: false };
+    } else {
+      delete req.filter.attended;
+    }
 
     if (req.filter.regType === "attende") {
       req.filter.regType = "attende";
