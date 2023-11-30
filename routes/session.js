@@ -8,6 +8,7 @@ const {
   select,
   getSessionByDay,
   getSessionByDay1,
+  getSessionByDayGuestRole,
 } = require("../controllers/session");
 // Middleware
 const { protect, authorize } = require("../middleware/auth");
@@ -23,4 +24,5 @@ router
 router.get("/select", reqFilter, select);
 router.get("/session-by-day", reqFilter, getSessionByDay);
 router.get("/session-by-day-new", reqFilter, getSessionByDay1);
+router.get("/session-by-day-roles", reqFilter, getSessionByDayGuestRole);
 module.exports = router;

@@ -314,6 +314,8 @@ exports.getSessionByDay1 = async (req, res) => {
     const { day } = req.query;
     if (isValidObjectId(day)) {
       const dayId = new ObjectId(day);
+
+
       const session = await Session.aggregate([
         {
           $match: day ? { day: dayId } : {},
@@ -350,6 +352,144 @@ exports.getSessionByDay1 = async (req, res) => {
             as: "guestDetails.speaker",
           },
         },
+        {
+          $unwind: "$stageDetails",
+        },
+        {
+          $unwind: "$dayDetails",
+        },
+        {
+          $sort: { startTime: 1 },
+        },
+        {
+          $group: {
+            _id: "$stageDetails._id",
+            stageDetails: { $first: "$stageDetails" },
+            sessions: {
+              $push: {
+                sessionDetails: "$$ROOT",
+              },
+            },
+          },
+        },
+        {
+          $sort: { "stageDetails.order": 1 },
+        },
+        {
+          $group: {
+            _id: "$stageDetails.day",
+            dayDetails: { $first: "$dayDetails" },
+            stages: {
+              $push: {
+                stageDetails: "$stageDetails",
+                sessions: "$sessions",
+              },
+            },
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+            day: "$dayDetails",
+            stages: 1,
+          },
+        },
+        // Add other stages as necessary, like $match, $project, etc.
+      ]);
+      res.status(200).json({
+        success: true,
+        message: day ? `Retrieved sessions for day '${day}'` : "Retrieved sessions for all days",
+        response: session,
+      });
+    } else {
+      res.status(200).json({
+        success: true,
+        message: "Please pass the day",
+        response: [],
+      });
+    }
+    
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({
+      success: false,
+      message: err.toString(),
+    });
+  }
+};
+exports.getSessionByDayGuestRole = async (req, res) => {
+  try {
+    const { day } = req.query;
+    if (isValidObjectId(day)) {
+      const dayId = new ObjectId(day);
+
+
+      const session = await Session.aggregate([
+        {
+          $match: day ? { day: dayId } : {},
+        },
+        {
+          $lookup: {
+            from: "stages",
+            localField: "stage",
+            foreignField: "_id",
+            as: "stageDetails",
+          },
+        },
+        {
+          $lookup: {
+            from: "days",
+            localField: "day",
+            foreignField: "_id",
+            as: "dayDetails",
+          },
+        },
+        {
+          $lookup: {
+            from: "sessionguests",
+            localField: "_id",
+            foreignField: "session",
+            as: "guestDetails",
+          },
+        },
+        {
+          $sort: { "guestDetails.order": 1 },
+        },
+        {
+          $lookup: {
+            from: "speakers",
+            localField: "guestDetails.guest",
+            foreignField: "_id",
+            as: "guestSpeakerDetails",
+          },
+        },
+        {
+          $unwind: {
+            path: "$guestSpeakerDetails",
+            preserveNullAndEmptyArrays: true
+          },
+        },
+        {
+          $lookup: {
+            from: "guestroles",
+            localField: "guestDetails.guestRole",
+            foreignField: "_id",
+            as: "guestRoleDetails",
+          },
+        },
+        {
+          $unwind: {
+            path: "$guestRoleDetails",
+            preserveNullAndEmptyArrays: true
+          },
+        },
+        {
+          $addFields: {
+            "guestDetails.speaker": "$guestSpeakerDetails",
+            "guestDetails.guestRole": "$guestRoleDetails"
+          }
+        },
+        
         {
           $unwind: "$stageDetails",
         },

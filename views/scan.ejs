@@ -117,9 +117,7 @@
       navigator.mediaDevices
         .getUserMedia({
           video: {
-            facingMode: {
-              exact: "environment",
-            },
+            facingMode: "user", // This requests the front-facing camera, typically the laptop camera
           },
         })
         .then((stream) => {
@@ -135,48 +133,43 @@
         canvas.height = video.videoHeight;
         const ctx = canvas.getContext("2d");
 
-        const startScanning = () => {
+        const startScanning = async () => {
           scanning = true;
           startButton.style.display = "none";
           stopButton.style.display = "block";
           resultDiv.textContent = "Scanning...";
 
-          const scan = () => {
+          const scan = async () => {
             if (!scanning) return;
 
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-            const imageData = ctx.getImageData(
-              0,
-              0,
-              canvas.width,
-              canvas.height
-            );
-            const code = jsQR(
-              imageData.data,
-              imageData.width,
-              imageData.height
-            );
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const code = jsQR(imageData.data, imageData.width, imageData.height);
 
             if (code && !scannedUsers.includes(code.data)) {
               // QR code has been found and user hasn't been scanned yet
               const mobile = code.data;
 
-              // Send mobile to API endpoint
-              fetch("/api/v1/attendance", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ mobile }),
-              })
-                .then(response => response.json())
-                .then(data => {
-                  // Display the message and userData from the API in the resultDiv
-                  resultDiv.innerHTML = `<p>${data.message}</p><p>Name: ${(data.userData.name)} <br> Registration Type: ${(data.userData.regType)} <br> Mobile: ${(data.userData.mobileNumber)}</p>`;
-                })
-                .catch(error => {
-                  console.error("Error sending data to API:", error);
+              try {
+                // Send mobile to API endpoint
+                const res = await fetch("/api/v1/attendance", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ mobile }),
                 });
 
-              // Store the scanned user to prevent multiple scans
+                if (res.ok) {
+                  const data = await res.json(); // Parse the JSON response
+                  resultDiv.innerHTML = `<p>${data.message}</p><p>Name: ${data.userData.name} <br> Registration Type: ${data.userData.regType} <br> Mobile: ${data.userData.mobileNumber}</p>`;
+                } else {
+                  const error = await res.json(); // Parse the error response
+                  resultDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+                }
+              } catch (error) {
+                console.error("Error sending data to API:", error);
+                resultDiv.innerHTML = `<p>Error sending data to API: ${error.message}</p>`;
+              }
+
               scannedUsers.push(code.data);
             }
 
