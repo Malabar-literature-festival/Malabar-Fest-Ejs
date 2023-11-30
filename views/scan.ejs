@@ -127,64 +127,68 @@
           console.error("Error accessing camera:", error);
         });
 
-      video.addEventListener("play", () => {
-        const canvas = document.getElementById("qr-canvas");
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        const ctx = canvas.getContext("2d");
+        video.addEventListener("play", () => {
+    const canvas = document.getElementById("qr-canvas");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    const ctx = canvas.getContext("2d");
 
-        const startScanning = () => {
-          scanning = true;
-          startButton.style.display = "none";
-          stopButton.style.display = "block";
-          resultDiv.textContent = "Scanning...";
+    const startScanning = () => {
+        scanning = true;
+        startButton.style.display = "none";
+        stopButton.style.display = "block";
+        resultDiv.textContent = "Scanning...";
 
-          const scan = () => {
+        const scan = () => {
             if (!scanning) return;
 
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
             const imageData = ctx.getImageData(
-              0,
-              0,
-              canvas.width,
-              canvas.height
+                0,
+                0,
+                canvas.width,
+                canvas.height
             );
             const code = jsQR(
-              imageData.data,
-              imageData.width,
-              imageData.height
+                imageData.data,
+                imageData.width,
+                imageData.height
             );
 
             if (code) {
-              // QR code has been found
-              const mobile = code.data;
+                // QR code has been found
+                const mobile = code.data;
 
-              // Send mobile to API endpoint
-              fetch("/api/v1/attendance", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ mobile }),
-              });
+                // Send mobile to API endpoint
+                fetch("/api/v1/attendance", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ mobile }),
+                });
 
-              resultDiv.textContent = "QR Code detected: " + code.data;
+                resultDiv.textContent = "QR Code detected: " + code.data;
+
+                // Stop scanning after a successful scan
+                stopScanning();
+                return;
             }
 
             requestAnimationFrame(scan);
-          };
-
-          requestAnimationFrame(scan);
         };
 
-        const stopScanning = () => {
-          scanning = false;
-          startButton.style.display = "block";
-          stopButton.style.display = "none";
-          resultDiv.textContent = "";
-        };
+        requestAnimationFrame(scan);
+    };
 
-        startButton.addEventListener("click", startScanning);
-        stopButton.addEventListener("click", stopScanning);
-      });
+    const stopScanning = () => {
+        scanning = false;
+        startButton.style.display = "block";
+        stopButton.style.display = "none";
+        resultDiv.textContent = "";
+    };
+
+    startButton.addEventListener("click", startScanning);
+    stopButton.addEventListener("click", stopScanning);
+});
     </script>
   </body>
 </html>
