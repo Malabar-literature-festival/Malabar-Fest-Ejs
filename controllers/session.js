@@ -1,8 +1,8 @@
-const { default: mongoose } = require("mongoose");
+const { default: mongoose, isValidObjectId } = require("mongoose");
 const Session = require("../models/session");
 const sessionGuest = require("../models/sessionGuest");
 const session = require("../models/session");
-const { ObjectId } = require('mongodb');
+const { ObjectId } = require("mongodb");
 
 // @desc      CREATE NEW SESSION
 // @route     POST /api/v1/session
@@ -40,9 +40,7 @@ exports.getSession = async (req, res) => {
       });
     }
 
-    const query = searchkey
-      ? { ...req.filter, day: { $regex: searchkey, $options: "i" } }
-      : req.filter;
+    const query = searchkey ? { ...req.filter, day: { $regex: searchkey, $options: "i" } } : req.filter;
 
     const [totalCount, filterCount, data] = await Promise.all([
       parseInt(skip) === 0 && Session.countDocuments(),
@@ -134,10 +132,7 @@ exports.deleteSession = async (req, res) => {
 // @access    protect
 exports.select = async (req, res) => {
   try {
-    const items = await Session.find(
-      {},
-      { _id: 0, id: "$_id", value: "$title" }
-    );
+    const items = await Session.find({}, { _id: 0, id: "$_id", value: "$title" });
     return res.status(200).send(items);
   } catch (err) {
     console.log(err);
@@ -222,12 +217,12 @@ exports.getSessionByDay = async (req, res) => {
           _id: { day: "$day", stage: "$stage", sessionId: "$_id" },
           sessionDetails: {
             $first: {
-              "_id": "$_id",
-              "day": "$day",
-              "stage": "$stage",
-              "startTime": "$startTime",
-              "endTime": "$endTime",
-              "title": "$title",
+              _id: "$_id",
+              day: "$day",
+              stage: "$stage",
+              startTime: "$startTime",
+              endTime: "$endTime",
+              title: "$title",
             },
           },
           guestDetails: {
@@ -255,14 +250,14 @@ exports.getSessionByDay = async (req, res) => {
           _id: { day: "$_id.day", stage: "$_id.stage" },
           sessions: {
             $push: {
-              "_id": "$sessionDetails._id",
-              "day": "$sessionDetails.day",
-              "sessionData": "$sessionDetails.sessionData",
-              "stage": "$sessionDetails.stage",
-              "startTime": "$sessionDetails.startTime",
-              "endTime": "$sessionDetails.endTime",
-              "title": "$sessionDetails.title",
-              "guestDetails": "$guestDetails",
+              _id: "$sessionDetails._id",
+              day: "$sessionDetails.day",
+              sessionData: "$sessionDetails.sessionData",
+              stage: "$sessionDetails.stage",
+              startTime: "$sessionDetails.startTime",
+              endTime: "$sessionDetails.endTime",
+              title: "$sessionDetails.title",
+              guestDetails: "$guestDetails",
             },
           },
         },
@@ -302,9 +297,7 @@ exports.getSessionByDay = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: day
-        ? `Retrieved sessions for day '${day}'`
-        : "Retrieved sessions for all days",
+      message: day ? `Retrieved sessions for day '${day}'` : "Retrieved sessions for all days",
       response: sessionsByDay,
     });
   } catch (err) {
@@ -316,5 +309,109 @@ exports.getSessionByDay = async (req, res) => {
   }
 };
 
-
-
+exports.getSessionByDay1 = async (req, res) => {
+  try {
+    const { day } = req.query;
+    if (isValidObjectId(day)) {
+      const dayId = new ObjectId(day);
+      const session = await Session.aggregate([
+        {
+          $match: day ? { day: dayId } : {},
+        },
+        {
+          $lookup: {
+            from: "stages",
+            localField: "stage",
+            foreignField: "_id",
+            as: "stageDetails",
+          },
+        },
+        {
+          $lookup: {
+            from: "days",
+            localField: "day",
+            foreignField: "_id",
+            as: "dayDetails",
+          },
+        },
+        {
+          $lookup: {
+            from: "sessionguests",
+            localField: "_id",
+            foreignField: "session",
+            as: "guestDetails",
+          },
+        },
+        {
+          $lookup: {
+            from: "speakers", // The collection name for 'SessionGuest' in your database
+            localField: "guestDetails.guest",
+            foreignField: "_id",
+            as: "guestDetails.speaker",
+          },
+        },
+        {
+          $unwind: "$stageDetails",
+        },
+        {
+          $unwind: "$dayDetails",
+        },
+        {
+          $sort: { startTime: 1 },
+        },
+        {
+          $group: {
+            _id: "$stageDetails._id",
+            stageDetails: { $first: "$stageDetails" },
+            sessions: {
+              $push: {
+                sessionDetails: "$$ROOT",
+              },
+            },
+          },
+        },
+        {
+          $sort: { "stageDetails.order": 1 },
+        },
+        {
+          $group: {
+            _id: "$stageDetails.day",
+            dayDetails: { $first: "$dayDetails" },
+            stages: {
+              $push: {
+                stageDetails: "$stageDetails",
+                sessions: "$sessions",
+              },
+            },
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+            day: "$dayDetails",
+            stages: 1,
+          },
+        },
+        // Add other stages as necessary, like $match, $project, etc.
+      ]);
+      res.status(200).json({
+        success: true,
+        message: day ? `Retrieved sessions for day '${day}'` : "Retrieved sessions for all days",
+        response: session,
+      });
+    } else {
+      res.status(200).json({
+        success: true,
+        message: "Please pass the day",
+        response: [],
+      });
+    }
+    
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({
+      success: false,
+      message: err.toString(),
+    });
+  }
+};
