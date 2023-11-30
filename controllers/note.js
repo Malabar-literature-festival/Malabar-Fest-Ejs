@@ -68,6 +68,7 @@ exports.getNote = async (req, res) => {
   }
 };
 
+
 // @desc      UPDATE SPECIFIC NOTE
 // @route     PUT /api/v1/note/:id
 // @access    protect
