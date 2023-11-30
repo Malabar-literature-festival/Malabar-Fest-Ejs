@@ -9,9 +9,9 @@ const getUploadMiddleware = require("../middleware/upload");
 
 router
   .route("/")
-  .post(getUploadMiddleware("uploads/registration", ["image"]), getS3Middleware(["image"]), createRegistration)
+  .post(getUploadMiddleware("uploads/registration", ["image","transactionImage"]), getS3Middleware(["image","transactionImage"]), createRegistration)
   .get(reqFilter, getRegistration)
-  .put(getUploadMiddleware("uploads/registration", ["image"]), getS3Middleware(["image"]), updateRegistration)
+  .put(getUploadMiddleware("uploads/registration", ["image","transactionImage"]), getS3Middleware(["image","transactionImage"]), updateRegistration)
   .delete(deleteRegistration);
 router.get("/payment-generation", paymentGeneration);
 router.get("/select", reqFilter, select);
