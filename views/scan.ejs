@@ -111,6 +111,7 @@
       const stopButton = document.getElementById("stop-button");
       const resultDiv = document.getElementById("result");
       let scanning = false;
+      let scannedUsers = [];
 
       navigator.mediaDevices
         .getUserMedia({
@@ -155,8 +156,8 @@
               imageData.height
             );
 
-            if (code) {
-              // QR code has been found
+            if (code && !scannedUsers.includes(code.data)) {
+              // QR code has been found and user hasn't been scanned yet
               const mobile = code.data;
 
               // Send mobile to API endpoint
@@ -164,9 +165,18 @@
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ mobile }),
-              });
+              })
+                .then(response => response.json())
+                .then(data => {
+                  // Display the message from the API in the resultDiv
+                  resultDiv.textContent = data.message;
+                })
+                .catch(error => {
+                  console.error("Error sending data to API:", error);
+                });
 
-              resultDiv.textContent = "QR Code detected: " + code.data;
+              // Store the scanned user to prevent multiple scans
+              scannedUsers.push(code.data);
             }
 
             requestAnimationFrame(scan);
@@ -180,6 +190,8 @@
           startButton.style.display = "block";
           stopButton.style.display = "none";
           resultDiv.textContent = "";
+          // Clear the scanned users array when stopping scanning
+          scannedUsers = [];
         };
 
         startButton.addEventListener("click", startScanning);
