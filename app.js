@@ -120,6 +120,7 @@ const programLocation = require("./routes/programLocation");
 const banners = require("./routes/banners");
 const attendance = require("./routes/attendance");
 const article = require("./routes/article");
+const notification = require("./routes/notification.js");
 
 // Configure the session middleware
 app.use(
@@ -225,6 +226,7 @@ app.use("/api/v1/program-location", programLocation);
 app.use("/api/v1/banners", banners);
 app.use("/api/v1/attendance", attendance);
 app.use("/api/v1/article", article);
+app.use("/api/v1/notification", notification);
 
 // Flutter Api //
 const login = require("./routes/app/login.js");
