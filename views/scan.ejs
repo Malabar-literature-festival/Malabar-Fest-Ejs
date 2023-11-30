@@ -129,6 +129,19 @@
           console.error("Error accessing camera:", error);
         });
 
+        // navigator.mediaDevices
+        // .getUserMedia({
+        //   video: {
+        //     facingMode: "user", // This requests the front-facing camera, typically the laptop camera
+        //   },
+        // })
+        // .then((stream) => {
+        //   video.srcObject = stream;
+        // })
+        // .catch((error) => {
+        //   console.error("Error accessing camera:", error);
+        // });
+
       video.addEventListener("play", () => {
         const canvas = document.getElementById("qr-canvas");
         canvas.width = video.videoWidth;
