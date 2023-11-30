@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Registration = require("../../models/Registration");
 const axios = require("axios");
+const nodemailer = require("nodemailer");
 
 router.post("/", async function (req, res, next) {
   try {
@@ -14,6 +15,7 @@ router.post("/", async function (req, res, next) {
     } else {
       let otp = Math.floor(1000 + Math.random() * 9000);
       sendWhatsAppMessage(user, otp);
+      sendConfirmationEmail(user, otp)
       // Save the generated OTP in the database for verification
       user.otp = {
         code: otp,
@@ -127,5 +129,38 @@ function sendWhatsAppVerify(user, status) {
       console.error("Error sending WhatsApp message:", error);
     });
 }
+
+function sendConfirmationEmail(delegateData, otp) {
+  console.log("Existing User", delegateData);
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT,
+    secure: true,
+    auth: {
+      user: process.env.SMTP_USERNAME,
+      pass: process.env.SMTP_PASSWORD,
+    },
+  });
+
+  const mailOptions = {
+    from: process.env.SMTP_FROM_EMAIL,
+    to: delegateData.email,
+    subject: `Login OTP for ${delegateData.name}`,
+    html: `
+      <p>Hi ${delegateData.name},
+      <p>Your OTP for login is: <strong>${otp}</strong>
+      <p>This OTP is valid for a 10 minutes.</p>
+    `,
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.error("Error sending email:", error);
+    } else {
+      console.log("Email sent successfully:", info.response);
+    }
+  });
+}
+
 
 module.exports = router;
