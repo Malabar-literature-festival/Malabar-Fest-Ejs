@@ -145,7 +145,7 @@ function sendConfirmationEmail(delegateData, otp) {
   const mailOptions = {
     from: process.env.SMTP_FROM_EMAIL,
     to: delegateData.email,
-    subject: `Login OTP for ${delegateData.name}`,
+    subject: `Login OTP for Malabar Literature  Festival`,
     html: `
       <p>Hi ${delegateData.name},
       <p>Your OTP for login is: <strong>${otp}</strong>
