@@ -45,7 +45,6 @@ exports.getNotification = async (req, res) => {
       parseInt(skip) === 0 && Notification.countDocuments(),
       parseInt(skip) === 0 && Notification.countDocuments(query),
       Notification.find(query)
-        .populate("session")
         .skip(parseInt(skip) || 0)
         .limit(parseInt(limit) || 0)
         .sort({ _id: -1 }),
