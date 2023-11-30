@@ -51,7 +51,7 @@ exports.createAttendance = async (req, res) => {
 
         res.status(200).json({
             success: true,
-            message: "Attendance created successfully",
+            message: "Attendance Marked successfully",
             data: newAttendance,
             userData: existingUser,
         });

@@ -67,6 +67,7 @@
       .result {
         border-radius: 10px 10px 0 0px;
         display: flex;
+        flex-direction: column; /* Added to display userData below the message */
         align-items: center;
         position: absolute;
         left: 0;
@@ -97,7 +98,7 @@
   </head>
   <body>
     <div id="qr-scanner-container">
-      <div class="instruction">Mark Attendee by scanning the QR</div>
+      <div class="instruction">Mark Attendance by scanning the QR</div>
       <video id="video" autoplay muted playsinline></video>
       <canvas id="qr-canvas" style="display: none"></canvas>
       <button id="start-button">Start Scanning</button>
@@ -117,7 +118,7 @@
         .getUserMedia({
           video: {
             facingMode: {
-              exact: "environment",
+              exact: "user",
             },
           },
         })
@@ -168,8 +169,8 @@
               })
                 .then(response => response.json())
                 .then(data => {
-                  // Display the message from the API in the resultDiv
-                  resultDiv.textContent = data.message;
+                  // Display the message and userData from the API in the resultDiv
+                  resultDiv.innerHTML = `<p>${data.message}</p><p>Name: ${(data.userData.name)} <br> Registration Type: ${(data.userData.regType)} <br> Mobile: ${(data.userData.mobileNumber)}</p>`;
                 })
                 .catch(error => {
                   console.error("Error sending data to API:", error);
