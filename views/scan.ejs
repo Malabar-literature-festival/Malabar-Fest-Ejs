@@ -116,8 +116,10 @@
 
       navigator.mediaDevices
         .getUserMedia({
-          facingMode: {
-            exact: "environment",
+          video: {
+            facingMode: {
+              exact: "environment",
+            },
           },
         })
         .then((stream) => {
