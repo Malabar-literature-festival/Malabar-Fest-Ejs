@@ -157,13 +157,13 @@
 
             if (code) {
               // QR code has been found
-              const value = code.data;
+              const mobile = code.data;
 
-              // Send value to API endpoint
+              // Send mobile to API endpoint
               fetch("/api/v1/attendance", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ value }),
+                body: JSON.stringify({ mobile }),
               });
 
               resultDiv.textContent = "QR Code detected: " + code.data;
