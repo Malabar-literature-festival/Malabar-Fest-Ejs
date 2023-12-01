@@ -394,7 +394,10 @@
           event.preventDefault();
 
           try {
-            const response = await fetch("/delegate", {
+            // Hide the register button before submitting the form
+            registerButton.style.display = "none";
+
+            const response = await fetch("/student", {
               method: "POST",
               body: new FormData(form),
             });
@@ -405,27 +408,24 @@
               if (responseData.alreadyRegistered) {
                 // Display the already registered message in the modal
                 modalMessage.innerHTML = "You are already registered.";
-                // Show the modal
-                modal.style.display = "block";
-                // Remove the button highlight
-                registerButton.blur();
-                // Clear the form
-                form.reset();
               } else if (responseData.message === "Registration success") {
                 // Display the success message in the modal
                 modalMessage.innerHTML =
                   "Thank you for registering. Our technical team will review and approve your registration. You can expect to receive the ticket in your registered email within the next two days. <br> Help Desk: +91 7907100834";
-                // Show the modal
-                modal.style.display = "block";
 
-                // Remove the button highlight
-                registerButton.blur();
-                // Clear the form
-                form.reset();
+                // Show the register button after displaying the popup message
+                registerButton.style.display = "block";
               } else {
                 console.error("Unexpected response:", responseData);
                 // Handle unexpected responses if needed
               }
+
+              // Show the modal
+              modal.style.display = "block";
+              // Remove the button highlight
+              registerButton.blur();
+              // Clear the form
+              form.reset();
             } else {
               // Handle other response statuses (e.g., validation errors)
               const responseData = await response.json();
