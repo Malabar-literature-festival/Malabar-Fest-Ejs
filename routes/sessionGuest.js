@@ -7,6 +7,7 @@ const {
   deleteSessionGuest,
   select,
   getSessionGuestBySession,
+  getSessionGuestBySpeaker,
 } = require("../controllers/sessionGuest");
 // Middleware
 const { protect, authorize } = require("../middleware/auth");
@@ -31,5 +32,6 @@ router
 
 router.get("/select", reqFilter, select);
 router.get("/sessionguest-by-session", reqFilter, getSessionGuestBySession);
+router.get("/get-guest-session", reqFilter, getSessionGuestBySpeaker);
 
 module.exports = router;

@@ -185,3 +185,43 @@ exports.getSessionGuestBySession = async (req, res) => {
     });
   }
 };
+
+exports.getSessionGuestBySpeaker = async (req, res) => {
+  try {
+    const { speakerId } = req.query;
+    const id = new ObjectId(speakerId);
+
+    // Find the sessions where the speaker is a guest
+    const sessionGuests = await SessionGuest.find({ guest: id })
+      .populate('session')
+      .populate('guest');
+
+    // Organize the sessions by grouping them under the guest
+    const groupedSessions = {};
+    sessionGuests.forEach(sessionGuest => {
+      const { guest, session } = sessionGuest;
+      if (!groupedSessions[guest._id]) {
+        groupedSessions[guest._id] = {
+          guest: guest,
+          sessions: []
+        };
+      }
+      groupedSessions[guest._id].sessions.push(session);
+    });
+
+    // Convert the groupedSessions object to an array
+    const result = Object.values(groupedSessions);
+
+    res.status(200).json({
+      success: true,
+      message: 'Retrieved sessions by speaker',
+      response: result,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+    });
+  }
+};
