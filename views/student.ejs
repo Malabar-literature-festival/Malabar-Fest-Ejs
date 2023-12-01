@@ -91,6 +91,9 @@
   </head>
 
   <body>
+    <div id="loader" class="loader-overlay">
+      <div class="loader"></div>
+    </div>
     <div class="main-wrapper">
       <div class="container">
         <div class="attende-registration" style="margin-top: 100px">
@@ -389,6 +392,87 @@
         const closeBtn = document.querySelector(".pay-close"); // Correct class
         const modalMessage = document.getElementById("modalMessage");
         const registerButton = document.querySelector(".btn.btn-primary");
+        const loaderOverlay = document.getElementById("loader");
+
+        form.addEventListener("submit", async function (event) {
+          event.preventDefault();
+
+          try {
+            // Show loader while processing the form
+            loaderOverlay.style.display = "flex";
+
+            // Disable the register button to prevent multiple submissions
+            registerButton.disabled = true;
+
+            const response = await fetch("/student", {
+              method: "POST",
+              body: new FormData(form),
+            });
+
+            // Hide loader after form submission
+            loaderOverlay.style.display = "none";
+
+            // Remove the loading spinner after form submission
+            registerButton.innerHTML = "Register";
+            registerButton.disabled = false;
+
+            if (response) {
+              const responseData = await response.json();
+
+              if (responseData.alreadyRegistered) {
+                // Display the already registered message in the modal
+                modalMessage.innerHTML = "You are already registered.";
+              } else if (responseData.message === "Registration success") {
+                // Display the success message in the modal
+                modalMessage.innerHTML =
+                  "Thank you for registering. Our technical team will review and approve your registration. You can expect to receive the ticket in your registered email within the next two days. <br> Help Desk: +91 7907100834";
+
+                // Show the register button after displaying the popup message
+                registerButton.style.display = "block";
+              } else {
+                console.error("Unexpected response:", responseData);
+                // Handle unexpected responses if needed
+              }
+
+              // Show the modal
+              modal.style.display = "block";
+              // Remove the button highlight
+              registerButton.blur();
+              // Clear the form
+              form.reset();
+            } else {
+              // Handle other response statuses (e.g., validation errors)
+              const responseData = await response.json();
+              console.error(responseData.error);
+              // Display an error message if needed
+            }
+          } catch (error) {
+            console.error("Error submitting form:", error);
+            // Display an error message if needed
+          }
+        });
+
+        // Close the modal when the close button is clicked
+        closeBtn.addEventListener("click", function () {
+          modal.style.display = "none";
+        });
+
+        // Close the modal when clicking outside the modal content
+        window.addEventListener("click", function (event) {
+          if (event.target === modal) {
+            modal.style.display = "none";
+          }
+        });
+      });
+    </script>
+
+    <!-- <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("studentForm");
+        const modal = document.getElementById("myModal");
+        const closeBtn = document.querySelector(".pay-close"); // Correct class
+        const modalMessage = document.getElementById("modalMessage");
+        const registerButton = document.querySelector(".btn.btn-primary");
 
         form.addEventListener("submit", async function (event) {
           event.preventDefault();
@@ -450,6 +534,6 @@
           }
         });
       });
-    </script>
+    </script> -->
   </body>
 </html>
