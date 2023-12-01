@@ -17,6 +17,18 @@
   </head>
 
   <body>
+    <div id="loader" class="loader-overlay_a" style="display: none">
+      <div class="loader_a"></div>
+    </div>
+
+    <div id="myModal" class="pay-modal">
+      <div class="pay-modal-content">
+        <span class="pay-close" onclick="closeModal()">&times;</span>
+        <p id="modalMessage"></p>
+        <!-- <div id="loader" style="display: none;">Loading...</div> -->
+      </div>
+    </div>
+
     <div class="main-wrapper">
       <div class="container">
         <div class="attende-registration" style="margin-top: 100px">
@@ -127,7 +139,7 @@
                       <p id="emailError" class="text-danger"></p>
                     </div>
                   </div> -->
-<!-- 
+                    <!-- 
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="location">District:</label>
@@ -144,7 +156,7 @@
                     </div> -->
 
                     <!------------------ profession ------------------------->
-                    
+
                     <!-- <div class="col-md-6">
                       <div class="form-group">
                         <label for="professions">profession:</label>
@@ -171,14 +183,14 @@
                         </select>
                       </div>
                     </div> -->
-                    
+
                     <!------------------ profession ------------------------->
 
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="country">Registering From</label>
                         <select
-                        id="country"
+                          id="country"
                           name="countryFrom"
                           class="form-control scrollable-dropdown"
                           required
@@ -254,40 +266,46 @@
     <script src="assets/js/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+      function openModal(message) {
+        $("#myModal #modalMessage").html(message);
+        $("#myModal #loader").hide();
+        $("#myModal").show();
+      }
+
+      function closeModal() {
+        $("#myModal").hide();
+      }
+
       $(document).ready(function () {
         // Handle form submission
         $("#attendeForm").submit(function (e) {
-          e.preventDefault(); // Prevent the default form submission
+          e.preventDefault();
 
-          // Display a "Submitting..." message
-          $("#alertMessage")
-            .removeClass("alert-danger alert-success")
-            .addClass("alert-info");
-          $("#alertMessage").html("Submitting...").show();
+          // Show the loader
+          $("#loader").show();
 
           // Send the form data to the server via AJAX
           $.ajax({
             type: "POST",
-            url: "/attende", // Replace with your server route
-            data: $(this).serialize(), // Serialize the form data
+            url: "/attende",
+            data: $(this).serialize(),
             success: function (response) {
-              console.log(response);
-              // Display a success message
-              $("#alertMessage")
-                .removeClass("alert-danger")
-                .addClass("alert-success");
-              $("#alertMessage").html(response.message).show();
+              // Display a success message in the modal
+              openModal(response.message);
+
               // Clear the form fields
               $("#attendeForm")[0].reset();
             },
             error: function (xhr, status, error) {
-              // Display an error message
-              $("#alertMessage")
-                .removeClass("alert-success")
-                .addClass("alert-danger");
-              $("#alertMessage").html(xhr.responseJSON.message).show();
+              // Display an error message in the modal
+              openModal(xhr.responseJSON.message);
+
               // Clear the form fields
               $("#attendeForm")[0].reset();
+            },
+            complete: function () {
+              // Hide the loader
+              $("#loader").hide();
             },
           });
         });
