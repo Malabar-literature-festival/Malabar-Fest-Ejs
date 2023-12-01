@@ -1,12 +1,46 @@
 const { default: mongoose } = require("mongoose");
 const Notification = require("../models/Notification");
+const axios = require("axios");
 
 // @desc      CREATE NEW NOTE
 // @route     POST /api/v1/notification
 // @access    protect
 exports.createNotification = async (req, res) => {
   try {
+    // Create the notification in your database
     const newNote = await Notification.create(req.body);
+
+    // Prepare the OneSignal API request payload
+    const oneSignalPayload = {
+      included_segments: ["All"],
+      app_id: process.env.APP_ID,
+      contents: {
+        en: `${req.body.description}`,
+      },
+      name: "INTERNAL_CMPAIGN_NAME",
+      headings: {
+        en: `${req.body.title}`,
+      },
+      big_picture: `https://event-manager.syd1.cdn.digitaloceanspaces.com/${req.body.image}`,
+      // include_player_ids: ["207c51ee-95ed-4f25-a8f5-5c087ae34ca8"],
+    };
+
+    // Make the OneSignal API request
+    const oneSignalResponse = await axios.post(
+      "https://onesignal.com/api/v1/notifications",
+      oneSignalPayload,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Basic ${process.env.ONESIGNAL_REST_API_KEY}`, // Replace with your OneSignal REST API key
+        },
+      }
+    );
+
+    // Handle the OneSignal API response if needed
+    console.log("OneSignal API Response:", oneSignalResponse.data);
+
+    // Respond to the client with the success message and created notification data
     res.status(200).json({
       success: true,
       message: "Notification created successfully",
@@ -67,15 +101,18 @@ exports.getNotification = async (req, res) => {
   }
 };
 
-
 // @desc      UPDATE SPECIFIC NOTE
 // @route     PUT /api/v1/notification/:id
 // @access    protect
 exports.updateNotification = async (req, res) => {
   try {
-    const notifications = await Notification.findByIdAndUpdate(req.body.id, req.body, {
-      new: true,
-    });
+    const notifications = await Notification.findByIdAndUpdate(
+      req.body.id,
+      req.body,
+      {
+        new: true,
+      }
+    );
 
     if (!notifications) {
       return res.status(404).json({
@@ -127,7 +164,10 @@ exports.deleteNotification = async (req, res) => {
 
 exports.select = async (req, res) => {
   try {
-    const items = await Notification.find({}, { _id: 0, id: "$_id", value: "$notifications" });
+    const items = await Notification.find(
+      {},
+      { _id: 0, id: "$_id", value: "$notifications" }
+    );
     return res.status(200).send(items);
   } catch (err) {
     console.log(err);
