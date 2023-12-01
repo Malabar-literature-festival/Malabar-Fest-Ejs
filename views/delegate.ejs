@@ -24,6 +24,10 @@
   </head>
 
   <body>
+    <div id="loader" class="loader-overlay">
+      <div class="loader"></div>
+    </div>
+
     <div class="main-wrapper">
       <div class="container">
         <div class="attende-registration" style="margin-top: 100px">
@@ -299,18 +303,29 @@
         const closeBtn = document.querySelector(".pay-close"); // Correct class
         const modalMessage = document.getElementById("modalMessage");
         const registerButton = document.querySelector(".btn.btn-primary");
+        const loaderOverlay = document.getElementById("loader");
 
         form.addEventListener("submit", async function (event) {
           event.preventDefault();
 
           try {
-            // Hide the register button before submitting the form
-            registerButton.style.display = "none";
+            // Show loader while processing the form
+            loaderOverlay.style.display = "flex";
+
+            // Disable the register button to prevent multiple submissions
+            registerButton.disabled = true;
 
             const response = await fetch("/delegate", {
               method: "POST",
               body: new FormData(form),
             });
+
+            // Hide loader after form submission
+            loaderOverlay.style.display = "none";
+
+            // Remove the loading spinner after form submission
+            registerButton.innerHTML = "Register";
+            registerButton.disabled = false;
 
             if (response) {
               const responseData = await response.json();
