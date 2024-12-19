@@ -43,4 +43,4 @@ jobs:
       # step 5: depolyment
       - name: Trigger deployment endpoint
         run: |
-          curl -X POST http://20.235.203.243/ -H "Content-Type: application/json" -d '{"dir": "aws-rekognition-api"}'
+          curl -X POST http://20.235.203.243/ -H "Content-Type: application/json" -d '{"dir": "malabarliteraturefestival"}'
